@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\LogoDesignOrder;
+use App\User;
 use App\Http\Resources\LogoDesignOrderPOST;
 
 class LogoDesignOrdersController extends Controller
@@ -51,31 +52,31 @@ class LogoDesignOrdersController extends Controller
         // $new_order->style_geometric_organic = $request->style['geometric_organic'];
         // $new_order->style_abstract_literal = $request->style['abstract_literal'];
 
-        $new_order->color = implode(",",$request->color);
-        $new_order->logotype = implode(",", $request->logotype);
+        $new_order->color = isset($request->color) ? implode(",",$request->color) : null;
+        $new_order->logotype = isset($request->logotype) ? implode(",", $request->logotype) : null;
 
         $new_order->brand_name = $request->brand_name;
         $new_order->tagline = $request->tagline;
         $new_order->business_field = $request->business_field;
         $new_order->description = $request->description;
 
-        if(!isset($new_order->user_id) || !isset($new_order->package) || !isset($new_order->logotype) || !isset($new_order->brand_name) || !isset($new_order->business_field) || !isset($new_order->description)) {
+        if(!isset($new_order->user_id) || !isset($new_order->package) || !isset($request->logotype) || !isset($request->color) || !isset($new_order->brand_name) || !isset($new_order->business_field) || !isset($new_order->description)) {
             return -2; //echo "Required fields missing"
         } else if(!User::find($new_order->user_id)) {
             return -3; //echo "User does not exist"
         } else if($new_order -> save()) {
-            $new_order_response = new LogoDesignOrderPOST($new_order);
-            return $new_order_response; //echo {user_id, order_number}
+            return $new_order->id;
+            //return $new_order->id; //echo order_number 
+            //return $new_order_response; //echo {user_id, order_number}
         }
         else {
             return -1; //echo "Error occured";
         }
 
         
-
+        
         // if($new_order -> save()) {
-        //     $new_order_response = new LogoDesignOrderPOST($new_order);
-        //     return $new_order_response;
+        //     return $new_order->id;
         // } 
         // else {
         //     return "FAILED";

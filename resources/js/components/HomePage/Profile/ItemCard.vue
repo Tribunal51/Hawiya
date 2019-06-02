@@ -1,14 +1,14 @@
 <template>
   <div class="card p-3">
     <div class="text-center">
-      <img class="img-fluid" :src="item.logo" width="100" alt="Card image cap">
+      <img class="img-fluid" :src="imageToDisplay(item)" :style="displayOrNot(item)" width="100" alt="Card image cap">
       <div class="card-body">
         <h5 class="card-title">{{ item.title }}</h5>
 				<h6 class="card-body">{{ item.category || capitalize }}</h6>
       </div>
       <div>
         <!-- <span v-for="(group, index) in item.order_type" :key="index" :class="`badge badge-${tags[group]}`">{{ group }}</span>				 -->
-				<span :class="`badge badge-${tags[item.order_type]}`">{{ item.order_type }}</span>
+				<span :class="`badge badge-${tags[item.category]}`">{{ item.category }}</span>
       </div>      
     </div>
   </div>
@@ -16,6 +16,9 @@
 
 <script>
 export default {
+	mounted() {
+		console.log('[item.uploads]', this.item.uploads);
+	},
 	data() {
 		return {
 			// list of tags to giving each stack a different color
@@ -28,8 +31,12 @@ export default {
 				web: 'secondary',
 				hybrid: 'info',
 				database: 'danger',
-				user: 'dark',
-				logodesign: 'warning'
+				logodesign: 'warning',
+				"Logo Design": 'dark',
+				"Social Media": 'success',
+				"Branding": 'warning',
+				"Website": 'danger',
+				"Stationary": 'secondary'
 			}
 		};
 	},
@@ -44,6 +51,23 @@ export default {
 		item: {
 			type: Object,
 			required: true
+		}
+	},
+	methods: {
+		imageToDisplay(item) {
+			if(item.uploads.length <= 0) {
+				return null;
+			}
+			else {
+				let url = "/storage/uploads/";
+				let filename = item.uploads[0].filename;
+				return (url+filename);
+			}
+		},
+		displayOrNot(item) {
+			if(item.uploads.length <= 0) {
+				return "display: none";
+			}
 		}
 	}
 };

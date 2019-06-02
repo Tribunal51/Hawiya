@@ -32,10 +32,21 @@ export default {
             }
 
         },
-
         components: {
             VApp
-        },        
+        },   
+        computed: {
+            userLoginStatus() {
+                return this.$store.state.user_id;
+            }
+        },
+        watch: {
+            userLoginStatus(newValue, oldValue) {
+                if(newValue <= 0) {
+                    this.$store.dispatch('logodesign/resetState');
+                }
+            }
+        }     
     }
 </script>
 

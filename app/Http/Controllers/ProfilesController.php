@@ -16,8 +16,8 @@ class ProfilesController extends Controller
      */
     public function index()
     {
-        //$profiles = Profile::with('uploads')->get();
-        $profiles = Profile::all();
+        $profiles = Profile::with('uploads')->get();
+        //$profiles = Profile::all();
         return $profiles;
     }
 

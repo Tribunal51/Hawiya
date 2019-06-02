@@ -63,6 +63,3 @@ export default new Vuex.Store({
     }
 })
 
-export function resetState() {
-    store.replaceState
-}

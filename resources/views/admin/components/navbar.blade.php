@@ -1,5 +1,5 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-    <a class="navbar-brand" href="/dashboard">Dashboard</a>
+    <a class="navbar-brand" href="/dashboard">Admin Dashboard</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -10,7 +10,7 @@
             <a class="nav-link" href="/dashboard/users">Users <span class="sr-only">(current)</span></a>
         </li>
         <li class="nav-item adminNav">
-            <a class="nav-link" href="/dashboard/profiles">Profiles</a>
+            <a class="nav-link" href="/dashboard/addProfile">Profiles</a>
         </li>
         <li class="nav-item adminNav">
             <a class="nav-link" href="#">Option 3</a>

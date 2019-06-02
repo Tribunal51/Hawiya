@@ -164,7 +164,7 @@ export default {
                 // console.log(localStorage);
                 // console.log(sessionStorage);
 
-                //this.$store.dispatch('logodesign/resetState');
+                this.$store.dispatch('logodesign/resetState');
             }
             
 
