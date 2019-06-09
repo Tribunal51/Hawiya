@@ -11,13 +11,13 @@
         <label for="type" class="col-md-4 col-form-label text-md-right">Category</label>
         <div class="col-md-6 form-group">
                                     
-            {{-- <select class="form-control" id="exampleFormControlSelect1" name="category">
+            <select class="form-control" id="exampleFormControlSelect1" name="category">
                 <option value="Logo Design">Logo Design</option>
                 <option value="Branding">Branding</option>
                 <option value="Social Media">Social Media</option>
                 <option value="Stationary">Stationary</option>
                 <option value="Website">Website</option>
-            </select> --}}
+            </select>
                                     
         </div>
     </div>
@@ -25,15 +25,17 @@
     <div class="form-group">
         
         <input type="file" name="my_file[]" id="my_files" multiple />
+        <button class="btn btn-secondary" onclick="document.location.reload()">Remove Photos</button>
         
             @include('admin.components.temp')
 
             
         <div class="gallery"></div>
+        
     </div>
 
 
-    <div class="form-group row mb-0">
+    <div class="form-group row mb-0">       
         <div class="col-md-8 offset-md-4">
             {!! Form::submit('Upload', ['class' => 'btn btn-primary']) !!}
         </div>

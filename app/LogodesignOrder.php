@@ -11,4 +11,6 @@ class LogodesignOrder extends Model
     protected $casts = [
         'style' => 'array'
     ];
+
+    protected $fillable = ['user_id','package'];
 }

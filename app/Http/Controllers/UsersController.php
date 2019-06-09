@@ -103,6 +103,10 @@ class UsersController extends Controller
      */
     public function update(Request $request)
     {
+        if(!isset($request->user_id)) {
+            return -2; // echo "Required fields missing"
+        }
+    
         if(User::find($request->user_id)) {
 
             $name = $request->input('name');
@@ -120,9 +124,7 @@ class UsersController extends Controller
             $user->password = $password ? Hash::make($password) : $user->password;
             $user->admin =  isset($admin) ? $admin : $user->admin;
 
-            if(!isset($user->name) || !isset($user->email) || !isset($user->password)) {
-                return -2; //echo "Required fields missing"
-            } else if(User::where('email', '=', $user->email)) {
+            if(User::where('email', '=', $user->email)) {
                 return -4; //echo "Email already registered"
             } else if($user->save()) {
                 return 1; //echo "User registered"
@@ -147,15 +149,15 @@ class UsersController extends Controller
         if(User::find($request->user_id)) {
             $user_to_delete = User::findOrFail($request->user_id);
             if($user_to_delete -> delete()) {
-                echo "User deleted.";
-                return $user_to_delete;
+                return 1;   // echo "User deleted"
+                //return $user_to_delete;
             }
             else {
-                echo "User could not be deleted";
+                return -1; // echo "User could not be deleted. Please investigate.
             }
         }
         else {
-            echo "User not found";
+            return -2; // User not found
         }
     }
 

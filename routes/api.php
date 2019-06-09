@@ -48,6 +48,7 @@ Route::get('/orders/getUserOrder', 'OrdersController@getUserOrder');
 Route::get('/orders/getAllOrders', 'OrdersController@getAllOrders');
 
 Route::get('/orders/logo-design', 'LogoDesignOrdersController@index');
+Route::put('/orders/logo-design', 'LogoDesignOrdersController@update');
 Route::post('/orders/logo-design', 'LogoDesignOrdersController@store');
 Route::delete('/orders/logo-design', 'LogoDesignOrdersController@destroy');
 

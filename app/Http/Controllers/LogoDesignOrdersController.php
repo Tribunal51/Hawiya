@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\LogoDesignOrder;
 use App\User;
 use App\Http\Resources\LogoDesignOrderPOST;
+use Illuminate\Support\Facades\Input;
 
 class LogoDesignOrdersController extends Controller
 {
@@ -118,9 +119,35 @@ class LogoDesignOrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
+    public function update(Request $request)
     {
-        //
+        if(!isset($request->id)) {
+            return -2; // echo "Required fields missing";
+        }
+        if(isset($request->user_id) && !User::find($request->user_id)) {
+            return -3; // echo "User does not exist";
+        }
+        if(LogoDesignOrder::find($request->id)) {
+
+            $order = LogoDesignOrder::find($request->id);
+            $order->user_id = $request->user_id ? $request->user_id : $order->user_id;
+            $order->package = $request->package ? $request->package : $order->package;
+            $order->style = $request->style? $request->style : $order->style;
+            $order->color = $request->color ? implode(",", $request->color) : $order->color;
+            $order->logotype = $request->logotype ? implode(",", $request->logotype) : $order->logotype;
+            $order->brand_name = $request->brand_name ? $request->brand_name : $order->brand_name;
+            $order->tagline = $request->tagline ? $request->tagline : $order->tagline;
+            $order->business_field = $request->business_field ? $request->business_field : $order->business_field;
+            $order->description = $request->description ? $request->description : $order->description;          
+            
+            if($order->save()) {
+                return $order->id; // echo "Order updated";
+            }
+            else {
+                return -1; // echo "Order could not be updated";
+            }
+        }
+
     }
 
     /**
@@ -129,8 +156,23 @@ class LogoDesignOrdersController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Request $request)
     {
-        //
+        if(!isset($request->id)) {
+            return -2; // echo "Required fields missing";
+        }
+
+        if(LogoDesignOrder::find($request->id)) {
+            $order_to_delete = LogoDesignOrder::find($request->id);
+            if($order_to_delete -> delete()) {
+                return 1; //echo "Order deleted"
+            }
+            else {
+                return -1; // echo "Order could not be deleted. Please investigate.
+            }
+        }
+        else {
+            return -3; // echo "Order not found."
+        }
     }
 }
