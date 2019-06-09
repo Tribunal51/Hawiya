@@ -103,9 +103,15 @@
                     </a>
 
                     <div id="userStatusSection" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
                         <a class="nav-item dropdown-item" href="{{ route('home') }}">
                                 {{ __('Dashboard') }}
                         </a>
+                        @if(Auth::user()->admin)
+                            <a class="nav-item dropdown-item" href="/dashboard">
+                                    {{ __('Admin Dashboard') }}
+                            </a>
+                        @endif
                         <a class="nav-item dropdown-item" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">

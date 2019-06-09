@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 use App\Profile;
 use App\Upload;
@@ -20,6 +21,8 @@ class ProfilesController extends Controller
         //$profiles = Profile::all();
         return $profiles;
     }
+
+    
 
     /**
      * Show the form for creating a new resource.
@@ -177,5 +180,15 @@ class ProfilesController extends Controller
     //     }
     // }
 
+    public function filter(Request $request) {
+        $profiles = Profile::with('uploads')->get();
+        if($request->key === null) {
+            return $profiles;
+        }
+        else {
+            $sorted_profiles = Profile::where('category', $request->key)->get();
+            return $sorted_profiles;
+        }
+    }
     
 }

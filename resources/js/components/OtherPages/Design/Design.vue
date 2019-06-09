@@ -26,8 +26,7 @@ export default {
                 borderTop: 'none',
                 borderBottom: '3px solid #FFDB00',
                 display: 'flex',
-                justifyContent: 'flex-start'
-                
+                justifyContent: 'flex-start'                
             },
             navItemStyle: {
                 color: 'gray',
@@ -35,6 +34,13 @@ export default {
                 fontFamily: 'LatoRegular, sans-serif'
             },
         }
+    },
+    mounted() {
+        if(this.$store.state.verified === 0 && this.$store.state.user_id > 0 ) {
+            window.location.href="/home";
+        }
+        
+        
     }
 }
 </script>

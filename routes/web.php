@@ -70,8 +70,13 @@ Route::post('/dashboard/deleteProfile', 'AdminController@deleteProfile');
 // })
 
 
+Route::get('/design/{any}', function() {
+    return view('welcome');
+})->where('any', '.*')->middleware('verified');
+
 
 
 Route::get('{any}', function () {
     return view('welcome');
 })->where('any','.*');
+

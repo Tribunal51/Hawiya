@@ -161,6 +161,26 @@ class UsersController extends Controller
         }
     }
 
+    public function login(Request $request) {
+        if(!isset($request->email) || !isset($request->password)) {
+            return -2; // echo "Required fields missing";
+        }
+        if(User::where('email',$request->email)->first()) {
+            $user = User::where('email', $request->email)->first();
+            if(Hash::check($request->password, $user->password)) {
+                return $user->id; // echo "User ID";
+            }
+            else {
+                return -4; // echo "Wrong Password";
+            }
+        }
+        else {
+            return -3; // echo "User does not exist";
+        }
+    }
+
+
+
     // public function setAdmin(Request $request) {
     //     $user = User::find($request->id);
     //     $user->admin = !$user->admin;

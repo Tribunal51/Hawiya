@@ -34,12 +34,15 @@ use App\Http\Resources\User as UserResource;
 
 Route::get('/users', 'UsersController@index');
 Route::get('/user', 'UsersController@show');
+Route::get('/user/login', 'UsersController@login');
 Route::post('/user', 'UsersController@store');
 Route::put('/user', 'UsersController@update');
 Route::delete('/user', 'UsersController@destroy');
 
+
 Route::get('/profiles', 'ProfilesController@index');
 Route::post('/profile', 'ProfilesController@store');
+Route::get('/profiles/filter', 'ProfilesController@filter');
 
 
 

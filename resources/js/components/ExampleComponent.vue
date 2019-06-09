@@ -16,10 +16,13 @@ import { VApp } from 'vuetify/lib';
 export default {
         props: [
             "authuser",
-            "reset"
+            "reset",
+
+            "verified"
         ],
         mounted() {
-            
+            console.log('Verified', this.verified);
+            this.$store.dispatch('setVerifyUser',)
             console.log('Component mounted. TEST', this.authuser);
             this.$store.dispatch('setAuthUser', this.authuser);
             console.log('State updated with user info', this.$store.state);   

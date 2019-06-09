@@ -48,18 +48,25 @@ export default new Vuex.Store({
          
     ],
     state: {
-        user_id: null
+        user_id: null,
+        verified: null
     },
     mutations: {
         setAuthUser: (state,user) => {
             state.user_id = user;
     
+        },
+        setVerifyUser: (state, verified) => {
+            state.verified = verified;
         }
     },
     actions: {
         setAuthUser: (store,user) => {
             store.commit('setAuthUser', user);
         },
+        setVerifyUser: (store,verified) => {
+            store.commit('setVerifyUser', verified);
+        }
     }
 })
 
