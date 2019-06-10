@@ -147,7 +147,9 @@ export default {
                 "/login",
                 "/register",
                 "/home",
-                "/admin",
+                "/dashboard",
+                "/dashboard/addProfile",
+                "/dashboard/users"
                 
             ]
         }

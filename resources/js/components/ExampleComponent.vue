@@ -22,7 +22,7 @@ export default {
         ],
         mounted() {
             console.log('Verified', this.verified);
-            this.$store.dispatch('setVerifyUser',)
+            this.$store.dispatch('setVerifyUser',this.verified);
             console.log('Component mounted. TEST', this.authuser);
             this.$store.dispatch('setAuthUser', this.authuser);
             console.log('State updated with user info', this.$store.state);   

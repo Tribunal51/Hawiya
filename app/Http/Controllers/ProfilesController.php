@@ -18,8 +18,18 @@ class ProfilesController extends Controller
     public function index()
     {
         $profiles = Profile::with('uploads')->get();
-        //$profiles = Profile::all();
-        return $profiles;
+        $sorted_profiles = [];
+        if( !isset($request->category)) {
+            return $profiles;
+        }
+        else {
+            foreach($profiles as $profile) {
+                if($profile->category === $request->category) {
+                    array_push($sorted_profiles, $profile);
+                }
+            }
+            return $sorted_profiles;
+        }
     }
 
     
@@ -182,11 +192,16 @@ class ProfilesController extends Controller
 
     public function filter(Request $request) {
         $profiles = Profile::with('uploads')->get();
-        if($request->key === null) {
+        $sorted_profiles = [];
+        if( !isset($request->category)) {
             return $profiles;
         }
         else {
-            $sorted_profiles = Profile::where('category', $request->key)->get();
+            foreach($profiles as $profile) {
+                if($profile->category === $request->category) {
+                    array_push($sorted_profiles, $profile);
+                }
+            }
             return $sorted_profiles;
         }
     }

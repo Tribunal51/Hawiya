@@ -25,15 +25,16 @@
     <div class="form-group">
         
         <input type="file" name="my_file[]" id="my_files" multiple />
-        <button class="btn btn-secondary" onclick="document.location.reload()">Remove Photos</button>
+        <button class="btn btn-secondary" type="button" onclick="document.location.reload()">Remove Photos</button>
         
             @include('admin.components.temp')
 
-            
-        <div class="gallery"></div>
+        
+        
         
     </div>
-
+    <div class="gallery"></div>
+    <br>
 
     <div class="form-group row mb-0">       
         <div class="col-md-8 offset-md-4">

@@ -160,6 +160,8 @@ class AdminController extends Controller
             }
         }
 
+        
+        
 
         $profile = Profile::find($request->id);
         if(!$profile) {
