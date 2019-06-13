@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Auth;
 
+use App\User;
+use App\Profile;
+
 class PagesController extends Controller
 {
 
@@ -28,69 +31,37 @@ class PagesController extends Controller
         return view('welcome', ["authuser", Auth::user() ? Auth::user() : -1]);
     }
 
-    /**
-     * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
-    public function create()
-    {
-        //
+    public function dashboardPage() {
+        return $this->routeIfAdmin('dashboard');
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
-    public function store(Request $request)
-    {
-        //
+    public function usersPage() {
+        $users = User::all();
+        return $this->routeIfAdmin('users')->with('users', $users);
     }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function show($id)
-    {
-        //
+    public function addProfilePage() {
+        $profiles = Profile::all();
+        //return redirect('AddProfilePage')->with('profiles', $profiles);
+         return $this->routeIfAdmin('addprofile')->with('profiles', $profiles);
     }
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function edit($id)
-    {
-        //
+    public function editProfilePage(Request $request) {
+        $profile = Profile::find($request->id);
+        return $this->routeIfAdmin('editprofile')->with('profile', $profile);
     }
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, $id)
-    {
-        //
-    }
-
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  int  $id
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy($id)
-    {
-        //
+    public static function routeIfAdmin($page) {
+        if(Auth::guest()) {
+            return redirect('/home');
+        }
+        else {
+            if(Auth::user()->admin) { 
+                return view('admin.'.$page);                                           
+            }
+            else {
+                return redirect('/');
+            }
+        }
     }
 }

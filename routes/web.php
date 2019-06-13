@@ -17,15 +17,18 @@ Auth::routes(['verify' => true]);
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 
 
-Route::get('/dashboard', 'AdminController@index')->name('Dashboard');
+Route::get('/dashboard', 'PagesController@dashboardPage');
+Route::get('/dashboard/users', 'PagesController@usersPage');
 
-Route::get('/dashboard/users', 'AdminController@usersPage');
-Route::get('/dashboard/addProfile', 'AdminController@addProfilePage');
-
+Route::get('/dashboard/addProfile', 'PagesController@addProfilePage');
+Route::get('/dashboard/editProfile', 'PagesController@editProfilePage');
 
 Route::post('/dashboard/users/setAdmin', 'AdminController@setAdmin');
+
 Route::post('/dashboard/addProfile', 'AdminController@addProfile');
-Route::post('/dashboard/deleteProfile', 'AdminController@deleteProfile');
+Route::put('/dashboard/editProfile', 'AdminController@editProfile');
+Route::delete('/dashboard/deleteProfile', 'AdminController@deleteProfile');
+
 
 
 

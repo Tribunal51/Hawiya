@@ -1,7 +1,9 @@
 @if(count($profiles) > 0) 
 
     {!! Form::open(['action' => ['AdminController@deleteProfile'], 'method' => 'POST']) !!}
-    {{  Form::submit('Delete Selected Profiles', ['class' => 'btn btn-danger']) }}  
+    {{  Form::hidden('_method', 'DELETE') }}
+    {{  Form::submit('Delete Selected Profiles', ['class' => 'btn btn-danger mb-2']) }} 
+    
     <table class="table">
         <thead class="thead-dark">
             <tr>
@@ -34,14 +36,16 @@
                             <button type="submit" role="button" class="btn btn-danger">Delete</button>
                         </form> --}}
 
-                        {{  Form::hidden('id', $profile->id) }}    
-                        {{  Form::submit('Delete', ['class' => 'btn btn-secondary']) }}           
-                       
+                        {{  Form::hidden('id', $profile->id) }}  
+                        {{ link_to_action('PagesController@editProfilePage', 'Edit', ['id' => $profile->id], ['class' => 'btn btn-secondary'])}}          
+                         
                     </td>
                 </tr>
             @endforeach
         </tbody>
     </table>
+    
     {!! Form::close() !!}
 
 @endif
+

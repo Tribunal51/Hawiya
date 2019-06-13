@@ -13,53 +13,10 @@ use Illuminate\Http\Request;
 class AdminController extends Controller
 {
     public function index() {
-        return $this->routeIfAdmin('dashboard');
-        // if(Auth::guest()) {
-        //     return redirect('/home');
-        // }
-        // else {
-        //     if(Auth::user()->admin) {
-        //         return view('admin.dashboard');
-        //     }
-        //     else {
-        //         return redirect('/');
-        //     }
-        // }
+        
     }
 
-    public function usersPage() {
-        $users = User::all();
-        return $this->routeIfAdmin('users')->with('users', $users);
-    }
-
-    public function profiles() {
-        $profiles = Profile::all();
-        return $this->routeIfAdmin('profiles')->with('profiles', $profiles);
-    }
-
-    public function orders() {
-        return $this->routeIfAdmin('orders');
-    }
-
-    public function addProfilePage() {
-        $profiles = Profile::all();
-        //return redirect('AddProfilePage')->with('profiles', $profiles);
-         return $this->routeIfAdmin('addprofile')->with('profiles', $profiles);
-    }
-
-    public static function routeIfAdmin($page) {
-        if(Auth::guest()) {
-            return redirect('/home');
-        }
-        else {
-            if(Auth::user()->admin) { 
-                return view('admin.'.$page);                                           
-            }
-            else {
-                return redirect('/');
-            }
-        }
-    }
+    
 
     
 
@@ -144,6 +101,12 @@ class AdminController extends Controller
             //return redirect('AddProfile')->with('error', 'Profile could not be created');
         
         }
+    }
+
+    
+
+    public function editProfile(Request $request) {
+        echo $request->id;
     }
 
     public function deleteProfile(Request $request) {

@@ -17,20 +17,19 @@ class ProfilesController extends Controller
      */
     public function index(Request $request)
     {
+        $profiles = Profile::all();
+        $complete_profiles = [];
+        // return $profiles;
+        foreach($profiles as $profile) {
+            $uploads = Upload::where('upload_id',$profile->id)->get();
+            $profile->uploads = $uploads;
+            array_push($complete_profiles, $profile);
+
+           
+        }
+        return $complete_profiles;
         
-        $profiles = Profile::with('uploads')->get();
-        $sorted_profiles = [];
-        if( !isset($request->category) ) {
-            return $profiles;
-        }
-        else {
-            foreach($profiles as $profile) {
-                if($profile->category === $request->category) {
-                    array_push($sorted_profiles, $profile);
-                }
-            }
-            return $sorted_profiles;
-        }
+        
     }
 
     
@@ -159,55 +158,23 @@ class ProfilesController extends Controller
         
     }
 
-    // public function deleteProfile(Request $request) {
-    //     if(isset($request->profiles)) {
-    //         foreach($profiles as $profile) {
-    //             $profile_to_delete = Profile::find($profile);
-    //             if(!$profile_to_delete) {
-    //                 return redirect('AddProfile')->with('error', 'Profile(s) not found'.$profile_to_delete);
-    //             }
-    //             else {
-    //                 if($profile->delete()) {
-    //                     return redirect('AddProfile')->with('success', 'Profile(s) deleted');
-    //                 }
-    //                 else {
-    //                     return redirect('AddProfile')->with('error', 'Profile(s) could not be deleted');
-    //                 }
-    //             }
-    //         }
-    //     }
-
-
-    //     $profile = Profile::find($request->id);
-    //     if(!$profile) {
-    //         return redirect('AddProfile')->with('error', 'Profile not found');
-    //     }
-    //     else {
-    //         if($profile->delete()) {
-    //             return redirect('AddProfile')->with('success', 'Profile deleted');
-    //         }
-    //         else {
-    //             return redirect('AddProfile')->with('error', 'Profile could not be deleted. Please investigate.');
-    //         }
-    //     }
-    // }
-
-    // public function filter(Request $request) {
-    //     $profiles = Profile::with('uploads')->get();
-    //     $sorted_profiles = [];
-    //     if( !isset($request->category)) {
-    //         return $profiles;
-    //     }
-    //     else {
-    //         foreach($profiles as $profile) {
-    //             if($profile->category === $request->category) {
-    //                 array_push($sorted_profiles, $profile);
-    //             }
-    //         }
-    //         return $sorted_profiles;
-    //     }
-    // }
+    
 
     
     
 }
+
+
+// $profiles = Profile::with('uploads')->get();
+//         $sorted_profiles = [];
+//         if( !isset($request->category) ) {
+//             return $profiles;
+//         }
+//         else {
+//             foreach($profiles as $profile) {
+//                 if($profile->category === $request->category) {
+//                     array_push($sorted_profiles, $profile);
+//                 }
+//             }
+//             return $sorted_profiles;
+//         }
