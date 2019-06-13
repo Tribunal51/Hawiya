@@ -14,17 +14,17 @@ class AdminController extends Controller
 {
     public function index() {
         return $this->routeIfAdmin('dashboard');
-        if(Auth::guest()) {
-            return redirect('/home');
-        }
-        else {
-            if(Auth::user()->admin) {
-                return view('admin.dashboard');
-            }
-            else {
-                return redirect('/');
-            }
-        }
+        // if(Auth::guest()) {
+        //     return redirect('/home');
+        // }
+        // else {
+        //     if(Auth::user()->admin) {
+        //         return view('admin.dashboard');
+        //     }
+        //     else {
+        //         return redirect('/');
+        //     }
+        // }
     }
 
     public function usersPage() {
@@ -48,7 +48,6 @@ class AdminController extends Controller
     }
 
     public static function routeIfAdmin($page) {
-        
         if(Auth::guest()) {
             return redirect('/home');
         }
@@ -61,6 +60,8 @@ class AdminController extends Controller
             }
         }
     }
+
+    
 
     public function setAdmin(Request $request) {
         $user = User::find($request->id);
@@ -102,7 +103,10 @@ class AdminController extends Controller
                     $upload = new Upload;
                     $upload->upload_id = $new_profile->id;
                     $upload->filename = $filename;
-                    $upload->save();
+                    if(!$upload->save()) {                    
+                        return redirect('/dashboard/addProfile')->with('error', 'One or more files could not be uploaded');
+                    }
+                    // $upload->save();
 
 
                     // foreach($request->my_file as $photo) {
@@ -115,11 +119,12 @@ class AdminController extends Controller
 
                     // }
 
-                    echo "Upload successfully";
+                    // echo "Upload successfully";
 
                 }
                 else {
-                    return $this->routeIfAdmin('addprofile')->with('error', 'Files not uploaded in valid format');
+                    return redirect('/dashboard/addProfile')->with('error', 'Files not uploaded in valid format');
+                    //return $this->routeIfAdmin('addprofile')->with('error', 'Files not uploaded in valid format');
                     //redirect('AddProfile')->with('error', 'Files not uploaded in valid format');
                     //redirect('/dashboard/addProfile')->with(['error' => 'Files not uploaded in valid format']);
                 }
@@ -159,8 +164,6 @@ class AdminController extends Controller
                 }
             }
         }
-
-        
         
 
         $profile = Profile::find($request->id);
@@ -177,5 +180,4 @@ class AdminController extends Controller
             }
         }
     }
-
 }

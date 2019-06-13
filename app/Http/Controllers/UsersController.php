@@ -53,6 +53,7 @@ class UsersController extends Controller
             // $new_user -> id = $request->input('id');
             $new_user-> name = $request -> input('name');
             $new_user -> email = $request -> input('email');
+            $new_user -> mobile = $request -> input('mobile');
             $new_user -> password = Hash::make($request -> input('password'));
             $new_user -> admin = false;
 
@@ -111,8 +112,9 @@ class UsersController extends Controller
 
             $name = $request->input('name');
             $email = $request->input('email');
+            $mobile = $request->input('mobile');
             $password = $request->input('password');   
-            $admin =$request->input('admin');                     
+            // $admin =$request->input('admin');                     
 
             // $data = Input::all();
             
@@ -121,8 +123,9 @@ class UsersController extends Controller
             // $user->fill($data);
             $user->name = $name ? $name : $user->name;
             $user->email = $email ? $email : $user->email;
+            $user->mobile = $mobile ? $mobile : $user->mobile;
             $user->password = $password ? Hash::make($password) : $user->password;
-            $user->admin =  isset($admin) ? $admin : $user->admin;
+            // $user->admin =  isset($admin) ? $admin : $user->admin;
 
             if(User::where('email', '=', $user->email)) {
                 return -4; //echo "Email already registered"
@@ -177,9 +180,13 @@ class UsersController extends Controller
         else {
             return -3; // echo "User does not exist";
         }
+
+        
+
+        
     }
 
-
+ 
 
     // public function setAdmin(Request $request) {
     //     $user = User::find($request->id);
@@ -191,4 +198,6 @@ class UsersController extends Controller
     //         return redirect('/dashboard/users')->with('error', 'Could not change admin status. Please investigate');
     //     }
     // }
+
+    
 }

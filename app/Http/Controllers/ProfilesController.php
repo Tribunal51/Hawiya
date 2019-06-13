@@ -15,11 +15,12 @@ class ProfilesController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
+        
         $profiles = Profile::with('uploads')->get();
         $sorted_profiles = [];
-        if( !isset($request->category)) {
+        if( !isset($request->category) ) {
             return $profiles;
         }
         else {
@@ -112,6 +113,7 @@ class ProfilesController extends Controller
         
     }
 
+
     /**
      * Display the specified resource.
      *
@@ -190,20 +192,22 @@ class ProfilesController extends Controller
     //     }
     // }
 
-    public function filter(Request $request) {
-        $profiles = Profile::with('uploads')->get();
-        $sorted_profiles = [];
-        if( !isset($request->category)) {
-            return $profiles;
-        }
-        else {
-            foreach($profiles as $profile) {
-                if($profile->category === $request->category) {
-                    array_push($sorted_profiles, $profile);
-                }
-            }
-            return $sorted_profiles;
-        }
-    }
+    // public function filter(Request $request) {
+    //     $profiles = Profile::with('uploads')->get();
+    //     $sorted_profiles = [];
+    //     if( !isset($request->category)) {
+    //         return $profiles;
+    //     }
+    //     else {
+    //         foreach($profiles as $profile) {
+    //             if($profile->category === $request->category) {
+    //                 array_push($sorted_profiles, $profile);
+    //             }
+    //         }
+    //         return $sorted_profiles;
+    //     }
+    // }
+
+    
     
 }

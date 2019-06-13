@@ -44,6 +44,7 @@ Vue.component('navbar', require('./components/HomePage/Navbar.vue').default);
     import LogoPackage from './components/OtherPages/LogoDesign/LogoPackage/LogoPackage.vue';
     import LogoType from './components/OtherPages/LogoDesign/LogoType/LogoType.vue';
     import Info from './components/OtherPages/LogoDesign/Info/Info.vue';
+    import Profile from './components/OtherPages/Profile/Profile';
 
     import store from './store';
     // import 'vuetify/src/stylus/app.styl';
@@ -52,6 +53,7 @@ Vue.component('navbar', require('./components/HomePage/Navbar.vue').default);
     const routes = [
         {name: 'about', path: '/about', component: AboutUs, props: true},
         {path: '/terms', component: Terms},
+        {name: 'profile', path: '/profile', component: Profile, props: true},
         {
             path: '/design', 
             component: Design,

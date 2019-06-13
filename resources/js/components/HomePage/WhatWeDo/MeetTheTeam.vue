@@ -39,7 +39,7 @@
                 <div class="col-md">
                     <div id="IntroSection2">
                         <BlackBox />
-                        <div class="row">
+                        <div class="row" >
                              Together, we are a complete team. You with your industry experience and understanding of your clients, and us with our blend of design, development, and digital marketing expertise.
                         </div>
                     </div>
@@ -121,6 +121,10 @@ export default {
     #IntroSection3 {
         margin-left: 40px;
         
+    }
+
+    .text {
+        font-size: 1rem;
     }
 
     

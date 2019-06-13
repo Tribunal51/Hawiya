@@ -1,10 +1,14 @@
 <template>
     <div id="cover">
-        <div class="bannerHeader my-10">
+        <div class="bannerHeader">
              
-                 <IntroSection>
-                        <h1>What We Do</h1>
-                </IntroSection>   
+                 
+                    
+                        <div class="bannerText">
+                            <h1>What We Do</h1>
+                        </div>
+                     
+                  
                                            
         </div> 
         <div class="row">
@@ -49,13 +53,13 @@
         <IntroSection>
             <BlackBox />
             <h2>Details Matter.</h2>
-            <div class="row">
+            <div class= "row">
                 We focus on every little detail while understanding your core business, which in turn helps us to precisely define your brand's meaning, character and personality. In turn, this helps us to connect all elements of your brand thus leading to a complete brand experience. All made possible by a team bursting with passion to build fine brands.
             </div>
         </IntroSection>
         
 
-        <MeetTheTeam />
+        <!-- <MeetTheTeam /> -->
 
 
 
@@ -141,25 +145,43 @@ export default {
     .bannerHeader {
         /* display: flex; */
         align-items: center;
-        /* padding-left: 200px; */
+        padding-left: 33% !important;
         background-color: #FFDB00;
-        height: auto !important;
-        
+        height: 6rem !important;
+        display: table !important;
         width: 100%;
         /* vertical-align: middle; */
     }
 
-    
+    .bannerText {
+        display: table-cell !important;
+        vertical-align: middle !important;
+    }
     
     #IntroSection1 {
-        margin-bottom: 50px;
+        margin-bottom: 30px;
     }
 
     #IntroSection3 {
         margin-left: 40px;
         
     }
-    
+
+    @media (max-width: 800px) {
+        .bannerHeader {
+            padding-left:20px !important;
+        }
+    }
+
+     @media (min-width: 1001px) and (max-width: 2200px) {
+         .bannerHeader {
+            padding-left: 17% !important;
+            padding-right: 17% !important;
+            height: 4rem !important;
+         }
+     }
+
+     
     
 
 </style>

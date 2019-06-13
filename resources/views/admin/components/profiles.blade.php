@@ -18,11 +18,8 @@
                 <tr>
                     <th scope="row">{{ $profile->id }}</th>
                     
-                    <td>
-                        
-                        <input type="checkbox" name="selectedProfiles[]" value="{{ $profile->id }}" />   
-                                 
-                        
+                    <td>   
+                        <input type="checkbox" name="selectedProfiles[]" value="{{ $profile->id }}" />                           
                     </td>
                     <td>{{ $profile->title }}</td>
                     <td>{{ $profile->category }}</td>
@@ -38,7 +35,7 @@
                         </form> --}}
 
                         {{  Form::hidden('id', $profile->id) }}    
-                        {{  Form::submit('Delete', ['class' => 'btn btn-danger']) }}           
+                        {{  Form::submit('Delete', ['class' => 'btn btn-secondary']) }}           
                        
                     </td>
                 </tr>

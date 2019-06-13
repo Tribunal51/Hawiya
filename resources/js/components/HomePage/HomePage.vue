@@ -14,7 +14,7 @@
             
         </section>
         <section id="section2"><WhatWeDo /></section>
-        <!-- <section id="section3"><MeetTheTeam /></section> -->
+        <section id="section3"><MeetTheTeam /></section>
         <section id="section4"><Profile /></section>
         <section id="section5"><CaseStudy /></section>
         <section id="section6"><ContactUs /></section>   
@@ -123,7 +123,7 @@ export default {
     }
 
     #section2, #section3, #section4, #section5, #section6 {
-        /* min-height: 80vh; */
+        /* min-height: 90vh; */
         font-family: 'Lato', sans-serif;
         
     }
@@ -140,10 +140,10 @@ export default {
         
        
         background: url('/storage/hawiyaHomePage.PNG') no-repeat center center;
-      -webkit-background-size: cover;
-      -moz-background-size: cover;
-      -o-background-size: cover;
-      background-size: cover;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
     }
 
     

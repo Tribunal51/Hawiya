@@ -28,6 +28,8 @@
                     <!-- <vue-slider 
                     v-model="tempStyles[style]"
                     v-bind="options" /> -->
+
+                    
                                      
                 </div>
                 <div class="col-sm-3 labelRight">{{ style.split('_')[1] }}</div>

@@ -86,6 +86,12 @@ export default {
 		},
 		redirectToProfile(item) {
 			console.log('Redirect to Profile', item);
+			this.$router.push({
+				name: 'profile',
+				params: {
+					item: {...item}
+				}
+			});			
 		}
 	}
 };

@@ -15,16 +15,16 @@
         <IntroSection>
             <div class="row">
                 
-                <div class="col-sm-4">
+                <div class="col-sm-5">
                     <BlackBox />
                     <div class="row">
                         <h4>Interested ?</h4>
                     </div>                    
                 </div>
-                <div class="col-lg-4">
+                <div class="col-lg-6">
                     <BlackBox />
                     <div class="row">
-                        <h2>Let us build an outstanding brand for you</h2>
+                        <h1>Let us build an outstanding brand for you</h1>
                     </div>
                     <div class="row">
                         <button type="button" class="btn btn-outline-dark" id="startButton">START HERE</button>
@@ -77,12 +77,18 @@ export default {
 
     .outerSection {
         background-color: white;
+        padding-left: 33%;
+        padding-right: 27%;
     }
 
     .innerSection {
         border-top: solid #FFDB00 10px;
         border-bottom: solid #FFDB00 10px;
-        width: 70%;
+        /* margin-left: 30% !important;
+        margin-right: 35% !important;
+        padding-right:40% !important; */
+
+        /* width: 35%; */
     }
 
     #startButton {
@@ -93,9 +99,18 @@ export default {
         
     }
 
-    @media (max-width:800px) {
-        .innerSection {
-            width: 100%;
+    @media (max-width:1000px) {
+        .outerSection {
+            padding-left: 0px;
+            padding-right: 0px;
         }
+    }
+
+    @media (min-width: 1001px) and (max-width: 2200px) {
+        .outerSection {
+            padding-left: 17% !important;
+            padding-right: 10% !important;
+        }
+
     }
 </style>
