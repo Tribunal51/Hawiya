@@ -37,12 +37,14 @@ class AdminController extends Controller
     public function addProfile(Request $request) {
         $this->validate($request, [
             'title' => 'required',
-            'category' => 'required'
+            'category' => 'required',
+            'details' => 'required'
         ]);
 
         $new_profile = Profile::create([
             'title' => $request->title,
-            'category' => $request->category
+            'category' => $request->category,
+            'details' => $request->details
         ]);
 
         
@@ -50,6 +52,7 @@ class AdminController extends Controller
         if($request -> hasFile('my_file')) {
             $allowedFileExtension = ['pdf', 'jpg', 'png', 'docx'];
             $files = $request->file('my_file');
+            
             foreach($files as $file) {
                 $filename = $file->getClientOriginalName();
                 $extension = $file->getClientOriginalExtension();
@@ -64,7 +67,7 @@ class AdminController extends Controller
                         return redirect('/dashboard/addProfile')->with('error', 'One or more files could not be uploaded');
                     }
                     // $upload->save();
-
+                     
 
                     // foreach($request->my_file as $photo) {
                     //     $filename = $photo->store('public/uploads');
@@ -81,25 +84,15 @@ class AdminController extends Controller
                 }
                 else {
                     return redirect('/dashboard/addProfile')->with('error', 'Files not uploaded in valid format');
-                    //return $this->routeIfAdmin('addprofile')->with('error', 'Files not uploaded in valid format');
-                    //redirect('AddProfile')->with('error', 'Files not uploaded in valid format');
-                    //redirect('/dashboard/addProfile')->with(['error' => 'Files not uploaded in valid format']);
                 }
             }
         }
 
         if($new_profile) {
             return redirect('/dashboard/addProfile')->with('success', 'Profile Created');
-            //return $this->routeIfAdmin('addprofile')->with('success', 'Profile created');
-            //return redirect('AddProfile')->with('success', 'Profile created');
-            //return redirect('/dashboard/addProfile')->with(['success' => 'Profile is created.']);
-            //return Profile::where('title','=', $new_profile->title);
         }
         else {
-            return redirect('/dashboard/addProfile')->with('error','Profile could not be created');
-            //return $this->routeIfAdmin('addprofile')->with('error', 'Profile could not be created');
-            //return redirect('AddProfile')->with('error', 'Profile could not be created');
-        
+            return redirect('/dashboard/addProfile')->with('error','Profile could not be created');       
         }
     }
 

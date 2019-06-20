@@ -56,7 +56,7 @@
                         :color="assignColor()" />
                     </div>                
                 </div> 
-                
+                <ImageUpload />
             </div>
         </form>              
     </div>
@@ -66,11 +66,13 @@
 
 <script>
 
+var x = "New Car";
 import Form from './Form/Form.vue';
 import Styles from './Style/Styles.vue';
 import Color from './Color/Color.vue'; 
 import axios from 'axios';
 import { VBtn } from 'vuetify/lib';
+import ImageUpload from '../../../UI/ImageUpload';
 
 
 export default {
@@ -79,6 +81,7 @@ export default {
         if(this.$store.state.logodesign.form !== null) {
             this.info.form = {...this.$store.state.logodesign.form};
         }
+        window.images = [];
         // if(this.$store.state.logodesign.style !== null) {
         //     this.info.styles = {...this.$store.state.logodesign.style};
         //     console.log('Inside mounted of Info', this.info.styles);
@@ -92,7 +95,8 @@ export default {
         Form,
         Styles,
         Color,
-        VBtn
+        VBtn,
+        ImageUpload
     },
     updated() {
         //console.log(this.info);
@@ -153,18 +157,40 @@ export default {
                     brand_name: this.$store.state.logodesign.form.brand,
                     tagline: this.$store.state.logodesign.form.tagline,
                     business_field: this.$store.state.logodesign.form.business_field,
-                    description: this.$store.state.logodesign.form.description
+                    description: this.$store.state.logodesign.form.description,
+                   
                 }
+                var bodyFormData = new FormData();
+                console.log('window.images',window.images);
+                if(window.images.length > 0) {
+                    Array.from(window.images).forEach(file => {
+                        bodyFormData.append('files[]', file);
+                        
+                    });
+                }
+                console.log(bodyFormData);      
 
+               for(var key of bodyFormData.entries()) {
+                   console.log(key[0], " ", key[1]);
+               }
+                
                 console.log('Data to be sent', dataToBeSent);
-
-                axios.post('http://hawiya.net/api/orders/logo-design', dataToBeSent)
-                .then(res => console.log(res.data))
+                //console.log('BodyFormData',bodyFormData);
+                axios.post('http://hawiya.net/api/orders/logo-design', bodyFormData, {
+                    headers: {
+                        'Content-Type':'multipart/form-data'
+                    }
+                })
+                .then(res => {
+                    console.log(res.data);
+                })
                 .catch(error => console.log(error));
+                
+                
                 // console.log(localStorage);
                 // console.log(sessionStorage);
-
-                this.$store.dispatch('logodesign/resetState');
+                
+                // this.$store.dispatch('logodesign/resetState');
             }
             
 

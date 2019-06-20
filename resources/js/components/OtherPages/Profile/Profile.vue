@@ -2,7 +2,7 @@
     <div id="cover">
         {{ item.title }}
         {{ item.category }}
-        <img v-for="row in item.uploads" :key="row" :src="'/storage/uploads/'+row.filename" />
+        <img v-for="image in item.uploads" :key="image" :src="image" />
             
         
     </div>

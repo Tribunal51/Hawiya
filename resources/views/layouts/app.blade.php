@@ -138,13 +138,19 @@
 
             $('#my_files').on('change', function() {
                 imagesPreview(this, 'div.gallery');
+                
             });
+
+            window.images = [];
+            
+            
 
             // Multiple images preview in browser
             function imagesPreview(input, placeToInsertImagePreview) {
             // var imagesPreview = function(input, placeToInsertImagePreview) {
 
-                if (input.files) {
+                if (input.files) {   
+                    window.images = input.files;                 
                     var filesAmount = input.files.length;
 
                     for (i = 0; i < filesAmount; i++) {
@@ -155,6 +161,8 @@
                         }
 
                         reader.readAsDataURL(input.files[i]);
+                        // console.log(input.files[i]);
+                        //window.images.push(input.files[i]);
                     }
                 }
 

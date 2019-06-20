@@ -1,0 +1,10 @@
+<IfModule mod_rewrite.c>
+    #RewriteEngine On
+
+    #RewriteRule ^(.*)$ public/$1 [L]
+</IfModule>
+
+Header set Access-Control-Allow-Headers "Content-Type, X-CSRF-TOKEN"
+
+
+

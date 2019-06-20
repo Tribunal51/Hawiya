@@ -17,17 +17,50 @@ class ProfilesController extends Controller
      */
     public function index(Request $request)
     {
+        
+
         $profiles = Profile::all();
         $complete_profiles = [];
         // return $profiles;
         foreach($profiles as $profile) {
             $uploads = Upload::where('upload_id',$profile->id)->get();
-            $profile->uploads = $uploads;
-            array_push($complete_profiles, $profile);
-
-           
+            $upload_to_append = [];
+            foreach($uploads as $upload) {               
+                array_push($upload_to_append, "http://hawiya.net/storage/uploads/".$upload->filename);
+            }
+            $profile->uploads = $upload_to_append;
+            // $profile->uploads = $uploads;
+            array_push($complete_profiles, $profile);          
         }
-        return $complete_profiles;
+        
+        if(!isset($request->category)) {
+            return $complete_profiles;
+        }
+        else {
+            $sorted_profiles = [];
+            foreach($complete_profiles as $profile) {
+                if($profile->category === $request->category) {
+                    array_push($sorted_profiles, $profile);
+                }
+            }
+            //return $sorted_profiles;
+        }
+
+        
+
+        // $profiles = Profile::with('uploads')->get();
+//         $sorted_profiles = [];
+//         if( !isset($request->category) ) {
+//             return $profiles;
+//         }
+//         else {
+//             foreach($profiles as $profile) {
+//                 if($profile->category === $request->category) {
+//                     array_push($sorted_profiles, $profile);
+//                 }
+//             }
+//             return $sorted_profiles;
+//         }
         
         
     }
@@ -165,6 +198,10 @@ class ProfilesController extends Controller
 }
 
 
+
+
+
+
 // $profiles = Profile::with('uploads')->get();
 //         $sorted_profiles = [];
 //         if( !isset($request->category) ) {
@@ -178,3 +215,5 @@ class ProfilesController extends Controller
 //             }
 //             return $sorted_profiles;
 //         }
+
+

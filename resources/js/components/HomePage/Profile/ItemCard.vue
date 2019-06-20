@@ -71,9 +71,9 @@ export default {
 				return null;
 			}
 			else {
-				let url = "/storage/uploads/";
-				let filename = item.uploads[0].filename;
-				return (url+filename);
+				//let url = "/storage/uploads/";
+				let url = item.uploads[0];
+				return url;
 			}
 		},
 		displayOrNot(item, status) {

@@ -12,9 +12,11 @@
 */
 
 Route::get('/', 'PagesController@index');
-Auth::routes(['verify' => true]);
+Auth::routes();
+//Auth::routes(['verify' => true]);
 
-Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+//Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+Route::get('/home', 'HomeController@index')->name('home');
 
 
 Route::get('/dashboard', 'PagesController@dashboardPage');
@@ -72,11 +74,17 @@ Route::delete('/dashboard/deleteProfile', 'AdminController@deleteProfile');
 //     });
 // })
 
+// Route::get('/storage/uploads/{any}', function($filename) {
+//     echo asset('/storage/uploads/'.$filename);
+// });
 
 Route::get('/design/{any}', function() {
     return view('welcome');
-})->where('any', '.*')->middleware('verified');
+})->where('any', '.*');
 
+
+
+ 
 
 
 Route::get('{any}', function () {

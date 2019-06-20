@@ -8,8 +8,8 @@
             <div class="row footer">
                 <Footer />
             </div>
+             
             
-
                 
             
         </section>
@@ -25,6 +25,8 @@
 import Vue from 'vue';
 import VueRouter from 'vue-router';
 import VueScrollTo from 'vue-scrollto';
+import axios from 'axios';
+
 
 import WhatWeDo from './WhatWeDo/WhatWeDo.vue';
 import Profile from './Profile/Profile.vue';
@@ -60,6 +62,12 @@ export default {
             //         this.scrollPos = window.scrollY;
             //         console.log(this.scrollPos);
             // });
+
+            let url = "http://localhost:8000/leadmanager/api/lead";
+            axios.get(url)
+            .then(res => console.log(res.data))
+            .catch(error => console.log(error));
+
     },
     destroyed() {
         // window.removeEventListener('scroll');

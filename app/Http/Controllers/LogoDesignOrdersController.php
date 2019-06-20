@@ -38,7 +38,20 @@ class LogoDesignOrdersController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {   
+    {
+        
+        
+        if($request->hasFile('files')) {
+            $files = $request->file('files');
+            return $files;
+        } else {
+            return "Request".$request;
+        }
+
+        
+       
+
+    
         $new_order = new LogoDesignOrder;
         $new_order->user_id = $request->user_id;    //If user not present, then null
         $new_order->package = $request->package;
