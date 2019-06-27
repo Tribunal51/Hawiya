@@ -8,6 +8,11 @@ use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Foundation\Auth\RegistersUsers;
 
+use Illuminate\Http\Request;
+use Illuminate\Auth\Events\Registered;
+
+use Illuminate\Support\Facades\Redirect;
+
 class RegisterController extends Controller
 {
     /*
@@ -28,7 +33,30 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    //protected $redirectTo = '/';
+    // protected function redirectTo() {
+    //     //return '/payment?worked=false';
+    //     // if(session()->has('referralUrl')) {
+    //     //     echo session('referralUrl');
+    //     //     $url = session('referralUrl');
+    //     //     session()->forget('referralUrl');
+    //     //     return redirect($url);
+    //     // }
+    //     // else {
+    //     //     echo session();
+    //     //     return '/home?test=true';
+    //     // }
+    //     return '/';
+    // }
+
+    protected function redirectTo() {
+        if(session()->has('referralUrl')) {
+            return session('referralUrl');
+        }
+    }
+    
+    
+
 
     /**
      * Create a new controller instance.
@@ -73,4 +101,15 @@ class RegisterController extends Controller
             
         ]);
     }
+
+    protected function registered(Request $request, $user)
+    {
+        return redirect()->intended('/');
+            
+    }
+
+
+
+    
+
 }

@@ -8,6 +8,8 @@ use Auth;
 use App\User;
 use App\Profile;
 
+use Illuminate\Support\Facades\URL;
+
 class PagesController extends Controller
 {
 
@@ -31,24 +33,44 @@ class PagesController extends Controller
         return view('welcome', ["authuser", Auth::user() ? Auth::user() : -1]);
     }
 
-    public function dashboardPage() {
+    public function dashboard() {
         return $this->routeIfAdmin('dashboard');
     }
 
-    public function usersPage() {
+    public function users() {
         $users = User::all();
         return $this->routeIfAdmin('users')->with('users', $users);
     }
 
-    public function addProfilePage() {
+    public function addProfile() {
         $profiles = Profile::all();
         //return redirect('AddProfilePage')->with('profiles', $profiles);
          return $this->routeIfAdmin('addprofile')->with('profiles', $profiles);
     }
 
-    public function editProfilePage(Request $request) {
+    public function editProfile(Request $request) {
         $profile = Profile::find($request->id);
         return $this->routeIfAdmin('editprofile')->with('profile', $profile);
+    }
+
+    public function payment(Request $request) {
+        
+        //session()->put('referralUrl','http://hawiya.net/test');
+        // dd(session('referralUrl'));
+        //$this->session('redirect') = URL::previous();
+        return view('pages.payment');
+        if((URL::previous() !== 'http://hawiya.net/design/logo-design/info') && (!auth()->user())) {
+            return view('pages.payment');
+        }
+        else {
+            return redirect('/');
+            
+        }
+            
+    }
+
+    public function orderConfirm(Request $request) {
+        return view('pages.orderconfirm');
     }
 
     public static function routeIfAdmin($page) {

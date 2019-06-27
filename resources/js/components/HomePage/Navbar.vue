@@ -149,7 +149,8 @@ export default {
                 "/home",
                 "/dashboard",
                 "/dashboard/addProfile",
-                "/dashboard/users"
+                "/dashboard/users",
+                "/payment"
                 
             ]
         }

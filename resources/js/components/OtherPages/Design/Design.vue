@@ -36,9 +36,9 @@ export default {
         }
     },
     mounted() {
-        if(this.$store.state.verified <= 0 && this.$store.state.user_id > 0 ) {
-            window.location.href="/home";
-        }
+        // if(this.$store.state.verified <= 0 && this.$store.state.user_id > 0 ) {
+        //     window.location.href="/home";
+        // }
         
         
     }

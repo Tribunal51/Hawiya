@@ -19,11 +19,11 @@ Auth::routes();
 Route::get('/home', 'HomeController@index')->name('home');
 
 
-Route::get('/dashboard', 'PagesController@dashboardPage');
-Route::get('/dashboard/users', 'PagesController@usersPage');
+Route::get('/dashboard', 'PagesController@dashboard');
+Route::get('/dashboard/users', 'PagesController@users');
 
-Route::get('/dashboard/addProfile', 'PagesController@addProfilePage');
-Route::get('/dashboard/editProfile', 'PagesController@editProfilePage');
+Route::get('/dashboard/addProfile', 'PagesController@addProfile');
+Route::get('/dashboard/editProfile', 'PagesController@editProfile');
 
 Route::post('/dashboard/users/setAdmin', 'AdminController@setAdmin');
 
@@ -31,7 +31,11 @@ Route::post('/dashboard/addProfile', 'AdminController@addProfile');
 Route::put('/dashboard/editProfile', 'AdminController@editProfile');
 Route::delete('/dashboard/deleteProfile', 'AdminController@deleteProfile');
 
-
+Route::get('/payment', 'PagesController@payment')->middleware('auth');
+Route::get('/confirm-order', 'PagesController@orderConfirm')->middleware('auth');
+Route::get('/test', function() {
+    return view('pages.test');
+});
 
 
 // if(Auth::guest()) {

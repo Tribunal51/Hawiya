@@ -6,7 +6,7 @@ const state = {
     style: null,
     color: null,
     form: null,
-    
+    files: null
 };
 
 const defaultState = {
@@ -15,6 +15,7 @@ const defaultState = {
     style: null,
     color: null,
     form: null,
+    files: null
     
 };
 
@@ -34,14 +35,15 @@ const mutations = {
         state.style = {...payload.style};
         state.color = [...payload.color];
         state.form = {...payload.form};
-    },
-    setAuthUser: (state,user) => {
-        state.user_id = user;
-
+        state.files = {...payload.files};
     },
     deleteKey: (state, key) => {
         delete state[key];
         console.log('Key',key,'deleted');
+    },
+    setOrderId: (state, id) => {
+        state.order_id = id;
+        
     }
     
 }
@@ -71,6 +73,12 @@ const actions = {
     },
     deleteKey: (store, key) => {
         store.commit('deleteKey', key);
+    },
+    setOrderId: (store, id) => {
+        store.commit('setOrderId', id);
+    },
+    setFiles: (store, files) => {
+        store.commit('setFiles', files);
     }
 }
 

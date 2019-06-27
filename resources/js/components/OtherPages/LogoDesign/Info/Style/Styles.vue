@@ -33,6 +33,7 @@
                                      
                 </div>
                 <div class="col-sm-3 labelRight">{{ style.split('_')[1] }}</div>
+                
             
         </div>
     </div>

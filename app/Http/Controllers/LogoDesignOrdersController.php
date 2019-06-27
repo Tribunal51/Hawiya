@@ -39,9 +39,16 @@ class LogoDesignOrdersController extends Controller
      */
     public function store(Request $request)
     {
-        
+        //return $request;
+        if($request->hasFile('files')) {
+            $files = $request->file('files');
+            return $files;
+        } else {
+            return " Has no file";
+        }
         
         if($request->hasFile('files')) {
+            return "Has file";
             $files = $request->file('files');
             return $files;
         } else {

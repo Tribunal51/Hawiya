@@ -24,6 +24,8 @@ Vue.component('home-page', require('./components/HomePage/HomePage.vue').default
 Vue.component('example-component', require('./components/ExampleComponent.vue').default);
 Vue.component('profile', require('./components/HomePage/Profile/Profile.vue').default);
 Vue.component('navbar', require('./components/HomePage/Navbar.vue').default);
+Vue.component('payment', require('./components/OtherPages/Payment/Payment').default);
+Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/ConfirmOrder.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
@@ -45,8 +47,10 @@ Vue.component('navbar', require('./components/HomePage/Navbar.vue').default);
     import LogoType from './components/OtherPages/LogoDesign/LogoType/LogoType.vue';
     import Info from './components/OtherPages/LogoDesign/Info/Info.vue';
     import Profile from './components/OtherPages/Profile/Profile';
-
+    import Payment from './components/OtherPages/Payment/Payment';
     import store from './store';
+    import NotFound from './components/UI/NotFound';
+    import ConfirmOrder from './components/OtherPages/ConfirmOrder/ConfirmOrder';
     // import 'vuetify/src/stylus/app.styl';
 
     Vue.use(VueRouter);
@@ -98,7 +102,9 @@ Vue.component('navbar', require('./components/HomePage/Navbar.vue').default);
                 }
             ]
         },
-        {path: '/', component: HomePage}       
+        {path: '/confirm-order', component: ConfirmOrder},
+        {path: '/', component: HomePage},
+        {path: '*', component: NotFound}       
     ];
 
     const router = new VueRouter({
@@ -113,7 +119,11 @@ Vue.component('navbar', require('./components/HomePage/Navbar.vue').default);
         //         }
         //     }
         // }
-    })
+    });
+
+    
+
+    
 
 const app = new Vue({
     el: '#app',

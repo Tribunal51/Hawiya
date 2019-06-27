@@ -135,24 +135,63 @@
 
     <script type="text/javascript">
         $(function() {
-
+            window.images = [];
+            window.files = [];
             $('#my_files').on('change', function() {
                 imagesPreview(this, 'div.gallery');
                 
             });
 
-            window.images = [];
             
+            function dataURLtoBlob() {
+                console.log('Inside dataURLtoBlob');
+                var arr = dataurl.split(',');
+                var mime = arr[0].match(/:(.*?);/)[1];
+                var bstr = atob(arr[1]);
+                var n = bstr.length;
+                var u8arr = new Uint8Array(n);
+                
+                while(n--) {
+                    u8arr[n] = bstr.charCodeAt(n);
+                }
+                return new Blob([u8arr], {type:mime});
+            }
             
+            function getBase64(file) {
+                var reader = new FileReader();
+                var convertedFile = '';
+                reader.readAsDataURL(file);
+                reader.onload = function() {
+                    convertedFile = reader.result;
+                    //console.log(reader.result);
+                    window.files.push(reader.result);
+                    //window.files.push(reader.result);
+                };
+                reader.onerror = function(error) {
+                    
+                    console.log("Error: ", error);
+                };                               
+                 return convertedFile;
+
+            }
+           
 
             // Multiple images preview in browser
+           
             function imagesPreview(input, placeToInsertImagePreview) {
             // var imagesPreview = function(input, placeToInsertImagePreview) {
 
                 if (input.files) {   
-                    window.images = input.files;                 
+                                    
                     var filesAmount = input.files.length;
+                    console.log('Input Files', input.files);
 
+                    window.images = input.files;
+                    
+                    Array.from(window.images).forEach(file => {
+                        getBase64(file);
+                    });
+                    console.log('Window.files', window.files);
                     for (i = 0; i < filesAmount; i++) {
                         var reader = new FileReader();
 
@@ -162,7 +201,11 @@
 
                         reader.readAsDataURL(input.files[i]);
                         // console.log(input.files[i]);
-                        //window.images.push(input.files[i]);
+                        
+
+                        
+                        
+
                     }
                 }
 
