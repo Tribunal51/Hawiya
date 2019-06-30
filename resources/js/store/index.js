@@ -6,6 +6,7 @@ import Vuetify from 'vuetify';
 // import 'vuetify/dist/vuetify.min.css'; // Ensure you are using css-loader
 
 import logodesign from './modules/logodesign';
+import branding from './modules/branding';
 
 
 Vue.use(Vuex);
@@ -20,7 +21,8 @@ const store = new Vuex.Store({
 export default new Vuex.Store({
     
     modules: {
-        logodesign
+        logodesign,
+        branding
     },
     plugins: [
         createPersistedState()

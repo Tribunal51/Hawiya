@@ -42,6 +42,7 @@ class LogoDesignOrdersController extends Controller
         //return $request;
         if($request->hasFile('files')) {
             $files = $request->file('files');
+           //$files[0]->store('public/test');
             return $files;
         } else {
             return " Has no file";
@@ -54,6 +55,9 @@ class LogoDesignOrdersController extends Controller
         } else {
             return "Request".$request;
         }
+
+
+        
 
         
        

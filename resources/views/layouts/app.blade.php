@@ -171,7 +171,7 @@
                     
                     console.log("Error: ", error);
                 };                               
-                 return convertedFile;
+                 //return convertedFile;
 
             }
            

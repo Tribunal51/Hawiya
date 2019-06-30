@@ -1,6 +1,25 @@
 <template>
     <div class="Cover">
         Ordering
+        <!-- <table class="table">
+            <thead class="thead-dark">
+                <tr>
+                    <th scope="col">Parameter</th>
+                    <th scope="col">Choice</th>
+                </tr>
+
+                <tr>
+                    <td>Color</td>
+                    <td>{{ this.$store.state.logodesign.color.toString() }}</td>
+                </tr>
+
+                <tr>
+                    <td>Files</td>
+                    <td><img :src="this.$store.state.logodesign.files[0]"></td>
+                </tr>
+
+            </thead>
+        </table> -->
     </div>
 </template>
 
@@ -20,6 +39,7 @@ export default {
         }        
     },
     mounted() {
+        // this.$store.dispatch('logodesign/deleteKey', 'user_id');
         console.log(this.logodesign);
         console.log(this.$store.state);
         console.log(this.authuser, this.verified);  
@@ -45,7 +65,7 @@ export default {
         },
         dataURLtoBlob(dataurl) {
             console.log('Inside dataURLtoBlob');
-           var arr = dataurl.split(',');
+             var arr = dataurl.split(',');
            var mime = arr[0].match(/:(.*?);/)[1];
            var bstr = atob(arr[1]);
            var n = bstr.length;

@@ -43,6 +43,7 @@
               <div class="col-md-1">
                 <strong>Color</strong>
               </div>
+
               <div class="col-md-7"></div>
               <div class="col-md-4">
                 <!-- <button class="btn btn-warning" type="submit" @click="submitButtonClicked">Submit</button> -->
@@ -76,7 +77,7 @@ export default {
     if (this.$store.state.logodesign.form !== null) {
       this.info.form = { ...this.$store.state.logodesign.form };
     }
-    window.images = [];
+    // window.images = [];
     // if(this.$store.state.logodesign.style !== null) {
     //     this.info.styles = {...this.$store.state.logodesign.style};
     //     console.log('Inside mounted of Info', this.info.styles);
@@ -145,7 +146,7 @@ export default {
         form: { ...this.info.form },
         style: { ...this.info.styles },
         color: [...this.info.color],
-        files: [...window.files]
+        files: window.files
       };
       console.log("Payload", payload);
       this.$store.dispatch("logodesign/setInfo", payload);

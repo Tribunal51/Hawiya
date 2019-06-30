@@ -11,8 +11,12 @@
             <input type="submit" class="btn btn-dark" value="Submit" />       
             <!-- <button type="submit" class="btn btn-dark" @click="submitButtonClicked">Submit</button> -->
         </form>
-        <div v-if="success" class="alert alert-success py-2" role="alert">
+        <div v-if="success" class="alert alert-success py-2 my-2" role="alert">
             Form submitted. We will reach out to you soon.
+        </div>
+
+        <div v-if="error" class="alert alert-danger py-2 my-2" role="alert">
+            There was an alert in submitting the form. Please try again later.
         </div>
     </div>
 </template>
@@ -28,14 +32,34 @@ export default {
                 subject: '',
                 message: ''
             },
-            success: false
+            success: false,
+            error: ''
         }
     },
     methods: {
         formSubmitted(event) {
             this.success = true;
             event.preventDefault();
+            axios.post("http://hawiya.net/api/query", this.form)
+            .then(res => {
+                if(res.data > 0) {
+                    this.success = true;
+                    this.error = false;
+                    this.clearForm();
+                }
+                else {
+                    this.error = true;
+                }
+                console.log(res.data);
+            })
+            .catch(error => console.log(error.response.data));
             console.log(this.form);
+            
+        },
+        clearForm() {
+           Object.keys(this.form).forEach(key => {
+               this.form[key] = '';
+           });
         }
     }
 }

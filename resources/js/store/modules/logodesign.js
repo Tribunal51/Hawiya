@@ -40,10 +40,6 @@ const mutations = {
     deleteKey: (state, key) => {
         delete state[key];
         console.log('Key',key,'deleted');
-    },
-    setOrderId: (state, id) => {
-        state.order_id = id;
-        
     }
     
 }
@@ -65,21 +61,12 @@ const actions = {
     setInfo: (store, payload) => {
         store.commit('setInfo', payload);
     },
-    setAuthUser: (store,user) => {
-        store.commit('setAuthUser', user);
-    },
     resetState: (store) => {
         store.commit('resetState');
     },
     deleteKey: (store, key) => {
         store.commit('deleteKey', key);
     },
-    setOrderId: (store, id) => {
-        store.commit('setOrderId', id);
-    },
-    setFiles: (store, files) => {
-        store.commit('setFiles', files);
-    }
 }
 
 const getters = {

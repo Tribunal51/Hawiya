@@ -68,6 +68,9 @@ Route::delete('/orders/logo-design', 'LogoDesignOrdersController@destroy');
 //     return $response;
 // });
 
+Route::get('/query', 'QueriesController@index');
+Route::post('/query', 'QueriesController@store');
+
 
 
 
