@@ -1,29 +1,17 @@
 <template>
     <div class="Cover">
-        Ordering
-        <!-- <table class="table">
-            <thead class="thead-dark">
-                <tr>
-                    <th scope="col">Parameter</th>
-                    <th scope="col">Choice</th>
-                </tr>
+        Order Confirmed
+        <div v-if="logodesign">
+            <LogoDesignTable />
+        </div>
 
-                <tr>
-                    <td>Color</td>
-                    <td>{{ this.$store.state.logodesign.color.toString() }}</td>
-                </tr>
-
-                <tr>
-                    <td>Files</td>
-                    <td><img :src="this.$store.state.logodesign.files[0]"></td>
-                </tr>
-
-            </thead>
-        </table> -->
     </div>
 </template>
 
+
 <script>
+import LogoDesignTable from './LogoDesignTable/LogoDesignTable';
+
 export default {
     props: [
         "authuser",
@@ -31,11 +19,13 @@ export default {
     ],
     data() {
         return {
-            logodesign: this.$store.state.logodesign.user_id > 0,
-            branding: false,
-            socialmedia: false,
-            stationary: false,
-            website: false
+            logodesign: this.$store.state.logodesign.package > 0,
+            branding: this.$store.state.branding.user_id > 0,
+            socialmedia: this.$store.state.socialmedia.user_id > 0,
+            stationery: this.$store.state.stationery.user_id > 0,
+            packaging: this.$store.state.packaging.user_id > 0,
+            promotional: this.$store.state.promotional.user_id > 0
+
         }        
     },
     mounted() {
@@ -52,16 +42,6 @@ export default {
     },
     methods: {
         checkUser() {
-            // if(this.authuser > 0) {
-            //     this.$store.dispatch('setAuthUser', this.authuser);
-            // } else {
-            //     window.location.href = '/';
-            // }
-            // if(this.verified > 0) {
-            //     this.$store.dispatch('setVerifyUser', 1);
-            // } else {
-            //    // window.location.href = '/home';
-            // }
         },
         dataURLtoBlob(dataurl) {
             console.log('Inside dataURLtoBlob');

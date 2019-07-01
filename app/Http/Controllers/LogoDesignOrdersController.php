@@ -39,23 +39,6 @@ class LogoDesignOrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request;
-        if($request->hasFile('files')) {
-            $files = $request->file('files');
-           //$files[0]->store('public/test');
-            return $files;
-        } else {
-            return " Has no file";
-        }
-        
-        if($request->hasFile('files')) {
-            return "Has file";
-            $files = $request->file('files');
-            return $files;
-        } else {
-            return "Request".$request;
-        }
-
 
         
 
@@ -84,8 +67,18 @@ class LogoDesignOrdersController extends Controller
         $new_order->tagline = $request->tagline;
         $new_order->business_field = $request->business_field;
         $new_order->description = $request->description;
+        $new_order->font = $request->font;
+        $new_order->branding = $request->branding;
 
-        if(!isset($new_order->user_id) || !isset($new_order->package) || !isset($request->logotype) || !isset($request->color) || !isset($new_order->brand_name) || !isset($new_order->business_field) || !isset($new_order->description)) {
+        if(!isset($new_order->user_id) 
+        || !isset($new_order->package) 
+        || !isset($request->logotype) 
+        || !isset($request->color) 
+        || !isset($new_order->brand_name) 
+        || !isset($new_order->business_field) 
+        || !isset($new_order->description)
+        || !isset($new_order->font) 
+        || !isset($new_order->branding)) {
             return -2; //echo "Required fields missing"
         } else if(!User::find($new_order->user_id)) {
             return -3; //echo "User does not exist"

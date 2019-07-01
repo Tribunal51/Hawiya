@@ -71,6 +71,20 @@ Route::delete('/orders/logo-design', 'LogoDesignOrdersController@destroy');
 Route::get('/query', 'QueriesController@index');
 Route::post('/query', 'QueriesController@store');
 
+Route::get('/orders/branding', 'BrandingOrdersController@index');
+Route::post('/orders/branding', 'BrandingOrdersController@store');
+
+Route::get('/orders/social-media', 'SocialMediaOrdersController@index');
+Route::post('/orders/social-media', 'SocialMediaOrdersController@store');
+
+Route::get('/orders/stationery', 'StationeryOrdersController@index');
+Route::post('/orders/stationery', 'StationeryOrdersController@store');
+
+Route::get('/orders/packaging', 'PackagingOrdersController@index');
+Route::post('/orders/packaging', 'PackagingOrdersController@store');
+
+Route::get('/orders/promotional', 'PromotionalOrdersController@index');
+Route::post('/orders/promotional', 'PromotionalOrdersController@store');
 
 
 
