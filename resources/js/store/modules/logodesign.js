@@ -6,7 +6,8 @@ const state = {
     style: null,
     color: null,
     form: null,
-    files: null
+    font: null,
+    branding: false
 };
 
 const defaultState = {
@@ -15,7 +16,8 @@ const defaultState = {
     style: null,
     color: null,
     form: null,
-    files: null
+    font: null,
+    branding: false
     
 };
 
@@ -31,15 +33,20 @@ const mutations = {
     setType: (state, type) => {
         state.logotype = [...type];
     },
+    setFont: (state, font) => {
+        state.font = font;
+    },
     setInfo: (state, payload) => {
         state.style = {...payload.style};
         state.color = [...payload.color];
         state.form = {...payload.form};
-        state.files = {...payload.files};
     },
     deleteKey: (state, key) => {
         delete state[key];
         console.log('Key',key,'deleted');
+    },
+    setBranding: (state) => {
+        state.branding = true;
     }
     
 }
@@ -58,8 +65,14 @@ const actions = {
         console.log('Inside store type', type);
         store.commit('setType', type);
     },
+    setFont: (store, font) => {
+        store.commit('setFont', font);
+    },
     setInfo: (store, payload) => {
         store.commit('setInfo', payload);
+    },
+    setBranding: (store) => {
+        store.commit('setBranding');
     },
     resetState: (store) => {
         store.commit('resetState');

@@ -42,15 +42,25 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
 
     import Design from './components/OtherPages/Design/Design.vue';
 
-    import LogoDesign from './components/OtherPages/LogoDesign/LogoDesign.vue';
-    import LogoPackage from './components/OtherPages/LogoDesign/LogoPackage/LogoPackage.vue';
-    import LogoType from './components/OtherPages/LogoDesign/LogoType/LogoType.vue';
-    import Info from './components/OtherPages/LogoDesign/Info/Info.vue';
+    import LogoDesign from './components/OtherPages/Design/LogoDesign/LogoDesign.vue';
+    import LogoPackage from './components/OtherPages/Design/LogoDesign/LogoPackage/LogoPackage.vue';
+    import LogoType from './components/OtherPages/Design/LogoDesign/LogoType/LogoType.vue';
+    import LogoFont from './components/OtherPages/Design/LogoDesign/LogoFont/LogoFont';
+    import Info from './components/OtherPages/Design/LogoDesign/Info/Info.vue';
+
+    import Branding from './components/OtherPages/Design/Branding/Branding';
+    import BrandingPackage from './components/OtherPages/Design/Branding/Package/Package';
+
     import Profile from './components/OtherPages/Profile/Profile';
+
     import Payment from './components/OtherPages/Payment/Payment';
+
     import store from './store';
+
     import NotFound from './components/UI/NotFound';
+
     import ConfirmOrder from './components/OtherPages/ConfirmOrder/ConfirmOrder';
+    
     // import 'vuetify/src/stylus/app.styl';
 
     Vue.use(VueRouter);
@@ -77,18 +87,11 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
                             path: 'type',
                             component: LogoType
                         },
-                        // {
-                        //     path: 'style',
-                        //     component: Style
-                        // },
-                        // {
-                        //     name: 'color',
-                        //     component: Color
-                        // },
-                        // {
-                        //     name: 'form',
-                        //     component: Form
-                        // }
+                        {
+                            name: 'logofont',
+                            path: 'font',
+                            component: LogoFont
+                        },
                         {   
                             name: 'logoinfo',
                             path: 'info',
@@ -96,6 +99,17 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
                         }
                     ]
                 }, 
+                {
+                    path: 'branding',
+                    component: Branding,
+                    children: [
+                        {
+                            name: 'brandingpackage',
+                            path: 'package',
+                            component: BrandingPackage,
+                        }
+                    ]
+                },
                 {
                     path: 'social-media',
                     component: AboutUs

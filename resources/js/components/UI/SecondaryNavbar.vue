@@ -114,7 +114,11 @@ export default {
     methods: {
         linkClicked(link) {
             console.log(link);
+            
+            this.$store.dispatch('logodesign/resetState');
+            this.$store.dispatch('branding/resetState');
             this.$router.push(link.route);
+           
         }
     }
 }

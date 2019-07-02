@@ -18,6 +18,11 @@ class LogoDesignOrdersController extends Controller
     public function index()
     {
         $logo_design_orders = LogoDesignOrder::all();
+        
+        // foreach($logo_design_orders as $order) {
+        //     $order->color = explode('-', $order->color); // In case the string needs to be split into an array of strings
+        //     return $order->color;
+        // }
         return $logo_design_orders;
     }
 
@@ -39,13 +44,7 @@ class LogoDesignOrdersController extends Controller
      */
     public function store(Request $request)
     {
-
         
-
-        
-       
-
-    
         $new_order = new LogoDesignOrder;
         $new_order->user_id = $request->user_id;    //If user not present, then null
         $new_order->package = $request->package;

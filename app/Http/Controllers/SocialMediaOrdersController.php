@@ -3,8 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\SocialMediaOrder;
 use App\SocialMediaPost;
+use App\User;
 
 class SocialMediaOrdersController extends Controller
 {
