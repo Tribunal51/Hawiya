@@ -10,6 +10,8 @@ use App\Profile;
 
 use Illuminate\Support\Facades\URL;
 
+use App\Helpers\AppHelper as Helper;
+
 class PagesController extends Controller
 {
 
@@ -34,23 +36,23 @@ class PagesController extends Controller
     }
 
     public function dashboard() {
-        return $this->routeIfAdmin('dashboard');
+        return Helper::routeIfAdmin('dashboard');
     }
 
     public function users() {
         $users = User::all();
-        return $this->routeIfAdmin('users')->with('users', $users);
+        return Helper::routeIfAdmin('users')->with('users', $users);
     }
 
     public function addProfile() {
         $profiles = Profile::all();
         //return redirect('AddProfilePage')->with('profiles', $profiles);
-         return $this->routeIfAdmin('addprofile')->with('profiles', $profiles);
+         return Helper::routeIfAdmin('addprofile')->with('profiles', $profiles);
     }
 
     public function editProfile(Request $request) {
         $profile = Profile::find($request->id);
-        return $this->routeIfAdmin('editprofile')->with('profile', $profile);
+        return Helper::routeIfAdmin('editprofile')->with('profile', $profile);
     }
 
     public function payment(Request $request) {
@@ -73,17 +75,5 @@ class PagesController extends Controller
         return view('pages.orderconfirm');
     }
 
-    public static function routeIfAdmin($page) {
-        if(Auth::guest()) {
-            return redirect('/home');
-        }
-        else {
-            if(Auth::user()->admin) { 
-                return view('admin.'.$page);                                           
-            }
-            else {
-                return redirect('/');
-            }
-        }
-    }
+    
 }

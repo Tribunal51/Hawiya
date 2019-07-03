@@ -1,16 +1,20 @@
 <template>
     <div id="cover">
-         <input type="file" @change="onFileSelected" multiple />        
+        <input type="file" @change="onFileSelected" :multiple="type === 'multiple'" />        
         <div v-if="loading">
             Loading...
         </div>
         <div v-else>
             <div v-if="files.length > 0">
-                <img v-for="image in imageDisplays" :src="image" :key="image" class="display" />
+                <img 
+                v-for="image in imageDisplays" 
+                :src="image" 
+                :key="image" 
+                class="display" />
             </div>
         </div>
          <!-- <input type="submit" value="Upload" /> -->
-         <button @click="buttonClicked" role="button">Click</button>
+         <!-- <button @click="buttonClicked" role="button">Click</button> -->
     </div>
 </template>
 
@@ -20,12 +24,16 @@ export default {
         return {
             selectedFile: null,
             files: [],
+            file:[],
             imageDisplays: [],
             dataURLs: [],
             loading: false,
             completed: false
         }
     },
+    props: [
+        "type"
+    ],
     watch: {
         completed: function(newValue, oldValue) {
             if(newValue) {
@@ -33,6 +41,9 @@ export default {
                 this.$emit('dataurls', this.dataURLs);
             }
         }
+    },
+    mounted() {
+        this.completed = false;
     },
     methods: {
         onFileSelected(event) {
@@ -45,11 +56,18 @@ export default {
             Array.from(this.files).forEach((file, index) => {
                 var reader = new FileReader();
                 reader.onloadstart = function(event) {
+                    self.completed = false;
                     self.loading = true;
                 }
                 reader.onload = function(event) {
-                    self.imageDisplays.push(event.target.result);
-                    self.dataURLs.push(reader.result);
+                    if(this.type !== 'multiple') {
+                        self.imageDisplays[0] = event.target.result;
+                        self.dataURLs[0] = reader.result;
+                    }
+                    else {
+                        self.imageDisplays.push(event.target.result);
+                        self.dataURLs.push(reader.result);
+                    }
                     //console.log(reader.result);
                 }
                 

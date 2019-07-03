@@ -5,6 +5,9 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\BrandingOrder;
+use App\User;
+
+use App\Helpers\AppHelper as Helper;
 
 class BrandingOrdersController extends Controller
 {
@@ -43,6 +46,8 @@ class BrandingOrdersController extends Controller
         $order->package = $request->package;
         $order->comment = $request->comment;
         
+       //return $request;
+        
         if(!isset($order->user_id) || !isset($order->package) || !isset($order->comment) || !isset($request->logo_photo)) {
             return -2;  //echo "Required fields missing";
         }
@@ -50,30 +55,47 @@ class BrandingOrdersController extends Controller
             if(!User::find($order->user_id)) {
                 return -3;  // echo "User not found.";
             }
-            if($request->hasFile('logo_photo')) {
-                $allowedFileExtension = ['pdf', 'jpg', 'png', 'docx'];
-                $file = $request->file('logo_photo');
-                
-                $filename = $file->getClientOriginalName();
-                $extension = $file->getClientOriginalExtension();
-                $check = in_array($extension, $allowedFileExtension);
-                if($check) {
-                    $filename = ltrim($file->store('public/uploads'));
-                    $order->logo_photo = $filename;
-                    if($order->save()) {
-                        return $order->id;  // echo "Order registered";
-                    }
-                    else {
-                        return -1;  // echo "Order could not be registered. Please investigate.";
-                    }
-                }
-                else {
-                    return -5;  // echo "Wrong file format";
-                }
+            
+
+            if(Helper::check_file($request->logo_photo)) {
+                $filename = Helper::save_file($request->logo_photo);
+                $order->logo_photo = $filename;
             }
             else {
-                return -4; // echo "File not found"
+                return -5;  // echo "Wrong File format"
             }
+
+            if($order->save()) {
+                return $order->id;  // echo "Order Registered Successfully.";
+            }
+            else {
+                return -1;  // echo "Order could not be registered. Please investigate.";
+            }
+            
+            // if($request->hasFile('logo_photo')) {
+            //     $allowedFileExtension = ['pdf', 'jpg', 'png', 'docx'];
+            //     $file = $request->file('logo_photo');
+            //     return $file;
+            //     $filename = $file->getClientOriginalName();
+            //     $extension = $file->getClientOriginalExtension();
+            //     $check = in_array($extension, $allowedFileExtension);
+            //     if($check) {
+            //         $filename = ltrim($file->store('public/uploads'));
+            //         $order->logo_photo = $filename;
+            //         if($order->save()) {
+            //             return $order->id;  // echo "Order registered";
+            //         }
+            //         else {
+            //             return -1;  // echo "Order could not be registered. Please investigate.";
+            //         }
+            //     }
+            //     else {
+            //         return -5;  // echo "Wrong file format";
+            //     }
+            // }
+            // else {
+            //     return -4; // echo "File not found"
+            // }
         }
 
     }
@@ -122,4 +144,10 @@ class BrandingOrdersController extends Controller
     {
         //
     }
+
+    
+
+    
 }
+
+

@@ -50,6 +50,7 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
 
     import Branding from './components/OtherPages/Design/Branding/Branding';
     import BrandingPackage from './components/OtherPages/Design/Branding/Package/Package';
+    import BrandingInfo from './components/OtherPages/Design/Branding/Info/Info';
 
     import Profile from './components/OtherPages/Profile/Profile';
 
@@ -107,6 +108,11 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
                             name: 'brandingpackage',
                             path: 'package',
                             component: BrandingPackage,
+                        },
+                        {
+                            name: 'brandinginfo',
+                            path: 'info',
+                            component: BrandingInfo
                         }
                     ]
                 },
