@@ -81,10 +81,10 @@ export default {
                     path: "/design/social-media",
                     route: "/design/social-media/package"
                 },
-                Stationary: {
-                    name: "Stationary",
-                    path: "/design/stationary",
-                    route: "/design/stationary/package"
+                Stationery: {
+                    name: "Stationery",
+                    path: "/design/stationery",
+                    route: "/design/stationery"
                 },
                 Packaging: {
                     name: "Packaging",

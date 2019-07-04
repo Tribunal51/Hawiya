@@ -43,7 +43,7 @@ class SocialMediaOrdersController extends Controller
     public function store(Request $request)
     {
         //
-
+        //return $request->logo_photo;
         if(!isset($request->user_id) || !isset($request->package) || !isset($request->logo_photo) || !isset($request->posts)) {
             return -2;  //echo "Required fields missing";
         } 
@@ -80,28 +80,33 @@ class SocialMediaOrdersController extends Controller
         //     return -5;  // echo "File not found";
         // }
 
-        $order = SocialMediaOrder::create([
-            'user_id' => $request->user_id,
-            'package' => $request->package,
-            'logo_photo' => $filename
-        ]);
+       
         
         foreach($request->posts as $post) {
-            if(!isset($post->image) || !isset($post->comment)) {
+            //return $post;
+            if(!isset($post['image']) || !isset($post['comment'])) {
                 return -6;  // echo "Required fields missing for the Post";
             }
             else {
-                if(!Helper::check_file($post->image)) {
+                if(!Helper::check_file($post['image'])) {
                     return -7;  // echo "File format wrong for one or more posts";
                 }
             }
         }
 
+        $order = SocialMediaOrder::create([
+            'user_id' => $request->user_id,
+            'package' => $request->package,
+            'logo_photo' => $filename
+        ]);
+
+        
+
         foreach($request->posts as $post) {
             $new_post = new SocialMediaPost;
-            $new_post->comment = $post->comment;
+            $new_post->comment = $post['comment'];
             $new_post->order_id = $order->id;
-            $new_post->image = Helper::save_file($post->image);
+            $new_post->image = Helper::save_file($post['image']);
             if(!$new_post->save()) {
                 return -8;  // echo Could not save a Post.
             }

@@ -11,6 +11,6 @@ class SocialMediaOrder extends Model
     protected $fillable = ['user_id','package','logo_photo'];
 
     public function posts() {
-        return $this->hasMany('App\Post', 'order_id');
+        return $this->hasMany('App\SocialMediaPost', 'order_id');
     }
 }

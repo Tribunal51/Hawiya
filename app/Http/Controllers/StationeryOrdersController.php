@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\StationeryOrder;
+use App\User;
 
 use App\Helpers\AppHelper as Helper;
 
@@ -52,7 +53,7 @@ class StationeryOrdersController extends Controller
         $order = new StationeryOrder;
         $order->user_id = $request->user_id;
         $order->comment = $request->comment;
-        $order->logo_photo = Helper::save_file($order->logo_photo);
+        $order->logo_photo = Helper::save_file($request->logo_photo);
         if($order->save()) {
             return $order->id;  // echo "Order registered successfully.";
         } else {

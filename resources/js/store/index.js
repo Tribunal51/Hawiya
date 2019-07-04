@@ -7,6 +7,7 @@ import Vuetify from 'vuetify';
 
 import logodesign from './modules/logodesign';
 import branding from './modules/branding';
+import socialmedia from './modules/socialmedia';
 
 
 Vue.use(Vuex);
@@ -22,7 +23,8 @@ export default new Vuex.Store({
     
     modules: {
         logodesign,
-        branding
+        branding,
+        socialmedia
     },
     plugins: [
         createPersistedState()

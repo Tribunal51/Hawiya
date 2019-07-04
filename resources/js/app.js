@@ -52,6 +52,12 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
     import BrandingPackage from './components/OtherPages/Design/Branding/Package/Package';
     import BrandingInfo from './components/OtherPages/Design/Branding/Info/Info';
 
+    import SocialMedia from './components/OtherPages/Design/SocialMedia/SocialMedia';
+    import SocialMediaPackage from './components/OtherPages/Design/SocialMedia/Package/Package';
+    import SocialMediaInfo from './components/OtherPages/Design/SocialMedia/Info/Info';
+
+    import Stationery from './components/OtherPages/Design/Stationery/Stationery';
+
     import Profile from './components/OtherPages/Profile/Profile';
 
     import Payment from './components/OtherPages/Payment/Payment';
@@ -118,7 +124,24 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
                 },
                 {
                     path: 'social-media',
-                    component: AboutUs
+                    component: SocialMedia,
+                    children: [
+                        {
+                            name: 'socialmediapackage',
+                            path: 'package',
+                            component: SocialMediaPackage
+                        },
+                        {
+                            name: 'socialmediainfo',
+                            path: 'info',
+                            component: SocialMediaInfo
+                        }
+                        
+                    ]
+                },
+                {
+                    path: 'stationery',
+                    component: Stationery
                 }
             ]
         },

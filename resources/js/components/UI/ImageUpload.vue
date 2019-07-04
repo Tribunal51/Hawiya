@@ -1,6 +1,8 @@
 <template>
     <div id="cover">
-        <input type="file" @change="onFileSelected" :multiple="type === 'multiple'" />        
+        <input type="file" @change="onFileSelected" 
+        :multiple="type === 'multiple'" 
+        :required="required" />        
         <div v-if="loading">
             Loading...
         </div>
@@ -32,7 +34,8 @@ export default {
         }
     },
     props: [
-        "type"
+        "type",
+        "required"
     ],
     watch: {
         completed: function(newValue, oldValue) {
