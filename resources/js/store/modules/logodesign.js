@@ -7,7 +7,8 @@ const state = {
     color: null,
     form: null,
     font: null,
-    branding: false
+    branding: false,
+    price: null
 };
 
 const defaultState = {
@@ -17,7 +18,8 @@ const defaultState = {
     color: null,
     form: null,
     font: null,
-    branding: false
+    branding: false,
+    price: null
     
 };
 
@@ -83,26 +85,13 @@ const actions = {
 }
 
 const getters = {
-    getForm: (store) => {
-        return store.form;
-    },
-    getPackage: (store) => {
-        return store.package;
-    },
-    getLogotype: (store) => {
-        return store.logotype;
-    },
-    getStyle: (store) => {
-        return store.style;
-    },
-    getColor: (store) => {
-        return store.color;
-    },
-    isLoggedIn: (state) => {
-        return state.user_id !== -1;
-    },
-    getDefaultState: (state) => {
-        return this.defaultState;
+    isValid: (store) => {
+        for(var key in store) {
+            if((store[key] === null || store[key] === '') && (key !== 'price')) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 

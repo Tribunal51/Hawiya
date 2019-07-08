@@ -1,9 +1,9 @@
 <template>
-    <div id="cover">
+    <div id="cover" v-if="item">
         {{ item.title }}
         {{ item.category }}
         <img v-for="image in item.uploads" :key="image" :src="image" />
-            
+        
         
     </div>
 </template>

@@ -62,11 +62,12 @@ export default {
             //         this.scrollPos = window.scrollY;
             //         console.log(this.scrollPos);
             // });
-
+            this.$store.dispatch('resetAllStates');
+            console.log('Is LogoDesign Valid',this.$store.getters['logodesign/isValid']);
             let url = "http://localhost:8000/leadmanager/api/lead";
-            axios.get(url)
-            .then(res => console.log(res.data))
-            .catch(error => console.log(error));
+            // axios.get(url)
+            // .then(res => console.log(res.data))
+            // .catch(error => console.log(error));
 
     },
     destroyed() {

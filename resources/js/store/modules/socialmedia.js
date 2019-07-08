@@ -4,14 +4,16 @@ const state = {
     package: null,
     logo_photo: null,
     postsNumber: null,
-    posts: null
+    posts: null,
+    price: null
 };
 
 const initialState = {
     package: null,
     logo_photo: null,
     postsNumber: null,
-    posts: null
+    posts: null,
+    price: null
 }
 
 const mutations = {
@@ -47,9 +49,23 @@ const actions = {
     }
 }
 
+const getters = {
+    isValid: (store) => {
+        for(var key in store) {
+            if(key !== 'price') {
+                if(store[key] === null || store[key] === '') {
+                    return false;
+                }
+            }
+        }
+        return true;
+    }
+}
+
 export default {
     namespaced,
     state,
+    getters,
     mutations,
     actions
 }

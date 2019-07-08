@@ -58,6 +58,10 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
 
     import Stationery from './components/OtherPages/Design/Stationery/Stationery';
 
+    import Packaging from './components/OtherPages/Design/Packaging/Packaging';
+
+    import Promotional from './components/OtherPages/Design/Promotional/Promotional';
+
     import Profile from './components/OtherPages/Profile/Profile';
 
     import Payment from './components/OtherPages/Payment/Payment';
@@ -97,7 +101,21 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
                         {
                             name: 'logofont',
                             path: 'font',
-                            component: LogoFont
+                            component: LogoFont,
+                            beforeEnter: (to, from, next) => {
+                                next();
+                                // console.log('FROM', from);
+                                // console.log('TO', to);
+                                // console.log('NEXT', next);
+                                // console.log(this.$router);
+                                // // next();
+                                // if(from.name === 'logotype' ) {
+                                //     next();
+                                // }
+                                // else {
+                                //     next('/');
+                                // }
+                            }
                         },
                         {   
                             name: 'logoinfo',
@@ -142,11 +160,21 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
                 {
                     path: 'stationery',
                     component: Stationery
+                },
+                {
+                    name: 'packaginginfo',
+                    path: 'packaging',
+                    component: Packaging
+                },
+                {
+                    name: 'promotionalinfo',
+                    path: 'promotional',
+                    component: Promotional
                 }
             ]
         },
         {path: '/confirm-order', component: ConfirmOrder},
-        {path: '/', component: HomePage},
+        {path: '/', name: 'root', component: HomePage},
         {path: '*', component: NotFound}       
     ];
 

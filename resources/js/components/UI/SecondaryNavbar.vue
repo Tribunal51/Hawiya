@@ -89,12 +89,12 @@ export default {
                 Packaging: {
                     name: "Packaging",
                     path: "/design/packaging",
-                    route: "/design/packaging/package"
+                    route: "/design/packaging"
                 },
-                Website: {
-                    name: "Website",
-                    path: "/design/website",
-                    route: "/design/website/package"
+                Promotional: {
+                    name: "Promotional",
+                    path: "/design/promotional",
+                    route: "/design/promotional"
                 }
             },
             // RouterLinks: {
@@ -115,8 +115,7 @@ export default {
         linkClicked(link) {
             console.log(link);
             
-            this.$store.dispatch('logodesign/resetState');
-            this.$store.dispatch('branding/resetState');
+            this.$store.dispatch('resetAllStates');
             this.$router.push(link.route);
            
         }

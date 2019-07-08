@@ -150,7 +150,8 @@ export default {
       console.log("Payload", payload);
       this.$store.dispatch("logodesign/setInfo", payload);
       console.log("Final state", this.$store.state.logodesign);
-      window.location.href = "/confirm-order";
+      console.log('Is LogoDesign Valid', this.$store.getters['logodesign/isValid']);
+      //window.location.href = "/confirm-order";
 
       //   if (this.$store.state.user_id === -2) {
       //     window.location.href = "/register?redirect=logotype";
@@ -241,13 +242,13 @@ export default {
       info: {
         color: [],
         styles: {
-          modern_classic: 50,
-          mature_youthful: 50,
-          feminine_masculine: 50,
-          playful_sophisticated: 50,
-          economical_luxury: 50,
-          geometric_organic: 50,
-          abstract_literal: 50
+          modern_classic: 0,
+          mature_youthful: 0,
+          feminine_masculine: 0,
+          playful_sophisticated: 0,
+          economical_luxury: 0,
+          geometric_organic: 0,
+          abstract_literal: 0
         },
         form: {
           brand: "",

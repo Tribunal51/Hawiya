@@ -8,23 +8,24 @@ import Vuetify from 'vuetify';
 import logodesign from './modules/logodesign';
 import branding from './modules/branding';
 import socialmedia from './modules/socialmedia';
-
+import packaging from './modules/packaging';
+import stationery from './modules/stationery';
+import promotional from './modules/promotional';
 
 Vue.use(Vuex);
 Vue.use(Vuetify, {
     iconfont: 'md'
 });
 
-const store = new Vuex.Store({
-    
-})
-
 export default new Vuex.Store({
     
     modules: {
         logodesign,
         branding,
-        socialmedia
+        socialmedia,
+        packaging,
+        stationery,
+        promotional
     },
     plugins: [
         createPersistedState()
@@ -62,6 +63,10 @@ export default new Vuex.Store({
         },
         setVerifyUser: (state) => {
             state.verified = 1;
+        },
+        resetAllStates: (state) => {
+            console.log('Inside Global Reset');
+            
         }
     },
     actions: {
@@ -70,6 +75,15 @@ export default new Vuex.Store({
         },
         setVerifyUser: (store) => {
             store.commit('setVerifyUser');
+        },
+        resetAllStates: ({ dispatch }) => {
+            //store.commit('resetAllStates');
+            dispatch('logodesign/resetState');
+            dispatch('branding/resetState');
+            dispatch('socialmedia/resetState');
+            dispatch('stationery/resetState');
+            dispatch('packaging/resetState');
+            dispatch('promotional/resetState');
         }
     }
 })

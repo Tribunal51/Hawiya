@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\LogodesignOrder;
 use App\BrandingOrder;
 
+use App\User;
+
 use Illuminate\Support\Collection;
 
 class OrdersController extends Controller
@@ -19,7 +21,7 @@ class OrdersController extends Controller
     {
         //
         $logodesign_orders = LogodesignOrder::all();
-        $branding_orders = BrandingOrder::all();
+        //$branding_orders = BrandingOrder::all();
         $all_orders_array = array('logodesign' => $logodesign_orders, 'branding' => $branding_orders);
         $all_orders = json_encode($all_orders_array);
         return $all_orders;

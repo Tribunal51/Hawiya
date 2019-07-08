@@ -18,11 +18,13 @@
                     <VSlider
                         v-model="tempStyles[style]"
                         thumbLabel 
-                        thumbSize="20"
+                        min="-100"
+                        max="100"
+                        thumbSize="30"
                         height="10"
                         color=#FBC02D
                         thumbColor=#FBC02D
-                        @change="updateStyles"
+                        @change="updateStyles"                       
                     ></VSlider>
                         
                     <!-- <vue-slider 
