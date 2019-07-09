@@ -57,6 +57,8 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
     import SocialMediaInfo from './components/OtherPages/Design/SocialMedia/Info/Info';
 
     import Stationery from './components/OtherPages/Design/Stationery/Stationery';
+    import StationeryPackage from './components/OtherPages/Design/Stationery/Package/Package';
+    import StationeryInfo from './components/OtherPages/Design/Stationery/Info/Info';
 
     import Packaging from './components/OtherPages/Design/Packaging/Packaging';
 
@@ -159,7 +161,19 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
                 },
                 {
                     path: 'stationery',
-                    component: Stationery
+                    component: Stationery, 
+                    children: [
+                        {
+                            name: 'stationerypackage',
+                            path: 'package',
+                            component: StationeryPackage
+                        }, 
+                        {
+                            name: 'stationeryinfo',
+                            path: 'info',
+                            component: StationeryInfo
+                        }
+                    ]
                 },
                 {
                     name: 'packaginginfo',

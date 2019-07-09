@@ -1,0 +1,79 @@
+<template>
+    <div class="Cover">
+        <BlackBox>
+            We bring you premium stationery design solutions that will help you put your brands in the limelight. Experienced designers and sonsultants are always at your disposal to make things happen exactly the way you want, or even better!
+        </BlackBox>
+        <div class="card-group packageCards">
+            <Card v-for="card in cards" :key="card.name" :card="card">
+                <button @click="buttonClicked(card)" class="btn btn-secondary">ORDER</button>
+            </Card>
+        </div>
+    </div>
+
+</template> 
+
+<script>
+import Card from '../../../../UI/Card';
+import BlackBox from '../../../../UI/BlackBox';
+
+export default {
+    components: {
+        Card,
+        BlackBox
+    },
+    data() {
+        return {
+            cards: [
+                {
+                    title: 'FAST TRACK',
+                    old_price: 150,
+                    new_price: 100,
+                    offers: [
+                        "Letter Head",
+                        "Business Card",
+                        "Envelope"
+                    ]
+                },
+                {
+                    title: 'BASIC',
+                    old_price: 350,
+                    new_price: 200,
+                    offers: [
+                        "Letter Head",
+                        "Business Card",
+                        "Envelope",
+                        "Folder",
+                        "Invoice"
+                    ]
+                },
+                {
+                    title: 'ADVANCED',
+                    old_price: 500,
+                    new_price: 300,
+                    offers: [
+                        "Letter Head",
+                        "Business Card",
+                        "Envelope",
+                        "Folder",
+                        "Invoice",
+                        "Notebook",
+                        "Voucher"
+                    ]
+                }
+            ]
+        }
+    },
+    methods: {
+        buttonClicked(card) {
+            this.$store.dispatch('stationery/setState', card.name);
+            this.$router.push({
+                name: 'stationeryinfo'
+            });
+        }
+    }
+}
+</script>
+
+<style scoped>
+
+</style>

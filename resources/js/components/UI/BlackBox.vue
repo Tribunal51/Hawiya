@@ -1,5 +1,5 @@
 <template>
-    <span id="cover">
+    <span class="cover">
         <div class="row">
             <div class="box">
 
@@ -46,8 +46,8 @@ export default {
         display: block;        
     }
 
-    #cover {
-        margin-bottom: 10px;
+    .cover {
+        margin-bottom: 20px;
     }
     
 </style>

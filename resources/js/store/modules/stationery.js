@@ -1,12 +1,14 @@
 const namespaced = true;
 
 const state = {
+    package: null,
     logo_photo: null,
     comment: null,
     price: null
 }
 
 const initialState = {
+    package: null,
     logo_photo: null,
     comment: null,
     price: null
@@ -17,6 +19,9 @@ const mutations = {
         console.log('Inside resetState');
         Object.assign(state, initialState);
     },
+    setPackage: (state, packageTitle) => {
+        state.package = packageTitle;
+    },
     setStationery: (state, payload) => {
         state.logo_photo = payload.logo_photo;
         state.comment = payload.comment;
@@ -26,6 +31,9 @@ const mutations = {
 const actions = {
     resetState: (store) => {
         store.commit('resetState');
+    },
+    setPackage: (store, packageTitle) => {
+        store.commit('setPackage', packageTitle);
     },
     setStationery: (store, payload) => {
         store.commit('setStationery', payload);

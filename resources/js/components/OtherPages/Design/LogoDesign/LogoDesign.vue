@@ -20,6 +20,7 @@
             <BlackBox>
                 <h2>{{ this.$store.state.logodesign.branding ? 'Branding: '+this.$store.state.logodesign.package : 'Logo Design' }}</h2>
             </BlackBox>
+            
         
         <router-view />
     </div>

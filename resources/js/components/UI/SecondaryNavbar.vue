@@ -84,7 +84,7 @@ export default {
                 Stationery: {
                     name: "Stationery",
                     path: "/design/stationery",
-                    route: "/design/stationery"
+                    route: "/design/stationery/package"
                 },
                 Packaging: {
                     name: "Packaging",

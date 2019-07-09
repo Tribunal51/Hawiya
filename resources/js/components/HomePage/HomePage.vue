@@ -178,7 +178,7 @@ export default {
         align-items: flex-start;
         flex-wrap: wrap;
         width: 100%;
-        justify-content: center;
+        /* justify-content: center; */
     }
 
     .checkBox {
@@ -252,7 +252,9 @@ export default {
 
     .packageCards {
         /* background-color: green; */
+        margin-top: 20px;
         display: flex;
+        /* justify-content: center; */
         justify-content: space-evenly;   
             
         

@@ -10,9 +10,9 @@
                     :navItemStyle="navItemStyle"
                     
                 /> -->
-
+                
                 <BlackBox>
-                    We believe logos speak louder than anything and that's why, with pristine designs, we produce sitrring identities for brands all around the world.
+                    We believe logos speak louder than anything and that's why, with pristine designs, we produce stirring identities for brands all around the world.
                 </BlackBox>
                 <!-- <div id="intro">
                     <h3>We offer Custom Pricing <br />
@@ -61,34 +61,34 @@ export default {
                         title: "FAST TRACK",
                         old_price: 150,
                         new_price: 100,
-                        offers: {
-                            "Logo Concepts": 2,
-                            "Revisions": 2,
-                            "Dedicated Designers": 2,
-                            "Turnaround Time": "48hrs",
-                        },
+                        offers: [
+                            "2 Logo Concepts",
+                            "2 Revisions",
+                            "2 Dedicated Designers",
+                            "48hrs Turnaround Time"
+                        ]
                     },
                     {
                         title: "BASIC",
                         old_price: 200,
                         new_price: 350,
-                        offers: {
-                            "Logo Concepts": 4,
-                            "Revisions": 4,
-                            "Dedicated Designers": 2,
-                            "Turnaround Time": "48hrs",
-                        },
+                        offers: [
+                            "4 Logo Concepts",
+                            "4 Revisions",
+                            "2 Dedicated Designers",
+                            "48hrs Turnaround Time"
+                        ]
                     },
                     {
                         title: "ADVANCED",
                         old_price: 300,
                         new_price: 500,
-                        offers: {
-                            "Logo Concepts": 6,
-                            "Revisions": 6,
-                            "Dedicated Designers": 2,
-                            "Turnaround Time": "48hrs",
-                        },
+                        offers: [
+                            "6 Logo Concepts",
+                            "6 Revisions",
+                            "2 Dedicated Designers",
+                            "48hrs Turnaround Time"
+                        ]
                     }
 
             ],

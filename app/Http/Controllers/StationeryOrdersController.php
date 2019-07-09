@@ -41,7 +41,7 @@ class StationeryOrdersController extends Controller
     public function store(Request $request)
     {
         
-        if(!isset($request->user_id) || !isset($request->comment) || !isset($request->logo_photo)) {
+        if(!isset($request->user_id) || !isset($request->comment) || !isset($request->logo_photo) || !isset($request->package)) {
             return -2;  // echo "Required fields missing";
         }
         if(!User::find($request->user_id)) {
@@ -51,6 +51,7 @@ class StationeryOrdersController extends Controller
             return -4;  // echo "Wrong file format.";
         }
         $order = new StationeryOrder;
+        $order->package = $request->package;
         $order->user_id = $request->user_id;
         $order->comment = $request->comment;
         $order->logo_photo = Helper::save_file($request->logo_photo);
