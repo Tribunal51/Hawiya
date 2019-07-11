@@ -1,25 +1,93 @@
 <template>
     <div class="Cover">
-        <textarea v-model="comment"></textarea>
-        <ImageUpload 
-        v-on:dataurls="updateFileUrls"
-        v-on:files="updateFiles" 
-        type="single" />
-        <v-btn color="success" @click="nextButtonClicked" :disabled="isButtonDisabled()">Next</v-btn>
+        <p>{{ this.package }} / Package</p>
+        <BlackBox>
+            <div class="col-md-3">
+                <h2> {{ this.package }}</h2>
+            </div>
+            <div class="col-md-9 borderBottomYellow">
+
+            </div>
+        </BlackBox>
+        <div class="row mt-3">
+            <div class="col-md textSection">
+                <h5>YOU WILL GET </h5>
+                    <div class="features">
+                        <p v-for="feature in features" :key="feature">
+                            - {{ feature }}
+                        </p>
+                    </div>
+
+            </div>
+            <div class="col-md inputSection">
+                <div class="image">
+                    <ImageUpload 
+                        v-on:dataurls="updateFileUrls"
+                        v-on:files="updateFiles" 
+                        type="single"
+                        :hideImage="true" />
+                </div>
+                <div class="textarea">
+                    <textarea 
+                        v-model="comment" 
+                        class="input-textarea-gray">
+                    </textarea>
+                </div>
+                
+
+                <!-- <TextArea v-on:text="updateComment"></TextArea> -->
+
+                <div class="row">
+                    <div class="col-md-8"></div>
+                    <div class="col-md-4">
+                        <VBtn flat medium @click="nextButtonClicked" :disabled="isButtonDisabled()">Next >></VBtn>
+                    </div>
+                    
+                </div>
+
+                
+
+            </div>
+        </div>
+        
+       
    </div>
 </template>
 
 <script>
 import ImageUpload from '../../../../UI/ImageUpload';
+import BlackBox from '../../../../UI/BlackBox';
+import TextArea from '../../../../UI/TextArea';
+//import * from 'vuetify/lib';
+// import { VBtn } from 'vuetify';
+
 export default {
     components: {
-        ImageUpload
+        ImageUpload,
+        BlackBox,
+        TextArea,
+        
     },
     data() {
         return {
             comment: '',
             dataurls: '',
-            files: ''
+            files: '',
+            features: [
+                "LOGO OR WATERMARK",
+                'DIFFERENT LOGO "LOCKUPS"',
+                "KEY COLORS",
+                "ADDITIONAL COLOR PALETTE OPTIONS",
+                "CORPORATE TYPEFACES",
+                "STANDARD TYPOGRAPHIC TREATMENTS",
+                "CONSISTENT STYLE FOR IMAGES",
+                "HAVE A FULL LIBRARY OF GRAPHIC ELEMENTS"
+            ]
+        }
+    },
+    computed: {
+        package() {
+            return this.$store.state.branding.package;
         }
     },
     mounted() {
@@ -27,18 +95,31 @@ export default {
     },
     methods: {
         updateFileUrls(urls) {
-            this.dataurls = urls[0];
-            console.log('Urls', this.dataurls);
+            if(urls === null) {
+                this.dataurls = '';
+            } else {
+                this.dataurls = urls[0];
+                //console.log('Urls', this.dataurls);
+            }
+            
         },
         updateFiles(files) {
-            this.files = files[0];
-            console.log('Files', this.files);
+            if(files === null) {
+                this.files = '';
+            }
+            else {
+                this.files = files[0];
+                //console.log('Files Update ', this.files);
+            }
+            
+            
         },
         isButtonDisabled() {
-            return this.files.length < 1;
+            return (this.files.length < 1 || this.comment === '');
         },
         nextButtonClicked() {
-            console.log('Current Image: ',this.dataurls);
+            //console.log('Current Image: ',this.dataurls);
+            //console.log('Curent comment', this.comment);
 
 
             let data = {
@@ -47,11 +128,11 @@ export default {
                 logo_photo: this.dataurls,
                 comment: this.comment
             };
-            
-            console.log('Data', data);
-            axios.post('http://hawiya.net/api/orders/branding', data)
-            .then(res => console.log(res.data))
-            .catch(error => console.log(error.response));
+            console.log('Data to send', data);
+            // console.log('Data', data);
+            // axios.post('http://hawiya.net/api/orders/branding', data)
+            // .then(res => console.log(res.data))
+            // .catch(error => console.log(error.response));
         }
     }
 
@@ -60,4 +141,24 @@ export default {
 
 <style scoped>
 
+    
+
+    .textSection {
+        padding: 5px;
+    }
+
+    .inputSection {
+        padding: 5px;
+        height: 100%;
+    }
+
+    .features {
+        padding-left: 10px;
+    }
+
+    .input-textarea-gray {
+        margin-top: 10px;
+        height: 300px;
+        width: 100%;
+    }
 </style>

@@ -2,7 +2,7 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
 import * as Cookies from 'js-cookie';
-import Vuetify from 'vuetify';
+
 // import 'vuetify/dist/vuetify.min.css'; // Ensure you are using css-loader
 
 import logodesign from './modules/logodesign';
@@ -13,9 +13,6 @@ import stationery from './modules/stationery';
 import promotional from './modules/promotional';
 
 Vue.use(Vuex);
-Vue.use(Vuetify, {
-    iconfont: 'md'
-});
 
 export default new Vuex.Store({
     

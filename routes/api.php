@@ -41,6 +41,7 @@ Route::delete('/user', 'UsersController@destroy');
 
 
 Route::get('/profiles', 'ProfilesController@index');
+Route::get('/profile', 'ProfilesController@show');
 Route::post('/profile', 'ProfilesController@store');
 Route::get('/profiles/filter', 'ProfilesController@filter');
 

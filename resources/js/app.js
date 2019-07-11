@@ -76,6 +76,16 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
     
     // import 'vuetify/src/stylus/app.styl';
 
+    import Vuetify from 'vuetify';
+    import { Ripple } from 'vuetify/lib/directives';
+
+    const vuetify = Vue.use(Vuetify, {
+        iconfont: 'md',
+        directives: {
+            Ripple
+        }
+    });
+
     Vue.use(VueRouter);
     const routes = [
         {name: 'about', path: '/about', component: AboutUs, props: true},
@@ -214,4 +224,5 @@ const app = new Vue({
     el: '#app',
     router,
     store,
+    vuetify
 });

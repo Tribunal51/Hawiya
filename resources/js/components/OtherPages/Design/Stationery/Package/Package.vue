@@ -65,7 +65,7 @@ export default {
     },
     methods: {
         buttonClicked(card) {
-            this.$store.dispatch('stationery/setState', card.name);
+            this.$store.dispatch('stationery/setPackage', card.title);
             this.$router.push({
                 name: 'stationeryinfo'
             });

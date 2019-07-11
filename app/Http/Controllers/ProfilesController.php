@@ -152,9 +152,26 @@ class ProfilesController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function show($id)
+    public function show(Request $request)
     {
         //
+        if(!isset($request->id)) {
+            return -2;  // echo "Required fields missing.";
+        }
+        $profile = Profile::find($request->id);
+        
+        if(!$profile) {
+            return -3;  // echo "Profile not found.";
+        }
+        else {
+            $uploads = Upload::where('upload_id', $profile->id)->get('filename');
+            $upload_to_append = [];
+            foreach($uploads as $upload) {               
+                array_push($upload_to_append, "http://hawiya.net/storage/uploads/".$upload->filename);
+            }
+            $profile->uploads = $upload_to_append;
+            return $profile;
+        }
     }
 
     /**

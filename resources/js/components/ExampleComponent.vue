@@ -1,23 +1,17 @@
-<template>
-    
-    <v-app>
-        
-        <router-view />
-
-    </v-app>
+<template>   
+    <router-view />  
 </template>
 
 <script>   
 import Vue from 'vue';
 
-import { VApp } from 'vuetify/lib';
-// import 'vuetify/src/stylus/app.styl';
+// import { VApp } from 'vuetify/lib';
+//import 'vuetify/src/stylus/app.styl';
 
 export default {
         props: [
             "authuser",
             "reset",
-
             "verified"
         ],
         mounted() {
@@ -36,7 +30,7 @@ export default {
 
         },
         components: {
-            VApp
+            
         },   
         computed: {
             userLoginStatus() {

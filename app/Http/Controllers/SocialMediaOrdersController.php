@@ -19,7 +19,24 @@ class SocialMediaOrdersController extends Controller
     public function index()
     {
         //
-        $orders = SocialMediaOrder::with('posts')->get();
+        // $orders = SocialMediaOrder::with('posts')->get();
+        // return $orders;
+        
+
+        $orders = SocialMediaOrder::get(['id','user_id','package','logo_photo']);
+        
+        foreach($orders as $order) {
+            $filename = $order->logo_photo;
+            $order->logo_photo = "http://hawiya.net/storage/uploads/".$filename;
+            $posts_to_append = [];
+            $posts = SocialMediaPost::where('order_id', $order->id)->get(['image', 'comment']);
+            
+            foreach($posts as $post) {
+                $post->image = "http://hawiya.net/storage/uploads/".$post->image;
+                array_push($posts_to_append, $post);
+            }
+            $order->posts = $posts_to_append;
+        }
         return $orders;
 
     }
@@ -42,7 +59,6 @@ class SocialMediaOrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
         //return $request->logo_photo;
         if(!isset($request->user_id) || !isset($request->package) || !isset($request->logo_photo) || !isset($request->posts)) {
             return -2;  //echo "Required fields missing";
@@ -52,15 +68,19 @@ class SocialMediaOrdersController extends Controller
         }
         if(!is_array($request->posts)) {
             return -4;  // echo "No Array found for Posts.";
-        } 
-
-        if(Helper::check_file($request->logo_photo)) {
-            $filename = Helper::save_file($request->logo_photo);
-        }
-        else {
-            return -5;  // echo "Wrong File Format";
+        } else if(sizeof($request->posts) < 1) {
+            return -5;  // echo "Empty Posts Array";
         }
 
+
+        // if(Helper::check_file($request->logo_photo)) {
+        //     $filename = Helper::save_file($request->logo_photo);
+        // }
+        // else {
+        //     return -6;  // echo "Wrong File Format";
+        // }
+
+        $filename = "123456";
         
         
         // if($request->hasFile('logo_photo')) {
@@ -84,13 +104,14 @@ class SocialMediaOrdersController extends Controller
         
         foreach($request->posts as $post) {
             //return $post;
+
             if(!isset($post['image']) || !isset($post['comment'])) {
-                return -6;  // echo "Required fields missing for the Post";
+                return -7;  // echo "Required fields missing for the Post";
             }
             else {
-                if(!Helper::check_file($post['image'])) {
-                    return -7;  // echo "File format wrong for one or more posts";
-                }
+                // if(!Helper::check_file($post['image'])) {
+                //     return -8;  // echo "File format wrong for one or more posts";
+                // }
             }
         }
 
@@ -106,9 +127,10 @@ class SocialMediaOrdersController extends Controller
             $new_post = new SocialMediaPost;
             $new_post->comment = $post['comment'];
             $new_post->order_id = $order->id;
-            $new_post->image = Helper::save_file($post['image']);
+            // $new_post->image = Helper::save_file($post['image']);
+            $new_post->image = $filename;
             if(!$new_post->save()) {
-                return -8;  // echo Could not save a Post.
+                return -9;  // echo Could not save a Post.
             }
         }
                 // $new_post = new SocialMediaPost;

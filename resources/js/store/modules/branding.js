@@ -36,7 +36,7 @@ const actions = {
 const getters = {
     isValid: (store) => {
         for(var key in store) {
-            if((key !== 'price') && (store[key].package === 'null' || store[key].package === '')) {
+            if((key !== 'price') && (store[key] === 'null' || store[key] === '')) {
                 return false;
             }
         }

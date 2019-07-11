@@ -18,7 +18,7 @@ import Card from '../../../../UI/Card';
 import BlackBox from '../../../../UI/BlackBox';
 export default {
     mounted() {
-        this.packages = ['Package 1', 'Package 2', 'Package 3'];
+        console.log('Packages', this.packages);
     },
     components: {
         Card,
@@ -26,7 +26,6 @@ export default {
     },
     data() {
         return {
-            packages: [],
             cards: [
                 {
                     title: 'Brand Binder : A',
@@ -66,10 +65,16 @@ export default {
             ]
         }
     },
+    computed: {
+        packages() {
+            let packages = this.cards.map(card => card.title);
+            return packages;
+        }
+    },
     methods: {
         orderButtonClicked(title) {
 
-            if(title === 'Package 1') {
+            if(title === this.packages[0]) {
                 this.$store.dispatch('branding/setPackage', title);
                 this.$router.push({
                     name: 'brandinginfo'

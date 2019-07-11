@@ -259,4 +259,14 @@ export default {
             
         
     }
+
+    .input-textarea-gray {
+        background-color: #D3D3D3;
+        border: 1px solid gray;
+        resize: none;
+    }
+
+    .borderBottomYellow {
+        border-bottom: 2px solid #FFDB00;
+    }
 </style>

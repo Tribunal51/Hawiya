@@ -19,6 +19,10 @@ class BrandingOrdersController extends Controller
     public function index()
     {
         $branding_orders = BrandingOrder::all();
+        foreach($branding_orders as $order) {
+            $filename = $order->logo_photo;
+            $order->logo_photo = "http://hawiya.net/storage/uploads/".$filename;
+        }
         return $branding_orders;
     }
 
@@ -45,10 +49,10 @@ class BrandingOrdersController extends Controller
         $order->user_id = $request->user_id;
         $order->package = $request->package;
         $order->comment = $request->comment;
-        
+        $order->logo_photo = "test";
        //return $request;
         
-        if(!isset($order->user_id) || !isset($order->package) || !isset($order->comment) || !isset($request->logo_photo)) {
+        if(!isset($order->user_id) || !isset($order->package) || !isset($order->comment)) {
             return -2;  //echo "Required fields missing";
         }
         else {
@@ -57,13 +61,13 @@ class BrandingOrdersController extends Controller
             }
             
 
-            if(Helper::check_file($request->logo_photo)) {
-                $filename = Helper::save_file($request->logo_photo);
-                $order->logo_photo = $filename;
-            }
-            else {
-                return -5;  // echo "Wrong File format"
-            }
+            // if(Helper::check_file($request->logo_photo)) {
+            //     $filename = Helper::save_file($request->logo_photo);
+            //     $order->logo_photo = $filename;
+            // }
+            // else {
+            //     return -4;  // echo "Wrong File format"
+            // }
 
             if($order->save()) {
                 return $order->id;  // echo "Order Registered Successfully.";
