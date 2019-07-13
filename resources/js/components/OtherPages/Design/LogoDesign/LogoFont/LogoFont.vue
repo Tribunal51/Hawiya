@@ -69,6 +69,8 @@
 <script>
 import CheckMark from '../../../../UI/CheckMark';
 import BlackBox from '../../../../UI/BlackBox';
+
+
 export default {
     components: {
         CheckMark,

@@ -220,7 +220,7 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
 
     
 
-const app = new Vue({
+export const app = new Vue({
     el: '#app',
     router,
     store,

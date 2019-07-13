@@ -45,6 +45,7 @@
 <script>
 import Type from './Type.vue';
 import CheckMark from '../../../../UI/CheckMark';
+
 export default {
     mounted() {
         console.log('Just Mounted on LogoType ', this.$store.state.logodesign);
