@@ -61,6 +61,9 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
     import StationeryInfo from './components/OtherPages/Design/Stationery/Info/Info';
 
     import Packaging from './components/OtherPages/Design/Packaging/Packaging';
+    import PackagingProducts from './components/OtherPages/Design/Packaging/Products/Products';
+    import PackagingModifyProduct from './components/OtherPages/Design/Packaging/ProductSettings/ProductSettings';
+    import PackagingCheckout from './components/OtherPages/Design/Packaging/Checkout/Checkout';
 
     import Promotional from './components/OtherPages/Design/Promotional/Promotional';
 
@@ -186,9 +189,26 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
                     ]
                 },
                 {
-                    name: 'packaginginfo',
+                    name: 'packaging',
                     path: 'packaging',
-                    component: Packaging
+                    component: Packaging,
+                    children: [
+                        {
+                            name: 'packagingproducts',
+                            path: 'products',
+                            component: PackagingProducts
+                        }, 
+                        {
+                            name: 'packagingmodifyproduct',
+                            path: 'modify-product',
+                            component: PackagingModifyProduct
+                        },
+                        {
+                            name: 'packagingcheckout',
+                            path: 'checkout',
+                            component: PackagingCheckout
+                        }
+                    ]
                 },
                 {
                     name: 'promotionalinfo',

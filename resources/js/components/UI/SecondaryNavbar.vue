@@ -69,32 +69,32 @@ export default {
                 LogoDesign: {
                     name: "Logo Design",
                     path: "/design/logo-design",
-                    route: "/design/logo-design/package"
+                    //route: "/design/logo-design/package"
                 },
                 Branding: {
                     name: "Branding",
                     path: "/design/branding",
-                    route: "/design/branding/package"
+                    //route: "/design/branding/package"
                 },
                 SocialMedia: {
                     name: "Social Media",
                     path: "/design/social-media",
-                    route: "/design/social-media/package"
+                    //route: "/design/social-media/package"
                 },
                 Stationery: {
                     name: "Stationery",
                     path: "/design/stationery",
-                    route: "/design/stationery/package"
+                    //route: "/design/stationery/package"
                 },
                 Packaging: {
                     name: "Packaging",
                     path: "/design/packaging",
-                    route: "/design/packaging"
+                    //route: "/design/packaging/products"
                 },
                 Promotional: {
                     name: "Promotional",
                     path: "/design/promotional",
-                    route: "/design/promotional"
+                    //route: "/design/promotional"
                 }
             },
             // RouterLinks: {

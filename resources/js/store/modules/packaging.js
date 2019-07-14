@@ -35,7 +35,7 @@ const getters = {
             if((key !== 'price') && (store[key] === null || store[key] === '')) {
                 return false;
             }
-            if((key === 'posts') &&  (store[key].length < 1)) {
+            if((key === 'products') && (Array.isArray(store[key])) && (store[key].length < 1)) {
                 return false;
             }
         }
