@@ -18,7 +18,16 @@ class PackagingOrdersController extends Controller
      */
     public function index()
     {
-        $orders = PackagingOrder::all();
+        // $orders = PackagingOrder::with('products')->get();
+        // return $orders;
+
+        $orders = PackagingOrder::get(['id','user_id']);
+        
+        foreach($orders as $order) {
+            $products = PackagingProduct::where('order_id', $order->id)->get(['name','amount','size','color']);
+            $order->products = $products;
+        }
+
         return $orders;
     }
 

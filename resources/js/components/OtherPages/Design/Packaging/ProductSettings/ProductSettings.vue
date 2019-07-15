@@ -1,9 +1,6 @@
 <template>
     <div class="Cover">
 
-        <div>{{ product.name }}</div>
-        <BlackBox />
-
         <div class="row">
             <div class="col-md">
                 <div class="Size mt-4">
@@ -37,14 +34,14 @@
                     
                 </div>
             </div>
-            <div class="col-md">
-
+            <div class="col-md imageSection">
+                <img :src="product.image" :alt="product.name" class="productImage" />
             </div>
         </div>
-        <div class="row">
-            <div class="col-md-4"></div>
-            <div class="col-md-8">
-                <v-btn @click="confirmChanges">Confirm</v-btn>
+        <div class="row mt-5">
+            <div class="col-md-6"></div>
+            <div class="col-md-6">
+                <center><v-btn @click="confirmChanges">Confirm</v-btn></center>
             </div>
         </div>
         
@@ -90,12 +87,14 @@ export default {
     },
     methods: {
         confirmChanges() {
+            
             console.log('Selected options', this.selectedSize, this.selectedAmount, this.selectedColor);
             let updatedProduct = {
                 ...this.product,
                 size: this.selectedSize,
                 color: this.selectedColor,
-                amount: this.selectedAmount
+                amount: this.selectedAmount,
+                modified: true
             };
             this.$emit('product', updatedProduct);
             this.$emit('close');
@@ -109,7 +108,7 @@ export default {
         /* padding: 10px; */
         width: 100%;
         /* border: 1px solid gray; */
-        font-size: 1rem;
+        /* font-size: 1rem; */
         
     }
 
@@ -137,6 +136,13 @@ export default {
         border: 1px solid black;
         margin: 5px;
         padding: 5px;
+    }
+
+    .productImage {
+        width: 100%;
+        height: auto;
+        max-width: 100%;
+        max-height: 100%;
     }
 
 </style>

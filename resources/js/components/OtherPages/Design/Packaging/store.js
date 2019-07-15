@@ -8,7 +8,7 @@ export const store = Vue.observable({
             size: "Small",
             amount: 20,
             color: "Red",
-            image: ""
+            image: "/storage/Packaging/FriesBox.png"
         },
         {
             id: 2,

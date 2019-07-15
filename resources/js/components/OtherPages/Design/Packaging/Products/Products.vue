@@ -1,20 +1,27 @@
 <template>
     <div class="Cover">
-        <BlackBox>
-            <h5>Select your Packaging</h5>
-        </BlackBox>
-
+        
+        <div class="row">
+            <h5>{{ this.productSettings ? this.editProduct.name : 'Select your Packaging' }}</h5>
+        </div>           
+        <BlackBox />
+            
         <div v-show="!productSettings">
             <div class="flex-container">
-                <Product v-for="product in products" :key="product.id">  
-                    <v-btn round small
-                    color="primary" 
-                    @click="changeProduct(product)" 
-                    :disabled="isEditButtonDisabled(product.id)">Edit</v-btn>
+                <Product v-for="product in products" :key="product.id" :product="product">  
+                    <template v-slot:edit>
+                        <v-btn fab small
+                            :color="isProductEdited(product.id) ? 'primary' : ''" 
+                            @click="changeProduct(product)" 
+                            :disabled="isEditButtonDisabled(product.id)"><v-icon dark>edit</v-icon></v-btn>
+                            
+                    </template>
 
-                    <label :for="product.name">{{ product.name }}</label>
+                    <template v-slot:label>
+                        <label class="checkBoxLabel" :for="product.name">{{ product.name }}</label>
+                    </template>
 
-                    <input type="checkbox" :id="product.name" :value="product.name" v-model="selectedNames" />
+                    <input type="checkbox" class="inputCheckBox" :id="product.name" :value="product.name" v-model="selectedNames" />
                 </Product>    
             </div> 
             <div class="row">
@@ -26,7 +33,7 @@
             </div>    
         </div>
 
-        <div v-if="productSettings">
+        <div class="row" v-if="productSettings">
             <ProductSettings 
                 :product="editProduct" 
                 v-on:close="productSettings=false"
@@ -35,6 +42,7 @@
             
         </div>
         
+       
         
     </div>
 </template>
@@ -69,17 +77,12 @@ export default {
         updateProduct(changedProduct) {
             this.selectedProducts = this.selectedProducts.map(currentProduct => {
                 if(currentProduct.name === changedProduct.name) {
-                    return {
-                        ...changedProduct,
-                        modified: true
-                    };
+                    return changedProduct;
                 }
                 else {
-                    return {
-                        ...currentProduct,
-                        modified: false
-                    }
+                    return currentProduct;
                 }
+                
             });
             console.log('Update Product', this.selectedProducts);
         },
@@ -94,6 +97,10 @@ export default {
             
             return !product;           
         },
+        isProductEdited(id) {
+            let product = this.selectedProducts.find(product => product.id === id);
+            return product ? product.modified : false;
+        },
         findProduct(name) {
             return this.products.find(product => product.name === name);
         },
@@ -105,6 +112,9 @@ export default {
 
             console.log(this.$store.state);
             // console.log('Data', data);
+            this.$router.push({ 
+                name: 'packagingcheckout'
+            });
             
         }
     },

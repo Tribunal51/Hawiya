@@ -1,8 +1,13 @@
 <template>
     <div class="Cover">
+        <!-- <div class="row mt-3">
+            <h2>Packaging</h2>
+            <slot name="packagingText"></slot>
+        </div> -->
         
-        <h2 class="mt-3">Packaging</h2>
-        
+        <BlackBox>
+            <h2>Packaging</h2>
+        </BlackBox>
         
         <router-view/>
     </div>

@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 class PackagingProduct extends Model
 {
     //
-    public function products() {
+    public function order() {
         return $this->belongsTo('App\PackagingOrder');
     }
 }
