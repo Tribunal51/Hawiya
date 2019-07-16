@@ -269,4 +269,47 @@ export default {
     .borderBottomYellow {
         border-bottom: 2px solid #FFDB00;
     }
+
+    .yellowCheckBox span {
+        width: 20px;
+        height: 20px;
+        border: 1px solid gray;
+        background-color: transparent;
+        display: block;
+        cursor: pointer;
+        margin-top: 10px;
+        margin-bottom: -10px;
+
+    }
+
+    .yellowCheckBox input:checked + span {
+        background-color: #FFDB00;
+    }
+
+    .grayContainer {
+        width: 100%;
+        height: auto;
+        min-height: 300px;
+        background-color: lightgray;
+    }
+
+    .checkoutSection {
+        margin-top: 10px;
+        margin-bottom: 10px;
+        background-color: #FFDB00;
+        width: 100%;
+        min-height: 80%;
+
+    }
+
+    .flex-container-align-vertical {
+        display: flex;
+        align-items: center;
+
+    }
+
+    .topBottomBorder {
+        border-top: 2px solid black;
+        border-bottom: 2px solid black;
+    }
 </style>

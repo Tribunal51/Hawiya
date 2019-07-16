@@ -8,7 +8,21 @@ export const store = Vue.observable({
             size: "Small",
             amount: 20,
             color: "Red",
-            image: "/storage/Packaging/FriesBox.png"
+            image: "/storage/Packaging/FriesBox.png",
+            multipliers: [
+                {
+                    size: "Small",
+                    pricePerItem: 10
+                },
+                {
+                    size: "Medium",
+                    pricePerItem: 20
+                },
+                {
+                    size: "Large",
+                    pricePerItem: 30
+                }
+            ]
         },
         {
             id: 2,
@@ -17,6 +31,20 @@ export const store = Vue.observable({
             amount: 20,
             color: "Green",
             image: "",
+            multipliers: [
+                {
+                    size: "Small",
+                    pricePerItem: 10
+                },
+                {
+                    size: "Medium",
+                    pricePerItem: 20
+                },
+                {
+                    size: "Large",
+                    pricePerItem: 30
+                }
+            ]
         },
         {
             id: 3,
@@ -24,17 +52,24 @@ export const store = Vue.observable({
             size: "Large",
             amount: 20,
             color: "Blue",
-            image: ""
+            image: "",
+            multipliers: [
+                {
+                    size: "Small",
+                    pricePerItem: 10
+                },
+                {
+                    size: "Medium",
+                    pricePerItem: 20
+                },
+                {
+                    size: "Large",
+                    pricePerItem: 30
+                }
+            ]
+
         }
     ],
-    multipliers: {
-        size: {
-            "Small": 50,
-            "Medium": 75,
-            "Large": 100
-        },
-        amount: 10
-    },
     selectedItems: [],
     itemToModify: {}
 });

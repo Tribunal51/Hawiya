@@ -16,6 +16,9 @@ const mutations = {
     },
     setProducts: (state, products) => {
         state.products = [...products];
+    },
+    setPrice: (state, price) => {
+        state.price = price;
     }
 }
 
@@ -25,6 +28,9 @@ const actions = {
     },
     setProducts: (store, products) => {
         store.commit('setProducts', products);
+    },
+    setPrice: (store, price) => {
+        store.commit('setPrice', price);
     }
     
 }

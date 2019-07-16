@@ -5,14 +5,15 @@
         </div>
         <BlackBox />
         <div v-show="!productSettings">
-            <div class="row grayBox mt-2 mb-2">
+            <div class="row grayContainer mt-2 mb-2">
                 <div class="col-md">
                     <div class="product" v-for="product in products" :key="product.id">
-                        <label :for="product.name">{{ product.name }}</label>
-                        <label class="myCheckBox">
-                            <input type="checkbox" :value="product.name" :id="product.name" v-model="selectedNames" readonly  />
+                        
+                        <label class="yellowCheckBox">
+                            <input type="checkbox" :value="product.name" :id="product.name" v-model="selectedNames" disabled hidden   />
                             <span></span>
                         </label>
+                        <label :for="product.name">{{ product.name }}</label>
 
 
                         <!-- <input type="checkbox" :value="product.name" :id="product.name" v-model="selectedNames" />
@@ -21,15 +22,18 @@
                     </div>
                     
                 </div>
-                <div class="col-md flex-container">
+                <div class="col-md flex-container-align-vertical">
                     <div class="checkoutSection">
-                        <Cost :products="selectedProducts" />
+                        <Cost 
+                            :products="selectedProducts" 
+                            v-on:cost="updateCost"
+                        />
                     </div>
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-8"><v-btn round>Customize</v-btn></div>
-                <div class="col-md-4"><v-btn color="#FFDB00" round>Submit</v-btn></div>
+                <div class="col-md-8"><v-btn round color="primary" @click="backButtonClicked()">Back</v-btn></div>
+                <div class="col-md-4"><v-btn color="#FFDB00" round :disabled="isSubmitDisabled()">Submit</v-btn></div>
             </div>
         </div>
         <div v-show="productSettings">
@@ -48,27 +52,35 @@
 import { store } from '../store.js';
 import BlackBox from '../../../../UI/BlackBox';
 import Cost from './Cost';
+import ProductSettings from '../ProductSettings/ProductSettings';
 
 export default {
     components: {
         BlackBox,
-        Cost
+        Cost,
+        ProductSettings
     },
     data() {
         return {
             productSettings: false,
-            editProduct: {}
+            editProduct: {},
+            cost: 0
         }
     },
     computed: {
         selectedProducts() {
-            return this.$store.state.packaging.products;
+            let products = this.$store.state.packaging.products;
+            return products ? products : [];
         },
         products() {
             return store.products;
         },
         selectedNames() {
-            return this.selectedProducts.map(product => product.name);
+            if(this.selectedProducts.length > 0) {
+                return this.selectedProducts.map(product => product.name);
+            }
+            else return [];
+            
         }
     },
     methods: {
@@ -77,6 +89,22 @@ export default {
             return product ? product.modified : false;
             
             
+        },
+        updateProduct(product) {
+
+        },
+        updateCost(cost) {
+            this.cost = cost;
+        },
+        isSubmitDisabled() {
+            return this.cost < 1;
+        },
+        backButtonClicked() {
+            this.$store.dispatch('packaging/resetState');
+            this.$store.dispatch('packaging/setPrice',this.cost);
+            this.$router.push({
+                name: 'packagingproducts'
+            });
         }
     }
 
@@ -84,22 +112,17 @@ export default {
 </script>
 
 <style scoped>
-    .grayBox {
-        width: 100%;
-        height: auto;
-        min-height: 400px;
-        background-color: lightgray;
-    }
+    
 
     .checkoutSection {
         
         background-color: #FFDB00;
-        width: 80%;
-        height: 80%;
+        width: 100%;
+        min-height: 80%;
 
     }
 
-    .flex-container {
+    .flex-container-align-vertical {
         display: flex;
         align-items: center;
 
@@ -120,24 +143,12 @@ export default {
     }
 
 
-    .myCheckBox input {
+    /* .myCheckBox input {
         position: relative;
         z-index: -9999;
-    }
+    } */
 
-    .myCheckBox span {
-        width: 20px;
-        height: 20px;
-        border: 1px solid gray;
-        background-color: transparent;
-        display: block;
-        cursor: pointer;
-
-    }
-
-    .myCheckBox input:checked + span {
-        background-color: #FFDB00;
-    }
+    
 
     
 

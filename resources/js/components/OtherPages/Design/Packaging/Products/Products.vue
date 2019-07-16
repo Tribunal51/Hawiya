@@ -59,8 +59,12 @@ export default {
         ProductSettings,
         BlackBox
     },
+    mounted() {
+        
+    },
     data() {
         return {
+            selectedNames: [],
             selectedProducts: [],
             selectedNames: [],
             updatedProducts: [],
@@ -106,7 +110,7 @@ export default {
         },
         buttonClicked() {
 
-            this.selectedProducts = removeKeyFromObjectsArray(this.selectedProducts, 'id')
+            //this.selectedProducts = removeKeyFromObjectsArray(this.selectedProducts, 'id')
 
             this.$store.dispatch('packaging/setProducts', this.selectedProducts);
 
@@ -114,8 +118,7 @@ export default {
             // console.log('Data', data);
             this.$router.push({ 
                 name: 'packagingcheckout'
-            });
-            
+            });           
         }
     },
     watch: {
@@ -136,7 +139,7 @@ export default {
                     }
                 });
                 console.log('Subtract', this.selectedProducts);
-            }
+            } 
             //this.selectedProducts = newValue.map(name => this.findProduct(name));
         },
     }

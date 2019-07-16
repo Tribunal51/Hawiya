@@ -3,82 +3,86 @@
         <BlackBox>
             <h2>Promotional</h2>
         </BlackBox>
-        <div class="flex-container">
-            <Item v-for="item in items" :key="item.name">
-                <label :for="item.name">
-                    <input type="checkbox" v-model="selectedItems" :value="item" :id="item.name" /><br />
-                    Name: {{ item.name }}<br />
-                    Price: {{ item.price}}
+        <div class="row">
+            <h4>Design your Promotional Items</h4>
+        </div>
+        <BlackBox />
+        
+        <div class="row grayContainer mt-2 mb-2">
+            <div class="col-md flex-container">
+                <div class="product" v-for="item in items" :key="item.name">
+                    
+                    <label class="yellowCheckBox">
+                        <input type="checkbox" :value="item" :id="item.name" v-model="selectedItems" hidden   />
+                        <span></span>
+                    </label>
+                    <label :for="item.name">{{ item.name }}</label>              
+                </div>
                 
-                </label>
-            </Item>
+            </div>
+            <div class="col-md flex-container-align-vertical">
+                <div class="checkoutSection">
+                    <Cost 
+                        :items="selectedItems" 
+                        :totalPrice="totalPrice"                        
+                    />
+                </div>
+            </div>
         </div>
-        <div>
-            <h4>Price: ${{totalPrice}}</h4>
+        <div class="row">
+            <div class="col-md-8">
+                <!-- <v-btn round color="primary" @click="backButtonClicked()">Back</v-btn> -->
+            </div>
+            <div class="col-md-4">
+                <v-btn 
+                    color="#FFDB00" 
+                    round 
+                    :disabled="selectedItems.length < 1" 
+                    @click="submitButtonClicked()">Submit</v-btn>
+            </div>
         </div>
-        <v-btn color="primary" @click="buttonClicked" :disabled="selectedItems.length < 1">Click</v-btn>
+
     </div>
 </template>
 
 <script>
 import BlackBox from '../../../UI/BlackBox';
-import Item from './Item';
+import Cost from './Cost';
+import { store } from './store.js';
 
 export default {
     components: {
         BlackBox,
-        Item
+        Cost
     },
     data() {
         return {
-            selectedItems: [],
-            items: [
-                {
-                    name: 'Item 1',
-                    price: 10
-                },
-                {
-                    name: 'Item 2',
-                    price: 20
-                },
-                {
-                    name: 'Item 3',
-                    price: 30
-                },
-                {
-                    name: 'Item 4',
-                    price: 40
-                }
-            ],
-            totalPrice: 0
+            totalPrice: 0,
+            selectedItems: []
+        }
+    },
+    computed: {
+        items() {
+            return store.items;
         }
     },
     methods: {
-        buttonClicked() {
-            console.log('Price', this.totalPrice);
-            let items = this.selectedItems.map(itemObject => itemObject.name);
-            this.$store.dispatch('promotional/setItems', {
-                items: items,
-                price: this.totalPrice
-            });
-
-            console.log(this.$store.state.promotional);
-            let data = {
-                user_id: 1,
-                items: items
-            }
-            console.log('Data to send', data);
-            // axios.post('http://hawiya.net/api/orders/promotional', data)
-            // .then(response => console.log(response.data))
-            // .catch(error => console.log(error.response));
+        submitButtonClicked() {
+            let arrayOfItemNames = this.selectedItems.map(item => item.name);
+            let price = this.totalPrice;
+            let payload = {
+                items: arrayOfItemNames,
+                price: price
+            };
+            this.$store.dispatch('promotional/setItems', payload);
+            console.log(this.$store.state);
         }
     },
     watch: {
-        selectedItems: function(newValue) {
-            this.totalPrice = this.selectedItems.map(item => item.price).reduce((prev,next) => {
-                    return prev + next;
-                },0);
-            console.log('SelectedItems', this.selectedItems, 'TotalPrice', this.totalPrice);
+        selectedItems: function(newValue, oldValue) {
+            this.totalPrice = this.selectedItems.map(item => item.price).reduce((prev, next) => {
+                return prev + next;
+            },0);
         }
     }
 
@@ -86,12 +90,10 @@ export default {
 </script>
 
 <style scoped>
-    .Cover {
-        font-family: 'LatoRegular', sans-serif;
-    }
-
     .flex-container {
+        height: 300px;
         display: flex;
+        flex-direction: column;
         flex-wrap: wrap;
     }
 
