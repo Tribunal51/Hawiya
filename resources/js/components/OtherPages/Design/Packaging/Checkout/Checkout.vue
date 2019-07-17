@@ -13,12 +13,14 @@
                             <input type="checkbox" :value="product.name" :id="product.name" v-model="selectedNames" disabled hidden   />
                             <span></span>
                         </label>
-                        <label :for="product.name">{{ product.name }}</label>
+                        <label :for="product.name">{{ product.name }}
+                            <span v-if="isProductModified(product.name)" class="modified"> - Modified</span>
+                        </label>
 
 
                         <!-- <input type="checkbox" :value="product.name" :id="product.name" v-model="selectedNames" />
                         <label :for="product.name">{{ product.name }}</label>  -->
-                        {{ isProductModified(product.name)}}                 
+                                        
                     </div>
                     
                 </div>
@@ -140,6 +142,12 @@ export default {
         height: 20px;
         border: 1px solid gray;
         background-color: #FFDB00;
+    }
+
+    .modified {
+        font-weight: bold;
+        color: black;
+        font-style: italic;
     }
 
 

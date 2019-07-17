@@ -4,9 +4,9 @@
              
                  
                     
-                        <div class="bannerText">
-                            <h1>What We Do</h1>
-                        </div>
+            <div class="bannerText">
+                <h1>What We Do</h1>
+            </div>
                      
                   
                                            
@@ -43,10 +43,10 @@
 
         </div>
 
-        <SecondaryNavbar 
+        <!-- <SecondaryNavbar 
         :navItemStyle="this.navItemStyle"
         :navStyle="this.navStyle"
-        />
+        /> -->
 
         
         
@@ -58,7 +58,7 @@
             </div>
         </IntroSection>
         
-
+        <Services />
         <!-- <MeetTheTeam /> -->
 
 
@@ -80,6 +80,7 @@ import MeetTheTeam from './MeetTheTeam.vue';
 import BlackBox from '../../UI/BlackBox.vue';
 import SecondaryNavbar from '../../UI/SecondaryNavbar.vue';
 import IntroSection from '../../UI/IntroSection';
+import Services from './Services.vue';
 
 export default {
     components: {
@@ -87,7 +88,8 @@ export default {
         MeetTheTeam,
         BlackBox,
         SecondaryNavbar,
-        IntroSection
+        IntroSection,
+        Services
     },
     data() {
         return {
@@ -109,10 +111,11 @@ export default {
 <style scoped>
 
     #cover {
-        font-family: 'LatoMedium', sans-serif;
+        font-family: 'LatoRegular', sans-serif;
         height: 100%;
         width: 100%;
-        background-color: #E9E9E9;
+        /* background-color: #E9E9E9; */
+        background-color: white;
         font-size: 0.85rem;
     } 
 /* 

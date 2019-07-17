@@ -108,9 +108,10 @@ export default {
         margin-left: -10px !important;
         margin-right: -10px !important;
     }
+
     #cover {
         background-color: white !important;
-        font-family: 'LatoMedium', sans-serif;
+        font-family: 'LatoRegular', sans-serif;
         font-size: 0.85rem;
         height: 100%;
     }

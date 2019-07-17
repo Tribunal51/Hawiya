@@ -15,7 +15,7 @@
                 <option value="Logo Design">Logo Design</option>
                 <option value="Branding">Branding</option>
                 <option value="Social Media">Social Media</option>
-                <option value="Stationary">Stationary</option>
+                <option value="Stationery">Stationery</option>
                 <option value="Website">Website</option>
             </select>
                                     

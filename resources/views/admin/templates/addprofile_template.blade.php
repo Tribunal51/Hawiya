@@ -3,5 +3,5 @@
 @section('admin')
     @include('admin.components.addprofile')
     <br /><hr>
-    {{-- @include('admin.components.profiles') --}}
+    @include('admin.components.profiles')
 @endsection

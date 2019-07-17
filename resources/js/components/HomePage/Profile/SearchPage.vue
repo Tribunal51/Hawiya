@@ -42,7 +42,12 @@
                 <!-- d-flex flex-wrap classes -->
             <!-- iterate data -->
                 
-                <ItemCard v-for="order in filteredData" :key="order.id" :item="order"></ItemCard>
+                <ItemCard 
+                    v-for="order in filteredData" 
+                    :key="order.id" 
+                    :item="order"
+                    :orders="orders"
+                    ></ItemCard>
             </div>
                     
     </section>

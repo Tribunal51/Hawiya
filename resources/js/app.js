@@ -26,7 +26,7 @@ Vue.component('profile', require('./components/HomePage/Profile/Profile.vue').de
 Vue.component('navbar', require('./components/HomePage/Navbar.vue').default);
 Vue.component('payment', require('./components/OtherPages/Payment/Payment').default);
 Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/ConfirmOrder.vue').default);
-
+Vue.component('page-footer', require('./components/UI/Footer.vue').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -76,6 +76,8 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
     import NotFound from './components/UI/NotFound';
 
     import ConfirmOrder from './components/OtherPages/ConfirmOrder/ConfirmOrder';
+
+
     
     // import 'vuetify/src/stylus/app.styl';
 

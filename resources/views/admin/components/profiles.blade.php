@@ -37,7 +37,7 @@
                         </form> --}}
 
                         {{  Form::hidden('id', $profile->id) }}  
-                        {{ link_to_action('PagesController@editProfilePage', 'Edit', ['id' => $profile->id], ['class' => 'btn btn-secondary'])}}          
+                        {{ link_to_action('PagesController@editProfile', 'Edit', ['id' => $profile->id], ['class' => 'btn btn-secondary'])}}          
                          
                     </td>
                 </tr>

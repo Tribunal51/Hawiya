@@ -19,10 +19,9 @@
 
             <BlackBox>
                 <h2>{{ this.$store.state.logodesign.branding ? 'Branding: '+this.$store.state.logodesign.package : 'Logo Design' }}</h2>
-            </BlackBox>
+            </BlackBox>      
+            <router-view />
             
-        
-        <router-view />
     </div>
 </template>
 
@@ -31,6 +30,9 @@
 import SecondaryNavbar from '../../../UI/SecondaryNavbar.vue';
 import LogoPackage from './LogoPackage/LogoPackage.vue';
 import BlackBox from '../../../UI/BlackBox.vue';
+import IntroSection from '../../../UI/IntroSection.vue';
+
+
 export default {
 
     mounted() {

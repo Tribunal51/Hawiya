@@ -1,12 +1,17 @@
 <template>
-    <div id="cover"> 
+    <div class="Cover"> 
         About Us
+        
     </div>
 </template>
 
 <script>
 
+
 export default {
+    components: {
+        
+    },
     mounted() {
         console.log(this.$route, this.$router);
     }
@@ -14,7 +19,5 @@ export default {
 </script>
 
 <style scoped>
-    #cover {
-        
-    }
+    
 </style>

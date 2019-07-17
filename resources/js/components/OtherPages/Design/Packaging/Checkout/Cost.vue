@@ -95,9 +95,6 @@ export default {
         padding: 20px;
     }
 
-    .topBottomBorder {
-        border-top: 2px solid black;
-        border-bottom: 2px solid black;
-    }
+    
 
 </style>
