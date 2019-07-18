@@ -18,7 +18,7 @@ class StationeryOrdersController extends Controller
      */
     public function index()
     {
-        $orders = StationeryOrder::all();
+        $orders = StationeryOrder::get(['id', 'package', 'comment', 'logo_photo']);
         return $orders;
     }
 

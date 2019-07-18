@@ -3,7 +3,7 @@
         <div class="Cover">
             <router-view />
         </div>
-        
+
         <page-footer />
 
     </v-app>
@@ -251,5 +251,12 @@ export default {
     .topBottomBorder {
         border-top: 2px solid black;
         border-bottom: 2px solid black;
+    }
+
+    .startButton {
+        border-radius: 0% ;
+        border: 3px solid black ;
+        font-family: 'LatoBold', sans-serif;
+        font-size: 1.1rem;
     }
 </style>

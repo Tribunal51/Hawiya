@@ -21,7 +21,7 @@
                     </BlackBox>
                     <div class="row">
                         <h3>Let us build an outstanding brand for you.</h3> 
-                        <button class="btn btn-outline-dark startButton" @click="buttonClicked('/design/branding/package')">START HERE</button>
+                        <StartHere />
                     </div>
                 </div>
             </div>
@@ -32,11 +32,13 @@
 <script>
 import IntroSection from '../../UI/IntroSection';
 import BlackBox from '../../UI/BlackBox';
+import StartHere from '../../UI/StartHere';
 
 export default {
     components: {
         IntroSection,
-        BlackBox
+        BlackBox,
+        StartHere
     },
     data() {
         return {
@@ -100,11 +102,6 @@ export default {
         font-size: 1.1rem;
     }
 
-    .startButton {
-        border-radius: 0% ;
-        border: 3px solid black ;
-        font-family: 'LatoBold', sans-serif;
-        font-size: 1.1rem;
-    }
+    
 
 </style>

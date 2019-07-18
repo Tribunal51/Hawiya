@@ -27,7 +27,7 @@
                         <h1>Let us build an outstanding brand for you</h1>
                     </div>
                     <div class="row">
-                        <button type="button" class="btn btn-outline-dark" id="startButton">START HERE</button>
+                        <StartHere />
                     </div>
                 </div>
             </div>
@@ -40,12 +40,14 @@
 import IntroSection from '../../UI/IntroSection.vue';
 import BlackBox from '../../UI/BlackBox.vue';
 import Step from './Step.vue';
+import StartHere from '../../UI/StartHere';
 
 export default {
     components: {
         IntroSection,
         BlackBox,
-        Step
+        Step,
+        StartHere
     },
     data() {
         return {
@@ -89,14 +91,6 @@ export default {
         padding-right:40% !important; */
 
         /* width: 35%; */
-    }
-
-    #startButton {
-        border-radius: 0% ;
-        border: 3px solid black ;
-        font-family: 'LatoBold', sans-serif;
-        font-size: 1.1rem;
-        
     }
 
     @media (max-width:1000px) {

@@ -17,7 +17,11 @@ class PromotionalOrdersController extends Controller
     public function index()
     {
         //
-        $orders = PromotionalOrder::all();
+        $orders = PromotionalOrder::get(['id', 'items']);
+        foreach($orders as $order) {
+            $order->items = explode(",", $order->items);
+            //$order->items = $items;
+        }
         return $orders;
     }
 

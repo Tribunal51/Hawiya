@@ -17,12 +17,11 @@ class LogoDesignOrdersController extends Controller
      */
     public function index()
     {
-        $logo_design_orders = LogoDesignOrder::all();
+        $logo_design_orders = LogoDesignOrder::get(['id', 'user_id', 'package', 'style', 'color', 'logotype', 'brand_name', 'tagline', 'business_field','description', 'font', 'branding']);
         
-        // foreach($logo_design_orders as $order) {
-        //     $order->color = explode('-', $order->color); // In case the string needs to be split into an array of strings
-        //     return $order->color;
-        // }
+        foreach($logo_design_orders as $order) {
+            $order->color = explode('-', $order->color); // In case the string needs to be split into an array of strings
+        }
         return $logo_design_orders;
     }
 

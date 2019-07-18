@@ -1,23 +1,11 @@
 <template>
     <div id="cover">
-        <section id="section1">
-            <div class="row filler">
-                
-            </div>
-            
-            <div class="row footer">
-                <Footer />
-            </div>
-             
-            
-                
-            
-        </section>
-        <section id="section2"><WhatWeDo /></section>
+        <section id="section1"><Welcome /></section>
+        <!-- <section id="section2"><WhatWeDo /></section>
         <section id="section3"><MeetTheTeam /></section>
         <section id="section4"><Profile /></section>
         <section id="section5"><CaseStudy /></section>
-        <section id="section6"><ContactUs /></section>   
+        <section id="section6"><ContactUs /></section>    -->
     </div>
 </template>
 
@@ -32,8 +20,8 @@ import WhatWeDo from './WhatWeDo/WhatWeDo.vue';
 import Profile from './Profile/Profile.vue';
 import CaseStudy from './CaseStudy/CaseStudy.vue';
 import ContactUs from './ContactUs/ContactUs.vue';
-import Footer from '../UI/Footer.vue';
 import MeetTheTeam from './WhatWeDo/MeetTheTeam';
+import Welcome from './Welcome/Welcome';
 
 Vue.use(VueScrollTo, {
      container: "body",
@@ -78,8 +66,8 @@ export default {
         Profile,
         CaseStudy,
         ContactUs,
-        Footer,
-        MeetTheTeam
+        MeetTheTeam,
+        Welcome
     },
     data() {
             return {
@@ -102,35 +90,6 @@ export default {
     } */
 
 
-    @font-face {
-        font-family: LatoBold;
-        src: url('/fonts/Lato-Bold.ttf');
-    }
-
-    @font-face {
-        font-family: LatoRegular;
-        src: url('/fonts/Lato-Regular.ttf');
-    }
-
-    @font-face {
-        font-family: LatoItalic;
-        src: url('/fonts/Lato-Italic.ttf');
-    }
-
-    @font-face {
-        font-family: LatoThin;
-        src: url('/fonts/Lato-Thin.ttf');
-    }
-
-    @font-face {
-        font-family: LatoMedium;
-        src: url('/fonts/Lato-Medium.ttf');
-    }
-
-    @font-face {
-        font-family: LatoBlack;
-        src: url('/fonts/Lato-Black.ttf');
-    }
     
 
     #section2, #section3, #section4, #section5, #section6 {
@@ -139,9 +98,7 @@ export default {
         
     }
 
-    .filler {
-        height: 85vh;
-    }
+    
 
 
     #section1 {
