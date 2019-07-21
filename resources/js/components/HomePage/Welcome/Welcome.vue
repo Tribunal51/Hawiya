@@ -30,7 +30,12 @@
                         <button class="btn btn-primary" @mouseenter="showSideBar=true" @mouseleave="showSideBar=false"> Test </button>
                     </div> -->
                     
-                    <SideBar v-show="showSideBar" />
+                    <div class="arrowButton" @click="showSideBar=!showSideBar"> {{ this.showSideBar ? '>' : '&lt;' }}</div>
+                    <transition name="slide-fade">
+                        
+                        <SideBar v-if="showSideBar" />
+                    </transition>
+                   
                           
                 </div>
             </div>                                 
@@ -65,14 +70,11 @@ export default {
 </script>
 
 <style scoped>
-    .Cover {
-        /* padding-top: 15vh; */
-        /* Total height: 85vh */
-    }
+    
 
     .navbarHeight {
         height: 15vh;
-        background-color: black;
+        /* background-color: black; */
     }
 
     .filler {
@@ -99,22 +101,40 @@ export default {
         border-radius: 0px 50px 0px 0px;
     }
 
-    .flex-container-align-right {
-        height: 60vh;
+    .rightSide {
+        min-height: 60vh;
+        /* background-color: yellow; */
+        /* padding-top: 10px;
+        padding-bottom: 10px; */
         display: flex;
         flex-direction: row;
         justify-content: flex-end;
         align-items: center;
-        background-color: red;
     }
 
-    .rightSide {
-        height: 60vh;
-        background-color: yellow;
-        display: flex;
-        flex-direction: row;
-        justify-content: flex-end;
-        align-items: center;
+    .arrowButton {
+        /* font-family: 'LatoRegular', sans-serif; */
+        background: transparent;
+        font-size: 4rem;
+        border: none;
+        cursor: pointer;
+        /* position: absolute; */
+    }
+
+    /* Enter and leave animations can use different duration and timing functions */
+
+    .slide-fade-enter-active {
+        transition: all .5s ease;
+    }
+
+    .slide-fade-leave-active {
+        transition: all .5s cubic-bezier(1.0, 1.0, 1.0, 1.0);
+    }
+
+    .slide-fade-enter, .slide-fade-leave-to {
+        /* slide-fade-leave-active below version 2.1.8 */
+        transform: translateX(10px);
+        opacity: 0;
     }
 
 </style>

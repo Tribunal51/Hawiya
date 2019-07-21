@@ -27,6 +27,7 @@ Vue.component('navbar', require('./components/HomePage/Navbar.vue').default);
 Vue.component('payment', require('./components/OtherPages/Payment/Payment').default);
 Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/ConfirmOrder.vue').default);
 Vue.component('page-footer', require('./components/UI/Footer.vue').default);
+Vue.component('dashboard', require('./components/OtherPages/Dashboard/Dashboard').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -77,7 +78,7 @@ Vue.component('page-footer', require('./components/UI/Footer.vue').default);
 
     import ConfirmOrder from './components/OtherPages/ConfirmOrder/ConfirmOrder';
 
-
+    import Dashboard from './components/OtherPages/Dashboard/Dashboard';
     
     // import 'vuetify/src/stylus/app.styl';
 
@@ -94,7 +95,7 @@ Vue.component('page-footer', require('./components/UI/Footer.vue').default);
     Vue.use(VueRouter);
     const routes = [
         {name: 'about', path: '/about', component: AboutUs, props: true},
-        {path: '/terms', component: Terms},
+        {name: 'terms', path: '/terms', component: Terms},
         {name: 'profile', path: '/profile', component: Profile, props: true},
         {
             path: '/design', 

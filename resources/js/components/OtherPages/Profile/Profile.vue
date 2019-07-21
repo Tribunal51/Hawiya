@@ -37,12 +37,21 @@
                     alt="No Image found" />
                 </div>
             </div>    
-            <div class="row">
-                <div class="col-md-5 nextItemSection" v-if="nextItem" @click="nextProfile(nextItem)">
-                    <h3 class="bold">Next</h3><br />
-                    {{ nextItem.title }} | {{ nextItem.category }}
+            <div class="row container">
+                <div class="col-md-3"></div>
+                <div class="col-md-3 nextItemSection">
+                    <div v-if="prevItem" @click="nextProfile(prevItem)">
+                        <h3 class="bold">&lt; Prev</h3><br />
+                        {{ prevItem.title }} | {{ prevItem.category }}
+                    </div>  
+                </div>  
+                <div class="col-md-3 nextItemSection">                      
+                    <div v-if="nextItem" @click="nextProfile(nextItem)">
+                        <h3 class="bold">Next ></h3><br />
+                        {{ nextItem.title }} | {{ nextItem.category }}
+                    </div>              
                 </div>
-                <div class="col-md-7"></div>
+                <div class="col-md-3"></div>
             </div>   
         </IntroSection>
         
@@ -65,32 +74,37 @@ export default {
     ],
     data() {
         return {
-            currentItem: this.item
+            currentItem: null,
+            nextItem: null,
+            prevItem: null
         }
     },
     computed: {
-        nextItem() {
-            if(this.orders) {
-                return this.orders.find(order => order.id === this.item.id + 1);
-            } 
-            else {
-                return null;
-            }
-            
-        }
+        // nextItem() {            
+        //     if(this.orders) {               
+        //         return this.orders.find(order => order.id === (this.item.id + 1));            
+        //     } 
+        //     else {
+        //         return null;
+        //     }           
+        // }
     },
     mounted() {
         console.log('Props',this.item, this.nextItem);
         if(!this.item) {
             this.$router.push('/');
         } else {
-            //this.currentItem = this.item;
+            this.currentItem = this.item;
+            this.setPrevNextItems();
+            
+
         }
     },
     methods: {
         nextProfile(nextItem) {
             console.log('nextProfile clicked');
             this.currentItem = {...nextItem};
+            this.setPrevNextItems();
             // this.$router.go({
             //     name: 'profile',
             //     params: {
@@ -98,8 +112,38 @@ export default {
             //         orders: this.orders
             //     }
             // });
-        }
+        },
+        setPrevNextItems() {
+            if(this.orders) {
+                if(this.orders.indexOf(this.currentItem) !== this.orders.length - 1) {
+                    this.nextItem = this.orders.find(order => order.id === this.currentItem.id + 1);
+                } else {
+                    this.nextItem = null;
+                }
+
+                if(this.currentItem.id === 0) {
+                    this.prevItem = null;
+                }
+                else {
+                    this.prevItem = this.orders.find(order => order.id === this.currentItem.id - 1);
+                }
+            }
+            else {
+                this.currentItem = null;
+                this.nextItem = null;
+                this.prevItem = null;
+            }
+            // if(this.orders && this.orders.indexOf(this.currentItem) !== this.orders.length - 1) {
+            //     this.nextItem = this.orders.find(order => order.id === this.currentItem.id + 1);
+            // } else {
+            //     this.nextItem = null;
+            // }
+        },
+        
     },
+    watch: {
+       
+    }
     
 }
 </script>

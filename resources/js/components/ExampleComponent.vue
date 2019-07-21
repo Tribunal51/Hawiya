@@ -18,7 +18,6 @@ import Vue from 'vue';
 export default {
     props: [
         "authuser",
-        "reset",
         "verified"
     ],
     components: {
@@ -58,9 +57,7 @@ export default {
 </script>
 
 <style scoped>
-    .Cover {
-        min-height: 85vh;
-    }
+    
 
     
 
@@ -253,10 +250,5 @@ export default {
         border-bottom: 2px solid black;
     }
 
-    .startButton {
-        border-radius: 0% ;
-        border: 3px solid black ;
-        font-family: 'LatoBold', sans-serif;
-        font-size: 1.1rem;
-    }
+    
 </style>

@@ -39,6 +39,10 @@ class PagesController extends Controller
         return Helper::routeIfAdmin('dashboard');
     }
 
+    public function userDashboard() {
+        return view('home', ["authuser", Auth::user() ? Auth::user() : -1]);
+    }
+
     public function users() {
         $users = User::all();
         return Helper::routeIfAdmin('users')->with('users', $users);

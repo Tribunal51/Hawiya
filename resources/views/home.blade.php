@@ -1,6 +1,10 @@
 @extends('layouts.app')
 
 @section('content')
+<dashboard
+    :authuser="{{ Auth::user() ? Auth::user() : null }}" 
+    :verified="{{ Auth::user() ? (Auth::user()->email_verified_at ? 1 : 0) : 0 }}" 
+></dashboard>
 <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">
@@ -20,4 +24,5 @@
         </div>
     </div>
 </div>
+
 @endsection

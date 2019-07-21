@@ -29,7 +29,7 @@
 
                             
 
-                            
+                            <transition name="slide-fade">
                             <div class="col-md-8" v-show="post.show">
                                 <div v-if="post.id === 1">
                                     <Post 
@@ -47,7 +47,7 @@
                                     />
                                 </div>
                             </div>
-                            
+                            </transition>
                         </div>
                         <hr class="darkGrayRuler">   
                                 
@@ -202,4 +202,22 @@ export default {
     .postsSection {
         padding: 10px;
     }
+
+    .slide-fade-enter-active {
+        transition: all .3s ease;
+    }
+
+    .slide-fade-leave-active {
+        transition: all .3s cubic-bezier(1.0,0.5,0.8,1.0);
+    }
+
+    .slide-fade-enter, .slide-fade-leave-to {
+        transform: translateY(-30px);
+        opacity:0;
+    }
+
+    /* .slide-fade-leave-to {
+        transform: translateY(-30px);
+        opacity: 1;
+    } */
 </style>

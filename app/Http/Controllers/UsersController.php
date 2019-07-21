@@ -107,36 +107,76 @@ class UsersController extends Controller
         if(!isset($request->user_id)) {
             return -2; // echo "Required fields missing"
         }
-    
-        if(User::find($request->user_id)) {
+        $user = User::find($request->user_id);
+        if(!$user) {
+            return -3;  // echo "User not found.";
+        }
+        if(isset($request->name)) {
+            $user->name = $request->name;
+        }
+        if(isset($request->mobile)) {
+            $user->mobile = $request->mobile;
+        }
 
-            $name = $request->input('name');
-            $email = $request->input('email');
-            $mobile = $request->input('mobile');
-            $password = $request->input('password');   
-            // $admin =$request->input('admin');                     
+        if(isset($request->new_password)) {
+            if(!isset($request->password)) {
+                return -4;  // echo "Required password missing.";
+            }
+            if($user->password !== Hash::make($request->password)) {
+                return -5;  // echo "Wrong Password.";
+            } 
+            else {
+                $user->password = Hash::make($request->new_password);
+            }
+        }
 
-            // $data = Input::all();
+        if(isset($request->email)) {
+            if(!isset($request->password)) {
+                return -4;  // echo "Required Password missing.";
+            }
+            if($user->password !== Hash::make($request->password)) {
+                return -5;  // echo "Wrong Password.";
+            }
+            else {
+                $user->email = $request->email;
+            }
+        }
+        
+        if($user->save()) {
+            return $user->id;   // echo "User details modified";
+        } else {
+            return -1;  // "User could not be modified.";
+        }
+        
+        // if(User::find($request->user_id)) {
+
+        //     $name = $request->input('name');
+        //     $email = $request->input('email');
+        //     $mobile = $request->input('mobile');
+        //     $password = $request->input('password');   
+        //     // $admin =$request->input('admin');                     
+
+        //     // $data = Input::all();
             
 
-            $user = User::findOrFail($request->user_id);
-            // $user->fill($data);
-            $user->name = $name ? $name : $user->name;
-            $user->email = $email ? $email : $user->email;
-            $user->mobile = $mobile ? $mobile : $user->mobile;
-            $user->password = $password ? Hash::make($password) : $user->password;
-            // $user->admin =  isset($admin) ? $admin : $user->admin;
+        //     $user = User::findOrFail($request->user_id);
+        //     // $user->fill($data);
+        //     $user->name = $name ? $name : $user->name;
+        //     $user->email = $email ? $email : $user->email;
+        //     $user->mobile = $mobile ? $mobile : $user->mobile;
+        //     $user->password = $password ? Hash::make($password) : $user->password;
+        //     // $user->admin =  isset($admin) ? $admin : $user->admin;
 
-            if(User::where('email', '=', $user->email)) {
-                return -4; //echo "Email already registered"
-            } else if($user->save()) {
-                return 1; //echo "User registered"
-            } else {
-                return -1; //echo "Error occured"
-            }
-        } else {
-            return -3; //echo "User does not exist"
-        }
+        //     if(User::where('email', '=', $user->email)) {
+        //         return -4; //echo "Email already registered"
+        //     } else if($user->save()) {
+        //         return 1; //echo "User registered"
+        //     } else {
+        //         return -1; //echo "Error occured"
+        //     }
+        // } else {
+        //     return -3; //echo "User does not exist"
+        // }
 
         
     }
@@ -183,6 +223,10 @@ class UsersController extends Controller
 
         
 
+        
+    }
+
+    public function resetPassword(Request $request) {
         
     }
 

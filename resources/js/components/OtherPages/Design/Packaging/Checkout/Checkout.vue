@@ -13,8 +13,12 @@
                             <input type="checkbox" :value="product.name" :id="product.name" v-model="selectedNames" disabled hidden   />
                             <span></span>
                         </label>
-                        <label :for="product.name">{{ product.name }}
-                            <span v-if="isProductModified(product.name)" class="modified"> - Modified</span>
+                        <label :for="product.name">
+                            <div class="flex-container-align-horizontal">
+                                {{ product.name }}
+                                <img v-if="isProductModified(product.name)" src="/storage/question-mark.png" class="modified" alt="modified" />
+
+                            </div>
                         </label>
 
 
@@ -144,10 +148,20 @@ export default {
         background-color: #FFDB00;
     }
 
+    .flex-container-align-horizontal {
+        display: flex;
+        flex-flow: row wrap;
+        justify-content: flex-start;
+    }
+
     .modified {
-        font-weight: bold;
+        /* font-weight: bold;
         color: black;
-        font-style: italic;
+        font-style: italic; */
+        width: 1.3rem;
+        height: 1.1rem;
+        margin-left: 3px;
+
     }
 
 

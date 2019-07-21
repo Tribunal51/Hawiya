@@ -1,11 +1,14 @@
 <template>
     <div class="Cover">
+        
+        
         <div class="row" v-for="link in links" :key="link.name">
             <button class="btn btn-warning sideBarButton">{{ link.name }}</button>
             
 
         </div>
-       
+        
+        
     </div>
 </template>
 
@@ -13,6 +16,7 @@
 export default {
     data() {
         return {
+            showSideBar: false,
             links: [
                 {
                     name: 'Logo Design',
@@ -49,11 +53,12 @@ export default {
         width: 200px;
         background-color: #FFDB00;
         border-radius: 50px 0 0 50px;
-        height: 300px;
+        height: auto;
         display: flex;
         flex-flow: column;
         justify-content: center;
         align-items: center;
+        padding-bottom: 10px;
     }
 
     
@@ -65,6 +70,12 @@ export default {
         border-top: none;
         border-left: none;
         border-right: none;
+    }
+
+    .arrowButton {
+        position: relative;
+        border: none;
+        background: transparent;
     }
 
 </style>

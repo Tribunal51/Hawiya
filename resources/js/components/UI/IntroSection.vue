@@ -1,12 +1,18 @@
 <template>
-    <div class="introSections">
+    <div class="introSections" :style="styling">
         <slot></slot>
     </div>
 </template>
 
 <script>
 export default {
-
+    props: [
+        "styling"
+    ],
+    computed: {
+            
+        
+    }
 }
 </script>
 

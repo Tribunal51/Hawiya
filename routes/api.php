@@ -87,6 +87,17 @@ Route::post('/orders/packaging', 'PackagingOrdersController@store');
 Route::get('/orders/promotional', 'PromotionalOrdersController@index');
 Route::post('/orders/promotional', 'PromotionalOrdersController@store');
 
+Route::group([   
+    'middleware' => 'api',
+    'prefix' => 'password'
+], function() {
+    Route::post('create', 'PasswordResetController@create');
+    Route::get('find/{token}', 'PasswordResetController@find');
+    Route::post('reset', 'PasswordResetController@reset');
+});
+
+// Route::post('password/create', 'PasswordResetController@create');
+
 
 
 
