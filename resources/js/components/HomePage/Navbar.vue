@@ -28,9 +28,9 @@
             </button>
             <!-- <v-toolbar-side-icon @click="drawer=!drawer"></v-toolbar-side-icon> -->
 
-            <div class="row collapse navbar-collapse" id="navbarSupportedContent">
+            <div class="collapse navbar-collapse" id="navbarSupportedContent">
                 <ul class="nav-items mx-auto">
-                    <a class="nav-item" href="/"><img src="/storage/HawiyaBrandLogo.PNG" /></a>
+                    <a href="/"><img src="/storage/HawiyaBrandLogo.PNG" /></a>
                     <span :style="displayOrNot()">
                         <router-link tag="li" class="nav-item" to="/" v-scroll-to="'#section1'">HOME</router-link>
                         <router-link tag="li" class="nav-item" to="/" v-scroll-to="'#section2'">WHAT WE DO</router-link>
@@ -214,7 +214,7 @@ export default {
     .nav {
     /* background-color: var(--off-white); */
     /* background-color: white; */    
-    top: 0px;
+    position: absolute fixed;
     width: 100%;
     /* height: 80px; */
     height: auto;
@@ -245,12 +245,12 @@ export default {
 
     .nav .nav-content {
         
-    padding: 0rem 3rem;
+    /* padding: 0rem 3rem;
     margin: 0 auto;
     display: flex;
-    justify-content: space-between;
+    justify-content: center;
     align-items: center;
-    height: 100%;
+    height: 100%; */
     
     }
 

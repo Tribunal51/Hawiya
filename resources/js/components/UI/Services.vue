@@ -30,9 +30,9 @@
 </template>
 
 <script>
-import IntroSection from '../../UI/IntroSection';
-import BlackBox from '../../UI/BlackBox';
-import StartHere from '../../UI/StartHere';
+import IntroSection from './IntroSection';
+import BlackBox from './BlackBox';
+import StartHere from './StartHere';
 
 export default {
     components: {
@@ -40,6 +40,9 @@ export default {
         BlackBox,
         StartHere
     },
+    props: [
+        "differentPage"
+    ],
     data() {
         return {
             services: [
@@ -73,6 +76,9 @@ export default {
     methods: {
         buttonClicked(link) {
             this.$router.push(link);
+            if(this.differentPage) {
+               location.reload();
+            }
         }
     }
 }

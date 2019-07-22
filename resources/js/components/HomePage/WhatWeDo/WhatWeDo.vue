@@ -58,6 +58,7 @@
             </div>
         </IntroSection>
         
+        
         <Services />
         <!-- <MeetTheTeam /> -->
 
@@ -80,7 +81,7 @@ import MeetTheTeam from './MeetTheTeam.vue';
 import BlackBox from '../../UI/BlackBox.vue';
 import SecondaryNavbar from '../../UI/SecondaryNavbar.vue';
 import IntroSection from '../../UI/IntroSection';
-import Services from './Services.vue';
+import Services from '../../UI/Services';
 
 export default {
     components: {

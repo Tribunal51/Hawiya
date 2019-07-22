@@ -3,8 +3,13 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+
 use App\LogodesignOrder;
 use App\BrandingOrder;
+use App\SocialMediaOrder;
+use App\StationeryOrder;
+use App\PackagingOrder;
+use App\PromotionalOrder;
 
 use App\User;
 
@@ -94,11 +99,66 @@ class OrdersController extends Controller
         //
     }
 
+    public function getUserOrdersSortedByDate($id) {
+        $logodesign_orders = LogodesignOrder::where('user_id','=', $id)->get();
+        $all_orders = array();
+        
+        foreach($logodesign_orders as $order) {
+            $order->type="logodesign";
+            array_push($all_orders, $order);
+        }
+        
+        $branding_orders = BrandingOrder::where('user_id', '=', $id)->get();
+        foreach($branding_orders as $order) {
+            $order->type="branding";
+            array_push($all_orders, $order);
+        }
+        
 
-    public function getUserOrder(Request $request) {
+        $socialmedia_orders = SocialMediaOrder::where('user_id', '=', $id)->get();
+        foreach($socialmedia_orders as $order) {
+            $order->type="socialmedia";
+            array_push($all_orders, $order);
+        }
+
+        $promotional_orders = PromotionalOrder::where('user_id', '=', $id)->get();
+        foreach($promotional_orders as $order) {
+            $order->type="promotional";
+            array_push($all_orders, $order);
+        }
+
+        $stationery_orders = StationeryOrder::where('user_id', '=', $id)->get();
+        foreach($stationery_orders as $order) {
+            $order->type="stationery";
+            array_push($all_orders, $order);
+        }
+
+        $packaging_orders = PackagingOrder::where('user_id', '=', $id)->get();
+        foreach($packaging_orders as $order) {
+            $order->type="packaging";
+            array_push($all_orders, $order);
+        }
+
+        // return $all_orders;
+        $sorted = collect($all_orders)->sortBy('created_at')->values();
+        return $sorted;
+    }
+
+    public function getUserOrders(Request $request) {
         $logodesign_orders = LogodesignOrder::where('user_id','=', $request->user_id)->get();
-        $users = User::find($request->user_id);
-        $all_orders_array = array('users' => $users, 'logodesign' => $logodesign_orders);
+        $branding_orders = BrandingOrder::where('user_id', '=', $request->user_id)->get();
+        $socialmedia_orders = SocialMediaOrder::where('user_id', '=', $request->user_id)->get();
+        $promotional_orders = PromotionalOrder::where('user_id', '=', $request->user_id)->get();
+        $stationery_orders = StationeryOrder::where('user_id', '=', $request->user_id)->get();
+        $packaging_orders = PackagingOrder::where('user_id', '=', $request->user_id)->get();
+        $all_orders_array = array(
+            'logodesign' => $logodesign_orders,
+            'branding' => $branding_orders,
+            'social_media' => $socialmedia_orders,
+            'promotional' => $promotional_orders,
+            'stationery' => $stationery_orders,
+            'packaging' => $packaging_orders
+        );
         $all_orders = json_encode($all_orders_array);
         return $all_orders;
     }
@@ -107,11 +167,6 @@ class OrdersController extends Controller
         $logodesign_orders = LogodesignOrder::all();    // Array of objects, each object is an order
         foreach($logodesign_orders as $order) {
             $order->order_type="logodesign";
-        }
-        
-        $users = User::all();
-        foreach($users as $user) {
-            $user->order_type="user";
         }
         
 

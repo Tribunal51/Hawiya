@@ -28,6 +28,7 @@ Vue.component('payment', require('./components/OtherPages/Payment/Payment').defa
 Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/ConfirmOrder.vue').default);
 Vue.component('page-footer', require('./components/UI/Footer.vue').default);
 Vue.component('dashboard', require('./components/OtherPages/Dashboard/Dashboard').default);
+
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -42,6 +43,8 @@ Vue.component('dashboard', require('./components/OtherPages/Dashboard/Dashboard'
     import HomePage from './components/HomePage/HomePage.vue';
 
     import Design from './components/OtherPages/Design/Design.vue';
+
+    
 
     import LogoDesign from './components/OtherPages/Design/LogoDesign/LogoDesign.vue';
     import LogoPackage from './components/OtherPages/Design/LogoDesign/LogoPackage/LogoPackage.vue';
@@ -221,6 +224,7 @@ Vue.component('dashboard', require('./components/OtherPages/Dashboard/Dashboard'
             ]
         },
         {path: '/confirm-order', component: ConfirmOrder},
+        // {path: '/home', component: Dashboard},
         {path: '/', name: 'root', component: HomePage},
         {path: '*', component: NotFound}       
     ];

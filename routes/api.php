@@ -48,8 +48,9 @@ Route::get('/profiles/filter', 'ProfilesController@filter');
 
 
 Route::get('/orders', 'OrdersController@index');
-Route::get('/orders/getUserOrder', 'OrdersController@getUserOrder');
+Route::get('/orders/getUserOrders', 'OrdersController@getUserOrders');
 Route::get('/orders/getAllOrders', 'OrdersController@getAllOrders');
+Route::get('/orders/getUserOrdersSorted/{id}', 'OrdersController@getUserOrdersSortedByDate');
 
 Route::get('/orders/logo-design', 'LogoDesignOrdersController@index');
 Route::put('/orders/logo-design', 'LogoDesignOrdersController@update');
