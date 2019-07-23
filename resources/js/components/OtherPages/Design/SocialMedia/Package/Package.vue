@@ -65,8 +65,9 @@ export default {
     methods: {
         orderButtonClicked(card) {
             let payload = {
-                packageTitle: card.title,
-                posts: card.posts
+                package: card.title,
+                posts: card.posts,
+                price: card.new_price
             };
             this.$store.dispatch('socialmedia/setPackage', payload);
             this.$router.push({

@@ -180,7 +180,7 @@ export default {
 
     .fileUploadLabel {
         font-size: 1rem;
-        padding: 5px;
-        margin: 5px;
+        padding: 2px;
+        margin: 2px;
     }
 </style>

@@ -18,18 +18,17 @@ const initialState = {
 
 const mutations = {
     resetState: (state) => {
-        console.log('Inside ResetState');
+        console.log('Inside ResetState SocialMedia');
         Object.assign(state, initialState);
     },
     setPackage: (state, payload) => {
-        state.package = payload.packageTitle;
+        state.package = payload.package;
         state.postsNumber = payload.posts;
+        state.price = payload.price;
     },
-    setLogo: (state, file) => {
-        state.logo_photo = file;
-    },
-    setPosts: (state, posts) => {
-        state.posts = [...posts];
+    setInfo: (state, payload) => {
+        state.logo_photo = payload.logo_photo;
+        state.posts = [...payload.posts]
     }
 
 }
@@ -41,22 +40,17 @@ const actions = {
     setPackage: (store, payload) => {
         store.commit('setPackage', payload);
     },
-    setLogo: (store, file) => {
-        store.commit('setLogo', file);
-    },
-    setPosts: (store, posts) => {
-        store.commit('setPosts', posts);
+    setInfo: (store, payload) => {
+        store.commit('setInfo', payload);
     }
 }
 
 const getters = {
     isValid: (store) => {
-        for(var key in store) {
-            if(key !== 'price') {
-                if(store[key] === null || store[key] === '') {
-                    return false;
-                }
-            }
+        for(var key in store) {          
+            if(store[key] === null || store[key] === '') {
+                return false;
+            }          
         }
         return true;
     }

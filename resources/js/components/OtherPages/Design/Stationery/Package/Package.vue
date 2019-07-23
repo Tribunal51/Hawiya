@@ -65,7 +65,11 @@ export default {
     },
     methods: {
         buttonClicked(card) {
-            this.$store.dispatch('stationery/setPackage', card.title);
+            let payload = {
+                package: card.package,
+                price: card.new_price
+            };
+            this.$store.dispatch('stationery/setPackage', payload);
             this.$router.push({
                 name: 'stationeryinfo'
             });

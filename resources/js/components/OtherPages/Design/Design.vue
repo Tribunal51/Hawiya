@@ -4,7 +4,7 @@
             <SecondaryNavbar 
                         :navStyle="navStyle"
                         :navItemStyle="navItemStyle"
-                        
+                        :hamburger="hamburger"
             />
             <router-view />
         </IntroSection>
@@ -22,17 +22,24 @@ export default {
     data() {
         return {
             navStyle: {
-                backgroundColor: 'transparent !important',
+                backgroundColor: 'white !important',
                 borderTop: 'none',
                 borderBottom: '3px solid #FFDB00',
                 display: 'flex',
-                justifyContent: 'flex-start'                
+                justifyContent: 'flex-start',
+                opacity: '1'          
             },
             navItemStyle: {
                 color: 'gray',
                 fontSize: '1.2rem',
                 fontFamily: 'LatoRegular, sans-serif'
             },
+            hamburger: { 
+                color: 'white',
+                backgroundColor: 'gray',
+                opacity: 1
+            }
+
         }
     },
     mounted() {

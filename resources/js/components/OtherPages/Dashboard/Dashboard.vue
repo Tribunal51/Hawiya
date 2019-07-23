@@ -6,13 +6,15 @@
             </div>
             <IntroSection :styling="zeroBottomPadding">
                 <div class="row">
-                    <div class="col-sm-4 hawiyaLogoSection"></div>
-                    <div class="col-sm-4 userDetailsSection">
+                    <div class="col-sm-4 hawiyaLogoSection">
+                        <img class="hawiyaLogo" src="/storage/yellow-logo.png" />
+                    </div>
+                    <div class="col-sm-5 userDetailsSection">
                         <h2 class="bold">{{ user.name }}</h2>
                         <h4 class="gray">{{ user.email }}</h4>
                         <h4 class="gray">Edit Profile</h4>
                     </div>
-                    <div class="col-sm-4">
+                    <div class="col-sm-3">
 
                     </div>
                 </div>
@@ -122,6 +124,28 @@ export default {
     .userDetailsSection {
         color: white;
         text-align: right;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+    }
+
+    .hawiyaLogoSection {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: center;
+    }
+
+    .hawiyaLogo {
+        width: 150px;
+        height: 150px;
+    }
+
+    @media(min-width: 576px) {
+        .hawiyaLogo {
+            position: absolute;
+            margin-top: 50px;
+        }
     }
 
     .bold {

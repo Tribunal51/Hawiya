@@ -16,11 +16,12 @@ const initialState = {
 
 const mutations = {
     resetState: (state) => {
-        console.log('Inside resetState');
+        console.log('Inside resetState Stationery');
         Object.assign(state, initialState);
     },
-    setPackage: (state, packageTitle) => {
-        state.package = packageTitle;
+    setPackage: (state, payload) => {
+        state.package = payload.package;
+        state.price = payload.price;
     },
     setStationery: (state, payload) => {
         state.logo_photo = payload.logo_photo;
@@ -32,8 +33,8 @@ const actions = {
     resetState: (store) => {
         store.commit('resetState');
     },
-    setPackage: (store, packageTitle) => {
-        store.commit('setPackage', packageTitle);
+    setPackage: (store, payload) => {
+        store.commit('setPackage', payload);
     },
     setStationery: (store, payload) => {
         store.commit('setStationery', payload);
@@ -43,11 +44,10 @@ const actions = {
 const getters = {
     isValid: (store) => {
         for(var key in store) {
-            if(key !== 'price') {
-                if(store[key] === null || store[key] === '') {
-                    return false;
-                }
+            if(store[key] === null || store[key] === '') {
+                return false;
             }
+            
         }
         return true;
     }

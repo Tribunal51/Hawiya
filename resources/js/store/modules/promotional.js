@@ -14,7 +14,7 @@ const initialState = {
 
 const mutations = {
     resetState: (state) => {
-        console.log('Inside ResetState');
+        console.log('Inside ResetState Promotional');
         Object.assign(state, initialState);
     },
     setItems: (state, payload) => {
@@ -38,7 +38,7 @@ const getters = {
         if(store['items'] === null || store['items'] === '') {
             return false;
         }
-        if(!isArray(store['items'])) {
+        if(!isArray(store['items']) || store['items'].length < 1) {
             return false;
         }
         return true;

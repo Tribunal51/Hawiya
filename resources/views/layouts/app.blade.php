@@ -86,33 +86,33 @@
         </nav> --}} 
         <navbar>
             @guest
-                <li class="nav-item">
+                <li class="nav-item navItem">
                     
-                    <a class="nav-item" href="{{ route('login') }}">{{ __('Login') }}</a>
+                    <a class="nav-item navItem" href="{{ route('login') }}">{{ __('Login') }}</a>
                 </li>
                 @if (Route::has('register'))
                         
-                    <li class="nav-item">
-                        <a class="nav-item" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    <li class="nav-item navItem">
+                        <a class="nav-item navItem" href="{{ route('register') }}">{{ __('Register') }}</a>
                     </li>
                 @endif
             @else
-                <li class="nav-item dropdown">
-                    <a id="navbarDropdown" class="nav-item nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                <li class="nav-item dropdown navItem">
+                    <a id="navbarDropdown" class="nav-item nav-link dropdown-toggle navItem" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         {{ Auth::user()->name }} <span class="caret"></span>
                     </a>
 
                     <div id="userStatusSection" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                        <a class="nav-item dropdown-item" href="{{ route('home') }}">
+                        <a class="nav-item dropdown-item navItem" href="{{ route('home') }}">
                                 {{ __('Dashboard') }}
                         </a>
                         @if(Auth::user()->admin)
-                            <a class="nav-item dropdown-item" href="/dashboard">
+                            <a class="nav-item dropdown-item navItem" href="/dashboard">
                                     {{ __('Admin Dashboard') }}
                             </a>
                         @endif
-                        <a class="nav-item dropdown-item" href="{{ route('logout') }}"
+                        <a class="nav-item dropdown-item navItem" href="{{ route('logout') }}"
                         onclick="event.preventDefault();
                                         document.getElementById('logout-form').submit();">
                             {{ __('Logout') }}

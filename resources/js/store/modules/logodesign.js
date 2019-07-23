@@ -26,11 +26,12 @@ const defaultState = {
 const mutations = {
     resetState: (state) => {
         // state = getDefaultState();
-        console.log('Inside resetState function');
+        console.log('Inside resetState Logo');
         Object.assign(state, defaultState);
     },
-    setPackage: (state, logoPackage) => {
-        state.package = logoPackage;
+    setPackage: (state, payload) => {
+        state.package = payload.package;
+        state.price = payload.price;
     },
     setType: (state, type) => {
         state.logotype = [...type];
@@ -54,9 +55,9 @@ const mutations = {
 }
 
 const actions = {
-    setPackage: (store, logoPackage) => {
+    setPackage: (store, payload) => {
         
-        store.commit('setPackage', logoPackage);
+        store.commit('setPackage', payload);
         // setTimeout(()=> {
             
         //     store.commit('setPackage', logoPackage);
@@ -87,7 +88,7 @@ const actions = {
 const getters = {
     isValid: (store) => {
         for(var key in store) {
-            if((store[key] === null || store[key] === '') && (key !== 'price')) {
+            if(store[key] === null || store[key] === '') {
                 return false;
             }
         }

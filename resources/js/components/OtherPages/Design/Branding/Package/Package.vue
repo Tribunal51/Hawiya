@@ -7,7 +7,7 @@
             <Card v-for="card in cards" :key="card.title" :card="card">
                 <button 
                 class="btn btn-secondary" 
-                @click="orderButtonClicked(card.title)">ORDER</button>
+                @click="orderButtonClicked(card)">ORDER</button>
             </Card>
         </div>
     </div>
@@ -72,17 +72,20 @@ export default {
         }
     },
     methods: {
-        orderButtonClicked(title) {
-
-            if(title === this.packages[0]) {
-                this.$store.dispatch('branding/setPackage', title);
+        orderButtonClicked(card) {
+            let payload = {
+                package: card.title,
+                price: card.new_price
+            };
+            if(card.title === this.packages[0]) {
+                this.$store.dispatch('branding/setPackage', payload);
                 this.$router.push({
                     name: 'brandinginfo'
                 });
 
             }
             else {
-                this.$store.dispatch('logodesign/setPackage', title);
+                this.$store.dispatch('logodesign/setPackage', payload);
                 this.$store.dispatch('logodesign/setBranding');
                 this.$router.push({
                     name: 'logotype'

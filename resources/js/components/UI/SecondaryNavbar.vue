@@ -3,7 +3,7 @@
     class="navbar navbar-expand-md navbar-dark bg-dark" 
     :class="navClass"
     :style="navStyle">
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#secondaryNavbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+        <button class="navbar-toggler" :style="hamburger" type="button" data-toggle="collapse" data-target="#secondaryNavbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
 
@@ -61,7 +61,8 @@ export default {
         "navItemStyle",
         "navStyle",
         "navClass",
-        "activeClass"
+        "activeClass",
+        "hamburger"
     ],
     data() {
         return {
@@ -134,5 +135,6 @@ export default {
        color: #FFDB00 !important;
    }
 
+    
 
 </style>

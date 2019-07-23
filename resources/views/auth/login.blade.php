@@ -57,7 +57,7 @@
                                     {{ __('Login') }}
                                 </button>
 
-                                <a href="register">Create Account</a>
+        
 
                                 
 

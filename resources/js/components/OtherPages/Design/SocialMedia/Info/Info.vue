@@ -24,7 +24,8 @@
                     <div v-for="post in posts" :key="post.id">
                         <div class="row">
                             <div class="col-md-4 postLabel" @click="togglePost(post)">
-                                Post No: {{ post.id }} >>
+                                Post No: {{ post.id }} <img :src="post.show ? '/storage/down-arrow.png' : '/storage/right-arrow.png'" class="arrow" />
+
                             </div>
 
                             
@@ -68,16 +69,24 @@ import BlackBox from '../../../../UI/BlackBox';
 
 export default {
     mounted() {
-        console.log(this.$store.state);
-        console.log(this.posts);
-        let postsNumber = this.$store.state.socialmedia.postsNumber;
-        for(var i=0; i < postsNumber; i++) {
-            let post = {
-                ...this.post,
-                id: i+1
-            };
-            this.posts.push(post);
+        if(!this.$store.state.socialmedia.postsNumber) {
+            this.$router.push({
+                name: 'socialmediapackage'
+            });
         }
+        else {
+            console.log(this.$store.state);
+            console.log(this.posts);
+            let postsNumber = this.$store.state.socialmedia.postsNumber;
+            for(var i=0; i < postsNumber; i++) {
+                let post = {
+                    ...this.post,
+                    id: i+1
+                };
+                this.posts.push(post);
+            }
+        }
+        
     },  
     components: {
         ImageUpload,
@@ -148,6 +157,7 @@ export default {
         buttonClicked() {
             event.preventDefault();
             console.log('ALL INFO', this.posts, this.logo_photo);
+            
         },
         isButtonDisabled() {
             let value = false;
@@ -161,25 +171,14 @@ export default {
         formSubmit() {
             event.preventDefault();
             console.log(this.posts);
-
-            let postsToSend = [...this.posts];
-            // Array.from(postsToSend).forEach(post => {
-            //     delete post['id'];
-            // });
-            console.log('Posts to send',postsToSend);
-            console.log('Posts', this.posts);
-            this.$store.dispatch('socialmedia/setLogo', this.logo_photo);
-            this.$store.dispatch('socialmedia/setPosts', postsToSend);
-            let data = {
-                user_id: 1,
-                package: this.$store.state.socialmedia.package,
-                logo_photo: this.$store.state.socialmedia.logo_photo,
-                posts: [
-                    ...this.$store.state.socialmedia.posts
-                ]
+            let payload = {
+                posts: this.posts,
+                logo_photo: this.logo_photo
             };
-            console.log('Data', data);
-            console.log('FinalState',this.$store.state);
+            this.$store.dispatch('socialmedia/setInfo', payload);
+            console.log('Final State',this.$store.state);
+            console.log('Is Social Media Order Valid? ',this.$store.getters['socialmedia/isValid']);
+
             // axios.post('http://hawiya.net/api/orders/social-media', data)
             // .then(res => console.log(res.data))
             // .catch(error => console.log(error.response));
@@ -214,6 +213,11 @@ export default {
     .slide-fade-enter, .slide-fade-leave-to {
         transform: translateY(-30px);
         opacity:0;
+    }
+
+   .arrow {
+       width: 15px;
+       height: 15px;
     }
 
     /* .slide-fade-leave-to {

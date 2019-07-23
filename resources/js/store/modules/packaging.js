@@ -12,6 +12,7 @@ const initialState = {
 
 const mutations = {
     resetState: (state) => {
+        console.log('Inside ResetState, Packaging');
         Object.assign(state, initialState);
     },
     setProducts: (state, products) => {
@@ -38,7 +39,7 @@ const actions = {
 const getters = {
     isValid: (store) => {
         for(var key in store) {
-            if((key !== 'price') && (store[key] === null || store[key] === '')) {
+            if(store[key] === null || store[key] === '') {
                 return false;
             }
             if((key === 'products') && (Array.isArray(store[key])) && (store[key].length < 1)) {

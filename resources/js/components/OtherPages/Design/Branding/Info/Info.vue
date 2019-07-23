@@ -71,8 +71,8 @@ export default {
     data() {
         return {
             comment: '',
-            dataurls: '',
-            files: '',
+            dataurl: '',
+            file: '',
             features: [
                 "LOGO OR WATERMARK",
                 'DIFFERENT LOGO "LOCKUPS"',
@@ -96,26 +96,26 @@ export default {
     methods: {
         updateFileUrls(urls) {
             if(urls === null) {
-                this.dataurls = '';
+                this.dataurl = '';
             } else {
-                this.dataurls = urls[0];
+                this.dataurl = urls[0];
                 //console.log('Urls', this.dataurls);
             }
             
         },
         updateFiles(files) {
             if(files === null) {
-                this.files = '';
+                this.file = '';
             }
             else {
-                this.files = files[0];
+                this.file = files[0];
                 //console.log('Files Update ', this.files);
             }
             
             
         },
         isButtonDisabled() {
-            return (this.files.length < 1 || this.comment === '');
+            return (this.file === '' || this.comment === '');
         },
         nextButtonClicked() {
             //console.log('Current Image: ',this.dataurls);
@@ -125,10 +125,19 @@ export default {
             let data = {
                 user_id: 1,
                 package: 'Test',
-                logo_photo: this.dataurls,
+                logo_photo: this.dataurl,
                 comment: this.comment
             };
             console.log('Data to send', data);
+
+            let payload = {
+                image: this.dataurl,
+                comment: this.comment
+            }
+            this.$store.dispatch('branding/setInfo', payload);
+
+            console.log('Is Branding Order valid? ',this.$store.getters['branding/isValid'] );
+            console.log(this.$store.state);
             // console.log('Data', data);
             // axios.post('http://hawiya.net/api/orders/branding', data)
             // .then(res => console.log(res.data))

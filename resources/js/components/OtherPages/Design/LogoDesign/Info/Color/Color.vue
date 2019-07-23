@@ -8,7 +8,7 @@
                     :id="color" 
                     :value="color" 
                     v-model="colors" 
-                    :disabled="(colors.length >= 3 && colors.indexOf(color) < 0) || (colors.indexOf(noColor) >= 0)"
+                    :disabled="colors.length >= 3 && colors.indexOf(color) < 0"
                     />
                 </CheckMark>                
             </div>
@@ -34,9 +34,10 @@
                 <CheckMark>
                     <input 
                     type="checkbox" 
-                    value="No Color Selected" 
+                    :value="noColor" 
                     v-model="colors"
-                    :disabled="colors.length > 0 && colors.indexOf(noColor) < 0" />
+                    
+                    />
 
                 </CheckMark>
 
@@ -84,13 +85,26 @@ export default {
             )
             
             
-        }
+        },
+       
     },
     watch: {
-        colors: function() {
+        colors: function(newValue, oldValue) {
+            if(newValue.find(color => color === this.noColor)) {
+
+                // If noColor is added after some color
+                if(newValue.indexOf(this.noColor) > 0) {
+                    this.colors = [this.noColor];
+                } 
+                else if(newValue.length > 1) {
+                    // If noColor is the first element and the array has more than 1 element
+                    this.colors = this.colors.filter(color => color !== this.noColor);
+                }
+            }
             console.log('Watch', this.colors);
             this.$emit('color', this.colors);
         }
+       
     }
 
 }

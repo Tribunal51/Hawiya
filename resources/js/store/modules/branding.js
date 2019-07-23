@@ -16,27 +16,36 @@ const initialState = {
 
 const mutations = {
     resetState: (state) => {
-        console.log('Inside ResetState');
+        console.log('Inside ResetState Branding');
         Object.assign(state, initialState);
     },
-    setPackage: (state, packageType) => {
-        state.package = packageType;
+    setPackage: (state, payload) => {
+        state.package = payload.package;
+        state.price = payload.price;
+    },
+    setInfo: (state, payload) => {
+        state.logo_photo = payload.image;
+        state.comment = payload.comment;
     }
+    
 }
 
 const actions = {
     resetState: (store) => {
         store.commit('resetState');
     },
-    setPackage: (store, packageType) => {
-        store.commit('setPackage', packageType);
+    setPackage: (store, payload) => {
+        store.commit('setPackage', payload);
+    },
+    setInfo: (store, payload) => {
+        store.commit('setInfo', payload);
     }
 }
 
 const getters = {
     isValid: (store) => {
         for(var key in store) {
-            if((key !== 'price') && (store[key] === 'null' || store[key] === '')) {
+            if(store[key] === 'null' || store[key] === '') {
                 return false;
             }
         }
