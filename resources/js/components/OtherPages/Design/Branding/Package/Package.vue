@@ -5,9 +5,9 @@
         </BlackBox>
         <div class="card-group packageCards">
             <Card v-for="card in cards" :key="card.title" :card="card">
-                <button 
-                class="btn btn-secondary" 
-                @click="orderButtonClicked(card)">ORDER</button>
+                <OrderButton
+                :buttonClicked="() => orderButtonClicked(card)"
+                />
             </Card>
         </div>
     </div>
@@ -16,13 +16,16 @@
 <script>
 import Card from '../../../../UI/Card';
 import BlackBox from '../../../../UI/BlackBox';
+import OrderButton from '../../../../UI/OrderButton';
+
 export default {
     mounted() {
         console.log('Packages', this.packages);
     },
     components: {
         Card,
-        BlackBox
+        BlackBox,
+        OrderButton
     },
     data() {
         return {

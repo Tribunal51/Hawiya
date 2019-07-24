@@ -16,7 +16,8 @@
                 v-on:comment="updateComment"
             />
 
-            <v-btn :disabled="buttonDisabled()" type="submit">Next</v-btn>
+            <!-- <v-btn :disabled="buttonDisabled()" type="submit">Next</v-btn> -->
+            <SubmitButton :buttonDisabled="buttonDisabled()" buttonType="submit" />
         </form>
     </div>
 </template>
@@ -25,12 +26,14 @@
 import ImageUpload from '../../../../UI/ImageUpload';
 import Post from '../../../../UI/Post';
 import BlackBox from '../../../../UI/BlackBox';
+import SubmitButton from '../../../../UI/SubmitButton';
 
 export default {
     components: {
         ImageUpload,
         Post,
-        BlackBox
+        BlackBox,
+        SubmitButton
     },
     data() {
         return {

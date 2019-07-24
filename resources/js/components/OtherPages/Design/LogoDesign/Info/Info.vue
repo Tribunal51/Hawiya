@@ -8,7 +8,8 @@
           </div>
 
           <div class="col-md-1">
-            <v-btn color="success" type="submit" :disabled="isButtonDisabled()">Submit</v-btn>
+            <SubmitButton buttonType="submit" :buttonDisabled="isButtonDisabled()" />
+            <!-- <v-btn color="success" type="submit" :disabled="isButtonDisabled()">Submit</v-btn> -->
             <!-- <input class="btn btn-warning" type="submit" value="Submit" :disabled="isButtonDisabled()" />  -->
           </div>
         </div>
@@ -69,6 +70,7 @@ import Color from "./Color/Color.vue";
 import axios from "axios";
 import { VBtn } from "vuetify/lib";
 import ImageUpload from "../../../../UI/ImageUpload";
+import SubmitButton from '../../../../UI/SubmitButton';
 
 export default {
   mounted() {
@@ -91,7 +93,8 @@ export default {
     Styles,
     Color,
     VBtn,
-    ImageUpload
+    ImageUpload,
+    SubmitButton
   },
   updated() {
     //console.log(this.info);

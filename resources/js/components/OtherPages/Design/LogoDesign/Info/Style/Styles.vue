@@ -18,10 +18,13 @@
                     <VSlider
                         v-model="tempStyles[style]"
                         thumbLabel 
+                        
                         min="-100"
                         max="100"
                         thumbSize="30"
                         height="10"
+                        step="20"
+                        
                         color=#FBC02D
                         thumbColor=#FBC02D
                         @change="updateStyles"                       

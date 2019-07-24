@@ -12,24 +12,42 @@
 
                 <div class="Amount mt-4">
                     <h4>Amount</h4>
-                    <div class="graybox-amount">{{ this.selectedAmount }}</div>
+                    <div class="graybox-amount">
+                        <input class="graybox-amount" type="number" v-model="selectedAmount" />
+                        
+                        <!-- {{ this.selectedAmount }} -->
+                    </div>
                     <VSlider 
                         v-model="selectedAmount"
-                        thumbLabel
-                        thumbSize="20"
+                        thumbSize="30"
                         height="10"
                         color=#FBC02D 
                         thumbColor=#FBC02D 
+                        :max="maxAmount"
+                        :min="0"
+                        
                     ></VSlider>
+                    <!-- :step="tickSize"
+                        ticks="always"
+                        :tick-labels="tickLabels" -->
                 </div>
 
                 <div class="Color mt-4">
                     <h4>Material Color</h4>
                     <div class="flex-container">
-                        <div class="itemColor" v-for="color in colors" :key="color">
+                        <div class="itemColor" v-for="color in colors" :key="color.name"> 
+                            <input type="radio" :value="color.name" :id="color.name" v-model="selectedColor" hidden  />  
+                            <label class="colorSection" :for="color.name">                                  
+                                <div class="colorCircle" :style="{'backgroundColor': color.color}"></div>
+                                {{ color.name }}
+                            </label>
+                        </div>
+                        
+                        <!-- <div class="itemColor" v-for="color in colors" :key="color">
+
                             <input type="radio" v-model="selectedColor" :value="color" :id="color" /><br />
                             <label :for="color">{{ color }}</label>
-                        </div>
+                        </div> -->
                     </div>
                     
                 </div>
@@ -39,9 +57,10 @@
             </div>
         </div>
         <div class="row mt-5">
-            <div class="col-md-6"></div>
+            <div class="col-md-1"></div>
+            <div class="col-md-5 errorSection">{{ error }}</div>
             <div class="col-md-6">
-                <center><v-btn @click="confirmChanges">Confirm</v-btn></center>
+                <center><v-btn @click="confirmChanges" :disabled="selectedAmount < 100">Confirm</v-btn></center>
             </div>
         </div>
         
@@ -64,11 +83,34 @@ export default {
     data() {
         return {
             colors: [
-                "Red",
-                "Green",
-                "Blue",
-                "Yellow",
-                "Black"
+                {
+                    name: "Red",
+                    color: "red"
+                }, 
+                {
+                    name: "Green",
+                    color: "green"
+                },
+                {
+                    name: "Blue",
+                    color: "blue"
+                },
+                {
+                    name: "Yellow",
+                    color: "yellow"
+                },
+                {
+                    name: "Black",
+                    color: "black"
+                },
+                {
+                    name: "White",
+                    color: "white"
+                },
+                {
+                    name: "Natural",
+                    color: "brown"
+                }
             ],
             sizes: [
                 "Small",
@@ -77,12 +119,26 @@ export default {
             ],
             selectedColor: this.product.color,
             selectedSize: this.product.size,
-            selectedAmount: this.product.amount
+            selectedAmount: this.product.amount,
+            minAmount: 100,
+            maxAmount: 3500,
+            tickSize: 500
         }
     },
     computed: {
         amount() {
             return this.product.amount
+        },
+        tickLabels() {
+            //let ticks = [100, 150, 200, 300, 500, 750, 1000, 1500, 2000, 2500, 3000, 3500];
+            let ticks = [];
+            for(var i = this.minAmount; i <= this.maxAmount; i += this.tickSize) {
+                ticks.push(i);
+            }
+            return ticks;
+        },
+        error() {
+            return this.selectedAmount < 100 ? 'Please select an amount greater than 100' : null;
         }
     },
     methods: {
@@ -121,22 +177,17 @@ export default {
     .graybox-amount {
         border: 1px solid gray;
         background-color: lightgray;
-        width: 50px;
+        width: 80px;
         height: auto;
     } 
 
     .flex-container {
         display: flex;
         flex-wrap: wrap;
+        
     }
 
-    .itemColor {
-        width: 60px;
-        height: 70px;
-        border: 1px solid black;
-        margin: 5px;
-        padding: 5px;
-    }
+    
 
     .productImage {
         width: 100%;
@@ -145,4 +196,35 @@ export default {
         max-height: 100%;
     }
 
+
+    
+
+    .colorSection {
+        width: 70px;
+        height: 70px;
+        border: 1px solid black;
+        margin: 5px;
+        padding: 5px;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        cursor: pointer;
+        background-color: white;
+    }
+
+    .colorCircle {
+        width: 30px;
+        height: 30px;
+        border-radius: 50%;
+        border: 1px solid black;
+    }
+
+    .itemColor input:checked + .colorSection {
+        background-color: #FFDB00 ;
+    }
+
+    .errorSection {
+        color: red;
+        text-align: right;
+    }
 </style>

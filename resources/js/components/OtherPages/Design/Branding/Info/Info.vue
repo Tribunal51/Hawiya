@@ -40,7 +40,8 @@
                 <div class="row">
                     <div class="col-md-8"></div>
                     <div class="col-md-4">
-                        <VBtn flat medium @click="nextButtonClicked" :disabled="isButtonDisabled()">Next >></VBtn>
+                        <SubmitButton :buttonClicked="nextButtonClicked" :buttonDisabled="isButtonDisabled()" />
+                        <!-- <VBtn flat medium @click="nextButtonClicked" :disabled="isButtonDisabled()">Next >></VBtn> -->
                     </div>
                     
                 </div>
@@ -58,6 +59,7 @@
 import ImageUpload from '../../../../UI/ImageUpload';
 import BlackBox from '../../../../UI/BlackBox';
 import TextArea from '../../../../UI/TextArea';
+import SubmitButton from '../../../../UI/SubmitButton';
 //import * from 'vuetify/lib';
 // import { VBtn } from 'vuetify';
 
@@ -66,7 +68,7 @@ export default {
         ImageUpload,
         BlackBox,
         TextArea,
-        
+        SubmitButton
     },
     data() {
         return {

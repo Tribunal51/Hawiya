@@ -94,13 +94,7 @@ export default {
         "card"
     ],
     methods: {
-        orderButtonClicked() {
-            this.$store.dispatch('logodesign/setPackage', this.card.title);
-            this.$router.push({
-                name:'logotype'
-            });
-
-        }
+        
     }
 }
 </script>
@@ -182,9 +176,7 @@ export default {
         transform: rotate(45deg);
     }
 
-    .body {
-        
-    }
+    
 
     .upperHalf {
         height: 150px !important;
@@ -196,7 +188,7 @@ export default {
     
     .lowerHalf {       
         /* background-color: black; */
-        
+        background-color: white;
     }
 
     .postsDescription {

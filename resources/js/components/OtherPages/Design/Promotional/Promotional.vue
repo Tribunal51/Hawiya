@@ -16,7 +16,7 @@
                         <input type="checkbox" :value="item" :id="item.name" v-model="selectedItems" hidden   />
                         <span></span>
                     </label>
-                    <label :for="item.name">{{ item.name }}</label>              
+                    <label class="itemLabel" :for="item.name">{{ item.name }}</label>              
                 </div>
                 
             </div>
@@ -34,11 +34,15 @@
                 <!-- <v-btn round color="primary" @click="backButtonClicked()">Back</v-btn> -->
             </div>
             <div class="col-md-4">
-                <v-btn 
+                <!-- <v-btn 
                     color="#FFDB00" 
                     round 
                     :disabled="selectedItems.length < 1" 
-                    @click="submitButtonClicked()">Submit</v-btn>
+                    @click="submitButtonClicked()">Submit</v-btn> -->
+                    <SubmitButton 
+                        :buttonDisabled="selectedItems.length < 1"
+                        :buttonClicked="() => submitButtonClicked()"
+                    />
             </div>
         </div>
 
@@ -47,13 +51,15 @@
 
 <script>
 import BlackBox from '../../../UI/BlackBox';
+import SubmitButton from '../../../UI/SubmitButton';
 import Cost from './Cost';
 import { store } from './store.js';
 
 export default {
     components: {
         BlackBox,
-        Cost
+        Cost,
+        SubmitButton
     },
     data() {
         return {
@@ -95,6 +101,17 @@ export default {
         display: flex;
         flex-direction: column;
         flex-wrap: wrap;
+    }
+
+    .itemLabel {
+        cursor: pointer;
+    }
+
+    @media(max-width: 240px) {
+        .flex-container {
+            height: auto;
+            min-height: 300px;
+        }
     }
 
 </style>

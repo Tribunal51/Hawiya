@@ -54,7 +54,8 @@
                                 
                     </div>
                 </div>
-                <v-btn type="submit" :disabled="isButtonDisabled()">Click</v-btn>
+                <SubmitButton buttonType="submit" :buttonDisabled="isButtonDisabled()" />
+                <!-- <v-btn type="submit" :disabled="isButtonDisabled()">Click</v-btn> -->
             </div>
         </form>
         
@@ -65,7 +66,7 @@
 import ImageUpload from '../../../../UI/ImageUpload';
 import Post from '../../../../UI/Post';
 import BlackBox from '../../../../UI/BlackBox';
-
+import SubmitButton from '../../../../UI/SubmitButton';
 
 export default {
     mounted() {
@@ -91,7 +92,8 @@ export default {
     components: {
         ImageUpload,
         BlackBox,
-        Post
+        Post,
+        SubmitButton
     },
     data() {
         return {

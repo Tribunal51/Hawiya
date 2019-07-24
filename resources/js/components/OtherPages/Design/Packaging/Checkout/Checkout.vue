@@ -6,7 +6,7 @@
         <BlackBox />
         <div v-show="!productSettings">
             <div class="row grayContainer mt-2 mb-2">
-                <div class="col-md">
+                <div class="col-md flex-container-align-vertical">
                     <div class="product" v-for="product in products" :key="product.id">
                         
                         <label class="yellowCheckBox">
@@ -28,7 +28,7 @@
                     </div>
                     
                 </div>
-                <div class="col-md flex-container-align-vertical">
+                <div class="col-md flex-container-align-center">
                     <div class="checkoutSection">
                         <Cost 
                             :products="selectedProducts" 
@@ -38,8 +38,13 @@
                 </div>
             </div>
             <div class="row">
-                <div class="col-md-8"><v-btn round color="primary" @click="backButtonClicked()">Back</v-btn></div>
-                <div class="col-md-4"><v-btn color="#FFDB00" round :disabled="isSubmitDisabled()">Submit</v-btn></div>
+                <div class="col-md-8">
+                    <v-btn round color="primary" @click="backButtonClicked()">Back</v-btn>
+                </div>
+                <div class="col-md-4">
+                    <!-- <v-btn color="#FFDB00" round :disabled="isSubmitDisabled()">Submit</v-btn> -->
+                    <SubmitButton :buttonDisabled="isSubmitButtonDisabled()" />
+                </div>
             </div>
         </div>
         <div v-show="productSettings">
@@ -59,12 +64,14 @@ import { store } from '../store.js';
 import BlackBox from '../../../../UI/BlackBox';
 import Cost from './Cost';
 import ProductSettings from '../ProductSettings/ProductSettings';
+import SubmitButton from '../../../../UI/SubmitButton';
 
 export default {
     components: {
         BlackBox,
         Cost,
-        ProductSettings
+        ProductSettings,
+        SubmitButton
     },
     data() {
         return {
@@ -102,7 +109,7 @@ export default {
         updateCost(cost) {
             this.cost = cost;
         },
-        isSubmitDisabled() {
+        isSubmitButtonDisabled() {
             return this.cost < 1;
         },
         backButtonClicked() {
@@ -130,8 +137,24 @@ export default {
 
     .flex-container-align-vertical {
         display: flex;
-        align-items: center;
+        flex-flow: column wrap;
+        
+        align-items: flex-start;
+        height: 300px;
 
+    }
+
+    @media(max-width: 240px) {
+        .flex-container-align-vertical {
+            height: auto;
+            min-height: 300px;
+        }
+    }
+
+    .flex-container-align-center {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 
     .transparentBox {

@@ -24,10 +24,11 @@
                             
                     <!-- <div id="card" class="card mx-auto" v-for="card in cards" :key="card.title"> -->
                     <Card :card="card" v-for="card in cards" :key="card.title">
-                        <button 
+                        <OrderButton :buttonClicked="() => orderButtonClicked(card)" />
+                        <!-- <button 
                             class="btn btn-secondary"
                             @click="orderButtonClicked(card)"
-                        >ORDER</button>
+                        >ORDER</button> -->
                     </Card>
                     <!-- </div>             -->
                     
@@ -43,13 +44,15 @@ import Card from '../../../../UI/Card.vue';
 import IntroSection from '../../../../UI/IntroSection.vue';
 import BlackBox from '../../../../UI/BlackBox.vue';
 import SecondaryNavbar from '../../../../UI/SecondaryNavbar.vue';
+import OrderButton from '../../../../UI/OrderButton';
 
 export default {
     components: {
         Card,
         IntroSection,
         BlackBox,
-        SecondaryNavbar
+        SecondaryNavbar,
+        OrderButton
     },
     mounted() {
         console.log('Just mounted Package', this.$store.state.logodesign);

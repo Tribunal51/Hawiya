@@ -4,11 +4,11 @@ export const store = Vue.observable({
     products: [
         {
             id: 1,
-            name: "Product 1",
+            name: "Paper Bag",
             size: "Small",
-            amount: 20,
+            amount: 500,
             color: "Red",
-            image: "/storage/Packaging/FriesBox.png",
+            image: "/storage/Packaging/PaperBag.png",
             multipliers: [
                 {
                     size: "Small",
@@ -26,11 +26,11 @@ export const store = Vue.observable({
         },
         {
             id: 2,
-            name: "Product 2",
-            size: "Medium",
-            amount: 20,
+            name: "Pizza Box",
+            size: "Small",
+            amount: 500,
             color: "Green",
-            image: "",
+            image: "/storage/packaging/PizzaBox.png",
             multipliers: [
                 {
                     size: "Small",
@@ -48,11 +48,11 @@ export const store = Vue.observable({
         },
         {
             id: 3,
-            name: "Product 3",
-            size: "Large",
-            amount: 20,
+            name: "Cookies Box",
+            size: "Small",
+            amount: 500,
             color: "Blue",
-            image: "",
+            image: "/storage/packaging/CookiesBox.png",
             multipliers: [
                 {
                     size: "Small",
@@ -67,8 +67,161 @@ export const store = Vue.observable({
                     pricePerItem: 30
                 }
             ]
-
-        }
+        },
+        {
+            id: 4,
+            name: "Noodles Box",
+            size: "Small",
+            amount: 500,
+            color: "Blue",
+            image: "/storage/packaging/NoodlesBox.png",
+            multipliers: [
+                {
+                    size: "Small",
+                    pricePerItem: 10
+                },
+                {
+                    size: "Medium",
+                    pricePerItem: 20
+                },
+                {
+                    size: "Large",
+                    pricePerItem: 30
+                }
+            ]
+        },
+        {
+            id: 5,
+            name: "Cup Sleeve",
+            size: "Small",
+            amount: 500,
+            color: "Blue",
+            image: "/storage/packaging/CupSleeve.png",
+            multipliers: [
+                {
+                    size: "Small",
+                    pricePerItem: 10
+                },
+                {
+                    size: "Medium",
+                    pricePerItem: 20
+                },
+                {
+                    size: "Large",
+                    pricePerItem: 30
+                }
+            ]
+        },
+        {
+            id: 6,
+            name: "Fries Box",
+            size: "Small",
+            amount: 500,
+            color: "Blue",
+            image: "/storage/packaging/FriesBox.png",
+            multipliers: [
+                {
+                    size: "Small",
+                    pricePerItem: 10
+                },
+                {
+                    size: "Medium",
+                    pricePerItem: 20
+                },
+                {
+                    size: "Large",
+                    pricePerItem: 30
+                }
+            ]
+        },
+        {
+            id: 7,
+            name: "Cake Box",
+            size: "Small",
+            amount: 500,
+            color: "Blue",
+            image: "/storage/packaging/CakeBox.png",
+            multipliers: [
+                {
+                    size: "Small",
+                    pricePerItem: 10
+                },
+                {
+                    size: "Medium",
+                    pricePerItem: 20
+                },
+                {
+                    size: "Large",
+                    pricePerItem: 30
+                }
+            ]
+        },
+        {
+            id: 8,
+            name: "Perfume Box",
+            size: "Small",
+            amount: 500,
+            color: "Blue",
+            image: "/storage/packaging/PerfumeBox.png",
+            multipliers: [
+                {
+                    size: "Small",
+                    pricePerItem: 10
+                },
+                {
+                    size: "Medium",
+                    pricePerItem: 20
+                },
+                {
+                    size: "Large",
+                    pricePerItem: 30
+                }
+            ]
+        },
+        {
+            id: 9,
+            name: "Food Sleeve",
+            size: "Small",
+            amount: 500,
+            color: "Blue",
+            image: "/storage/packaging/FoodSleeve.png",
+            multipliers: [
+                {
+                    size: "Small",
+                    pricePerItem: 10
+                },
+                {
+                    size: "Medium",
+                    pricePerItem: 20
+                },
+                {
+                    size: "Large",
+                    pricePerItem: 30
+                }
+            ]
+        },
+        {
+            id: 10,
+            name: "Cup Holder",
+            size: "Small",
+            amount: 500,
+            color: "Blue",
+            image: "/storage/packaging/CupHolder.png",
+            multipliers: [
+                {
+                    size: "Small",
+                    pricePerItem: 10
+                },
+                {
+                    size: "Medium",
+                    pricePerItem: 20
+                },
+                {
+                    size: "Large",
+                    pricePerItem: 30
+                }
+            ]
+        },
     ],
     selectedItems: [],
     itemToModify: {}
