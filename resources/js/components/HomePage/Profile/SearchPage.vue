@@ -38,7 +38,7 @@
     
     <section class="list">
         
-            <div class="d-flex flex-wrap">
+            <div class="flex-container">
                 <!-- d-flex flex-wrap classes -->
             <!-- iterate data -->
                 
@@ -175,44 +175,44 @@ export default {
                 }
             });
             navLinks.unshift({
-                type: 'all',
+                type: 'All',
                 name: 'All',
                 selected: false
             });
 
             // Assigning navLinks statically
-            navLinks = [
-                {
-                    type: 'All',
-                    name: 'All',
-                    selected: false
-                },
-                {
-                    type: 'Logo Design',
-                    name: '/Logo Design',
-                    selected: false
-                },
-                {
-                    type: 'Branding',
-                    name: '/Branding',
-                    selected: false
-                }, 
-                {
-                    type: 'Social Media',
-                    name: '/Social Media',
-                    selected: false
-                },
-                {
-                    type: 'Stationary',
-                    name: '/Stationary',
-                    selected: false
-                }, 
-                {
-                    type: 'Website',
-                    name: '/Website',
-                    selected: false
-                }
-            ];
+            // navLinks = [
+            //     {
+            //         type: 'All',
+            //         name: 'All',
+            //         selected: false
+            //     },
+            //     {
+            //         type: 'Logo Design',
+            //         name: '/Logo Design',
+            //         selected: false
+            //     },
+            //     {
+            //         type: 'Branding',
+            //         name: '/Branding',
+            //         selected: false
+            //     }, 
+            //     {
+            //         type: 'Social Media',
+            //         name: '/Social Media',
+            //         selected: false
+            //     },
+            //     {
+            //         type: 'Stationery',
+            //         name: '/Stationery',
+            //         selected: false
+            //     }, 
+            //     {
+            //         type: 'Website',
+            //         name: '/Website',
+            //         selected: false
+            //     }
+            // ];
             
 
             console.log('navLinks', navLinks);
@@ -250,6 +250,11 @@ export default {
     .list {
         height: 60vh !important;
         overflow-y: auto;
+    }
+
+    .flex-container {
+        display: flex;
+        flex-flow: row wrap;
     }
 
 

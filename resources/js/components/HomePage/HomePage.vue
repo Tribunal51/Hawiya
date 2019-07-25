@@ -1,7 +1,7 @@
 <template>
     <div id="cover">
-        <!-- <section id="section1"><Welcome /></section>
-        <section id="section2"><WhatWeDo /></section>
+        <section id="section1"><Welcome /></section>
+        <!-- <section id="section2"><WhatWeDo /></section>
         <section id="section3"><MeetTheTeam /></section> -->
         <section id="section4"><Profile /></section>
         <section id="section5"><CaseStudy /></section>
@@ -107,7 +107,7 @@ export default {
 
         
        
-        background: url('/storage/hawiyaHomePage.PNG') no-repeat center center;
+        background: url('/storage/HomePage.png') no-repeat center center;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;

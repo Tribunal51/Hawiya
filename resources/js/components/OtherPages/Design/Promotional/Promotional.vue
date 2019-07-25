@@ -103,15 +103,17 @@ export default {
         flex-wrap: wrap;
     }
 
-    .itemLabel {
-        cursor: pointer;
-    }
-
     @media(max-width: 240px) {
         .flex-container {
             height: auto;
             min-height: 300px;
         }
     }
+
+    .itemLabel {
+        cursor: pointer;
+    }
+
+    
 
 </style>

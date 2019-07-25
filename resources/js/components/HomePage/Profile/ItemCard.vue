@@ -1,22 +1,19 @@
 <template>
-  <div class="card p-3 clickableCard wrapper" 
+  <div class="card clickableCard wrapper" 
 	@click="redirectToProfile(item)" 
 	@mouseenter="displayOrNot(item, 'enter')" 
 	@mouseleave="displayOrNot(item, 'leave')">
     <div class="text-center">
-			<template v-if="displayImage">
-				<img class="cardCoverImage" :src="imageToDisplay(item)" alt="Card image cap">
-				<!-- <span :class="`badge status badge-${tags[item.category]}`">{{ item.category }}</span> -->
-			</template>
+		<template>
+			<img class="cardCoverImage" :src="imageToDisplay(item)" alt="Card image cap">
+			<!-- <span :class="`badge status badge-${tags[item.category]}`">{{ item.category }}</span> -->
+		</template>
       
-      <!-- <div class="card-body">
-        <h5 class="card-title">{{ item.title }}</h5>
-				<h6 class="card-body">{{ item.category || capitalize }}</h6>
-      </div> -->
-			<div v-else class="wrapperContent">
-					<h2> {{ item.title }}</h2>
-					<h6>{{ item.category || capitalize }}</h6>
-			</div>
+
+		<div class="wrapperContent">
+				<h2 class="wrapperHeader"> {{ item.title }}</h2>
+				<h6 class="wrapperSubtitle">{{ item.category || capitalize }}</h6>
+		</div>
     <div>
         <!-- <span v-for="(group, index) in item.order_type" :key="index" :class="`badge badge-${tags[group]}`">{{ group }}</span>				 -->
   </div>
@@ -122,42 +119,73 @@ export default {
 
 	.clickableCard:hover {
 		background-color: black;
-		opacity: 0.6;
+		opacity: 0.7;
 	}
 
 	
-	.wrapper {
-		position: relative;
+	.wrapper:hover {
+		/* position: relative; */
+		
 	}
+
+	.text-center {
+		width: 100%;
+		height: 100%;
+		display: flex;
+		justify-content: center;
+		align-items: center;
+		/* background-color: red; */
+	}	
+
+	.text-center:hover .cardCoverImage{
+		opacity: 0.3;
+	}
+
 
 	.wrapperContent {
-		text-align: center;
-	}
-
-	.wrapper .wrapperContent {
 		opacity: 0;
 		position: absolute;
-		padding: 2px 0px;
-		color: #FFFFFF;
-		background: #000000;
+		/* padding: 2px 0px; */
+		color: #FFDB00;
+		background:transparent;
 		text-decoration: none;
 		text-align: center;
 		transition: opacity 500ms;
 		-webkit-transition: opacity 500ms;
-    -moz-transition: opacity 500ms;
-    -o-transition: opacity 500ms;
+    	-moz-transition: opacity 500ms;
+    	-o-transition: opacity 500ms;
+		
 	}
 
 	.wrapper:hover .wrapperContent {
-		opacity: 0.8;
+		opacity: 1;
+	}
+
+	.wrapperHeader {		
+		font-weight: 900;
+		font-size: 2rem;
+	}
+
+	.wrapperSubtitle {
+		font-weight: 100;
+		font-size: 1rem;
+		font-style: italic;
 	}
 
 	.cardCoverImage {
-
-		height: 280px;
-		width: auto;
+		
+		height: 300px;
+		width: 100%;
 		max-width: 100%;
+		-webkit-filter: grayscale(100%);
+		filter: grayscale(100%);
+
 	}
+
+	.cardCoverImage:hover {
+		/* opacity: 0.3; */
+	}
+	
 
 	
 	

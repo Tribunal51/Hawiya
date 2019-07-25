@@ -98,8 +98,8 @@
                 @endif
             @else
                 <li class="nav-item dropdown navItem">
-                    <a id="navbarDropdown" class="nav-item nav-link dropdown-toggle navItem" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }} <span class="caret"></span>
+                    <a id="navbarDropdown" class="nav-item dropdown-toggle navItem" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <img src="/storage/icons/yellow-logo.png" class="hawiyaUserIcon" />{{ Auth::user()->name }} <span class="caret"></span>
                     </a>
 
                     <div id="userStatusSection" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
@@ -214,6 +214,12 @@
             
         });
     </script>
-    
+    <style scoped>
+        .hawiyaUserIcon {
+            width: 20px;
+            height: 20px;
+            margin: 5px;
+        }
+    </style>
 </body>
 </html>

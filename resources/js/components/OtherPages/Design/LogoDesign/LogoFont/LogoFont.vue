@@ -29,7 +29,9 @@
                         :alt="font.name" 
                         class="checkbox-image"
                     /> -->
-                    <h1 :style="font.style">{{ font.name }}</h1>
+                    <!-- <h1 :style="font.style">{{ font.name }}</h1> -->
+                    <!-- <div class="fontImage" :style="'background:url('+font.file+') fill'"></div> -->
+                    <img :src="font.file" :alt="font.name" class="fontImage" />
                     <div class="fontBox">
                         <p>{{ font.description }}</p>
                     </div>
@@ -87,39 +89,23 @@ export default {
             fonts: [
                 {
                     name: 'Serif.',
-                    style: {
-                        'fontFamily': 'Serif',
-                        'fontSize': '2rem'
-                    },
                     description: 'Traditional, have feel.',
-                    file: 'letterform.png'
+                    file: '/storage/Fonts/Serif.png'
                 },
                 {
                     name: 'Sans Serif',
-                    style: {
-                        'fontFamily': 'Sans-Serif',
-                        'fontSize': '2rem'
-                    },
                     description: 'Modern, feel free.',
-                    file: 'letterform.png'
+                    file: '/storage/Fonts/SansSerif.png'
                 },
                 {
                     name: 'Script',
-                    style: {
-                        'fontStyle': 'Italic',
-                        'fontSize': '2rem'
-                    },
                     description: 'Cursive, a bit more decorative.',
-                    file: 'letterform.png'
+                    file: '/storage/Fonts/Script.png'
                 },
                 {
                     name: 'Display',
-                    style: {
-                        'fontStyle': 'Bold',
-                        'fontSize': '2rem'
-                    },
                     description: 'Decorative, good as a design focal point.',
-                    file: 'letterform.png'
+                    file: '/storage/Fonts/Display.png'
                 }
             ]
         }
@@ -127,8 +113,11 @@ export default {
     computed: {
         package() {
             let packageTitle = this.$store.state.logodesign.package;
-            packageTitle = packageTitle.charAt(0).toUpperCase() + packageTitle.slice(1).toLowerCase();
-            return packageTitle;
+            if(packageTitle) {
+                packageTitle = packageTitle.charAt(0).toUpperCase() + packageTitle.slice(1).toLowerCase();
+                return packageTitle;
+            }
+            
         }
     },
     methods: {
@@ -152,11 +141,32 @@ export default {
 </script>
 
 <style scoped>
+
+
     .checkBox {
         /* background-color: red; */
-        width: 20% !important;  
+        /* width: 200px !important;
+        
+        height: 200px !important; */
+        /* flex-grow: 1; */
+        width: 200px !important;
         height: 200px !important;
-        flex-grow: 1;
+    }
+
+    .checkBox img:hover {
+        transform: scaleX(1);
+        transform: scaleY(1);
+    }
+
+    :checked + .checkBoxLabel img {
+        transform: scale(1);
+        box-shadow: 0 0 0 0;
+        z-index: 0;
+    }
+
+    .fontImage {
+        width: 100%;
+        height: 75px;
     }
 
     .fontBox {
@@ -164,6 +174,7 @@ export default {
         color: gray;
         border-bottom: solid #FFDB00 2px;
     }
+
     
     
 </style>

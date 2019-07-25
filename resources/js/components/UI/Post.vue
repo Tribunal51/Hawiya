@@ -34,6 +34,7 @@
             <textarea 
                 class="input-textarea-gray" 
                 v-model="comment" 
+                :placeholder="placeholderText"
                 required></textarea>
         </div>
        
@@ -56,7 +57,8 @@ export default {
     },
     props: [
         "post",
-        "logo"
+        "logo",
+        "placeholderText"
     ],
     methods: {
         updatePhoto(urls, type) {

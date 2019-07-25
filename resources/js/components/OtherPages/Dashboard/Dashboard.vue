@@ -7,15 +7,15 @@
             <IntroSection :styling="zeroBottomPadding">
                 <div class="row">
                     <div class="col-sm-4 hawiyaLogoSection">
-                        <img class="hawiyaLogo" src="/storage/yellow-logo.png" />
+                        <img class="hawiyaLogo" src="/storage/icons/yellow-logo.png" />
                     </div>
                     <div class="col-sm-5 userDetailsSection">
                         <h2 class="bold">{{ user.name }}</h2>
                         <h4 class="gray">{{ user.email }}</h4>
                         <h4 class="gray">Edit Profile</h4>
                     </div>
-                    <div class="col-sm-3">
-
+                    <div class="col-sm-3 settingsSection">
+                        <img src="/storage/icons/white-settings.png" class="settingsIcon" alt="settingsIcon" />
                     </div>
                 </div>
             </IntroSection>
@@ -169,5 +169,19 @@ export default {
         color: #FFDB00;
         font-weight: bold;
         cursor: pointer;
+    }
+
+    .settingsSection {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .settingsIcon {
+        width: 50px;
+        height: 50px;
+        cursor: pointer;
+        padding: 5px;
+
     }
 </style>

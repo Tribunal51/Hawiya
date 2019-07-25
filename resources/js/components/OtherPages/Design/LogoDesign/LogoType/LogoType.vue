@@ -20,7 +20,7 @@
                     v-model="selectedTypes" 
                     :value="type.title" 
                     :disabled="selectedTypes.length >= selectedTypesLimit && selectedTypes.indexOf(type.title) < 0 " />
-                    <label class="checkBoxLabel" :for="type.title"><img :src="'/storage/logotype/'+type.file" :alt="type.title" class="checkbox-image" /></label>
+                    <label class="checkBoxLabel" :for="type.title"><img :src="type.file" :alt="type.title" class="checkbox-image" /></label>
                 </div>
             </div>
 
@@ -65,31 +65,35 @@ export default {
             types: [
                 {
                     title: 'Combination Mark',
-                    file: 'combination-mark.png'
+                    file: '/storage/logotype/combination-mark.png'
                 },
                 {
                     title: 'Emblem',
-                    file: 'emblem.png'
+                    file: '/storage/logotype/emblem.png'
                 },
                 {
                     title: 'Letterform',
-                    file: 'letterform.png'
+                    file: '/storage/logotype/letterform.png'
                 },
                 {   
                     title: 'Pictorial mark',
-                    file: 'pictorial-mark.png'
+                    file: '/storage/logotype/pictorial-mark.png'
                 },
                 {
                     title: 'Signature',
-                    file: 'signature.png'
+                    file: '/storage/logotype/signature.png'
                 },
                 {
                     title: 'WordMark',
-                    file: 'wordmark.png'
+                    file: '/storage/logotype/wordmark.png'
                 },
                 {
                     title: 'Abstract mark',
-                    file: 'abstract-mark.png'
+                    file: '/storage/logotype/abstract-mark.png'
+                },
+                {
+                    title: 'Typography',
+                    file: '/storage/logotype/typography.png'
                 }
             ]
         }

@@ -18,13 +18,14 @@
                         :logo="true"
                         v-on:comment="updateComment($event, 1)"
                         v-on:file="updateFile($event, 1)"
+                        :placeholderText="placeholderText"
                     />
                 </div>
                 <div v-else>
                     <div v-for="post in posts" :key="post.id">
                         <div class="row">
                             <div class="col-md-4 postLabel" @click="togglePost(post)">
-                                Post No: {{ post.id }} <img :src="post.show ? '/storage/down-arrow.png' : '/storage/right-arrow.png'" class="arrow" />
+                                Post No: {{ post.id }} <img :src="arrowImage(post.show)" class="arrow" />
 
                             </div>
 
@@ -38,6 +39,7 @@
                                         :logo="true"
                                         v-on:comment="updateComment($event, 1)"
                                         v-on:file="updateFile($event,1)"
+                                        :placeholderText="placeholderText"
                                     />
                                 </div>
                                 <div v-else>
@@ -45,6 +47,7 @@
                                         :post="post"
                                         v-on:comment="updateComment($event, post.id)"
                                         v-on:file="updateFile($event, post.id)"
+                                        :placeholderText="placeholderText"
                                     />
                                 </div>
                             </div>
@@ -105,7 +108,8 @@ export default {
                 show: true
             },
             posts: [],
-            showSomething: false
+            showSomething: false,
+            placeholderText: 'Post Information'
         }
     },
     computed: {
@@ -114,6 +118,9 @@ export default {
         }
     },
     methods: {
+        arrowImage(show) {
+            return show ? '/storage/icons/down-arrow.png' : '/storage/icons/right-arrow.png';
+        },
         updateComment(comment, id) {
             
             console.log('Comment Update function', comment,id);

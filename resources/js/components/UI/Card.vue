@@ -35,17 +35,15 @@
                                 </div>
                             </div>
                             <div v-for="offer in card.offers" v-bind:key="offer" class="offer">
-                                <strong>{{ offer }}</strong>                           
+                                <strong>{{ offer }}</strong>                          
                             </div>
                             <br />
                             Packages begin at ${{ card.new_price }}
                         </div>                       
                     </div>
-                    <div class="col-sm-5" id="PriceSection">
-                        <h2>${{ card.new_price }}</h2>
-                        <span class="strikeout">
-                            ${{ card.old_price }}
-                        </span>                                                
+                    <div class="col-sm-5 PriceSection">
+                        <h2>${{ card.new_price }}</h2>                      
+                        <span class="strikeout">${{ card.old_price }}</span>                                               
                     </div>
                 </div>
                 <br />                
@@ -124,8 +122,9 @@ export default {
 
     }
 
-    #PriceSection {
+    .PriceSection {
         text-align: center;
+        font-family: 'LatoBold', sans-serif;
         /* background-color: black; */
         
         /* font-weight: bold;   */
@@ -136,7 +135,7 @@ export default {
         
     }
 
-    #PriceSection > .strikeout > .cancel {
+    .PriceSection > .strikeout > .cancel {
         text-decoration: line-through;
         font-family: 'LatoBold', sans-serif;
         font-weight: 4;
@@ -144,8 +143,7 @@ export default {
 
     .blackHR {
         /* background-color: #FFDB00; */
-        background-color: black;
-        
+        background-color: black;      
     }
 
     .custom-background {
@@ -155,7 +153,7 @@ export default {
 
 
     .strikeout {
-        font-size: 1.3rem;
+        font-size: 1.7rem;
         /* line-height: 1rem; */
         position: relative;
         
@@ -207,6 +205,10 @@ export default {
         /* background-color: black; */
     }
 
+    .offer {
+        margin: 4px;
+        border-bottom: 1px solid gray;
+    }
     
 
     .header {
@@ -226,10 +228,13 @@ export default {
     }
 
     .posts {
+        font-family: 'LatoBold', sans-serif;
+        font-weight: 900;
         padding-left: 4px;
         font-size: 2rem;
-        color: darkorange;
+        color: darkgoldenrod;
     }
+
     
     
 </style>

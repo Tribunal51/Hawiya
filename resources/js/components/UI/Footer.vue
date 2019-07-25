@@ -53,6 +53,7 @@ export default {
 
 .footerRow {
     /* background-color: red; */
+    display: flex;
     justify-content: space-between;
     text-align: center;
     text-decoration: none;

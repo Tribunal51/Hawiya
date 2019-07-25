@@ -187,6 +187,8 @@ export default {
         z-index: -1;
     }
 
+    
+
     .packageCards {
         /* background-color: green; */
         margin-top: 20px;

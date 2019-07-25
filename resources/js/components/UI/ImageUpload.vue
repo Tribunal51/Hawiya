@@ -182,5 +182,6 @@ export default {
         font-size: 1rem;
         padding: 2px;
         margin: 2px;
+        
     }
 </style>
