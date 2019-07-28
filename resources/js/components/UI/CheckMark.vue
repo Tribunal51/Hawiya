@@ -24,7 +24,6 @@ export default {
   -moz-user-select: none;
   -ms-user-select: none;
   user-select: none;
-  
 }
 
 /* Hide the browser's default checkbox */

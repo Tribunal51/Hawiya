@@ -1,15 +1,23 @@
 <template>
     <span class="cover">
         <div class="row">
-            <div class="box">
+            <div class="col">
+                <div class="box">
 
+                </div>
             </div>
+            
         </div>
         <div v-if="hasSlotData" class="row" :style="customStyles">
-            <slot></slot>
+            <div class="col">
+                <slot></slot>
+            </div>
+            
         </div>
         <div class="row">
-            <slot name="packageName"></slot>
+            <div class="col">
+                <slot name="packageName"></slot>
+            </div>
         </div>
         
     </span>  

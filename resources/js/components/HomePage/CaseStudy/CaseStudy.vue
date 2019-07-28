@@ -1,11 +1,14 @@
 <template>
     <div id="cover">       
         <IntroSection>
-            <h1 class="paddingHeader">Casestudy</h1>
-            <BlackBox />
             <div class="row">
+                <div class="col">
+                    <h1 class="paddingHeader">Casestudy</h1>
+                </div>
+            </div>
+            <BlackBox>
                 <h4>Our strategic approach in every brand ensures that the creative impression will echo throughout your business.</h4>
-            </div>            
+            </BlackBox>            
         </IntroSection>
         <div class="outerSection">            
             <div class="innerSection container py-3 px-3 card-group">
@@ -16,18 +19,18 @@
             <div class="row">
                 
                 <div class="col-sm-5">
-                    <BlackBox />
-                    <div class="row">
+                    <BlackBox>
                         <h4>Interested ?</h4>
-                    </div>                    
+                    </BlackBox>                   
                 </div>
                 <div class="col-lg-6">
-                    <BlackBox />
+                    <BlackBox>
+                        <h2>Let us build an outstanding brand for you</h2>
+                    </BlackBox>
                     <div class="row">
-                        <h1>Let us build an outstanding brand for you</h1>
-                    </div>
-                    <div class="row">
-                        <StartHere />
+                        <div class="col">
+                            <StartHere />
+                        </div>
                     </div>
                 </div>
             </div>

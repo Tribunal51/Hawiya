@@ -1,12 +1,17 @@
 <template>
     <div id="cover">
         <IntroSection>
+            
             <SecondaryNavbar 
                 :navStyle="navStyle"
                 :navItemStyle="navItemStyle"
                 :hamburger="hamburger"
             />
+
             <router-view />
+            
+           
+            
         </IntroSection>
     </div>
 </template>

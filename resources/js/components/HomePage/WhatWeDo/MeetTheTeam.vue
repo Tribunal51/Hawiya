@@ -26,30 +26,33 @@
                
         </div> -->
         <IntroSection>
-            <BlackBox />           
-                
-                <h2>Meet the Team</h2> 
+            <BlackBox>     
+                <div class="row">    
+                    <div class="col">                  
+                        <h2>Meet the Team</h2> 
+                    </div>
+                </div>               
+            </BlackBox>
                      
-            <BlackBox />
-            <div class="row" id="IntroSection1">
-                We have years of experience working with entrepreneurs just like you. We've learned it's best to start by listening to your story. Then we review your existing brand and offer you options from there. Blow we've listed our most requested packages, but each of these can be tweaked or we can give you a completely custom quote.
+            <div class="row mt-2">
+                <div class="col" id="IntroSection1">
+                    We have years of experience working with entrepreneurs just like you. We've learned it's best to start by listening to your story. Then we review your existing brand and offer you options from there. Blow we've listed our most requested packages, but each of these can be tweaked or we can give you a completely custom quote.       
+                </div>
             </div>
         
             <div class="row mb-3">
                 <div class="col-md">
                     <div id="IntroSection2">
-                        <BlackBox />
-                        <div class="row" >
-                             Together, we are a complete team. You with your industry experience and understanding of your clients, and us with our blend of design, development, and digital marketing expertise.
-                        </div>
+                        <BlackBox>               
+                            Together, we are a complete team. You with your industry experience and understanding of your clients, and us with our blend of design, development, and digital marketing expertise.
+                        </BlackBox>
                     </div>
                 </div>
                 <div class="col-md">
                     <div id="IntroSection3">
-                        <BlackBox />
-                        <div class="row">
+                        <BlackBox>
                             Collaborating with service-based small businesses owners, helping them translate their offline business into an online digital experience.
-                        </div>
+                        </BlackBox>
                     </div>
                 </div>
             </div>

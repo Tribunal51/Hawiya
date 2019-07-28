@@ -17,10 +17,10 @@ class LogoDesignOrdersController extends Controller
      */
     public function index()
     {
-        $logo_design_orders = LogoDesignOrder::get(['id', 'user_id', 'package', 'style', 'color', 'logotype', 'brand_name', 'tagline', 'business_field','description', 'font', 'branding']);
+        $logo_design_orders = LogoDesignOrder::get(['id', 'user_id', 'package', 'style', 'color', 'logotype', 'brand_name', 'tagline', 'business_field','subject', 'description', 'font', 'branding']);
         
         foreach($logo_design_orders as $order) {
-            $order->color = explode('-', $order->color); // In case the string needs to be split into an array of strings
+            $order->color = explode(',', $order->color); // In case the string needs to be split into an array of strings
         }
         return $logo_design_orders;
     }
@@ -43,7 +43,22 @@ class LogoDesignOrdersController extends Controller
      */
     public function store(Request $request)
     {
-        
+        if(!isset($request->user_id) 
+        || !isset($request->package) 
+        || !isset($request->logotype) 
+        || !isset($request->color) 
+        || !isset($request->brand_name) 
+        || !isset($request->business_field) 
+        || !isset($request->description)
+        || !isset($request->font) 
+        || !isset($request->branding)
+        || !isset($request->subject)) {
+            return -2; //echo "Required fields missing"
+        }
+
+        if(!User::find($request->user_id)) {
+            return -3;  // echo 'User not found.';
+        }
         $new_order = new LogoDesignOrder;
         $new_order->user_id = $request->user_id;    //If user not present, then null
         $new_order->package = $request->package;
@@ -67,20 +82,9 @@ class LogoDesignOrdersController extends Controller
         $new_order->description = $request->description;
         $new_order->font = $request->font;
         $new_order->branding = $request->branding;
+        $new_order->subject = $request->subject;
 
-        if(!isset($new_order->user_id) 
-        || !isset($new_order->package) 
-        || !isset($request->logotype) 
-        || !isset($request->color) 
-        || !isset($new_order->brand_name) 
-        || !isset($new_order->business_field) 
-        || !isset($new_order->description)
-        || !isset($new_order->font) 
-        || !isset($new_order->branding)) {
-            return -2; //echo "Required fields missing"
-        } else if(!User::find($new_order->user_id)) {
-            return -3; //echo "User does not exist"
-        } else if($new_order -> save()) {
+        if($new_order -> save()) {
             return $new_order->id;
             //return $new_order->id; //echo order_number 
             //return $new_order_response; //echo {user_id, order_number}

@@ -121,8 +121,7 @@ export default {
         arrowImage(show) {
             return show ? '/storage/icons/down-arrow.png' : '/storage/icons/right-arrow.png';
         },
-        updateComment(comment, id) {
-            
+        updateComment(comment, id) {           
             console.log('Comment Update function', comment,id);
             this.posts.forEach(post => {
                 // console.log(post);

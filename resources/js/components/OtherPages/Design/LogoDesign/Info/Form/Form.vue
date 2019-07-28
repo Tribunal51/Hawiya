@@ -1,16 +1,27 @@
 <template>
-    <div id="cover">
-
+    <div class="Cover">
         <div class="row">
-            <div class="col-md-6"><strong> Fill out your personal information </strong></div>
-            <div class="col-md-6"><hr></div>
+            <div class="col-md-4">
+                <BlackBox>
+                    <h5>Logo Information</h5>
+                </BlackBox>
+            </div>
+            <div class="col-md-8 yellowLineSection">
+
+            </div>
         </div>
+        <div class="row">
+            <div class="col-md mt-2 mb-2">
+                <h5>Fill your brand information</h5>
+            </div>
+        </div>
+        
         <div class="form-group">
             <!-- <label for="brandName">*</label> -->
             <input type="text" 
             class="input-bottom-border" 
             id="brandName" 
-            placeholder="Enter your brand name" 
+            placeholder="BRAND NAME (REQUIRED)" 
             @input="updateForm($event.target.value, 'brand')"
             :value="this.Form.brand"
             required
@@ -22,7 +33,7 @@
             <input 
             type="text" 
             class="input-bottom-border" 
-            placeholder="Tagline (Optional)" 
+            placeholder="TAGLINE (OPTIONAL)" 
             @input="updateForm($event.target.value, 'tagline')"
             :value="this.Form.tagline"
         
@@ -32,7 +43,7 @@
         <div class="form-group">
             <input type="text" 
             class="input-bottom-border" 
-            placeholder="Business Field"  
+            placeholder="BUSINESS FIELD (REQUIRED)"  
             @input="updateForm($event.target.value, 'business_field')"
             :value="this.Form.business_field"
             required
@@ -40,10 +51,21 @@
         </div>
 
         <div class="form-group">
+            <input type="text" 
+            class="input-bottom-border"
+            placeholder="SUBJECT (REQUIRED)" 
+            @input="updateForm($event.target.value, 'subject')"
+            :value="this.Form.subject" 
+            required 
+            />
+
+        </div>
+
+        <div class="form-group">
             <textarea 
             type="text" 
             class="input-bottom-border" 
-            placeholder="Description of your business" 
+            placeholder="DESCRIPTION OF YOUR BUSINESS (REQUIRED)" 
             @input="updateForm($event.target.value, 'description')"
             :value="this.Form.description" 
             required
@@ -53,10 +75,15 @@
 </template>
 
 <script>
+import BlackBox from '../../../../../UI/BlackBox';
+
 export default {
     props: [
         "Form"
     ],
+    components: {
+        BlackBox
+    },
     data() {
         return {
             form: {...this.Form}
@@ -74,7 +101,6 @@ export default {
         updateForm(value, type) {
             switch(type) {
                 case 'brand': this.form.brand = value;
-
                 break;
 
                 case 'tagline': this.form.tagline = value;
@@ -83,8 +109,11 @@ export default {
                 case 'business_field': this.form.business_field = value;               
                 break;
 
-                case 'description': this.form.description = value;                
+                case 'subject': this.form.subject = value;
                 break;
+
+                case 'description': this.form.description = value;                
+                break;  
             }
             this.$emit('form', this.form);
         }
@@ -94,12 +123,9 @@ export default {
 </script>
 
 <style scoped>
-
-    #cover {
+    .Cover {
         text-align: left;
     }
-    input {
-        
-        
-    }
+
+    
 </style>

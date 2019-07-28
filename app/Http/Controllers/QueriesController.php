@@ -50,23 +50,24 @@ class QueriesController extends Controller
         
         if(!isset($request->name) || !isset($request->email) || !isset($request->subject) || !isset($request->message)) {
             return -2;  // echo "Required fields missing"
-        } else {
-            $query = Query::create([
-                'name' => $request->name,
-                'email' => $request->email,
-                'phone' => $request->phone,
-                'subject' => $request->subject,
-                'message' => $request->message
-            ]);
-            
-    
-            if($query) {
-                return $query->id;
-            }
-            else {
-                return -1;
-            }
+        } 
+
+        $query = Query::create([
+            'name' => $request->name,
+            'email' => $request->email,
+            'phone' => $request->phone,
+            'subject' => $request->subject,
+            'message' => $request->message
+        ]);
+        
+
+        if($query) {
+            return $query->id;
         }
+        else {
+            return -1;
+        }
+        
 
         
     }

@@ -1,50 +1,62 @@
 <template>
     <div id="cover">
-        <div class="container">
-            <p> Logo Design/Type</p>
-            <br />
-            <div class="intro">
-                <h3>Choose the design you like</h3>
-                <br />
-                <p>The logo is a pictorial mark which is also called the logo symbol and logo brand. It is used as the identity of the company. The logo of several types. Logo put lives in the company. It is so beautifully designed that the viewers are attracted towards him. The logo for the company is very important.</p>
+        <div class="row mt-4">
+            <div class="col-md-4">
+                <BlackBox>
+                    <h3>{{ this.$store.state.logodesign.branding ? this.$store.state.branding.package : 'Choose the design you like' }}</h3>
+                </BlackBox>
             </div>
 
-
-
-            <div class="checkBoxGroup">
-                <div class="checkBox" v-for="type in types" :key="type.title">
-                    <input 
-                    type="checkbox" 
-                    class="inputCheckBox"
-                    :id="type.title" 
-                    v-model="selectedTypes" 
-                    :value="type.title" 
-                    :disabled="selectedTypes.length >= selectedTypesLimit && selectedTypes.indexOf(type.title) < 0 " />
-                    <label class="checkBoxLabel" :for="type.title"><img :src="type.file" :alt="type.title" class="checkbox-image" /></label>
+            <div class="col-md-8 yellowLineSection">
+                
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md">              
+                <div class="intro">
+                    <p>The logo is a pictorial mark which is also called the logo symbol and logo brand. It is used as the identity of the company. The logo of several types. Logo put lives in the company. It is so beautifully designed that the viewers are attracted towards him. The logo for the company is very important.</p>
                 </div>
             </div>
+        </div>
+            
 
 
 
-            <div class="row">
-                <div class="col-md-8"></div>
-                <div class="col-md-4">
-                    <center>
-                        <v-btn color="success" :disabled="isButtonDisabled()" @click="nextButtonClicked">Next</v-btn>
-                    </center>
-                </div>
+        <div class="checkBoxGroup">
+            <div class="checkBox" v-for="type in types" :key="type.title">
+                <input 
+                type="checkbox" 
+                class="inputCheckBox"
+                :id="type.title" 
+                v-model="selectedTypes" 
+                :value="type.title" 
+                :disabled="selectedTypes.length >= selectedTypesLimit && selectedTypes.indexOf(type.title) < 0 " />
+                <label class="checkBoxLabel" :for="type.title"><img :src="type.file" :alt="type.title" class="checkbox-image" /></label>
             </div>
+        </div>
+
+
+
+        <div class="row">
+            <div class="col-md-8"></div>
+            <div class="col-md-4">
+                <center>
+                    <v-btn color="success" :disabled="isButtonDisabled()" @click="nextButtonClicked">Next</v-btn>
+                </center>
+            </div>
+        </div>
             
             
             
             <!-- <router-link tag="button" class="btn btn-warning" :disabled="isButtonDisabled()">Next</router-link> -->
-        </div>
+        
     </div>
 </template>
 
 <script>
 import Type from './Type.vue';
 import CheckMark from '../../../../UI/CheckMark';
+import BlackBox from '../../../../UI/BlackBox';
 
 export default {
     mounted() {
@@ -56,7 +68,8 @@ export default {
     },
     components: {
         Type,
-        CheckMark
+        CheckMark,
+        BlackBox
     },
     data() {
         return {
@@ -127,9 +140,18 @@ export default {
     
 
     .intro {
-        text-align: center;
+        margin-top: 20px;
     }
 
+    .yellowHR {
+        width: 100%;
+        height: 2px;
+        background-color: #FFDB00;
+    }
+
+    .yellowLineSection {
+        border-bottom: 2px solid #FFDB00;
+    }
 
 
     

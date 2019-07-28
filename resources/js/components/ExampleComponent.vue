@@ -1,8 +1,8 @@
 <template>    
-    <v-app>
-        <div class="Cover">
-            <router-view />
-        </div>
+    <v-app class="Cover" >
+        
+        <router-view />
+        
 
         <page-footer />
 
@@ -57,7 +57,9 @@ export default {
 </script>
 
 <style scoped>
-    
+    .Cover {
+        background-color: white;
+    }
 
     
 
@@ -187,7 +189,7 @@ export default {
         z-index: -1;
     }
 
-    
+
 
     .packageCards {
         /* background-color: green; */
@@ -250,6 +252,10 @@ export default {
     .topBottomBorder {
         border-top: 2px solid black;
         border-bottom: 2px solid black;
+    }
+
+    .yellowLineSection {
+        border-bottom: 2px solid #FFDB00;
     }
 
     

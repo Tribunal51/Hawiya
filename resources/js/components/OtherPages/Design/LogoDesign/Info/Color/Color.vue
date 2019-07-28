@@ -1,7 +1,22 @@
 <template>
     <div id="cover">
-        <div class="row my-2" v-for="(colorcode,color) in colorListTemp" :key="color">
-            <div class="col-sm-2" id="checkboxSection">
+        <div class="row">
+            <div class="col-md-4">
+                <BlackBox>
+                    <h5>Logo Color</h5>
+                </BlackBox>
+            </div>
+            <div class="col-md-8 yellowLineSection">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md mt-2 mb-2">
+                <h5>Choose your brand Color</h5>
+            </div>
+        </div>
+        <div class="rowSection my-2" v-for="(colorcode,color) in colorListTemp" :key="color">
+            <div class="checkmarkSection">
                 <CheckMark>
                     <input  
                     type="checkbox" 
@@ -12,15 +27,16 @@
                     />
                 </CheckMark>                
             </div>
-
-            <div class="col-sm-10 colorSection">
+            <label :for="color" class="colorSection">
                 <div class="row">
                     <div v-for="index in 8" :key="index" class="col-xs shadeSection">
+                        
                         <div class="shade" :style="setBackgroundColor(colorcode, index)">
                         </div>
+                        
                     </div>
                 </div>
-            </div>
+            </label>
             
             <!-- <div v-for="index in 8" :key="index" class="col-xs">
                 <div class="shade" :style="setBackgroundColor(colorcode, index)">
@@ -29,29 +45,29 @@
             
             
         </div>
-        <div class="row my-2">
-            <div class="col-sm-2" id="checkboxSection">
+        <div class="rowSection my-2">
+            <div class="checkmarkSection">
                 <CheckMark>
                     <input 
                     type="checkbox" 
                     :value="noColor" 
                     v-model="colors"
-                    
+                    id="noColor"
                     />
-
                 </CheckMark>
-
             </div>
 
-            <div class="col-sm-10">
+            <label class="noColorSection" for="noColor">
                 <h4>I don't have an idea.</h4>
-            </div>
+            </label>
         </div>
     </div>
 </template>
 
 <script>
+import BlackBox from '../../../../../UI/BlackBox';
 import CheckMark from '../../../../../UI/CheckMark';
+
 export default {
     mounted() {
         // console.log(this.colorListTemp);
@@ -60,7 +76,8 @@ export default {
         // this.colors = this.$store.state.logodesign.color;
     },
     components: {
-        CheckMark
+        CheckMark,
+        BlackBox
     },
     props: [
         "colorList",
@@ -116,20 +133,37 @@ export default {
         margin-top: 5px;
         margin-bottom: 5px;
     }
+
     .shade {
         width: 47px;
         height: 30px;
         border-radius: 35%;
         
     }
+    
+    .rowSection {
+        display: flex;
+
+    }
+
 
     /* .shadeSection {
          width: calc(100% /8);
     } */
 
+    .checkmarkSection {
+        width: 20%;
+    }
+
     .colorSection {
         /* background-color: red; */
-        width: 100%;
+        width: 80%;
+        cursor: pointer;
+    }
+
+    .noColorSection {
+        width: 80%;
+        cursor: pointer;
     }
 
     @media (max-width: 768px) {
@@ -141,6 +175,10 @@ export default {
             width: auto;
         }
     }
+
+    /* @media (max-width: 575px) {
+        
+    } */
 
     
 

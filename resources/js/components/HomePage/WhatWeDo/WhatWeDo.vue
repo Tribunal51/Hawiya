@@ -14,25 +14,24 @@
         <div class="row">
             <div class="col-sm">                
                 <IntroSection>
-                    <BlackBox />
-                    <div class="row" id="IntroSection1">
-                        We have years of experience working with entrepreneurs just like you. We've learned it's best to start by listening to your story. Then we review your existing brand and offer you options from there. Blow we've listed our most requested packages, but each of these can be tweaked or we can give you a completely custom quote.
+                    <div id="IntroSection1">
+                        <BlackBox>                   
+                            We have years of experience working with entrepreneurs just like you. We've learned it's best to start by listening to your story. Then we review your existing brand and offer you options from there. Blow we've listed our most requested packages, but each of these can be tweaked or we can give you a completely custom quote.                   
+                        </BlackBox>
                     </div>
                     <div class="row">
                         <div class="col-md">
                             <div id="IntroSection2">
-                                <BlackBox />
-                                <div class="row">
-                                We believe in every project we take on. Our belief can be seen in our attention to detail and meticulous care which shines through, in every brand we build.
-                                </div>
+                                <BlackBox >                               
+                                    We believe in every project we take on. Our belief can be seen in our attention to detail and meticulous care which shines through, in every brand we build.
+                                </BlackBox>
                             </div>
                         </div>
                         <div class="col-md">
                             <div id="IntroSection3">
-                                <BlackBox />
-                                <div class="row">
-                                We help businesses find a brand experience that's fresh & distinct by providing them with innovative, strategic & creative solutions.
-                                </div>
+                                <BlackBox>                              
+                                    We help businesses find a brand experience that's fresh & distinct by providing them with innovative, strategic & creative solutions.                               
+                                </BlackBox>
                             </div>
                         </div>
                     </div>
@@ -51,10 +50,13 @@
         
         
         <IntroSection>
-            <BlackBox />
-            <h2>Details Matter.</h2>
+            <BlackBox>
+                <h2>Details Matter.</h2>
+            </BlackBox>
             <div class= "row">
-                We focus on every little detail while understanding your core business, which in turn helps us to precisely define your brand's meaning, character and personality. In turn, this helps us to connect all elements of your brand thus leading to a complete brand experience. All made possible by a team bursting with passion to build fine brands.
+                <div class="col">
+                    We focus on every little detail while understanding your core business, which in turn helps us to precisely define your brand's meaning, character and personality. In turn, this helps us to connect all elements of your brand thus leading to a complete brand experience. All made possible by a team bursting with passion to build fine brands.
+                </div>
             </div>
         </IntroSection>
         

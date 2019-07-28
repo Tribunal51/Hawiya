@@ -104,6 +104,10 @@ Vue.component('dashboard', require('./components/OtherPages/Dashboard/Dashboard'
             path: '/design', 
             component: Design,
             props: true,
+            // beforeEnter: (to, from, next) => {
+            //     this.$store.dispatch('resetAllStates');
+            //     next();
+            // },
             children: [
                 {
                     path: 'logo-design',

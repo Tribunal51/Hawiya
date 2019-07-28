@@ -1,6 +1,6 @@
 <template>
     <div class="Cover">
-        <h5>{{ this.package }} / Package </h5>
+        
         <BlackBox>
             <h2> Choose Your Brand Font </h2>
         </BlackBox>

@@ -1,43 +1,56 @@
 <template>
     <div id="cover">
+        <div class="row">
+            <div class="col-md-4">
+                <BlackBox>
+                    <h5>Logo Style</h5>
+                </BlackBox>
+            </div>
+            <div class="col-md-8 yellowLineSection">
+
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md mt-2 mb-2">
+                <h5>Choose your Logo style</h5>
+            </div>
+        </div>
         <div class="row sliderRow" v-for="(value,style) in tempStyles" :key="style">
             
-                <div class="col-sm-3 labelLeft">{{ style.split('_')[0] }}</div>
-                <div class="col-sm-6 slider">
-                   <!-- <input 
-                   type="range" 
-                   min="0" 
-                   max="100" 
-                   class="custom-range" 
-                   id="myRange" 
-                   v-model="tempStyles[style]"
-                   @change="$emit('styles', tempStyles)" />
-                   {{ value }} -->
-                    
-                    
-                    <VSlider
-                        v-model="tempStyles[style]"
-                        thumbLabel 
-                        
-                        min="-100"
-                        max="100"
-                        thumbSize="30"
-                        height="10"
-                        step="20"
-                        
-                        color=#FBC02D
-                        thumbColor=#FBC02D
-                        @change="updateStyles"                       
-                    ></VSlider>
-                        
-                    <!-- <vue-slider 
+            <div class="col-sm-3 labelLeft">{{ style.split('_')[0] | capitalizeFirstLetter }}</div>
+            <div class="col-sm-6 slider">
+                <!-- <input 
+                type="range" 
+                min="0" 
+                max="100" 
+                class="custom-range" 
+                id="myRange" 
+                v-model="tempStyles[style]"
+                @change="$emit('styles', tempStyles)" />
+                {{ value }} -->
+                
+                
+                <VSlider
                     v-model="tempStyles[style]"
-                    v-bind="options" /> -->
-
+                    thumbLabel
+                    min="-100"
+                    max="100"
+                    thumbSize="30"
+                    height="10"
+                    step="10"                      
+                    color=#FBC02D
+                    thumbColor=#FBC02D
+                    @change="updateStyles"                       
+                ></VSlider>
                     
-                                     
-                </div>
-                <div class="col-sm-3 labelRight">{{ style.split('_')[1] }}</div>
+                <!-- <vue-slider 
+                v-model="tempStyles[style]"
+                v-bind="options" /> -->
+
+                
+                                    
+            </div>
+            <div class="col-sm-3 labelRight">{{ style.split('_')[1] | capitalizeFirstLetter }}</div>
                 
             
         </div>
@@ -52,13 +65,14 @@
 import VueSlider from 'vue-slider-component';
 // import 'vue-slider-component/theme/antd.css';
 
-
+import BlackBox from '../../../../../UI/BlackBox';
 import { VSlider } from 'vuetify/lib';
 
 export default {
     components: {
         VSlider,
-        VueSlider
+        VueSlider,
+        BlackBox
     },
     props: [
         "styles",
@@ -70,6 +84,9 @@ export default {
     },
     beforeDestroy() {
         // document.querySelector('#vuetify-style').disabled = true;
+    },
+    filters: {
+        capitalizeFirstLetter: word => word.charAt(0).toUpperCase() + word.slice(1)
     },
     data() {
         return {
@@ -152,10 +169,11 @@ export default {
     @media (max-width:576px) {
         .sliderRow {
             width: 100%;
+            
         }
 
         .slider {
-            width: 60%;
+            width: 80%;
         }
 
         .labelLeft {
@@ -163,7 +181,8 @@ export default {
         }
 
         .labelRight {
-            width: 20%;
+            width: 20%;  
+            display: none;
         }
     }
 

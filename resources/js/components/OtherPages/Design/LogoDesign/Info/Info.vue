@@ -1,37 +1,16 @@
 <template>
   <div id="cover">
     <form @submit="submitButtonClicked">
-      <div class="container">
-        <div class="row">
-          <div class="col-md-11">
-            <!-- <h3>Logo Information</h3>  -->
-          </div>
-
-          <div class="col-md-1">
-            <SubmitButton buttonType="submit" :buttonDisabled="isButtonDisabled()" />
-            <!-- <v-btn color="success" type="submit" :disabled="isButtonDisabled()">Submit</v-btn> -->
-            <!-- <input class="btn btn-warning" type="submit" value="Submit" :disabled="isButtonDisabled()" />  -->
-          </div>
-        </div>
-
         <div class="row">
           <div class="col-xl">
             <div class="row" id="section1">
-              <div class="col">
+              <div class="col-md">
                 <Form v-on:form="updateForm" :Form="assignForm()"/>
                 <!-- <FormInfo :form="info.form" v-on:form="updateForm" /> -->
               </div>
             </div>
             <div class="row">
               <div class="col-md" id="section2">
-                <div class="row">
-                  <div class="col-md-1">
-                    <strong>Style</strong>
-                  </div>
-                  <div class="col-md-11">
-                    <hr>
-                  </div>
-                </div>
                 <Styles :styles="assignStyles()" v-on:styles="updateStyles"/>
                 <!-- <Styles 
                                 :styles="this.$store.state.logodesign.style === null ? info.styles : this.$store.state.logodesign.style" 
@@ -39,24 +18,22 @@
               </div>
             </div>
           </div>
+         
           <div class="col-xl" id="section3">
-            <div class="row">
-              <div class="col-md-1">
-                <strong>Color</strong>
-              </div>
-
-              <div class="col-md-7"></div>
-              <div class="col-md-4">
-                <!-- <button class="btn btn-warning" type="submit" @click="submitButtonClicked">Submit</button> -->
-              </div>
-            </div>
-
             <Color v-on:color="updateColors" :colorList="info.colorList" :color="assignColor()"/>
           </div>
         </div>
         <!-- <ImageUpload v-on:dataurls="updateFileUrls"/> -->
-      </div>
+        <div class="row">
+          <div class="col-md-2">
+            <SubmitButton buttonType="submit" :buttonDisabled="isButtonDisabled()" />
+          </div>
+          <div class="col-md-10">
+          </div>
+        </div>
+      
     </form>
+    
   </div>
 </template>
 
@@ -79,14 +56,14 @@ export default {
       this.info.form = { ...this.$store.state.logodesign.form };
     }
     // window.images = [];
-    // if(this.$store.state.logodesign.style !== null) {
-    //     this.info.styles = {...this.$store.state.logodesign.style};
-    //     console.log('Inside mounted of Info', this.info.styles);
-    // }
-    // if(this.$store.state.logodesign.color !== null) {
-    //     console.log('Color not null', this.$store.state.logodesign.color);
-    //     this.info.color = [...this.$store.state.logodesign.color];
-    // }
+    if(this.$store.state.logodesign.style !== null) {
+        this.info.styles = {...this.$store.state.logodesign.style};
+        console.log('Inside mounted of Info', this.info.styles);
+    }
+    if(this.$store.state.logodesign.color !== null) {
+        console.log('Color not null', this.$store.state.logodesign.color);
+        this.info.color = [...this.$store.state.logodesign.color];
+    }
   },
   components: {
     Form,
@@ -154,6 +131,25 @@ export default {
       this.$store.dispatch("logodesign/setInfo", payload);
       console.log("Final state", this.$store.state.logodesign);
       console.log('Is LogoDesign Valid', this.$store.getters['logodesign/isValid']);
+
+      const dataToBeSent = {
+        user_id: this.$store.state.user_id,
+        branding: this.$store.state.logodesign.branding,
+        package: this.$store.state.logodesign.package,
+        logotype: [...this.$store.state.logodesign.logotype],
+        font: this.$store.state.logodesign.font,
+        style: {...this.$store.state.logodesign.style},
+        color: [...this.$store.state.logodesign.color],
+        brand_name: this.$store.state.logodesign.form.brand,
+        tagline: this.$store.state.logodesign.form.tagline,
+        business_field: this.$store.state.logodesign.form.business_field,
+        subject: this.$store.state.logodesign.form.subject,
+        description: this.$store.state.logodesign.form.description
+      }
+      console.log('DataToBeSent', dataToBeSent);
+      axios.post('http://hawiya.net/api/orders/logo-design', dataToBeSent)
+      .then(res => console.log('Response', res.data))
+      .catch(error => console.log(error.response));
       //window.location.href = "/confirm-order";
 
       //   if (this.$store.state.user_id === -2) {
@@ -223,21 +219,7 @@ export default {
       //     // console.log(localStorage);
       //     // console.log(sessionStorage);
 
-      //     //this.$store.dispatch('logodesign/resetState');
       //   }
-
-      //   function getBase64(file) {
-      //     var reader = new FileReader();
-      //     reader.readAsDataURL(file);
-      //     reader.onload = function() {
-      //       console.log(reader.result);
-      //     };
-      //     reader.onerror = function(error) {
-      //       console.log("Error: ", error);
-      //     };
-      //   }
-      //   var file = document.querySelector('#files > input[type="file"]').files[0];
-      //   getBase64(file);
     }
   },
   data() {
@@ -257,7 +239,8 @@ export default {
           brand: "",
           tagline: "",
           business_field: "",
-          description: ""
+          description: "",
+          subject: ""
         },
         colorList: {
           Red: "red",
@@ -281,28 +264,28 @@ export default {
 </script>
 
 <style scoped>
-#cover {
-  padding-bottom: 30px;
-  font-family: "LatoRegular", sans-serif;
-}
+  #cover {
+    padding-bottom: 30px;
+    font-family: "LatoRegular", sans-serif;
+  }
 
-#section1 {
-  height: 50%;
+  #section1 {
+    height: 50%;
 
-  border-right: 1px solid lightgray;
-}
+    /* border-right: 1px solid lightgray; */
+  }
 
-#section2 {
-  height: 50%;
+  #section2 {
+    height: 50%;
 
-  border-right: 1px solid lightgray;
-}
+    /* border-right: 1px solid lightgray; */
+  }
 
-#section3 {
-  height: 100%;
-}
+  #section3 {
+    height: 100%;
+  }
 
-.floatRight {
-  float: right;
-}
+  .floatRight {
+    float: right;
+  }
 </style>

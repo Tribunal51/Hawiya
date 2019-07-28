@@ -23,11 +23,17 @@ export default {
         padding-right: 27%;
         padding-bottom: 40px;
         font-size: 1.3rem;
-
-
     }
 
-    @media(max-width: 800px) {
+    @media(max-width: 349px) {
+        .introSections {
+            padding-left: 5px;
+            padding-right: 5px;
+            font-size: 0.8rem;
+        }
+    }
+
+    @media(min-width: 350px) and (max-width: 800px) {
         .introSections {
             width: 100% !important;
             padding-left: 20px;

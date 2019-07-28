@@ -123,10 +123,6 @@ export default {
 	}
 
 	
-	.wrapper:hover {
-		/* position: relative; */
-		
-	}
 
 	.text-center {
 		width: 100%;
@@ -182,9 +178,7 @@ export default {
 
 	}
 
-	.cardCoverImage:hover {
-		/* opacity: 0.3; */
-	}
+
 	
 
 	
