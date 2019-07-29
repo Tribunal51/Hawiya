@@ -17,7 +17,7 @@
                 <h5>{{ this.$store.state.logodesign.package }} / Package</h5>
             </div> -->
 
-        <BlackBox>
+        <!-- <BlackBox>
             <div class="row">
                 <div class="col headerSection">
                     <h2> {{ this.$store.state.logodesign.branding ? 'Branding' : 'Logo Design' }} </h2> 
@@ -29,7 +29,11 @@
                     <strong> {{ this.$store.state.logodesign.branding ? this.$store.state.branding.package : this.$store.state.logodesign.package | capitalizeFirstLetter }} / Package </strong>
                 </div>
             </div>
-        </BlackBox>    
+        </BlackBox>    -->
+        <Header 
+            :title="getHeaderInfo('title')"
+            :text="getHeaderInfo('text')"
+        /> 
           
         <router-view />
             
@@ -42,7 +46,7 @@ import SecondaryNavbar from '../../../UI/SecondaryNavbar.vue';
 import LogoPackage from './LogoPackage/LogoPackage.vue';
 import BlackBox from '../../../UI/BlackBox.vue';
 import IntroSection from '../../../UI/IntroSection.vue';
-
+import Header from '../../../UI/Header.vue';
 
 export default {
     data() {
@@ -60,20 +64,13 @@ export default {
                 name: 'brandingpackage'
             });
         }
-        if(this.$store.state.logodesign.branding) {
-            headerInfo = "Branding";
-            packageInfo = this.$store.state.branding.package;
-        }
-        else {
-            headerInfo = "Logo Design";
-            packageInfo = this.$store.state.logodesign.package;
-        }
         
     },
     components: {
         SecondaryNavbar,
         LogoPackage,
-        BlackBox
+        BlackBox,
+        Header
     },
     data() {
         return {
@@ -82,7 +79,21 @@ export default {
         } 
     },
     methods: {
-        
+        getHeaderInfo(option) {
+            if(option === 'title') {
+                return this.$store.state.logodesign.branding ? 'Branding' : 'Logo Design';
+            }
+            if(option === 'text') {
+                let packageName = this.$store.state.logodesign.package;
+                // if(packageName) {
+                //     packageName = this.$options.filters.capitalizeFirstLetter(packageName);
+                // }
+                if(!packageName) {
+                    packageName = '';
+                }
+                return packageName + ' / Package';
+            }
+        }
     },
     watch: {
         branding: function(newValue, oldValue) {
@@ -104,8 +115,6 @@ export default {
        width: 100%;
     }
 
-    .headerSection {
-        font-family: 'LatoBold', sans-serif;
-    }
+
 
 </style>

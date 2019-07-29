@@ -1,39 +1,45 @@
 <template>
     <div class="Cover">
-        <div class="row">
-            <h5>Brief</h5>
-        </div>
-        <BlackBox />
+        <Header 
+            title="Packaging" 
+            text="Brief"
+            :bottomblackbox="true"
+        />
+        
         <div v-show="!productSettings">
-            <div class="row grayContainer mt-2 mb-2">
-                <div class="col-md flex-container-align-vertical">
-                    <div class="product" v-for="product in products" :key="product.id">
-                        
-                        <label class="yellowCheckBox">
-                            <input type="checkbox" :value="product.name" :id="product.name" v-model="selectedNames" disabled hidden   />
-                            <span></span>
-                        </label>
-                        <label :for="product.name">
-                            <div class="flex-container-align-horizontal">
-                                {{ product.name }}
-                                <img v-if="isProductModified(product.name)" src="/storage/question-mark.png" class="modified" alt="modified" />
+            <div class="row mt-2 mb-2">
+                <div class="col grayContainer">
+                    <div class="row">
+                        <div class="col-md flex-container-align-vertical">
+                            <div class="product" v-for="product in products" :key="product.id">
+                                
+                                <label class="yellowCheckBox">
+                                    <input type="checkbox" :value="product.name" :id="product.name" v-model="selectedNames" disabled hidden   />
+                                    <span></span>
+                                </label>
+                                <label :for="product.name">
+                                    <div class="flex-container-align-horizontal">
+                                        {{ product.name }}
+                                        <img v-if="isProductModified(product.name)" src="/storage/icons/question-mark.png" class="modified" alt="modified" />
 
+                                    </div>
+                                </label>
+
+
+                                <!-- <input type="checkbox" :value="product.name" :id="product.name" v-model="selectedNames" />
+                                <label :for="product.name">{{ product.name }}</label>  -->
+                                                
                             </div>
-                        </label>
-
-
-                        <!-- <input type="checkbox" :value="product.name" :id="product.name" v-model="selectedNames" />
-                        <label :for="product.name">{{ product.name }}</label>  -->
-                                        
-                    </div>
-                    
-                </div>
-                <div class="col-md flex-container-align-center">
-                    <div class="checkoutSection">
-                        <Cost 
-                            :products="selectedProducts" 
-                            v-on:cost="updateCost"
-                        />
+                            
+                        </div>
+                        <div class="col-md flex-container-align-center">
+                            <div class="checkoutSection">
+                                <Cost 
+                                    :products="selectedProducts" 
+                                    v-on:cost="updateCost"
+                                />
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -65,13 +71,15 @@ import BlackBox from '../../../../UI/BlackBox';
 import Cost from './Cost';
 import ProductSettings from '../ProductSettings/ProductSettings';
 import SubmitButton from '../../../../UI/SubmitButton';
+import Header from '../../../../UI/Header';
 
 export default {
     components: {
         BlackBox,
         Cost,
         ProductSettings,
-        SubmitButton
+        SubmitButton,
+        Header
     },
     data() {
         return {
@@ -192,6 +200,9 @@ export default {
         position: relative;
         z-index: -9999;
     } */
+
+    
+
 
     
 

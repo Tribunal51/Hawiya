@@ -1,6 +1,6 @@
 <template>
     <div id="cover">
-        <div class="row">
+        <!-- <div class="row">
             <div class="col-md-4">
                 <BlackBox>
                     <h5>Logo Style</h5>
@@ -9,7 +9,8 @@
             <div class="col-md-8 yellowLineSection">
 
             </div>
-        </div>
+        </div> -->
+        <SubHeader><h5>Logo Style</h5></SubHeader>
         <div class="row">
             <div class="col-md mt-2 mb-2">
                 <h5>Choose your Logo style</h5>
@@ -67,12 +68,14 @@ import VueSlider from 'vue-slider-component';
 
 import BlackBox from '../../../../../UI/BlackBox';
 import { VSlider } from 'vuetify/lib';
+import SubHeader from '../../../../../UI/SubHeader';
 
 export default {
     components: {
         VSlider,
         VueSlider,
-        BlackBox
+        BlackBox,
+        SubHeader
     },
     props: [
         "styles",

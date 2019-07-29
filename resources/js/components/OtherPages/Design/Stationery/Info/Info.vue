@@ -1,6 +1,6 @@
 <template>
     <div class="Cover">
-        <p> {{ this.package }} / Package</p>
+        <!-- <p> {{ this.package }} / Package</p>
 
         <div class="row">
             <div class="col-md-3">
@@ -9,7 +9,10 @@
                 </BlackBox>
             </div>
             <div class="col-md-9 borderBottomYellow"></div>
-        </div>
+        </div> -->
+        <SubHeader>
+            <h2> {{ this.$store.state.stationery.package }}</h2>
+        </SubHeader>
         <form @submit="formSubmitted">
             <Post 
                 v-on:file="updateFile"
@@ -27,13 +30,15 @@ import ImageUpload from '../../../../UI/ImageUpload';
 import Post from '../../../../UI/Post';
 import BlackBox from '../../../../UI/BlackBox';
 import SubmitButton from '../../../../UI/SubmitButton';
+import SubHeader from '../../../../UI/SubHeader';
 
 export default {
     components: {
         ImageUpload,
         Post,
         BlackBox,
-        SubmitButton
+        SubmitButton,
+        SubHeader
     },
     data() {
         return {

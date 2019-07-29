@@ -20,6 +20,7 @@ const mutations = {
         Object.assign(state, initialState);
     },
     setPackage: (state, payload) => {
+        console.log('Inside branding/setPackage', payload);
         state.package = payload.package;
         state.price = payload.price;
     },

@@ -1,8 +1,10 @@
 <template>
     <div class="Cover">
-        <BlackBox>
-            We bring you premium stationery design solutions that will help you put your brands in the limelight. Experienced designers and sonsultants are always at your disposal to make things happen exactly the way you want, or even better!
-        </BlackBox>
+        <div class="row">
+            <div class="col">
+                We bring you premium stationery design solutions that will help you put your brands in the limelight. Experienced designers and consultants are always at your disposal to make things happen exactly the way you want, or even better!
+            </div>
+        </div>
         <div class="card-group packageCards">
             <Card v-for="card in cards" :key="card.name" :card="card">
                 <OrderButton :buttonClicked="() => buttonClicked(card)" />
@@ -28,6 +30,7 @@ export default {
             cards: [
                 {
                     title: 'FAST TRACK',
+                    package: 'Fast Track',
                     old_price: 150,
                     new_price: 100,
                     offers: [
@@ -38,6 +41,7 @@ export default {
                 },
                 {
                     title: 'BASIC',
+                    package: 'Basic',
                     old_price: 350,
                     new_price: 200,
                     offers: [
@@ -50,6 +54,7 @@ export default {
                 },
                 {
                     title: 'ADVANCED',
+                    package: 'Advanced',
                     old_price: 500,
                     new_price: 300,
                     offers: [

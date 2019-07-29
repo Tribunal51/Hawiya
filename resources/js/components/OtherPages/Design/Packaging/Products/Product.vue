@@ -1,13 +1,20 @@
 <template>
-    <div class="Cover">         
+    <label class="Cover" :for="product.name">       
+         
+        <!-- <label :style="imageStyle" :for="product.name">          
+            <slot name="edit"></slot>                
+        </label> -->
+
         <div :style="imageStyle">
-            <slot name="edit"></slot>            
+            <slot name="edit"></slot>
         </div>
+        
         <div class="label">
             <slot></slot>  
             <slot name="label"></slot>
         </div>
-    </div>
+
+    </label>
 </template>
 
 <script>
@@ -19,6 +26,8 @@ export default {
         imageStyle() {
             return {
                 'height': '80%',
+                'width': '100%',
+                'cursor': 'pointer',
                 'background':'url('+this.product.image+') no-repeat center'
             };
         }
@@ -46,6 +55,7 @@ export default {
 
     .label {
         height: 20%;
+        width: 100%;
         background-color: lightgray;
         text-align: center;
     }

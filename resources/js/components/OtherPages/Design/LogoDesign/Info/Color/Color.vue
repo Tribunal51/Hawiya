@@ -1,6 +1,7 @@
 <template>
     <div id="cover">
-        <div class="row">
+        <SubHeader><h5>Logo Color</h5></SubHeader>
+        <!-- <div class="row">
             <div class="col-md-4">
                 <BlackBox>
                     <h5>Logo Color</h5>
@@ -9,7 +10,7 @@
             <div class="col-md-8 yellowLineSection">
 
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-md mt-2 mb-2">
                 <h5>Choose your brand Color</h5>
@@ -67,6 +68,7 @@
 <script>
 import BlackBox from '../../../../../UI/BlackBox';
 import CheckMark from '../../../../../UI/CheckMark';
+import SubHeader from '../../../../../UI/SubHeader';
 
 export default {
     mounted() {
@@ -77,7 +79,8 @@ export default {
     },
     components: {
         CheckMark,
-        BlackBox
+        BlackBox,
+        SubHeader
     },
     props: [
         "colorList",

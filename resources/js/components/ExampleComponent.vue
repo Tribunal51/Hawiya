@@ -254,9 +254,7 @@ export default {
         border-bottom: 2px solid black;
     }
 
-    .yellowLineSection {
-        border-bottom: 2px solid #FFDB00;
-    }
+    
 
     
 </style>

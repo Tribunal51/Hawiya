@@ -62,6 +62,9 @@ export default {
                     return ({price: sum.price+product.price})
                 }, { price: 0}).price;               
             } 
+            if(sum > 0) {
+                this.$emit('cost', sum);
+            }
             return sum;
             
         }

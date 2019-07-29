@@ -1,8 +1,10 @@
 <template>
     <div class="Cover">
-        <BlackBox>
-            Our social media packages for small business can help you utilize social media marketing and take advantage of the many benefits social networks have to offer to businesses.
-        </BlackBox>
+        <div class="row">
+            <div class="col">
+                Our social media packages for small business can help you utilize social media marketing and take advantage of the many benefits social networks have to offer to businesses.
+            </div>
+        </div>      
         <div class="card-group packageCards">
             <Card v-for="card in cards" :card="card" :key="card.title">
                 <OrderButton :buttonClicked="() => orderButtonClicked(card)" />
@@ -31,6 +33,7 @@ export default {
             cards: [
                 {
                     title: 'FAST TRACK',
+                    package: 'Fast Track',
                     old_price: 100,
                     new_price: 50,
                     posts: 1,
@@ -42,6 +45,7 @@ export default {
                 },
                 {
                     title: 'BASIC',
+                    package: 'Basic',
                     old_price: 400,
                     new_price: 150,
                     posts: 4,
@@ -53,6 +57,7 @@ export default {
                 },
                 {
                     title: 'ADVANCED',
+                    package: 'Advanced',
                     old_price: 800,
                     new_price: 250,
                     posts: 8,
@@ -68,7 +73,7 @@ export default {
     methods: {
         orderButtonClicked(card) {
             let payload = {
-                package: card.title,
+                package: card.package,
                 posts: card.posts,
                 price: card.new_price
             };

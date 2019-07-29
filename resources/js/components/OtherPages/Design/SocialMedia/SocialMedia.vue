@@ -1,18 +1,33 @@
 <template>
     <div class="Cover">
-        <BlackBox>
+        <!-- <BlackBox>
             <h2>Social Media</h2>
-        </BlackBox>
+        </BlackBox> -->
+        <Header 
+            title="Social Media" 
+            :text="getHeaderInfo()"
+        />
         <router-view />
     </div>
 </template>
 
 <script>
 import BlackBox from '../../../UI/BlackBox';
+import Header from '../../../UI/Header';
 
 export default {
     components: {
-        BlackBox
+        BlackBox,
+        Header
+    },
+    methods: {
+        getHeaderInfo() {
+            let packageName = this.$store.state.socialmedia.package;
+            if(!packageName) {
+                packageName = '';
+            }
+            return packageName + ' / Package';
+        }
     }
 }
 </script>

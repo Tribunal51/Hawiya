@@ -5,9 +5,9 @@
             <slot name="packagingText"></slot>
         </div> -->
         
-        <BlackBox>
+        <!-- <BlackBox>
             <h2>Packaging</h2>
-        </BlackBox>
+        </BlackBox> -->
         
         <router-view/>
     </div>
@@ -15,10 +15,12 @@
 
 <script>
 import BlackBox from '../../../UI/BlackBox';
+import Header from '../../../UI/Header';
 
 export default {
     components: {
-        BlackBox
+        BlackBox,
+        Header
     },
     data() {
         return {

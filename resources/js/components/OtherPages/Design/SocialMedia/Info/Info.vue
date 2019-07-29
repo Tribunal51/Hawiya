@@ -1,14 +1,18 @@
 <template>
     <div class="Cover">
-        <p>{{ this.package }} / Package</p>
-        <div class="row">
+        
+        <!-- <div class="row">
             <div class="col-md-3">
                 <BlackBox>
                     <h3>{{ this.package }}</h3>
                 </BlackBox>
             </div>
             <div class="col-md-9 borderBottomYellow"></div>
-        </div>
+        </div> -->
+
+        <SubHeader>
+            <h3>{{ this.$store.state.socialmedia.package }}</h3>
+        </SubHeader>
 
         <form @submit="formSubmit">
             <div class="postsSection">
@@ -70,6 +74,7 @@ import ImageUpload from '../../../../UI/ImageUpload';
 import Post from '../../../../UI/Post';
 import BlackBox from '../../../../UI/BlackBox';
 import SubmitButton from '../../../../UI/SubmitButton';
+import SubHeader from '../../../../UI/SubHeader';
 
 export default {
     mounted() {
@@ -96,7 +101,8 @@ export default {
         ImageUpload,
         BlackBox,
         Post,
-        SubmitButton
+        SubmitButton,
+        SubHeader
     },
     data() {
         return {

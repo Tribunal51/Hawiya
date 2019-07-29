@@ -1,12 +1,15 @@
 <template>
     <div class="Cover">
-        <BlackBox>
+        <Header 
+            title = "Promotional" 
+            text = "Design Your Promotional Items"
+        />
+        <!-- <BlackBox>
             <h2>Promotional</h2>
         </BlackBox>
         <div class="row">
             <h4>Design your Promotional Items</h4>
-        </div>
-        <BlackBox />
+        </div> -->
         
         <div class="row grayContainer mt-2 mb-2">
             <div class="col-md flex-container">
@@ -54,12 +57,14 @@ import BlackBox from '../../../UI/BlackBox';
 import SubmitButton from '../../../UI/SubmitButton';
 import Cost from './Cost';
 import { store } from './store.js';
+import Header from '../../../UI/Header';
 
 export default {
     components: {
         BlackBox,
         Cost,
-        SubmitButton
+        SubmitButton,
+        Header
     },
     data() {
         return {

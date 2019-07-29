@@ -1,8 +1,11 @@
 <template>
     <div class="Cover">
-        <BlackBox>
-            As much as effective branding design is an art, it's also a clearly defined science. In fact, it's a topic that has been thoroughly studied by countless researchers over the past several decades.
-        </BlackBox>
+        <div class="row">
+            <div class="col">
+                As much as effective branding design is an art, it's also a clearly defined science. In fact, it's a topic that has been thoroughly studied by countless researchers over the past several decades.
+            </div>
+        </div>
+
         <div class="card-group packageCards">
             <Card v-for="card in cards" :key="card.title" :card="card">
                 <OrderButton
@@ -32,6 +35,7 @@ export default {
             cards: [
                 {
                     title: 'Brand Binder : A',
+                    package: 'Brand Binder: A',
                     old_price: 600,
                     new_price: 400,
                     header: 'YOU HAVE LOGO AND YOU NEED ONLY BRANDING',
@@ -44,6 +48,7 @@ export default {
                 },
                 {
                     title: 'Personal Branding Package',
+                    package: 'Personal Branding',
                     old_price: 850,
                     new_price: 600,
                     offers: [
@@ -56,6 +61,7 @@ export default {
                 },
                 {
                     title: 'Premium Branding Package',
+                    package: 'Premium Branding',
                     old_price: 1500,
                     new_price: 990,
                     offers: [
@@ -77,10 +83,10 @@ export default {
     methods: {
         orderButtonClicked(card) {
             let payload = {
-                package: card.title,
+                package: card.package,
                 price: card.new_price
             };
-            if(card.title === this.packages[0]) {
+            if(card.title === this.cards[0].title) {
                 this.$store.dispatch('branding/setPackage', payload);
                 this.$router.push({
                     name: 'brandinginfo'

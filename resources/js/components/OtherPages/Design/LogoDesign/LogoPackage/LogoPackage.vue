@@ -11,9 +11,12 @@
                     
                 /> -->
                 
-                <BlackBox>
-                    We believe logos speak louder than anything and that's why, with pristine designs, we produce stirring identities for brands all around the world.
-                </BlackBox>
+                <div class="row">
+                    <div class="col">
+                        We believe logos speak louder than anything and that's why, with pristine designs, we produce stirring identities for brands all around the world.
+                    </div>
+                </div>
+                
                 <!-- <div id="intro">
                     <h3>We offer Custom Pricing <br />
                     Because every project is different.</h3>
@@ -62,6 +65,7 @@ export default {
             cards: [
                     {
                         title: "FAST TRACK",
+                        package: 'Fast Track',
                         old_price: 150,
                         new_price: 100,
                         offers: [
@@ -73,6 +77,7 @@ export default {
                     },
                     {
                         title: "BASIC",
+                        package: 'Basic',
                         old_price: 200,
                         new_price: 350,
                         offers: [
@@ -84,6 +89,7 @@ export default {
                     },
                     {
                         title: "ADVANCED",
+                        package: 'Advanced',
                         old_price: 300,
                         new_price: 500,
                         offers: [
@@ -113,7 +119,7 @@ export default {
     methods: {
         orderButtonClicked(card) {
             let payload = {
-                package: card.title,
+                package: card.package,
                 price: card.new_price
             }
             this.$store.dispatch('logodesign/setPackage',payload);

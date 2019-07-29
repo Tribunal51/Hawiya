@@ -1,17 +1,20 @@
 <template>
     <div class="Cover">
-        
-        <BlackBox>
+        <SubHeader :hideYellowLine="true"><h3>Choose Your Brand Font</h3></SubHeader>
+            
+        <!-- <BlackBox>
             <h2> Choose Your Brand Font </h2>
-        </BlackBox>
-        <div class="Intro">
-            <p>
-                Used correctly, typography can convey a certain mood or feeling. The audience needs to understand what message you are trying to send and be interested in ti. Having the appropriate font sets the tone for your Branding before you even begin.
-            </p>
+        </BlackBox> -->
+        <div class="row Intro mt-2">
+            <div class="col-md">
+                <p>
+                    Used correctly, typography can convey a certain mood or feeling. The audience needs to understand what message you are trying to send and be interested in ti. Having the appropriate font sets the tone for your Branding before you even begin.
+                </p>
 
-            <p>
-                Using fonts that are clean and easy to read are key to any Brand. If fonts are too small or cramped together, your Brand will be immediately ignored. It is fun to have a cool and complex Logo, but the audience should be able to easily comprehend what your Logo is saying.
-            </p>
+                <p>
+                    Using fonts that are clean and easy to read are key to any Brand. If fonts are too small or cramped together, your Brand will be immediately ignored. It is fun to have a cool and complex Logo, but the audience should be able to easily comprehend what your Logo is saying.
+                </p>
+            </div>
         </div>
 
         <div class="checkBoxGroup">
@@ -47,12 +50,12 @@
                     type="radio" 
                     value="No Font Selected" 
                     v-model="selectedFont"
-                        />
+                    id="noIdea"   />
                 </CheckMark>
             </div>
-            <div class="col-sm-11">
+            <label for="noIdea" class="col-sm-11 noIdeaSection">
                 <h4>I don't have an idea.</h4>
-            </div>
+            </label>
         </div>
 
         <div class="row">
@@ -71,12 +74,13 @@
 <script>
 import CheckMark from '../../../../UI/CheckMark';
 import BlackBox from '../../../../UI/BlackBox';
-
+import SubHeader from '../../../../UI/SubHeader';
 
 export default {
     components: {
         CheckMark,
-        BlackBox
+        BlackBox,
+        SubHeader
     },
     mounted() {
         if(this.$store.state.logodesign.font !== null) {
@@ -175,6 +179,9 @@ export default {
         border-bottom: solid #FFDB00 2px;
     }
 
+    .noIdeaSection {
+        cursor: pointer;
+    }
     
     
 </style>

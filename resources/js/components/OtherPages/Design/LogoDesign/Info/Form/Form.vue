@@ -1,6 +1,7 @@
 <template>
     <div class="Cover">
-        <div class="row">
+        <SubHeader><h5>Logo Information</h5></SubHeader>
+        <!-- <div class="row">
             <div class="col-md-4">
                 <BlackBox>
                     <h5>Logo Information</h5>
@@ -9,7 +10,7 @@
             <div class="col-md-8 yellowLineSection">
 
             </div>
-        </div>
+        </div> -->
         <div class="row">
             <div class="col-md mt-2 mb-2">
                 <h5>Fill your brand information</h5>
@@ -76,13 +77,15 @@
 
 <script>
 import BlackBox from '../../../../../UI/BlackBox';
+import SubHeader from '../../../../../UI/SubHeader';
 
 export default {
     props: [
         "Form"
     ],
     components: {
-        BlackBox
+        BlackBox,
+        SubHeader
     },
     data() {
         return {

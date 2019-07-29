@@ -1,10 +1,14 @@
 <template>
     <div class="Cover">
         
-        <div class="row">
+        <Header 
+            title="Packaging" 
+            :text="getHeaderInfo()"
+        />
+        <!-- <div class="row">
             <h5>{{ this.productSettings ? this.editProduct.name : 'Select your Packaging' }}</h5>
         </div>           
-        <BlackBox />
+        <BlackBox /> -->
             
         <div v-show="!productSettings">
             <div class="flex-container">
@@ -34,12 +38,13 @@
         </div>
 
         <div class="row" v-if="productSettings">
-            <ProductSettings 
-                :product="editProduct" 
-                v-on:close="productSettings=false"
-                v-on:product="updateProduct"
-            />
-            
+            <div class="col">
+                <ProductSettings 
+                    :product="editProduct" 
+                    v-on:close="productSettings=false"
+                    v-on:product="updateProduct"
+                />
+            </div>
         </div>
         
        
@@ -52,12 +57,14 @@ import Product from './Product';
 import ProductSettings from '../ProductSettings/ProductSettings';
 import BlackBox from '../../../../UI/BlackBox';
 import { store, removeKeyFromObjectsArray } from '../store.js';
+import Header from '../../../../UI/Header';
 
 export default {
     components: {
         Product,
         ProductSettings,
-        BlackBox
+        BlackBox,
+        Header
     },
     mounted() {
         
@@ -78,6 +85,14 @@ export default {
         }
     },
     methods: {
+        getHeaderInfo() {
+            if(this.productSettings) {
+                return this.editProduct.name;
+            }
+            else {
+                return "Select your Packaging";
+            }
+        },
         updateProduct(changedProduct) {
             this.selectedProducts = this.selectedProducts.map(currentProduct => {
                 if(currentProduct.name === changedProduct.name) {

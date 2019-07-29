@@ -1,23 +1,36 @@
 <template>
     <div class="Cover">
-        <BlackBox>
-            <h2>Branding</h2>
-        </BlackBox>
+        <Header 
+            title="Branding" 
+            :text="getHeaderInfo()"
+        />
         <router-view />
     </div>
 </template>
 
 <script>
 import BlackBox from '../../../UI/BlackBox';
+import Header from '../../../UI/Header';
+
 export default {
     components: {
-        BlackBox
+        BlackBox,
+        Header
     },
     mounted() {
         if(this.$route.fullPath === '/design/branding') {
             this.$router.push({
                 name: 'brandingpackage'
             });
+        }
+    },
+    methods: {
+        getHeaderInfo() {
+            let packageName = this.$store.state.branding.package;
+            if(!packageName) {
+                packageName = '';
+            }
+            return packageName + ' / Package';
         }
     }
 }

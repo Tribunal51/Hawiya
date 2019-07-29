@@ -1,6 +1,6 @@
 <template>
     <div id="cover">
-        <div class="row mt-4">
+        <!-- <div class="row mt-4">
             <div class="col-md-4">
                 <BlackBox>
                     <h3>{{ this.$store.state.logodesign.branding ? this.$store.state.branding.package : 'Choose the design you like' }}</h3>
@@ -10,7 +10,10 @@
             <div class="col-md-8 yellowLineSection">
                 
             </div>
-        </div>
+        </div> -->
+        <SubHeader :hideYellowLine="false">
+            <h3>{{ this.$store.state.logodesign.branding ? this.$store.state.logodesign.package : 'Choose the design you like' }}</h3>        
+        </SubHeader>
         <div class="row">
             <div class="col-md">              
                 <div class="intro">
@@ -57,6 +60,7 @@
 import Type from './Type.vue';
 import CheckMark from '../../../../UI/CheckMark';
 import BlackBox from '../../../../UI/BlackBox';
+import SubHeader from '../../../../UI/SubHeader';
 
 export default {
     mounted() {
@@ -69,7 +73,8 @@ export default {
     components: {
         Type,
         CheckMark,
-        BlackBox
+        BlackBox,
+        SubHeader
     },
     data() {
         return {

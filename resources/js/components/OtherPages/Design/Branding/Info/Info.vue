@@ -1,22 +1,28 @@
 <template>
     <div class="Cover">
-        <p>{{ this.package }} / Package</p>
-        <BlackBox>
+        <!-- <BlackBox>
             <div class="col-md-3">
                 <h2> {{ this.package }}</h2>
             </div>
             <div class="col-md-9 borderBottomYellow">
 
             </div>
-        </BlackBox>
+        </BlackBox> -->
+        <SubHeader>
+            <h2>{{ this.$store.state.branding.package }}</h2>
+        </SubHeader>
         <div class="row mt-3">
             <div class="col-md textSection">
-                <h5>YOU WILL GET </h5>
-                    <div class="features">
-                        <p v-for="feature in features" :key="feature">
-                            - {{ feature }}
-                        </p>
+                <div class="row">
+                    <h5 class="col">YOU WILL GET </h5>
+                </div>
+                <div class="row">
+                    <div class="col">
+                        <div class="row" v-for="feature in features" :key="feature">
+                            <p class="col pl-3">- {{ feature }}</p>
+                        </div>
                     </div>
+                </div>
 
             </div>
             <div class="col-md inputSection">
@@ -60,6 +66,7 @@ import ImageUpload from '../../../../UI/ImageUpload';
 import BlackBox from '../../../../UI/BlackBox';
 import TextArea from '../../../../UI/TextArea';
 import SubmitButton from '../../../../UI/SubmitButton';
+import SubHeader from '../../../../UI/SubHeader';
 //import * from 'vuetify/lib';
 // import { VBtn } from 'vuetify';
 
@@ -68,7 +75,8 @@ export default {
         ImageUpload,
         BlackBox,
         TextArea,
-        SubmitButton
+        SubmitButton,
+        SubHeader
     },
     data() {
         return {
@@ -155,7 +163,7 @@ export default {
     
 
     .textSection {
-        padding: 5px;
+        padding-top: 5px;
     }
 
     .inputSection {
@@ -163,9 +171,9 @@ export default {
         height: 100%;
     }
 
-    .features {
+    /* .features {
         padding-left: 10px;
-    }
+    } */
 
     .input-textarea-gray {
         margin-top: 10px;
