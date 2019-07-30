@@ -75,6 +75,7 @@ export default {
     },
     methods: {
         buttonClicked(link) {
+            this.$store.dispatch('resetAllStates');
             this.$router.push(link);
             if(this.differentPage) {
                location.reload();

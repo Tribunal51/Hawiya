@@ -8,7 +8,7 @@
         <div class="row Intro mt-2">
             <div class="col-md">
                 <p>
-                    Used correctly, typography can convey a certain mood or feeling. The audience needs to understand what message you are trying to send and be interested in ti. Having the appropriate font sets the tone for your Branding before you even begin.
+                    Used correctly, typography can convey a certain mood or feeling. The audience needs to understand what message you are trying to send and be interested in it. Having the appropriate font sets the tone for your Branding before you even begin.
                 </p>
 
                 <p>
@@ -146,6 +146,9 @@ export default {
 
 <style scoped>
 
+    .checkBoxGroup {
+        display: flex;
+    }
 
     .checkBox {
         /* background-color: red; */
@@ -153,8 +156,9 @@ export default {
         
         height: 200px !important; */
         /* flex-grow: 1; */
-        width: 200px !important;
-        height: 200px !important;
+        /* width: 200px !important;
+        height: 200px !important; */
+        flex: 1 1 auto;
     }
 
     .checkBox img:hover {

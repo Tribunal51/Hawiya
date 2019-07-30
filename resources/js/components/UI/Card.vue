@@ -9,7 +9,7 @@
         </div>
     </div> -->
 
-    <div class="card text-black bg-light mb-3" id="Cover">
+    <div class="card sm text-black bg-light mb-3 packageCard">
         <!-- <div class="card-header custom-background img-fit">
             <img class="img img-responsive" src="/storage/shortlogo.png" alt="hawiyaBrandLogo" />
         </div> -->
@@ -35,7 +35,10 @@
                                 </div>
                             </div>
                             <div v-for="offer in card.offers" v-bind:key="offer" class="offer">
-                                <strong>{{ offer }}</strong>                          
+                                {{ offer }}                       
+                            </div>
+                            <div class="comment" v-if="card.comment">
+                                {{ card.comment }}
                             </div>
                             <br />
                             Packages begin at ${{ card.new_price }}
@@ -75,7 +78,7 @@
         <div class="secondRow">
             <div class="alignBottom">
                 <slot></slot>
-            </div>                   
+            </div>                    
         </div>
     </div>
     
@@ -92,35 +95,37 @@ export default {
         "card"
     ],
     methods: {
-        
     }
 }
 </script>
 
 <style scoped>
-    #cover {
+    .packageCard {
         font-family: 'LatoRegular', sans-serif;
-        
-    }
-
-    .card {
-        width: 100%;
         margin: 10px;
         /* margin-top: 5px;
         margin-bottom: 5px; */
         font-size: 0.8rem;
+        min-width: 250px;
         max-width: 18rem;
+        width: 18rem;
         border: 1px solid black !important;
         min-height: 100px;
         padding-bottom: 10px;   
+        background-color: inherit !important;
+    }
 
-        /* background-color: black !important; */
+    @media (max-width: 330px) {
+        .packageCard {
+            min-width: 0px;
+        }
     }
 
     .card-body {
         padding: 0 0 !important;
-
     }
+
+    
 
     .PriceSection {
         text-align: center;
@@ -148,8 +153,8 @@ export default {
 
     .custom-background {
         background-color: #FFDB00 !important;
-        
     }
+
 
 
     .strikeout {
@@ -172,6 +177,7 @@ export default {
         -webkit-transform: rotate(45deg);
         -ms-transform: rotate(45deg);
         transform: rotate(45deg);
+
     }
 
     
@@ -187,6 +193,7 @@ export default {
     .lowerHalf {       
         /* background-color: black; */
         background-color: white;
+        padding-left: 5px;
     }
 
     .postsDescription {
@@ -200,32 +207,37 @@ export default {
     }
 
     .offers {
-        font-size: 0.8rem;
-        padding-left: 5px;
+        font-size: 0.75rem;
+        /* padding-left: 5px; */
         /* background-color: black; */
     }
 
     .offer {
-        margin: 4px;
+        margin-top: 2px;
+        margin-bottom: 2px;
         border-bottom: 1px solid gray;
     }
     
 
     .header {
         font-size: 0.9rem;
+        font-weight: 800;
         
+    }
+
+    .comment {
+        margin-top: 10px;
+        font-size: 0.75rem;
     }
 
     .secondRow {
         text-align: center;
         display: flex;
         justify-content: center;
-        /* flex-direction: column; */
-        
-        
-        /* background-color: red; */
+        /* flex-direction: column; */      
         
     }
+
 
     .posts {
         font-family: 'LatoBold', sans-serif;

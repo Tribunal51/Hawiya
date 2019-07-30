@@ -35,7 +35,7 @@ export default {
             cards: [
                 {
                     title: 'Brand Binder : A',
-                    package: 'Brand Binder: A',
+                    package: 'Brand Binder : A',
                     old_price: 600,
                     new_price: 400,
                     header: 'YOU HAVE LOGO AND YOU NEED ONLY BRANDING',
@@ -69,7 +69,8 @@ export default {
                         "2 Revisions",
                         "2 Dedicated Designers",
                         "48hrs Turnaround Time"
-                    ]
+                    ],
+                    comment: "Planner to Design your logo Story & Strategy"
                 }
             ]
         }

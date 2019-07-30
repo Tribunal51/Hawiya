@@ -25,7 +25,7 @@
                         thumbColor=#FBC02D 
                         :max="maxAmount"
                         :min="0"
-                        
+                     
                     ></VSlider>
                     <!-- :step="tickSize"
                         ticks="always"
@@ -84,32 +84,12 @@ export default {
         return {
             colors: [
                 {
-                    name: "Red",
-                    color: "red"
-                }, 
-                {
-                    name: "Green",
-                    color: "green"
+                    name: 'Natural',
+                    color: 'brown'
                 },
                 {
-                    name: "Blue",
-                    color: "blue"
-                },
-                {
-                    name: "Yellow",
-                    color: "yellow"
-                },
-                {
-                    name: "Black",
-                    color: "black"
-                },
-                {
-                    name: "White",
-                    color: "white"
-                },
-                {
-                    name: "Natural",
-                    color: "brown"
+                    name: 'White',
+                    color: 'white'
                 }
             ],
             sizes: [
@@ -123,6 +103,7 @@ export default {
             minAmount: 100,
             maxAmount: 3500,
             tickSize: 500
+
         }
     },
     computed: {

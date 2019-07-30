@@ -59,6 +59,7 @@ export default {
 <style scoped>
     .Cover {
         background-color: white;
+        overflow-x: hidden;
     }
 
     
