@@ -7,6 +7,7 @@ use Auth;
 
 use App\User;
 use App\Profile;
+use App\LogodesignOrder;
 
 use Illuminate\Support\Facades\URL;
 
@@ -75,9 +76,16 @@ class PagesController extends Controller
             
     }
 
+    public function report($id) {
+        $order = LogodesignOrder::where('id', $id)->get();
+        return view('pages.report')->with('id', $id)->with('order', $order);
+    }
+
     public function orderConfirm(Request $request) {
         return view('pages.orderconfirm');
     }
+
+    
 
     
 }

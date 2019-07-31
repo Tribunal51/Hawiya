@@ -37,6 +37,8 @@ Route::get('/test', function() {
     return view('pages.test');
 });
 
+Route::get('/report/{id}', 'PagesController@report');
+
 
 // if(Auth::guest()) {
 //     if(Auth::user()->admin) {

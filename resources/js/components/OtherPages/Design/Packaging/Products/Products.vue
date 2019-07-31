@@ -30,9 +30,12 @@
             </div> 
             <div class="row">
                 <div class="col-md-8"></div>
-                <div class="col-md-4">
-                    <v-btn color="success" @click="buttonClicked" :disabled="selectedProducts.length < 1">Click</v-btn>  
-
+                <div class="col-md-4 nextButtonSection">
+                    <!-- <v-btn @click="buttonClicked" :disabled="selectedProducts.length < 1">Next</v-btn>   -->
+                    <NextButton 
+                        :buttonClicked="buttonClicked" 
+                        :buttonDisabled="selectedProducts.length < 1"
+                    />
                 </div>
             </div>    
         </div>
@@ -58,13 +61,15 @@ import ProductSettings from '../ProductSettings/ProductSettings';
 import BlackBox from '../../../../UI/BlackBox';
 import { store, removeKeyFromObjectsArray } from '../store.js';
 import Header from '../../../../UI/Header';
+import NextButton from '../../../../UI/NextButton';
 
 export default {
     components: {
         Product,
         ProductSettings,
         BlackBox,
-        Header
+        Header,
+        NextButton
     },
     mounted() {
         
@@ -171,5 +176,9 @@ export default {
     .flex-container {
         display: flex;
         flex-wrap: wrap;
+    }
+
+    .nextButtonSection {
+        text-align: right;
     }
 </style>

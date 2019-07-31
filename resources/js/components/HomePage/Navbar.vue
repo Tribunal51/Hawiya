@@ -60,6 +60,22 @@
                     <router-link :style="displayOrNot(scrollPos)" tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section5'">CASESTUDY</router-link>
                     <router-link :style="displayOrNot(scrollPos)" tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section6'">CONTACTUS</router-link>
                     <slot></slot>
+                    <li class="dropdown nav-item navItem languageSection">
+                        <button class="btn btn-default dropdown-toggle toggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            {{ this.language }}
+                        </button>
+                        <div class="dropdown-menu dropdownLanguages" aria-labelledby="dropdownMenu2">
+                            <button 
+                                class="dropdown-item languageButton"
+                                type="button"
+                                v-for="language in languages" 
+                                :key="language"
+                                @click="setLanguage(language)">{{ language }}</button>
+                        </div>
+                    </li>
+
+
+                    
                     <!-- <li class="nav-item my-auto" :style="displayOrNot(scrollPos)">
                         <a class="nav-link" href="#">Home</a>
                     </li>
@@ -167,6 +183,8 @@ export default {
         return {
             scrollPos: 0,
             drawer: false,
+            languages: ["EN", "AR"],
+            language: "EN",
             homePageNavStyle: {
                 'backgroundColor': 'transparent !important',
                 'position': 'fixed'
@@ -187,15 +205,7 @@ export default {
                 "/dashboard/addProfile",
                 "/dashboard/users",
                 "/payment"
-                
             ]
-        }
-    },
-    computed: {
-        classObject: function() {
-            return {
-
-            }
         }
     },
     watch: {
@@ -232,6 +242,9 @@ export default {
             //     console.log('Inside login');
             //     return ('display: none');
             // }
+        },
+        setLanguage(language) {
+            this.language = language;
         },
         resetState() {
             this.$store.dispatch('logodesign/resetState');
@@ -285,7 +298,37 @@ export default {
     }
 
 
+    .dropdownLanguages {
+        width: 5rem;
+        min-width: 3rem;
+        
+        
+    }
 
+    .languageSection {
+        margin: 0 !important;
+        padding: 0;
+        width: 5rem !important;
+    }
+
+    .languageButton {
+        width: 100%;
+        
+    }
+
+    .languageButton:hover {
+        background-color: #FFDB00;
+    }
+
+    .toggleButton {
+        width: 5rem;
+    }
+
+    .languageButton {
+        width: 100%;
+    }
+
+    
 
 
 

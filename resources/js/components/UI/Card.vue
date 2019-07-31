@@ -115,6 +115,10 @@ export default {
         background-color: inherit !important;
     }
 
+    
+
+    
+
     @media (max-width: 330px) {
         .packageCard {
             min-width: 0px;

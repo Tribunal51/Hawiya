@@ -1,6 +1,6 @@
 <template>
     <div id="cover">
-        <SubHeader><h5>Logo Color</h5></SubHeader>
+        <SubHeader><h5><strong>Logo Color</strong></h5></SubHeader>
         <!-- <div class="row">
             <div class="col-md-4">
                 <BlackBox>

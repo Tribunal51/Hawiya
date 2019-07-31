@@ -60,10 +60,11 @@
 
         <div class="row">
             <div class="col-md-8"></div>
-            <div class="col-md-4">
-                <center>
-                    <v-btn color="success" :disabled="isButtonDisabled()" @click="nextButtonClicked()">Next</v-btn>
-                </center>
+            <div class="col-md-4 nextButtonSection">
+                
+                    <NextButton :buttonDisabled="isButtonDisabled()" :buttonClicked="nextButtonClicked"  />
+                    <!-- <v-btn color="success" :disabled="isButtonDisabled()" @click="nextButtonClicked()">Next</v-btn> -->
+                
             </div>
         </div>
 
@@ -75,12 +76,14 @@
 import CheckMark from '../../../../UI/CheckMark';
 import BlackBox from '../../../../UI/BlackBox';
 import SubHeader from '../../../../UI/SubHeader';
+import NextButton from '../../../../UI/NextButton';
 
 export default {
     components: {
         CheckMark,
         BlackBox,
-        SubHeader
+        SubHeader,
+        NextButton
     },
     mounted() {
         if(this.$store.state.logodesign.font !== null) {
@@ -185,6 +188,10 @@ export default {
 
     .noIdeaSection {
         cursor: pointer;
+    }
+
+    .nextButtonSection {
+        text-align: right;
     }
     
     

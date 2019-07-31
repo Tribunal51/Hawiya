@@ -1,6 +1,6 @@
 <template>
     <div class="Cover">
-        <SubHeader><h5>Logo Information</h5></SubHeader>
+        <SubHeader><h5><strong>Logo Information</strong></h5></SubHeader>
         <!-- <div class="row">
             <div class="col-md-4">
                 <BlackBox>
@@ -19,57 +19,61 @@
         
         <div class="form-group">
             <!-- <label for="brandName">*</label> -->
-            <input type="text" 
-            class="input-bottom-border" 
-            id="brandName" 
-            placeholder="BRAND NAME (REQUIRED)" 
-            @input="updateForm($event.target.value, 'brand')"
-            :value="this.Form.brand"
-            required
+            <input 
+                type="text" 
+                class="input-bottom-border" 
+                id="brandName" 
+                placeholder="BRAND NAME (REQUIRED)" 
+                @input="updateForm($event.target.value, 'brand')"
+                :value="this.Form.brand"
+                required
             />
-            <small for="brandName" id="brandName" class="form-text text-muted">At least 3 characters</small>
+            <!-- <small for="brandName" id="brandName" class="form-text text-muted">At least 3 characters</small> -->
         </div>
 
         <div class="form-group">
             <input 
-            type="text" 
-            class="input-bottom-border" 
-            placeholder="TAGLINE (OPTIONAL)" 
-            @input="updateForm($event.target.value, 'tagline')"
-            :value="this.Form.tagline"
+                type="text" 
+                class="input-bottom-border" 
+                placeholder="TAGLINE (OPTIONAL)" 
+                @input="updateForm($event.target.value, 'tagline')"
+                :value="this.Form.tagline"
         
              />
         </div>
 
+
         <div class="form-group">
-            <input type="text" 
-            class="input-bottom-border" 
-            placeholder="BUSINESS FIELD (REQUIRED)"  
-            @input="updateForm($event.target.value, 'business_field')"
-            :value="this.Form.business_field"
-            required
+            <input 
+                type="text" 
+                class="input-bottom-border" 
+                placeholder="BUSINESS FIELD (REQUIRED)"  
+                @input="updateForm($event.target.value, 'business_field')"
+                :value="this.Form.business_field"
+                required
             />
         </div>
 
         <div class="form-group">
-            <input type="text" 
-            class="input-bottom-border"
-            placeholder="SUBJECT (REQUIRED)" 
-            @input="updateForm($event.target.value, 'subject')"
-            :value="this.Form.subject" 
-            required 
+            <input 
+                type="text" 
+                class="input-bottom-border"
+                placeholder="SUBJECT (REQUIRED)" 
+                @input="updateForm($event.target.value, 'subject')"
+                :value="this.Form.subject" 
+                required 
             />
 
         </div>
 
         <div class="form-group">
             <textarea 
-            type="text" 
-            class="input-bottom-border" 
-            placeholder="DESCRIPTION OF YOUR BUSINESS (REQUIRED)" 
-            @input="updateForm($event.target.value, 'description')"
-            :value="this.Form.description" 
-            required
+                type="text" 
+                class="input-bottom-border" 
+                placeholder="DESCRIPTION OF YOUR BUSINESS (REQUIRED)" 
+                @input="updateForm($event.target.value, 'description')"
+                :value="this.Form.description" 
+                required
             />
         </div>        
     </div>
@@ -129,6 +133,8 @@ export default {
     .Cover {
         text-align: left;
     }
+    
+    
 
     
 </style>

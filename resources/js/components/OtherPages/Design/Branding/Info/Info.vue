@@ -43,17 +43,13 @@
 
                 <!-- <TextArea v-on:text="updateComment"></TextArea> -->
 
-                <div class="row">
-                    <div class="col-md-8"></div>
-                    <div class="col-md-4">
-                        <SubmitButton :buttonClicked="nextButtonClicked" :buttonDisabled="isButtonDisabled()" />
-                        <!-- <VBtn flat medium @click="nextButtonClicked" :disabled="isButtonDisabled()">Next >></VBtn> -->
-                    </div>
-                    
-                </div>
-
                 
 
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-8">
+                <SubmitButton :buttonClicked="nextButtonClicked" :buttonDisabled="isButtonDisabled()" />
             </div>
         </div>
         

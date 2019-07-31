@@ -44,7 +44,8 @@
             <div class="col-md-8"></div>
             <div class="col-md-4">
                 <center>
-                    <v-btn color="success" :disabled="isButtonDisabled()" @click="nextButtonClicked">Next</v-btn>
+                    <NextButton :buttonDisabled="isButtonDisabled()" :buttonClicked="nextButtonClicked" />
+                    <!-- <v-btn color="success" :disabled="isButtonDisabled()" @click="nextButtonClicked">Next</v-btn> -->
                 </center>
             </div>
         </div>
@@ -61,6 +62,7 @@ import Type from './Type.vue';
 import CheckMark from '../../../../UI/CheckMark';
 import BlackBox from '../../../../UI/BlackBox';
 import SubHeader from '../../../../UI/SubHeader';
+import NextButton from '../../../../UI/NextButton';
 
 export default {
     mounted() {
@@ -74,7 +76,8 @@ export default {
         Type,
         CheckMark,
         BlackBox,
-        SubHeader
+        SubHeader,
+        NextButton
     },
     data() {
         return {
@@ -125,7 +128,7 @@ export default {
             // || this.selectedTypes.length >= this.selectedTypesLimit
         },
         nextButtonClicked() {
-            //alert('nextButtonClicked');
+            // alert('nextButtonClicked');
             this.$store.dispatch('logodesign/setType', this.selectedTypes);
             this.$router.push({
                 name: 'logofont'

@@ -10,7 +10,7 @@
 
             </div>
         </div> -->
-        <SubHeader><h5>Logo Style</h5></SubHeader>
+        <SubHeader><h5><strong>Logo Style</strong></h5></SubHeader>
         <div class="row">
             <div class="col-md mt-2 mb-2">
                 <h5>Choose your Logo style</h5>
@@ -146,7 +146,6 @@ export default {
 </script>
 
 <style scoped>
-
     
     .sliderRow {
         height: 30px !important;        

@@ -7,7 +7,7 @@ export const store = Vue.observable({
             name: "Paper Bag",
             size: "Small",
             amount: 500,
-            color: "Red",
+            color: "Natural",
             image: "/storage/Packaging/PaperBag.png",
             multipliers: [
                 {
@@ -29,7 +29,7 @@ export const store = Vue.observable({
             name: "Pizza Box",
             size: "Small",
             amount: 500,
-            color: "Green",
+            color: "Natural",
             image: "/storage/packaging/PizzaBox.png",
             multipliers: [
                 {
@@ -51,7 +51,7 @@ export const store = Vue.observable({
             name: "Cookies Box",
             size: "Small",
             amount: 500,
-            color: "Blue",
+            color: "Natural",
             image: "/storage/packaging/CookiesBox.png",
             multipliers: [
                 {
@@ -73,7 +73,7 @@ export const store = Vue.observable({
             name: "Noodles Box",
             size: "Small",
             amount: 500,
-            color: "Blue",
+            color: "Natural",
             image: "/storage/packaging/NoodlesBox.png",
             multipliers: [
                 {
@@ -95,7 +95,7 @@ export const store = Vue.observable({
             name: "Cup Sleeve",
             size: "Small",
             amount: 500,
-            color: "Blue",
+            color: "Natural",
             image: "/storage/packaging/CupSleeve.png",
             multipliers: [
                 {
@@ -117,7 +117,7 @@ export const store = Vue.observable({
             name: "Fries Box",
             size: "Small",
             amount: 500,
-            color: "Blue",
+            color: "Natural",
             image: "/storage/packaging/FriesBox.png",
             multipliers: [
                 {
@@ -139,7 +139,7 @@ export const store = Vue.observable({
             name: "Cake Box",
             size: "Small",
             amount: 500,
-            color: "Blue",
+            color: "Natural",
             image: "/storage/packaging/CakeBox.png",
             multipliers: [
                 {
@@ -161,7 +161,7 @@ export const store = Vue.observable({
             name: "Perfume Box",
             size: "Small",
             amount: 500,
-            color: "Blue",
+            color: "Natural",
             image: "/storage/packaging/PerfumeBox.png",
             multipliers: [
                 {
@@ -183,7 +183,7 @@ export const store = Vue.observable({
             name: "Food Sleeve",
             size: "Small",
             amount: 500,
-            color: "Blue",
+            color: "Natural",
             image: "/storage/packaging/FoodSleeve.png",
             multipliers: [
                 {
@@ -205,7 +205,7 @@ export const store = Vue.observable({
             name: "Cup Holder",
             size: "Small",
             amount: 500,
-            color: "Blue",
+            color: "Natural",
             image: "/storage/packaging/CupHolder.png",
             multipliers: [
                 {

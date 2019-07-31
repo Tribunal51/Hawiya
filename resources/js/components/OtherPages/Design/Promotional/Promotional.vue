@@ -35,6 +35,10 @@
         <div class="row">
             <div class="col-md-8">
                 <!-- <v-btn round color="primary" @click="backButtonClicked()">Back</v-btn> -->
+                <SubmitButton 
+                    :buttonDisabled="selectedItems.length < 1" 
+                    :buttonClicked="() => submitButtonClicked()" 
+                />
             </div>
             <div class="col-md-4">
                 <!-- <v-btn 
@@ -42,10 +46,10 @@
                     round 
                     :disabled="selectedItems.length < 1" 
                     @click="submitButtonClicked()">Submit</v-btn> -->
-                    <SubmitButton 
+                    <!-- <SubmitButton 
                         :buttonDisabled="selectedItems.length < 1"
                         :buttonClicked="() => submitButtonClicked()"
-                    />
+                    /> -->
             </div>
         </div>
 

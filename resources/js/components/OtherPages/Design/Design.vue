@@ -6,6 +6,7 @@
                 :navStyle="navStyle"
                 :navItemStyle="navItemStyle"
                 :hamburger="hamburger"
+                :displayNavbar="displayNavbarHandler()"
             />
 
             <router-view />
@@ -43,8 +44,20 @@ export default {
                 color: 'white',
                 backgroundColor: 'gray',
                 opacity: 1
-            }
-
+            },
+            navbarWhiteList: [
+                "logopackage",
+                "brandingpackage",
+                "socialmediapackage",
+                "stationerypackage"
+            ]
+        }
+    },
+    methods: {
+        displayNavbarHandler() {
+            return this.navbarWhiteList.find(name => name === this.$route.name);
+            // return true;
+            // console.log('displayNavbarHandler', this.$route, this.$router);
         }
     },
     mounted() {

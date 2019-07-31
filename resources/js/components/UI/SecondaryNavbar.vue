@@ -2,7 +2,8 @@
     <nav 
     class="navbar navbar-expand-md navbar-dark bg-dark" 
     :class="navClass"
-    :style="navStyle">
+    :style="navStyle"
+    v-if="displayNavbar">
         <button class="navbar-toggler" :style="hamburger" type="button" data-toggle="collapse" data-target="#secondaryNavbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -63,7 +64,8 @@ export default {
         "navStyle",
         "navClass",
         "activeClass",
-        "hamburger"
+        "hamburger",
+        "displayNavbar"
     ],
     data() {
         return {

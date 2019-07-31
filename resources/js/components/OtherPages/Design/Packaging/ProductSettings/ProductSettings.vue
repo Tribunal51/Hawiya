@@ -1,7 +1,7 @@
 <template>
     <div class="Cover">
 
-        <div class="row">
+        <div class="row firstRow">
             <div class="col-md">
                 <div class="Size mt-4">
                     <h4>Size</h4>
@@ -57,10 +57,11 @@
             </div>
         </div>
         <div class="row mt-5">
-            <div class="col-md-1"></div>
-            <div class="col-md-5 errorSection">{{ error }}</div>
-            <div class="col-md-6">
-                <center><v-btn @click="confirmChanges" :disabled="selectedAmount < 100">Confirm</v-btn></center>
+            <div class="col-md-4"><v-btn @click="$emit('close')">Back</v-btn></div>
+            <div class="col-md-4 errorSection">{{ error }}</div>
+            <div class="col-md-4 nextButtonSection">
+                <NextButton :buttonClicked="confirmChanges" :buttonDisabled="selectedAmount < 100" text="Confirm" />
+                <!-- <v-btn @click="confirmChanges" :disabled="selectedAmount < 100">Confirm</v-btn> -->
             </div>
         </div>
         
@@ -72,13 +73,15 @@
 
 <script>
 import BlackBox from '../../../../UI/BlackBox';
+import NextButton from '../../../../UI/NextButton';
 
 export default {
     props: [
         "product"
     ],
     components: {
-        BlackBox
+        BlackBox,
+        NextButton
     },
     data() {
         return {
@@ -168,16 +171,18 @@ export default {
         
     }
 
-    
 
     .productImage {
-        width: 100%;
-        height: auto;
+        /* width: 100%; */
+        height: 350px;
+        width: auto;
         max-width: 100%;
         max-height: 100%;
     }
 
-
+    .imageSection {
+        text-align: center;
+    }
     
 
     .colorSection {
@@ -206,6 +211,10 @@ export default {
 
     .errorSection {
         color: red;
+        text-align: center;
+    }
+
+    .nextButtonSection {
         text-align: right;
     }
 </style>
