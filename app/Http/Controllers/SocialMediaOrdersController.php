@@ -73,15 +73,12 @@ class SocialMediaOrdersController extends Controller
         }
 
 
-        // if(Helper::check_file($request->logo_photo)) {
-        //     $filename = Helper::save_file($request->logo_photo);
-        // }
-        // else {
-        //     return -6;  // echo "Wrong File Format";
-        // }
-
-        $filename = "123456";
-        
+        if(Helper::check_file($request->logo_photo)) {
+            $filename = Helper::save_file($request->logo_photo);
+        }
+        else {
+            return -6;  // echo "Wrong File Format";
+        }        
         
         // if($request->hasFile('logo_photo')) {
         //     $allowedFileExtension = ['pdf', 'jpg', 'png', 'docx'];
@@ -109,9 +106,9 @@ class SocialMediaOrdersController extends Controller
                 return -7;  // echo "Required fields missing for the Post";
             }
             else {
-                // if(!Helper::check_file($post['image'])) {
-                //     return -8;  // echo "File format wrong for one or more posts";
-                // }
+                if(!Helper::check_file($post['image'])) {
+                    return -8;  // echo "File format wrong for one or more posts";
+                }
             }
         }
 
@@ -127,7 +124,7 @@ class SocialMediaOrdersController extends Controller
             $new_post = new SocialMediaPost;
             $new_post->comment = $post['comment'];
             $new_post->order_id = $order->id;
-            // $new_post->image = Helper::save_file($post['image']);
+            $new_post->image = Helper::save_file($post['image']);
             $new_post->image = $filename;
             if(!$new_post->save()) {
                 return -9;  // echo Could not save a Post.

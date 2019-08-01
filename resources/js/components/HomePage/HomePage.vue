@@ -2,7 +2,7 @@
     <div id="cover">
         <!-- <section id="section1"><Welcome /></section> -->
         <section id="section2"><WhatWeDo /></section>
-        <section id="section3"><MeetTheTeam /></section>
+        <!-- <section id="section3"><MeetTheTeam /></section> -->
         <!-- <section id="section4"><Profile /></section> -->
         <section id="section5"><CaseStudy /></section>
         <section id="section6"><ContactUs /></section>   

@@ -84,9 +84,9 @@ Route::get('/report/{id}', 'PagesController@report');
 //     echo asset('/storage/uploads/'.$filename);
 // });
 
-Route::get('/design/{any}', function() {
-    return view('welcome');
-})->where('any', '.*');
+// Route::get('/design/{any}', function() {
+//     return view('welcome');
+// })->where('any', '.*');
 
 
 
