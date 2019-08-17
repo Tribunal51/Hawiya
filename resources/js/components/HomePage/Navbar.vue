@@ -44,8 +44,9 @@
             </div>
         </nav>   -->
 
-
+        
         <nav class="navbar navbar-expand-lg navbar-light bg-light navSection" :style="assignClass(scrollPos)">
+            
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
@@ -90,7 +91,10 @@
                     </li> -->
                 </ul>
             </div>
+            
         </nav>
+        
+        
 
         <!-- <v-toolbar height="80px" app :style="assignClass(scrollPos)">
             <v-toolbar-side-icon @click="drawer=!drawer"></v-toolbar-side-icon>
@@ -106,7 +110,7 @@
 
 
 
-        <v-navigation-drawer app v-model="drawer" temporary>
+        <v-navigation-drawer v-if="false" app v-model="drawer" temporary>
             <v-list>
                 <ul class="nav-items">
                     <a class="nav-item" href="/"><img src="/storage/HawiyaBrandLogo.PNG" /></a>
@@ -160,6 +164,7 @@
 <script>
 import VueRouter from 'vue-router';
 import { VToolbar, VNavigationDrawer } from 'vuetify/lib';
+import IntroSection from '../UI/IntroSection';
 
 export default {
     mounted() {
@@ -175,6 +180,7 @@ export default {
         // VToolbar,
         // VNavigationDrawer,
         // VToolbarSideIcon
+        IntroSection
     },
     props: [
         
@@ -261,13 +267,12 @@ export default {
     }
 
     .navSection {   
-    position: absolute fixed;
-    width: 100%;
-    /* height: 80px; */
-    height: auto;
-    z-index: 1000 !important;
-
-    
+        position: absolute fixed;
+        width: 100%;
+        /* height: 80px; */
+        height: auto;
+        z-index: 1000 !important;
+        
     }
 
     .logo {
@@ -278,6 +283,9 @@ export default {
     .navItems {
         display: flex;
         align-items: center;
+        justify-content: center;
+        /* background-color: red; */
+        
     }
 
     .navItem {        
@@ -289,6 +297,15 @@ export default {
         font-size: 0.9rem;         
     }
 
+    .navItem {
+        display: inline;
+        margin-left: 1rem;
+        margin-right: 1rem;
+        color: #333;
+        text-decoration: none;
+        font-size: 0.9rem;
+    }
+
     
 
 
@@ -296,6 +313,9 @@ export default {
         color: black;
         cursor: pointer;
     }
+
+    
+
 
 
     .dropdownLanguages {

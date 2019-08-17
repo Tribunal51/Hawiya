@@ -13,17 +13,24 @@
                     <div class="row">
                         <div class="col-md">
                             <div class="row">
-                                <strong><h5 class="bold">Project Category </h5></strong>
+                                <div class="col">
+                                    <strong><h5 class="bold">Project Category </h5></strong>
+                                </div>
                             </div>
                             <div class="row mb-3 thin">
-                                {{ currentItem.category }}
+                                <div class="col">
+                                    {{ currentItem.category }} 
+                                </div>
                             </div>
                             <div class="row">
-                                <strong><h5 class="bold">Project Details</h5></strong>
-                                
+                                <div class="col">
+                                    <strong><h5 class="bold">Project Details</h5></strong>
+                                </div>
                             </div>
                             <div class="row thin">
-                                {{ currentItem.details }}
+                                <div class="col">
+                                    {{ currentItem.details }}
+                                </div>
                             </div>
                         </div>
                     </div>

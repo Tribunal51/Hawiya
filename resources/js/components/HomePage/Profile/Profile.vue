@@ -6,7 +6,7 @@
         </IntroSection>
         
         <div class="Sort">
-            <!-- <SearchPage /> -->
+            <SearchPage />
         </div>          
     </div>
 </template>

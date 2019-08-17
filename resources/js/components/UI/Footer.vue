@@ -1,7 +1,7 @@
 <template>
     <IntroSection :styling="introSectionStyle">
         <div class="row bold">
-            <div class="col-md-4"><center>C 2019 Hawiya Brands. All rights reserved.</center></div>
+            <div class="col-md-4 footerLink"><center>C 2019 Hawiya Brands. All rights reserved.</center></div>
             <div class="col-md-2"></div>
             <div class="col-md-6">
                 <div class="row footerRow">    
@@ -38,7 +38,7 @@ export default {
 .footerLink {
     /* font-size: 1rem; */
     
-    margin-top: 5px;
+    /* margin-top: 5px; */
 
     padding: 5px;
     justify-content: space-between;

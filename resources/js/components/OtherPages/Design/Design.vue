@@ -49,7 +49,9 @@ export default {
                 "logopackage",
                 "brandingpackage",
                 "socialmediapackage",
-                "stationerypackage"
+                "stationerypackage",
+                "packagingproducts",
+                "promotionalinfo"
             ]
         }
     },

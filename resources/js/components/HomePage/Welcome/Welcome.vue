@@ -9,7 +9,9 @@
                             <h3>Design your identity with a professional team</h3>
                         </BlackBox>
                         <div class="row">
-                            Our design team gives you the professional edge you need to stand out your identity.
+                            <div class="col">
+                                Our design team gives you the professional edge you need to stand out your identity.
+                            </div>
                         </div>
                     </IntroSection>
                     <div class="row yellowRow">
@@ -19,7 +21,9 @@
                                     <h5>Let us build an outstanding brand for you</h5>
                                 </BlackBox>
                                 <div class="row">
-                                    <StartHere />
+                                    <div class="col">
+                                        <StartHere />
+                                    </div>
                                 </div>
                             </IntroSection>
                         </div>

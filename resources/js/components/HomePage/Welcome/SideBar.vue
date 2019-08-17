@@ -3,7 +3,7 @@
         
         
         <div class="row" v-for="link in links" :key="link.name">
-            <button class="btn btn-warning sideBarButton">{{ link.name }}</button>
+            <button class="btn sideBarButton" @click="buttonClicked(link.link)">{{ link.name }}</button>
             
 
         </div>
@@ -43,6 +43,11 @@ export default {
                     link: '/design/promotional'
                 }
             ]
+        }
+    },
+    methods: {
+        buttonClicked(link) {
+            this.$router.push(link);
         }
     }
 }

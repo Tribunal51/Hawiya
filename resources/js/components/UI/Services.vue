@@ -20,8 +20,10 @@
                         <h5>Interested?</h5>
                     </BlackBox>
                     <div class="row">
-                        <h3>Let us build an outstanding brand for you.</h3> 
-                        <StartHere />
+                        <div class="col">
+                            <h3>Let us build an outstanding brand for you. </h3>
+                            <StartHere />
+                        </div>
                     </div>
                 </div>
             </div>
