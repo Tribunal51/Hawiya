@@ -1,22 +1,18 @@
 <template>
     <div id="cover">
         <div class="bannerHeader">
-             
-                 
-                    
+                   
             <div class="bannerText">
                 <h1>What We Do</h1>
             </div>
-                     
-                  
-                                           
+                                         
         </div> 
         <div class="row">
             <div class="col-sm">                
                 <IntroSection>
                     <div id="IntroSection1">
                         <BlackBox>                   
-                            We have years of experience working with entrepreneurs just like you. We've learned it's best to start by listening to your story. Then we review your existing brand and offer you options from there. Blow we've listed our most requested packages, but each of these can be tweaked or we can give you a completely custom quote.                   
+                            We have years of experience working with entrepreneurs just like you. We've learned it's best to start by listening to your story. Then we review your existing brand and offer you options from there. Below we've listed our most requested packages, but each of these can be tweaked or we can give you a completely custom quote.                   
                         </BlackBox>
                     </div>
                     <div class="row">

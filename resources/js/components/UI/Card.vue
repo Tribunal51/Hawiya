@@ -15,7 +15,12 @@
         </div> -->
         <div class="card-body body">
             <div class="upperHalf">
-                <h2> {{ card.title }}</h2>
+                <div class="upperHalfOfUpperHalf">
+                    <h2> {{ card.title }} </h2>
+                </div>
+                <div class="lowerHalfOfUpperHalf">
+                    <div class="triangle"></div>
+                </div>
             </div>
             <div class="lowerHalf">
                 <div class="row firstRow">
@@ -132,6 +137,9 @@ export default {
     
 
     .PriceSection {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: flex-start;
         text-align: center;
         font-family: 'LatoBold', sans-serif;
         /* background-color: black; */
@@ -162,13 +170,14 @@ export default {
 
 
     .strikeout {
-        font-size: 1.7rem;
+        font-size: 1.8rem;
         /* line-height: 1rem; */
         position: relative;
         
     }
 
     .strikeout::after {
+        width: 100%;
         border-bottom: 3px solid #FFDB00;
         content: "";
         left: 0;
@@ -177,10 +186,9 @@ export default {
         position: absolute;
         right: 0;
         top: 50%;
-        
-        -webkit-transform: rotate(45deg);
-        -ms-transform: rotate(45deg);
-        transform: rotate(45deg);
+        -webkit-transform: rotate(160deg);
+        -ms-transform: rotate(160deg);
+        transform: rotate(160deg);
 
     }
 
@@ -190,8 +198,40 @@ export default {
         height: 150px !important;
         background-color: #FFDB00;
         display: flex;
-        padding: 10px;
+        flex-direction: column;
+        /* padding-left: 10px; */
+        justify-content: center;
         align-items: center;
+    }
+
+    .upperHalfOfUpperHalf {
+        width: 100%;
+        height: 80%;
+        padding-left: 10px;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+    }
+
+    .lowerHalfOfUpperHalf {
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        align-items: flex-start;
+        width: 100%;
+        padding-left: 40px;
+        height: 20%;
+        /* background-color: red; */
+    }
+
+
+    .triangle {
+        width: 0;
+        height: 0;
+        border-left: 10px solid transparent;
+        border-right: 10px solid transparent;
+        border-bottom: 15px solid white;
     }
     
     .lowerHalf {       
@@ -207,7 +247,10 @@ export default {
     
 
     .firstRow {
-        padding-top: 5px !important;
+        padding-left: 10px;
+        padding-top: 10px;
+        padding-right: 10px;
+        /* padding: 10px !important; */
     }
 
     .offers {

@@ -2,9 +2,17 @@
     <div class="Cover">
         
         
-        <div class="row" v-for="link in links" :key="link.name">
-            <button class="btn sideBarButton" @click="buttonClicked(link.link)">{{ link.name }}</button>
-            
+        <div v-for="(link, index) in links" :key="link.name">
+            <div class="row">
+                <div class="col">
+                    <button class="btn sideBarButton text-left" @click="buttonClicked(link.link)">{{ link.name }}</button>
+                </div>
+            </div>
+            <div class="row" v-if="index < links.length - 1">
+                <div class="col">
+                    <WhiteBox />
+                </div>
+            </div>
 
         </div>
         
@@ -13,6 +21,7 @@
 </template>
 
 <script>
+import WhiteBox from '../../UI/WhiteBox';
 export default {
     data() {
         return {
@@ -45,7 +54,13 @@ export default {
             ]
         }
     },
+    components: {
+        WhiteBox
+    },
     methods: {
+        displayWhiteBox(link) {
+
+        },
         buttonClicked(link) {
             this.$router.push(link);
         }
@@ -55,15 +70,17 @@ export default {
 
 <style scoped>
     .Cover {
+        padding-top: 20px;
+        padding-left: 30px;
         width: 200px;
         background-color: #FFDB00;
-        border-radius: 50px 0 0 50px;
+        border-radius: 15px 0 0 15px;
         height: auto;
         display: flex;
         flex-flow: column;
         justify-content: center;
         align-items: center;
-        padding-bottom: 10px;
+        padding-bottom: 20px;
     }
 
     
@@ -71,10 +88,13 @@ export default {
     .sideBarButton {
         width: 125px;
         background: transparent;
-        border-bottom: 2px solid white;
+        padding-left: 0px !important;
+        /* border-bottom: 2px solid white; */
         border-top: none;
         border-left: none;
         border-right: none;
+        text-align: left;
+
     }
 
     .arrowButton {

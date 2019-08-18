@@ -8,11 +8,7 @@
 export default {
     props: [
         "styling"
-    ],
-    computed: {
-            
-        
-    }
+    ]
 }
 </script>
 

@@ -1,7 +1,9 @@
 <template>
     <div id="cover">
-        <IntroSection>
-            <h2 class="headerPadding">PROFILE</h2>
+        <IntroSection styling="paddingBottom: 20px">
+            <BlackBox>
+                <h2>PROFILE </h2>
+            </BlackBox>
             
         </IntroSection>
         
@@ -14,6 +16,8 @@
 <script>
 import SearchPage from './SearchPage.vue';
 import IntroSection from '../../UI/IntroSection.vue';
+import BlackBox from '../../UI/BlackBox';
+
 export default {
     data() {
         return {
@@ -21,6 +25,7 @@ export default {
         }
     },
     components: {
+        BlackBox,
         SearchPage,
         IntroSection
     }

@@ -4,27 +4,31 @@
         <div class="filler">
             <div class="row">
                 <div class="col-md flex-container-align-bottom">
-                    <IntroSection>
-                        <BlackBox>
-                            <h3>Design your identity with a professional team</h3>
-                        </BlackBox>
-                        <div class="row">
-                            <div class="col">
-                                Our design team gives you the professional edge you need to stand out your identity.
+                    <IntroSection styling="paddingRight: 0px !important; paddingBottom: 0px">
+                        <IntroSection styling="paddingRight: 0px !important"> 
+                            <BlackBox>
+                                <h3>Design your identity with a professional team</h3>
+                            </BlackBox>
+                            <div class="row">
+                                <div class="col">
+                                    Our design team gives you the professional edge you need to stand out your identity.
+                                </div>
                             </div>
-                        </div>
+                        </IntroSection>
                     </IntroSection>
                     <div class="row yellowRow">
                         <div class="col-md yellowContainerTopRightCurved">
-                            <IntroSection>
-                                <BlackBox>
-                                    <h5>Let us build an outstanding brand for you</h5>
-                                </BlackBox>
-                                <div class="row">
-                                    <div class="col">
-                                        <StartHere />
+                            <IntroSection styling="paddingRight: 0px !important; paddingBottom: 0px">
+                                <IntroSection styling="paddingRight: 0px !important">
+                                    <BlackBox>
+                                        <h5>Let us build an outstanding brand for you</h5>
+                                    </BlackBox>
+                                    <div class="row">
+                                        <div class="col">
+                                            <StartHere />
+                                        </div>
                                     </div>
-                                </div>
+                                </IntroSection>
                             </IntroSection>
                         </div>
                     </div>
@@ -36,11 +40,8 @@
                     
                     <div class="arrowButton" @click="showSideBar=!showSideBar"> {{ this.showSideBar ? '>' : '&lt;' }}</div>
                     <transition name="slide-fade">
-                        
                         <SideBar v-if="showSideBar" />
-                    </transition>
-                   
-                          
+                    </transition>     
                 </div>
             </div>                                 
         </div>               
@@ -82,7 +83,7 @@ export default {
     }
 
     .filler {
-        min-height: 70vh;
+        min-height: 75vh;
         
     }
 

@@ -47,10 +47,11 @@
         
         <nav class="navbar navbar-expand-lg navbar-light bg-light navSection" :style="assignClass(scrollPos)">
             
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" @click="navbarCollapse = !navbarCollapse" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse" id="navbarNav">
+                
                 <ul class="navbar-nav mx-auto navItems">
                     <li class="nav-item">
                         <a href="/"><img class="logo" src="/storage/HawiyaBrandLogo.PNG" /></a>
@@ -61,6 +62,7 @@
                     <router-link :style="displayOrNot(scrollPos)" tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section5'">CASESTUDY</router-link>
                     <router-link :style="displayOrNot(scrollPos)" tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section6'">CONTACTUS</router-link>
                     <slot></slot>
+
                     <li class="dropdown nav-item navItem languageSection">
                         <button class="btn btn-default dropdown-toggle toggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ this.language }}
@@ -93,6 +95,7 @@
             </div>
             
         </nav>
+        
         
         
 
@@ -189,6 +192,7 @@ export default {
         return {
             scrollPos: 0,
             drawer: false,
+            navbarCollapse: false,
             languages: ["EN", "AR"],
             language: "EN",
             homePageNavStyle: {
@@ -229,7 +233,12 @@ export default {
         assignClass(scrollPos) {
             if(this.$route.path === '/') {
                 if(scrollPos < 1) {
-                    return this.homePageNavStyle;
+                    if(this.navbarCollapse) {
+                        return this.otherSectionNavStyle;   
+                    }
+                    else {
+                        return this.homePageNavStyle;
+                    }   
                 }
                 else {
                     return this.otherSectionNavStyle;
@@ -286,15 +295,6 @@ export default {
         justify-content: center;
         /* background-color: red; */
         
-    }
-
-    .navItem {        
-        display: inline;
-        margin-left: 1rem;
-        margin-right: 1rem;
-        color: #333;
-        text-decoration: none;
-        font-size: 0.9rem;         
     }
 
     .navItem {

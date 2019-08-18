@@ -26,7 +26,7 @@
                 <ImageUpload 
                     v-on:dataurls="updatePhoto($event, 'post')" 
                     :hideImage="true"
-                    
+                    label="Upload Image"
                 />
             </div>
         </div>
