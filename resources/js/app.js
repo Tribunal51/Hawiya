@@ -200,28 +200,28 @@ Vue.component('report', require('./components/OtherPages/Report').default);
                         }
                     ]
                 },
-                {
-                    name: 'packaging',
-                    path: 'packaging',
-                    component: Packaging,
-                    children: [
-                        {
-                            name: 'packagingproducts',
-                            path: 'products',
-                            component: PackagingProducts
-                        }, 
-                        {
-                            name: 'packagingmodifyproduct',
-                            path: 'modify-product',
-                            component: PackagingModifyProduct
-                        },
-                        {
-                            name: 'packagingcheckout',
-                            path: 'checkout',
-                            component: PackagingCheckout
-                        }
-                    ]
-                },
+                // {
+                //     name: 'packaging',
+                //     path: 'packaging',
+                //     component: Packaging,
+                //     children: [
+                //         {
+                //             name: 'packagingproducts',
+                //             path: 'products',
+                //             component: PackagingProducts
+                //         }, 
+                //         {
+                //             name: 'packagingmodifyproduct',
+                //             path: 'modify-product',
+                //             component: PackagingModifyProduct
+                //         },
+                //         {
+                //             name: 'packagingcheckout',
+                //             path: 'checkout',
+                //             component: PackagingCheckout
+                //         }
+                //     ]
+                // },
                 {
                     name: 'promotionalinfo',
                     path: 'promotional',

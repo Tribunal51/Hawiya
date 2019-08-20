@@ -1,11 +1,11 @@
 <template>
     <div id="cover">
         <section id="section1"><Welcome /></section>
-        <section id="section2"><WhatWeDo /></section>
+        <!-- <section id="section2"><WhatWeDo /></section>
         <section id="section3"><MeetTheTeam /></section>
         <section id="section4"><Profile /></section>
         <section id="section5"><CaseStudy /></section>
-        <section id="section6"><ContactUs /></section>   
+        <section id="section6"><ContactUs /></section>    -->
     </div>
 </template>
 
@@ -23,20 +23,7 @@ import ContactUs from './ContactUs/ContactUs.vue';
 import MeetTheTeam from './WhatWeDo/MeetTheTeam';
 import Welcome from './Welcome/Welcome';
 
-Vue.use(VueScrollTo, {
-     container: "body",
-     duration: 2000,
-     easing: "ease",
-     offset: -90,
-     force: true,
-     cancelable: true,
-     onStart: false,
-     onDone: false,
-     onCancel: false,
 
-     x: false,
-     y: true
- });
  
 
 export default {

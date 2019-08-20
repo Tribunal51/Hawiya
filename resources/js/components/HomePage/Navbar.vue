@@ -45,22 +45,24 @@
         </nav>   -->
 
         
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navSection" :style="assignClass(scrollPos)">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navSection" :style="assignClass(scrollPos)" :class="{'navbarOpen': show}">
             
-            <button class="navbar-toggler" type="button" @click="navbarCollapse = !navbarCollapse" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <button ref="dataToggleButton" @click="toggleNavbar()" class="navbar-toggler" type="button" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <div class="collapse navbar-collapse" id="navbarNav">
+            <transition name="slide-fade">
+            <div ref="collapseSection" class="collapse navbar-collapse" :class="{ 'show' : show }" id="navbarNav">
                 
                 <ul class="navbar-nav mx-auto navItems">
                     <li class="nav-item">
                         <a href="/"><img class="logo" src="/storage/HawiyaBrandLogo.PNG" /></a>
                     </li>
-                    <router-link :style="displayOrNot(scrollPos)" tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section1'">HOME</router-link>
-                    <router-link :style="displayOrNot(scrollPos)" tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section2'">WHAT WE DO</router-link>
-                    <router-link :style="displayOrNot(scrollPos)" tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section4'">PROFILE</router-link>
-                    <router-link :style="displayOrNot(scrollPos)" tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section5'">CASESTUDY</router-link>
-                    <router-link :style="displayOrNot(scrollPos)" tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section6'">CONTACTUS</router-link>
+                    <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section1', offset: offset}">HOME</router-link>
+                    <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section2', offset: offset}">WHAT WE DO</router-link>
+                    <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section4', offset: offset}">PROFILE</router-link>
+                    <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section5', offset: offset}">CASESTUDY</router-link>
+                    <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">CONTACTUS</router-link>
+                    
                     <slot></slot>
 
                     <li class="dropdown nav-item navItem languageSection">
@@ -76,8 +78,10 @@
                                 @click="setLanguage(language)">{{ language }}</button>
                         </div>
                     </li>
-
-
+                    <div class="nav-item navItem searchSection">
+                        <input v-model="search" class="navItem searchField" ref="search" type="text" v-if="searchField"  />
+                        <img :style="displayOrNot(scrollPos)" src="/storage/icons/searchicon.png" class="navItem searchIcon" @click="searchIconClicked()"  />
+                    </div>
                     
                     <!-- <li class="nav-item my-auto" :style="displayOrNot(scrollPos)">
                         <a class="nav-link" href="#">Home</a>
@@ -92,8 +96,9 @@
                         <a class="nav-link" href="#">Disabled</a>
                     </li> -->
                 </ul>
+
             </div>
-            
+            </transition>
         </nav>
         
         
@@ -168,16 +173,41 @@
 import VueRouter from 'vue-router';
 import { VToolbar, VNavigationDrawer } from 'vuetify/lib';
 import IntroSection from '../UI/IntroSection';
+import VueScrollTo from 'vue-scrollto';
+
+Vue.use(VueScrollTo, {
+    container: "body",
+    duration: 2000,
+    easing: "ease",
+    offset: -95,
+    force: true,
+    cancelable: true,
+    onStart: false,
+    onDone: false,
+    onCancel: false,
+    x: false,
+    y: true
+});
+
 
 export default {
     mounted() {
+        console.log('Toggle Button Hidden? ', window.getComputedStyle(this.$refs.dataToggleButton).display === 'none');
         window.addEventListener('scroll', () => {
-                this.scrollPos = window.scrollY;
-                console.log(this.scrollPos);
-            });
+            this.scrollPos = window.scrollY;
+            console.log(this.scrollPos);
+        });
+
+        
     },
     updated() {
         //console.log('updated');
+        if(window.getComputedStyle(this.$refs.dataToggleButton).display === 'none') {
+            this.offset = -95;
+        }
+        else {
+            this.offset = -50;
+        }
     },
     components: {
         // VToolbar,
@@ -191,8 +221,11 @@ export default {
     data() {
         return {
             scrollPos: 0,
+            offset: 0,
             drawer: false,
-            navbarCollapse: false,
+            search: '',
+            searchField: false,
+            show: false,
             languages: ["EN", "AR"],
             language: "EN",
             homePageNavStyle: {
@@ -227,13 +260,17 @@ export default {
                 this.navScrollPos = val;
             }
         },
+        offset: function(newValue, oldValue) {
+            //alert('Change');
+            
+        }
         
     },
     methods: {
         assignClass(scrollPos) {
             if(this.$route.path === '/') {
                 if(scrollPos < 1) {
-                    if(this.navbarCollapse) {
+                    if(this.show) {
                         return this.otherSectionNavStyle;   
                     }
                     else {
@@ -247,6 +284,27 @@ export default {
             else {
                 return this.otherPageNavStyle;
             }
+        },
+        searchIconClicked() {
+            if(this.searchField) {
+                if(this.search !== '') {
+                    alert('Search');
+                }
+                else {
+                    this.searchField = false;
+                }
+                
+            }
+            else {
+                this.searchField = true;
+                //this.$refs.search.focus();
+                console.log(this.$nextTick);
+                this.$nextTick(() => this.$refs.search.focus());
+            }
+        },
+        toggleNavbar() {
+            this.show = !this.show;
+            return "collapse";
         },
         displayOrNot() {
             if(this.exceptionPages.indexOf(this.$route.path) > -1) {
@@ -273,6 +331,7 @@ export default {
 
     #cover {
         font-family: 'LatoRegular', sans-serif;
+        
     }
 
     .navSection {   
@@ -348,8 +407,35 @@ export default {
         width: 100%;
     }
 
-    
+    .searchSection {
+        display: flex;
+        flex-flow: row nowrap;
+    }
 
+    .searchIcon {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+    }
+    
+    .searchField {
+        border: none;
+        cursor: text !important;
+        border-bottom: 1px solid gray;
+        background: transparent;
+    }
+
+    .slide-fade-enter-active {
+        transition: all .5s ease;
+    }
+
+    .slide-fade-leave-active {
+        transition: all .5s ease;
+    }
+
+    .slide-fade-enter, .slide-fade-leave-to {
+        transform: translateY(20px);
+    }
 
 
 

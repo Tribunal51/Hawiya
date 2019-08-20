@@ -16,7 +16,7 @@
                             </div>
                         </IntroSection>
                     </IntroSection>
-                    <div class="row yellowRow">
+                    <!-- <div class="row yellowRow">
                         <div class="col-md yellowContainerTopRightCurved">
                             <IntroSection styling="paddingRight: 0px !important; paddingBottom: 0px">
                                 <IntroSection styling="paddingRight: 0px !important">
@@ -31,16 +31,18 @@
                                 </IntroSection>
                             </IntroSection>
                         </div>
-                    </div>
+                    </div> -->
                 </div>
                 <div class="col-md rightSide">
                     <!-- <div class="row">
                         <button class="btn btn-primary" @mouseenter="showSideBar=true" @mouseleave="showSideBar=false"> Test </button>
                     </div> -->
                     
-                    <div class="arrowButton" @click="showSideBar=!showSideBar"> {{ this.showSideBar ? '>' : '&lt;' }}</div>
+                    <div class="arrowButton" @click="showSideBar=!showSideBar"> 
+                        {{ this.showSideBar ? '>' : '&lt;' }}
+                    </div>
                     <transition name="slide-fade">
-                        <SideBar v-if="showSideBar" />
+                        <!-- <SideBar v-if="showSideBar" /> -->
                     </transition>     
                 </div>
             </div>                                 
@@ -75,7 +77,6 @@ export default {
 </script>
 
 <style scoped>
-    
 
     .navbarHeight {
         height: 15vh;
@@ -117,6 +118,8 @@ export default {
         align-items: center;
     }
 
+
+
     .arrowButton {
         /* font-family: 'LatoRegular', sans-serif; */
         background: transparent;
@@ -141,5 +144,7 @@ export default {
         transform: translateX(10px);
         opacity: 0;
     }
+
+    
 
 </style>
