@@ -90,7 +90,7 @@ Vue.component('report', require('./components/OtherPages/Report').default);
     import Vuetify from 'vuetify';
     import { Ripple } from 'vuetify/lib/directives';
 
-    const vuetify = Vue.use(Vuetify, {
+    Vue.use(Vuetify, {
         iconfont: 'md',
         directives: {
             Ripple
@@ -256,6 +256,5 @@ Vue.component('report', require('./components/OtherPages/Report').default);
 export const app = new Vue({
     el: '#app',
     router,
-    store,
-    vuetify
+    store
 });

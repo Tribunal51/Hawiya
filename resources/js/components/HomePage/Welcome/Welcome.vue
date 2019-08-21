@@ -31,7 +31,7 @@
                                 </IntroSection>
                             </IntroSection>
                         </div>
-                    </div> -->
+                    </div> -->  
                 </div>
                 <div class="col-md rightSide">
                     <!-- <div class="row">

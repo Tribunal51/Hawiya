@@ -45,25 +45,36 @@
         </nav>   -->
 
         
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navSection" :style="assignClass(scrollPos)" :class="{'navbarOpen': show}">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light navSection" :style="assignClass(scrollPos)" :class="{'navbarOpen': show}" v-show="offset !== -50">
             
             <button ref="dataToggleButton" @click="toggleNavbar()" class="navbar-toggler" type="button" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
-            <transition name="slide-fade">
+            
             <div ref="collapseSection" class="collapse navbar-collapse" :class="{ 'show' : show }" id="navbarNav">
                 
                 <ul class="navbar-nav mx-auto navItems">
                     <li class="nav-item">
                         <a href="/"><img class="logo" src="/storage/HawiyaBrandLogo.PNG" /></a>
                     </li>
-                    <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section1', offset: offset}">HOME</router-link>
+                    <router-link 
+                        :style="displayOrNot(scrollPos)" 
+                        v-on:click.native="toggleNavbar()" 
+                        tag="li" class="nav-item navItem" 
+                        to="/" 
+                        v-scroll-to="{el: '#section1', offset: offset}">
+                            HOME
+                    </router-link>
                     <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section2', offset: offset}">WHAT WE DO</router-link>
                     <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section4', offset: offset}">PROFILE</router-link>
                     <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section5', offset: offset}">CASESTUDY</router-link>
                     <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">CONTACTUS</router-link>
                     
                     <slot></slot>
+
+                    
+                    
+
 
                     <li class="dropdown nav-item navItem languageSection">
                         <button class="btn btn-default dropdown-toggle toggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -83,22 +94,10 @@
                         <img :style="displayOrNot(scrollPos)" src="/storage/icons/searchicon.png" class="navItem searchIcon" @click="searchIconClicked()"  />
                     </div>
                     
-                    <!-- <li class="nav-item my-auto" :style="displayOrNot(scrollPos)">
-                        <a class="nav-link" href="#">Home</a>
-                    </li>
-                    <li class="nav-item my-auto" :style="displayOrNot(scrollPos)">
-                        <a class="nav-link" href="#">Features</a>
-                    </li>
-                    <li class="nav-item my-auto" :style="displayOrNot(scrollPos)">
-                        <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item my-auto" :style="displayOrNot(scrollPos)">
-                        <a class="nav-link" href="#">Disabled</a>
-                    </li> -->
                 </ul>
 
             </div>
-            </transition>
+            
         </nav>
         
         
@@ -114,46 +113,65 @@
                 <v-btn flat>Link Three</v-btn>
             </v-toolbar-items>
         </v-toolbar>    -->
-
-
-
-
-        <v-navigation-drawer v-if="false" app v-model="drawer" temporary>
-            <v-list>
+       
+        
+        <v-toolbar-side-icon large class="hidden-sm-and-down drawerHamburger" v-show="true" @click="drawer=!drawer" v-if="offset === -50"></v-toolbar-side-icon>
+        <v-navigation-drawer app v-model="drawer" temporary>
+            <v-list nav>
                 <ul class="nav-items">
-                    <a class="nav-item" href="/"><img src="/storage/HawiyaBrandLogo.PNG" /></a>
-                    <span :style="displayOrNot()">
+                    <a class="nav-item" href="/"><img src="/storage/HawiyaBrandLogo.PNG" class="logo" /></a>
+                    <span :style="displayOrNot()" @click="drawer=!drawer">
                         <v-list-tile>
                             <v-list-tile-action>
-                                <router-link tag="li" class="nav-item" to="/" v-scroll-to="'#section1'">HOME</router-link>
+                                <router-link tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section1'">HOME</router-link>
                             </v-list-tile-action>
                         </v-list-tile>
 
                         <v-list-tile>
-                            <router-link tag="li" class="nav-item" to="/" v-scroll-to="'#section2'">WHAT WE DO</router-link>
+                            <router-link tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section2'">WHAT WE DO</router-link>
                         </v-list-tile>
 
                         <v-list-tile>
-                            <router-link tag="li" class="nav-item" to="/" v-scroll-to="'#section4'">PROFILE</router-link>
+                            <router-link tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section4'">PROFILE</router-link>
                         </v-list-tile>
                         
                         <v-list-tile>
-                            <router-link tag="li" class="nav-item" to="/" v-scroll-to="'#section5'">CASESTUDY</router-link>
+                            <router-link tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section5'">CASESTUDY</router-link>
                         </v-list-tile>
                         
                         <v-list-tile>
-                            <router-link tag="li" class="nav-item" to="/" v-scroll-to="'#section6'">CONTACTUS</router-link>
+                            <router-link tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section6'">CONTACTUS</router-link>
                         </v-list-tile>
-
-                        <v-list-tile>
-                            <a class="nav-item" href="/" @click="resetState">Reset</a>
-                        </v-list-tile>                       
+                    
                     </span>
 
                     <v-list-tile>
                         <slot></slot> 
                     </v-list-tile>
-                </ul>
+
+                    <v-list-tile>
+                        <li class="dropdown nav-item navItem languageSection">
+                            <button class="btn btn-default dropdown-toggle toggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ this.language }}
+                            </button>
+                            <div class="dropdown-menu dropdownLanguages" aria-labelledby="dropdownMenu2">
+                                <button 
+                                    class="dropdown-item languageButton"
+                                    type="button"
+                                    v-for="language in languages" 
+                                    :key="language"
+                                    @click="setLanguage(language)">{{ language }}</button>
+                            </div>
+                        </li>
+                    </v-list-tile>
+
+                    <v-list-tile>
+                        <div class="nav-item navItem searchSection">
+                            <input v-model="search" class="navItem searchField" ref="search" type="text" v-if="searchField"  />
+                            <img :style="displayOrNot(scrollPos)" src="/storage/icons/searchicon.png" class="navItem searchIcon" @click="searchIconClicked()"  />
+                        </div>
+                    </v-list-tile>
+                </ul> 
                 <v-list-tile>
                     <v-list-tile-action>
                         <v-icon class="white">dashboard</v-icon>
@@ -162,16 +180,20 @@
                         <v-list-tile-title class="white--text">Dashboard</v-list-tile-title>
                     </v-list-tile-content>
                 </v-list-tile>
+                
             </v-list>
         </v-navigation-drawer>
-
+        
+        
 
     </div>
 </template>
 
 <script>
+
 import VueRouter from 'vue-router';
-import { VToolbar, VNavigationDrawer } from 'vuetify/lib';
+import { VToolbar, VNavigationDrawer, VToolbarSideIcon } from 'vuetify/lib';
+import VContainer from 'vuetify/lib';
 import IntroSection from '../UI/IntroSection';
 import VueScrollTo from 'vue-scrollto';
 
@@ -192,28 +214,25 @@ Vue.use(VueScrollTo, {
 
 export default {
     mounted() {
-        console.log('Toggle Button Hidden? ', window.getComputedStyle(this.$refs.dataToggleButton).display === 'none');
+        this.reconfigureNavbar();
+        //console.log('Toggle Button Hidden? ', window.getComputedStyle(this.$refs.dataToggleButton).display === 'none');
         window.addEventListener('scroll', () => {
             this.scrollPos = window.scrollY;
             console.log(this.scrollPos);
         });
-
+        
         
     },
     updated() {
-        //console.log('updated');
-        if(window.getComputedStyle(this.$refs.dataToggleButton).display === 'none') {
-            this.offset = -95;
-        }
-        else {
-            this.offset = -50;
-        }
+        this.reconfigureNavbar();
+        
     },
     components: {
         // VToolbar,
         // VNavigationDrawer,
         // VToolbarSideIcon
-        IntroSection
+        IntroSection,
+        VToolbarSideIcon
     },
     props: [
         
@@ -221,8 +240,8 @@ export default {
     data() {
         return {
             scrollPos: 0,
-            offset: 0,
-            drawer: false,
+            offset: -50,
+            drawer: null,
             search: '',
             searchField: false,
             show: false,
@@ -247,8 +266,10 @@ export default {
                 "/dashboard",
                 "/dashboard/addProfile",
                 "/dashboard/users",
-                "/payment"
-            ]
+                "/payment",
+                "/report"
+                
+            ],
         }
     },
     watch: {
@@ -260,11 +281,11 @@ export default {
                 this.navScrollPos = val;
             }
         },
-        offset: function(newValue, oldValue) {
-            //alert('Change');
-            
-        }
         
+        offset: function(newValue, oldValue) {
+            //this.reconfigureNavbar();
+            
+        },
     },
     methods: {
         assignClass(scrollPos) {
@@ -283,6 +304,14 @@ export default {
             }
             else {
                 return this.otherPageNavStyle;
+            }
+        },
+        reconfigureNavbar() {
+            if(this.$refs.dataToggleButton && window.getComputedStyle(this.$refs.dataToggleButton).display === 'none') {
+                this.offset = -95;
+            }
+            else {
+                this.offset = -50;
             }
         },
         searchIconClicked() {
@@ -307,6 +336,14 @@ export default {
             return "collapse";
         },
         displayOrNot() {
+            this.exceptionPages.forEach(link => {
+                console.log(link, this.$route.path);
+                if(this.$route.path.includes(link)) {
+                    //alert('Okay');
+                    return 'display: none';
+                }
+            });
+            
             if(this.exceptionPages.indexOf(this.$route.path) > -1) {
                 console.log('Inside Login');
                 return ('display: none');
@@ -323,6 +360,11 @@ export default {
             this.$store.dispatch('logodesign/resetState');
             console.log('State reset');
         }
+    },
+    computed: {
+        toggleButtonStyle() {
+            return window.getComputedStyle(this.$refs.dataToggleButton).display;
+        }
     }
 }
 </script>
@@ -338,9 +380,12 @@ export default {
         position: absolute fixed;
         width: 100%;
         /* height: 80px; */
-        height: auto;
         z-index: 1000 !important;
         
+    }
+
+    nav, .navbar, .navSection {
+        min-height: 0px !important;
     }
 
     .logo {
@@ -437,6 +482,13 @@ export default {
         transform: translateY(20px);
     }
 
+    .drawerHamburger {
+        z-index: 1000;
+        background: white;
+        position: fixed;
+    }
+
+    
 
 
 

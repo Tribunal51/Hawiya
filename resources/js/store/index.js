@@ -14,15 +14,15 @@ import promotional from './modules/promotional';
 
 Vue.use(Vuex);
 
-import Vuetify from 'vuetify';
+// import Vuetify from 'vuetify';
 import { Ripple } from 'vuetify/lib/directives';
 
-    Vue.use(Vuetify, {
-        iconfont: 'md',
-        directives: {
-            Ripple
-        }
-    });
+    // Vue.use(Vuetify, {
+    //     iconfont: 'md',
+    //     directives: {
+    //         Ripple
+    //     }
+    // });
 
 export default new Vuex.Store({
     

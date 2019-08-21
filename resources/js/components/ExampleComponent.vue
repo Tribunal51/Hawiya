@@ -5,7 +5,7 @@
         
 
         <page-footer />
-
+        
     </v-app>
 </template>
 
@@ -14,6 +14,7 @@ import Vue from 'vue';
 
 // import { VApp } from 'vuetify/lib';
 //import 'vuetify/src/stylus/app.styl';
+import VToolbarSideIcon from 'vuetify/lib';
 
 export default {
     props: [
@@ -21,7 +22,7 @@ export default {
         "verified"
     ],
     components: {
-        
+        VToolbarSideIcon
     },
     mounted() {
         console.log('Verified', this.verified);
