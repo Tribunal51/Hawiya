@@ -77,8 +77,10 @@ class PagesController extends Controller
     }
 
     public function report($id) {
-        $order = LogodesignOrder::where('id', $id)->get();
-        return view('pages.report')->with('id', $id)->with('order', $order);
+        $order = LogodesignOrder::where('id', $id)->get()->first();
+        //return $order;
+        $client = User::where('id', $order->id)->get()->first();
+        return view('pages.report')->with(array('order' => $order, 'client' => $client));
     }
 
     public function orderConfirm(Request $request) {

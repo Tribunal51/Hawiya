@@ -10,13 +10,13 @@
 
             </div>
         </div> -->
-        <SubHeader><h5><strong>Logo Style</strong></h5></SubHeader>
+        <SubHeader><h5><strong>{{ title ? title : 'Logo Style' }}</strong></h5></SubHeader>
         <div class="row">
             <div class="col-md mt-2 mb-2">
-                <h5>Choose your Logo style</h5>
+                <h5 v-show="!readonly">Choose your Logo style</h5>
             </div>
         </div>
-        <div class="row sliderRow" v-for="(value,style) in tempStyles" :key="style">
+        <div class="row" v-for="(value,style) in tempStyles" :key="style" :style="readonly ? 'height: 60px !important' : 'height: 30px !important'">
             
             <div class="col-sm-3 labelLeft">{{ style.split('_')[0] | capitalizeFirstLetter }}</div>
             <div class="col-sm-6 slider">
@@ -33,7 +33,7 @@
                 
                 <VSlider
                     v-model="tempStyles[style]"
-                    thumbLabel
+                    :thumbLabel="readonly ? 'always' : true"
                     min="-100"
                     max="100"
                     thumbSize="30"
@@ -41,7 +41,8 @@
                     step="10"                      
                     color=#FBC02D
                     thumbColor=#FBC02D
-                    @change="updateStyles"                       
+                    @change="updateStyles" 
+                    :readonly="readonly"                      
                 ></VSlider>
                     
                 <!-- <vue-slider 
@@ -79,7 +80,8 @@ export default {
     },
     props: [
         "styles",
-        
+        "title",
+        "readonly"
     ],
     created() {
         // console.log('Vuetify style isDisabled', document.querySelector('#vuetify-style'));
@@ -93,7 +95,6 @@ export default {
     },
     data() {
         return {
-            tempStyles: {},
             slider:0,
             options: {
                 dotSize: 14,
@@ -134,8 +135,13 @@ export default {
         }        
     },
     mounted() {
-        this.tempStyles = this.styles;
-        console.log('Styles in Styles',this.styles);
+        //this.tempStyles = {...this.styles};
+        console.log('TempStyles', this.tempStyles);
+    },
+    computed: {
+        tempStyles() {
+            return this.styles;
+        }
     },
     methods: {
         updateStyles() {
@@ -166,8 +172,6 @@ export default {
         
     }
 
-    
-
     @media (max-width:576px) {
         .sliderRow {
             width: 100%;
@@ -180,11 +184,17 @@ export default {
 
         .labelLeft {
             width: 20%;
+           
+            /* text-align: center; */
+        
+            /* font-size: 0.5rem; */
         }
 
         .labelRight {
-            width: 20%;  
-            display: none;
+            width: 20%; 
+            display: none; 
+            /* font-size: 0.5rem; */
+            /* display: none; */
         }
     }
 

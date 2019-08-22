@@ -117,7 +117,11 @@ class LogoDesignOrdersController extends Controller
      */
     public function show($id)
     {
-        //
+        $order = LogoDesignOrder::find($id);
+        if(!$order) {
+            return -2;  // echo "Order not found.";
+        }
+        return $order;
     }
 
     /**

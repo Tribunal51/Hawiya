@@ -77,12 +77,13 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-primary">
+                                <button type="submit" class="btn btn-warning">
                                     {{ __('Register') }}
                                 </button>
                                 @if(request()->input('redirect'))
                                     <a href={!!"/login?redirect=".request()->input('redirect')!!}>Have an account? Login here</a>
                                 @endif
+                                
                             </div>
                             
                         </div>

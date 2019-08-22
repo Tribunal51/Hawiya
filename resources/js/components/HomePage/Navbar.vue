@@ -57,19 +57,21 @@
                     <li class="nav-item">
                         <a href="/"><img class="logo" src="/storage/HawiyaBrandLogo.PNG" /></a>
                     </li>
-                    <router-link 
-                        :style="displayOrNot(scrollPos)" 
-                        v-on:click.native="toggleNavbar()" 
-                        tag="li" class="nav-item navItem" 
-                        to="/" 
-                        v-scroll-to="{el: '#section1', offset: offset}">
-                            HOME
-                    </router-link>
-                    <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section2', offset: offset}">WHAT WE DO</router-link>
-                    <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section4', offset: offset}">PROFILE</router-link>
-                    <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section5', offset: offset}">CASESTUDY</router-link>
-                    <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">CONTACTUS</router-link>
-                    
+                    <span :style="displaySectionOrNot()">
+                        <router-link 
+                            :style="displayOrNot(scrollPos)" 
+                            v-on:click.native="toggleNavbar()" 
+                            tag="li" 
+                            class="nav-item navItem" 
+                            to="/" 
+                            v-scroll-to="{el: '#section1', offset: offset}">
+                                HOME
+                        </router-link>
+                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section2', offset: offset}">WHAT WE DO</router-link>
+                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section4', offset: offset}">PROFILE</router-link>
+                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section5', offset: offset}">CASESTUDY</router-link>
+                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">CONTACTUS</router-link>
+                    </span>
                     <slot></slot>
 
                     
@@ -115,12 +117,12 @@
         </v-toolbar>    -->
        
         
-        <v-toolbar-side-icon large class="hidden-sm-and-down drawerHamburger" v-show="true" @click="drawer=!drawer" v-if="offset === -50"></v-toolbar-side-icon>
+        <v-toolbar-side-icon large class="hidden-sm-and-down drawerHamburger" v-show="false" @click="drawer=!drawer" v-if="offset === -50"></v-toolbar-side-icon>
         <v-navigation-drawer app v-model="drawer" temporary>
             <v-list nav>
                 <ul class="nav-items">
                     <a class="nav-item" href="/"><img src="/storage/HawiyaBrandLogo.PNG" class="logo" /></a>
-                    <span :style="displayOrNot()" @click="drawer=!drawer">
+                    <span :style="displaySectionOrNot()">
                         <v-list-tile>
                             <v-list-tile-action>
                                 <router-link tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section1'">HOME</router-link>
@@ -150,7 +152,7 @@
                     </v-list-tile>
 
                     <v-list-tile>
-                        <li class="dropdown nav-item navItem languageSection">
+                        <li class="dropdown languageSection">
                             <button class="btn btn-default dropdown-toggle toggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ this.language }}
                             </button>
@@ -166,9 +168,9 @@
                     </v-list-tile>
 
                     <v-list-tile>
-                        <div class="nav-item navItem searchSection">
-                            <input v-model="search" class="navItem searchField" ref="search" type="text" v-if="searchField"  />
-                            <img :style="displayOrNot(scrollPos)" src="/storage/icons/searchicon.png" class="navItem searchIcon" @click="searchIconClicked()"  />
+                        <div class="searchSection">
+                            <input v-model="search" class="searchField" ref="search" type="text" v-if="searchField"  />
+                            <img :style="displayOrNot(scrollPos)" src="/storage/icons/searchicon.png" class="searchIcon" @click="searchIconClicked()"  />
                         </div>
                     </v-list-tile>
                 </ul> 
@@ -220,6 +222,7 @@ export default {
             this.scrollPos = window.scrollY;
             console.log(this.scrollPos);
         });
+        
         
         
     },
@@ -325,6 +328,7 @@ export default {
                 
             }
             else {
+                
                 this.searchField = true;
                 //this.$refs.search.focus();
                 console.log(this.$nextTick);
@@ -336,28 +340,39 @@ export default {
             return "collapse";
         },
         displayOrNot() {
-            this.exceptionPages.forEach(link => {
-                console.log(link, this.$route.path);
-                if(this.$route.path.includes(link)) {
-                    //alert('Okay');
-                    return 'display: none';
-                }
-            });
-            
             if(this.exceptionPages.indexOf(this.$route.path) > -1) {
                 console.log('Inside Login');
                 return ('display: none');
-            }           
+            }      
+            // this.exceptionPages.forEach(link => {
+            //     console.log(link, this.$route.path);
+            //     if(this.$route.path.includes(link)) {
+            //         // alert();
+            //         return 'display: none';
+            //     }
+            // });
+            
+                 
             // if(this.$route.path === '/login' || this.$route.path === '/register' || this.$route.path === '/home') {
             //     console.log('Inside login');
             //     return ('display: none');
             // }
         },
+        displaySectionOrNot() {
+            let flag = true;
+            this.exceptionPages.forEach(link => {
+                //console.log(link, this.$route.path);
+                if(this.$route.path.includes(link)) {
+                    flag = false;
+                }
+            });
+            return flag ? '' : ('display: none');
+        },
         setLanguage(language) {
             this.language = language;
         },
         resetState() {
-            this.$store.dispatch('logodesign/resetState');
+            this.$store.dispatch('resetAllStates');
             console.log('State reset');
         }
     },

@@ -1,6 +1,6 @@
 <template>
     <div class="Cover">
-        <SubHeader><h5><strong>Logo Information</strong></h5></SubHeader>
+        <SubHeader><h5><strong>{{ title ? title : 'Logo Information' }}</strong></h5></SubHeader>
         <!-- <div class="row">
             <div class="col-md-4">
                 <BlackBox>
@@ -27,6 +27,7 @@
                 @input="updateForm($event.target.value, 'brand')"
                 :value="this.Form.brand"
                 required
+                :readonly="readonly"
             />
             <!-- <small for="brandName" id="brandName" class="form-text text-muted">At least 3 characters</small> -->
         </div>
@@ -38,7 +39,7 @@
                 placeholder="TAGLINE (OPTIONAL)" 
                 @input="updateForm($event.target.value, 'tagline')"
                 :value="this.Form.tagline"
-        
+                :readonly="readonly"
              />
         </div>
 
@@ -51,6 +52,7 @@
                 @input="updateForm($event.target.value, 'business_field')"
                 :value="this.Form.business_field"
                 required
+                :readonly="readonly"
             />
         </div>
 
@@ -62,6 +64,7 @@
                 @input="updateForm($event.target.value, 'subject')"
                 :value="this.Form.subject" 
                 required 
+                :readonly="readonly"
             />
 
         </div>
@@ -74,6 +77,7 @@
                 @input="updateForm($event.target.value, 'description')"
                 :value="this.Form.description" 
                 required
+                :readonly="readonly"
             />
         </div>        
     </div>
@@ -85,7 +89,9 @@ import SubHeader from '../../../../../UI/SubHeader';
 
 export default {
     props: [
-        "Form"
+        "Form",
+        "title",
+        "readonly"
     ],
     components: {
         BlackBox,
