@@ -14,7 +14,7 @@ class QueriesController extends Controller
      */
     public function index()
     {
-        return Query::all();
+        return Query::get(['id', 'name', 'email', 'phone', 'subject', 'message', 'created_at']);
     }
 
     /**
@@ -65,7 +65,7 @@ class QueriesController extends Controller
             return $query->id;
         }
         else {
-            return -1;
+            return -1;  // echo "Query could not be registered. Please investigate.";
         }
         
 

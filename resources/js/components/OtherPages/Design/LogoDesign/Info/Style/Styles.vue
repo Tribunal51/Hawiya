@@ -18,8 +18,8 @@
         </div>
         <div class="row" v-for="(value,style) in tempStyles" :key="style" :style="readonly ? 'height: 60px !important' : 'height: 30px !important'">
             
-            <div class="col-sm-3 labelLeft">{{ style.split('_')[0] | capitalizeFirstLetter }}</div>
-            <div class="col-sm-6 slider">
+            <div class="col-3 labelLeft">{{ style.split('_')[0] | capitalizeFirstLetter }}</div>
+            <div class="col-6 slider">
                 <!-- <input 
                 type="range" 
                 min="0" 
@@ -31,7 +31,7 @@
                 {{ value }} -->
                 
                 
-                <VSlider
+                <VSlider 
                     v-model="tempStyles[style]"
                     :thumbLabel="readonly ? 'always' : true"
                     min="-100"
@@ -52,7 +52,7 @@
                 
                                     
             </div>
-            <div class="col-sm-3 labelRight">{{ style.split('_')[1] | capitalizeFirstLetter }}</div>
+            <div class="col-3 labelRight">{{ style.split('_')[1] | capitalizeFirstLetter }}</div>
                 
             
         </div>
@@ -163,6 +163,8 @@ export default {
     }
 
     .slider {       
+        width: 100%;
+        /* background-color: red; */
         vertical-align: middle;      
     }
 
@@ -179,11 +181,12 @@ export default {
         }
 
         .slider {
-            width: 80%;
+            /* background-color: green; */
+            width: 100%;
         }
 
         .labelLeft {
-            width: 20%;
+            width: 10%;
            
             /* text-align: center; */
         
@@ -191,8 +194,8 @@ export default {
         }
 
         .labelRight {
-            width: 20%; 
-            display: none; 
+            width: 10%; 
+            /* display: none;  */
             /* font-size: 0.5rem; */
             /* display: none; */
         }

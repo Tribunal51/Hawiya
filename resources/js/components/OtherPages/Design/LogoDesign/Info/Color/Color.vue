@@ -16,7 +16,7 @@
                 <h5>Choose your brand Color</h5>
             </div>
         </div>
-        <div class="rowSection my-2" v-for="(colorcode,color) in colorListTemp" :key="color">
+        <div class="rowSection my-2" v-for="(colorcode,color) in colorsList" :key="color">
             <div class="checkmarkSection">
                 <CheckMark>
                     <input  
@@ -69,6 +69,7 @@
 import BlackBox from '../../../../../UI/BlackBox';
 import CheckMark from '../../../../../UI/CheckMark';
 import SubHeader from '../../../../../UI/SubHeader';
+import { store } from '../../../../../store';
 
 export default {
     mounted() {
@@ -83,17 +84,19 @@ export default {
         SubHeader
     },
     props: [
-        "colorList",
         "color"
     ],
     data() {
         return {
-            colorListTemp: this.colorList,
             colors: [],
             noColor: 'No Color Selected'
         }
     },
-    
+    computed: {
+        colorsList() {
+            return store.colorsList;
+        }
+    },
     methods: {
         setBackgroundColor(color, index) {
             let setColor = color;

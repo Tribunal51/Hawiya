@@ -2,7 +2,9 @@
     <div class="Cover" v-if="authuser !== -1">
         <div class="headerSection">
             <div class="row">
-                <center><slot></slot></center>
+                <div class="col">
+                    <center><slot></slot></center>
+                </div>
             </div>
             <IntroSection :styling="zeroBottomPadding">
                 <div class="row">
@@ -10,9 +12,9 @@
                         <img class="hawiyaLogo" src="/storage/icons/yellow-logo.png" />
                     </div>
                     <div class="col-sm-5 userDetailsSection">
-                        <h2 class="bold">{{ user.name }}</h2>
-                        <h4 class="gray">{{ user.email }}</h4>
-                        <h4 class="gray">Edit Profile</h4>
+                        <h2 class="userDetail bold">{{ user.name }}</h2>
+                        <h4 class="userDetail gray">{{ user.email }}</h4>
+                        <h4 class="userDetail gray">Edit Profile</h4>
                     </div>
                     <div class="col-sm-3 settingsSection">
                         <img src="/storage/icons/white-settings.png" class="settingsIcon" alt="settingsIcon" />
@@ -109,6 +111,7 @@ export default {
 
 <style scoped>
     .headerSection {
+        width: 100%;
         min-height: 40vh;
         background-color: black;
         display: flex;
@@ -125,8 +128,9 @@ export default {
         color: white;
         text-align: right;
         display: flex;
-        flex-direction: column;
+        flex-flow: column wrap;
         justify-content: flex-end;
+        word-break: break-all;
     }
 
     .hawiyaLogoSection {
@@ -183,5 +187,12 @@ export default {
         cursor: pointer;
         padding: 5px;
 
+    }
+
+    @media (max-width: 576px) {
+        .userDetailsSection {
+            align-items: center;
+            padding-top: 20px;
+        }
     }
 </style>

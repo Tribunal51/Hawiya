@@ -80,6 +80,9 @@ class UsersController extends Controller
     public function show(Request $request)
     {
         $user = User::find($request->UserId);
+        if(!$user) {
+            return -2;  // echo "User not found";
+        }
         return $user;
         //return new UserResource($user);
     }

@@ -26,8 +26,17 @@ class OrdersController extends Controller
     {
         //
         $logodesign_orders = LogodesignOrder::all();
-        //$branding_orders = BrandingOrder::all();
-        $all_orders_array = array('logodesign' => $logodesign_orders, 'branding' => $branding_orders);
+        $branding_orders = BrandingOrder::all();
+        $socialmedia_orders = SocialMediaOrder::all();
+        $packaging_orders = PackagingOrder::all();
+        $promotional_orders = PromotionalOrder::all();
+        $all_orders_array = array(
+            'logodesign' => $logodesign_orders, 
+            'branding' => $branding_orders,
+            'social_media' => $socialmedia_orders,
+            'packaging' => $packaging_orders,
+            'promotional' => $promotional_orders
+        );
         $all_orders = json_encode($all_orders_array);
         return $all_orders;
 
@@ -168,9 +177,38 @@ class OrdersController extends Controller
         foreach($logodesign_orders as $order) {
             $order->order_type="logodesign";
         }
-        
 
-        $all_orders_array = $logodesign_orders->merge($users);
+        $branding_orders = BrandingOrder::all();
+        foreach($branding_orders as $order) {
+            $order->order_type="branding";
+        }
+
+        $socialmedia_orders = SocialMediaOrder::all();
+        foreach($socialmedia_orders as $order) {
+            $order->order_type="socialmedia";
+        }
+
+        $packaging_orders = PackagingOrder::all();
+        foreach($packaging_orders as $order) {
+            $order->order_type = "packaging";
+        }
+
+        $promotional_orders = PromotionalOrder::all();
+        foreach($promotional_orders as $order) {
+            $order->order_type = "promotional";
+        }
+
+        $stationery_orders = StationeryOrder::all();
+        foreach($stationery_orders as $order) {
+            $order->order_type = "stationery";
+        }
+        $all_orders_array = $logodesign_orders
+            ->merge($branding_orders)
+            ->merge($socialmedia_orders)
+            ->merge($packaging_orders)
+            ->merge($promotional_orders)
+            ->merge($stationery_orders);
+        //$all_orders_array = array_merge($logodesign_orders, $branding_orders, $socialmedia_orders, $packaging_orders, $promotional_orders, $stationery_orders);
         // return $all_orders_array;
 
         $ordered = $all_orders_array->sortBy('created_at')->values();

@@ -37,7 +37,7 @@ Route::get('/test', function() {
     return view('pages.test');
 });
 
-Route::get('/report/{id}', 'PagesController@report');
+Route::get('/report/logo-design/{id}', 'ReportsController@logodesign');
 
 
 // if(Auth::guest()) {

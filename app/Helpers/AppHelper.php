@@ -6,12 +6,16 @@ use App\Helpers\AppHelper as Helper;
 
 class AppHelper {
     public static function check_file($data) {
+        $characters = array(';', ',', '/', ':');
         if(!Helper::is_base64($data)) {
             return false;
+        } 
+        foreach($characters as $character) {
+            if(!strpos($data, $character)) {
+                return false;
+            }
         }
              
-        list($type, $data) = explode(';', $data);
-
         list($base, $data) = explode(',', $data);
         $decoded_file = base64_decode($data);
         list(, $filetype) = explode(':', $type);

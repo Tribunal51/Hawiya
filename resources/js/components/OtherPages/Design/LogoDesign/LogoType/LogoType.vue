@@ -63,6 +63,7 @@ import CheckMark from '../../../../UI/CheckMark';
 import BlackBox from '../../../../UI/BlackBox';
 import SubHeader from '../../../../UI/SubHeader';
 import NextButton from '../../../../UI/NextButton';
+import { store } from '../../../../store.js';
 
 export default {
     mounted() {
@@ -83,40 +84,45 @@ export default {
         return {
             selectedTypes: [],
             selectedTypesLimit: 2,
-            types: [
-                {
-                    title: 'Combination Mark',
-                    file: '/storage/logotype/combination-mark.png'
-                },
-                {
-                    title: 'Emblem',
-                    file: '/storage/logotype/emblem.png'
-                },
-                {
-                    title: 'Letterform',
-                    file: '/storage/logotype/letterform.png'
-                },
-                {   
-                    title: 'Pictorial mark',
-                    file: '/storage/logotype/pictorial-mark.png'
-                },
-                {
-                    title: 'Signature',
-                    file: '/storage/logotype/signature.png'
-                },
-                {
-                    title: 'WordMark',
-                    file: '/storage/logotype/wordmark.png'
-                },
-                {
-                    title: 'Abstract mark',
-                    file: '/storage/logotype/abstract-mark.png'
-                },
-                {
-                    title: 'Typography',
-                    file: '/storage/logotype/typography.png'
-                }
-            ]
+            // types: [
+            //     {
+            //         title: 'Combination Mark',
+            //         file: '/storage/logotype/combination-mark.png'
+            //     },
+            //     {
+            //         title: 'Emblem',
+            //         file: '/storage/logotype/emblem.png'
+            //     },
+            //     {
+            //         title: 'Letterform',
+            //         file: '/storage/logotype/letterform.png'
+            //     },
+            //     {   
+            //         title: 'Pictorial mark',
+            //         file: '/storage/logotype/pictorial-mark.png'
+            //     },
+            //     {
+            //         title: 'Signature',
+            //         file: '/storage/logotype/signature.png'
+            //     },
+            //     {
+            //         title: 'WordMark',
+            //         file: '/storage/logotype/wordmark.png'
+            //     },
+            //     {
+            //         title: 'Abstract mark',
+            //         file: '/storage/logotype/abstract-mark.png'
+            //     },
+            //     {
+            //         title: 'Typography',
+            //         file: '/storage/logotype/typography.png'
+            //     }
+            // ]
+        }
+    },
+    computed: {
+        types() {
+            return store.logotypes;
         }
     },
     methods: {

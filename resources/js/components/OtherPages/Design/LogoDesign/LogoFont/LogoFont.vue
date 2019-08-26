@@ -34,10 +34,14 @@
                     /> -->
                     <!-- <h1 :style="font.style">{{ font.name }}</h1> -->
                     <!-- <div class="fontImage" :style="'background:url('+font.file+') fill'"></div> -->
-                    <img :src="font.file" :alt="font.name" class="fontImage" />
+                    <!-- <img :src="font.file" :alt="font.name" class="fontImage" />
                     <div class="fontBox">
                         <p>{{ font.description }}</p>
-                    </div>
+                    </div> -->
+                    <Font 
+                        :font="font" 
+                        :yellowBottomBorder="true" 
+                    />
                 </label>
 
             </div>
@@ -77,13 +81,16 @@ import CheckMark from '../../../../UI/CheckMark';
 import BlackBox from '../../../../UI/BlackBox';
 import SubHeader from '../../../../UI/SubHeader';
 import NextButton from '../../../../UI/NextButton';
+import Font from './Font';
+import { store } from '../../../../store';
 
 export default {
     components: {
         CheckMark,
         BlackBox,
         SubHeader,
-        NextButton
+        NextButton,
+        Font
     },
     mounted() {
         if(this.$store.state.logodesign.font !== null) {
@@ -93,28 +100,6 @@ export default {
     data() {
         return {
             selectedFont: '',
-            fonts: [
-                {
-                    name: 'Serif.',
-                    description: 'Traditional, have feel.',
-                    file: '/storage/Fonts/Serif.png'
-                },
-                {
-                    name: 'Sans Serif',
-                    description: 'Modern, feel free.',
-                    file: '/storage/Fonts/SansSerif.png'
-                },
-                {
-                    name: 'Script',
-                    description: 'Cursive, a bit more decorative.',
-                    file: '/storage/Fonts/Script.png'
-                },
-                {
-                    name: 'Display',
-                    description: 'Decorative, good as a design focal point.',
-                    file: '/storage/Fonts/Display.png'
-                }
-            ]
         }
     },
     computed: {
@@ -125,6 +110,9 @@ export default {
                 return packageTitle;
             }
             
+        },
+        fonts() {
+            return store.fonts;
         }
     },
     methods: {
@@ -162,6 +150,7 @@ export default {
         /* width: 200px !important;
         height: 200px !important; */
         flex: 1 1 auto;
+        
     }
 
     .checkBox img:hover {

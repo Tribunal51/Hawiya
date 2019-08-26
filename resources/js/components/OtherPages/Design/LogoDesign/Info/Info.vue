@@ -20,7 +20,7 @@
           </div>
          
           <div class="col-xl" id="section3">
-            <Color v-on:color="updateColors" :colorList="info.colorList" :color="assignColor()"/>
+            <Color v-on:color="updateColors" :color="assignColor()"/>
           </div>
         </div>
         <!-- <ImageUpload v-on:dataurls="updateFileUrls"/> -->
@@ -241,21 +241,6 @@ export default {
           business_field: "",
           description: "",
           subject: ""
-        },
-        colorList: {
-          Red: "red",
-          Violet: "violet",
-          DarkViolet: "darkviolet",
-          Purple: "purple",
-          Blue: "blue",
-          LightBlue: "lightblue",
-          Green: "green",
-          LightGreen: "lightgreen",
-          Yellow: "yellow",
-          Orange: "orange",
-          OrangeRed: "orangered",
-          Brown: "brown",
-          Black: "black"
         }
       }
     };

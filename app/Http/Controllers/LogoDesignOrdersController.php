@@ -121,6 +121,8 @@ class LogoDesignOrdersController extends Controller
         if(!$order) {
             return -2;  // echo "Order not found.";
         }
+        $order->color = isset($request->color) ? implode(",",$request->color) : null;
+        $order->logotype = isset($request->logotype) ? implode(",", $request->logotype) : null;
         return $order;
     }
 
