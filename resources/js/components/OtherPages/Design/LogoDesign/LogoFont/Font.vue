@@ -5,6 +5,7 @@
             <p>{{ font.description }}</p>
         </div>
     </div>
+    
 </template>
 
 <script>
@@ -29,6 +30,11 @@ export default {
 </script>
 
 <style scoped>
+
+    .Cover {
+        /* max-width: 200px; */
+    }
+
     .fontImage {
         width: 100%;
         height: 75px;

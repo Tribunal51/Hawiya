@@ -1,28 +1,10 @@
 <template>
     <div class="Cover" v-if="authuser !== -1">
-        <div class="headerSection">
-            <div class="row">
-                <div class="col">
-                    <center><slot></slot></center>
-                </div>
-            </div>
-            <IntroSection :styling="zeroBottomPadding">
-                <div class="row">
-                    <div class="col-sm-4 hawiyaLogoSection">
-                        <img class="hawiyaLogo" src="/storage/icons/yellow-logo.png" />
-                    </div>
-                    <div class="col-sm-5 userDetailsSection">
-                        <h2 class="userDetail bold">{{ user.name }}</h2>
-                        <h4 class="userDetail gray">{{ user.email }}</h4>
-                        <h4 class="userDetail gray">Edit Profile</h4>
-                    </div>
-                    <div class="col-sm-3 settingsSection">
-                        <img src="/storage/icons/white-settings.png" class="settingsIcon" alt="settingsIcon" />
-                    </div>
-                </div>
-            </IntroSection>
-        </div>
+        
+        <HeaderPanel :user="user" />
         <div class="bottomSection">
+            <button @click="buttonClicked()">Click</button>
+            <router-view />
             <!-- {{ this.authuser }} -->
             <IntroSection :styling="highTopPadding">
                 <h5>Make New Order</h5>
@@ -61,6 +43,7 @@
 </template>
 
 <script>
+import HeaderPanel from './HeaderPanel.vue';
 import IntroSection from '../../UI/IntroSection';
 import Services from '../../UI/Services';
 
@@ -74,9 +57,6 @@ export default {
             user: this.authuser,
             showOrders: false,
             orders: [],
-            zeroBottomPadding: {
-                paddingBottom: '0px'
-            },
             highTopPadding: {
                 paddingTop: '100px'
             },
@@ -85,7 +65,8 @@ export default {
     },
     components: {
         IntroSection,
-        Services
+        Services,
+        HeaderPanel
     },
     mounted() {
         console.log('User',this.user.id);
@@ -105,61 +86,20 @@ export default {
         modify: order => order.type.slice(0,2).toUpperCase() + '-' + order.id
         
            
+    },
+    methods: {
+        buttonClicked() {
+            this.$router.push('/home/settings');
+        }
     }
 }
 </script>
 
 <style scoped>
-    .headerSection {
-        width: 100%;
-        min-height: 40vh;
-        background-color: black;
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-    }
+    
 
     .bottomSection {
         min-height: 60vh;
-    }
-
-    .userDetailsSection {
-        color: white;
-        text-align: right;
-        display: flex;
-        flex-flow: column wrap;
-        justify-content: flex-end;
-        word-break: break-all;
-    }
-
-    .hawiyaLogoSection {
-        display: flex;
-        flex-direction: column;
-        justify-content: flex-end;
-        align-items: center;
-    }
-
-    .hawiyaLogo {
-        width: 150px;
-        height: 150px;
-    }
-
-    @media(min-width: 576px) {
-        .hawiyaLogo {
-            position: absolute;
-            margin-top: 50px;
-        }
-    }
-
-    .bold {
-        font-family: 'LatoBold', sans-serif;
-        
-    }
-
-    .gray {
-        color: gray;
-        word-wrap: break-word;
     }
 
     .blackLine {
@@ -175,24 +115,6 @@ export default {
         cursor: pointer;
     }
 
-    .settingsSection {
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-
-    .settingsIcon {
-        width: 50px;
-        height: 50px;
-        cursor: pointer;
-        padding: 5px;
-
-    }
-
-    @media (max-width: 576px) {
-        .userDetailsSection {
-            align-items: center;
-            padding-top: 20px;
-        }
-    }
 </style>
+
+

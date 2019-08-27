@@ -20,6 +20,7 @@
 import Card from '../../../../UI/Card';
 import BlackBox from '../../../../UI/BlackBox';
 import OrderButton from '../../../../UI/OrderButton';
+import { store } from '../../../../../data/branding';
 
 export default {
     mounted() {
@@ -30,52 +31,10 @@ export default {
         BlackBox,
         OrderButton
     },
-    data() {
-        return {
-            cards: [
-                {
-                    title: 'Brand Binder : A',
-                    package: 'Brand Binder : A',
-                    old_price: 600,
-                    new_price: 400,
-                    header: 'YOU HAVE LOGO AND YOU NEED ONLY BRANDING',
-                    offers: [
-                        "2 Revisions",
-                        "2 Dedicated Designers",
-                        "48hrs Turnaround Time"
-                    ],
-                    comment: "Planner to Design your logo, Story & Strategy"
-                },
-                {
-                    title: 'Personal Branding Package',
-                    package: 'Personal Branding',
-                    old_price: 850,
-                    new_price: 600,
-                    offers: [
-                        "1 Professional Logo",
-                        "2 Revisions",
-                        "2 Dedicated Designers",
-                        "48hrs Turnaround Time"
-                    ],
-                    comment: "Planner to Design your logo, Story & Strategy"
-                },
-                {
-                    title: 'Premium Branding Package',
-                    package: 'Premium Branding',
-                    old_price: 1500,
-                    new_price: 990,
-                    offers: [
-                        "2 Professional Logo",
-                        "2 Revisions",
-                        "2 Dedicated Designers",
-                        "48hrs Turnaround Time"
-                    ],
-                    comment: "Planner to Design your logo Story & Strategy"
-                }
-            ]
-        }
-    },
     computed: {
+        cards() {
+            return store.packages;
+        },
         packages() {
             let packages = this.cards.map(card => card.title);
             return packages;

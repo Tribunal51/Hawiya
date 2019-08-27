@@ -16,6 +16,8 @@ import Vue from 'vue';
 //import 'vuetify/src/stylus/app.styl';
 import VToolbarSideIcon from 'vuetify/lib';
 
+
+
 export default {
     props: [
         "authuser",

@@ -25,7 +25,7 @@
 </template>
 
 <script>
-import { store } from '../store.js';
+import { store } from '../../../../../data/packaging';
 
 export default {
     data() {

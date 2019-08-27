@@ -34,10 +34,12 @@
                     /> -->
                     <!-- <h1 :style="font.style">{{ font.name }}</h1> -->
                     <!-- <div class="fontImage" :style="'background:url('+font.file+') fill'"></div> -->
+
                     <!-- <img :src="font.file" :alt="font.name" class="fontImage" />
                     <div class="fontBox">
                         <p>{{ font.description }}</p>
                     </div> -->
+
                     <Font 
                         :font="font" 
                         :yellowBottomBorder="true" 
@@ -48,7 +50,7 @@
         </div>
         
         <div class="row my-2">
-            <div class="col-sm-1">
+            <div class="col-sm-2">
                 <CheckMark>
                     <input 
                     type="radio" 
@@ -57,7 +59,7 @@
                     id="noIdea"   />
                 </CheckMark>
             </div>
-            <label for="noIdea" class="col-sm-11 noIdeaSection">
+            <label for="noIdea" class="col-sm-10 noIdeaSection">
                 <h4>I don't have an idea.</h4>
             </label>
         </div>
@@ -82,7 +84,7 @@ import BlackBox from '../../../../UI/BlackBox';
 import SubHeader from '../../../../UI/SubHeader';
 import NextButton from '../../../../UI/NextButton';
 import Font from './Font';
-import { store } from '../../../../store';
+import { store } from '../../../../data/logodesign';
 
 export default {
     components: {
@@ -149,7 +151,7 @@ export default {
         /* flex-grow: 1; */
         /* width: 200px !important;
         height: 200px !important; */
-        flex: 1 1 auto;
+        /* flex: 1 1 auto; */
         
     }
 

@@ -18,6 +18,7 @@
 import BlackBox from '../../../../UI/BlackBox';
 import Card from '../../../../UI/Card';
 import OrderButton from '../../../../UI/OrderButton';
+import { store } from '../../../../../data/socialmedia';
 
 export default {
     components: {
@@ -28,46 +29,9 @@ export default {
     mounted() {
 
     },
-    data() {
-        return {
-            cards: [
-                {
-                    title: 'FAST TRACK',
-                    package: 'Fast Track',
-                    old_price: 100,
-                    new_price: 50,
-                    posts: 1,
-                    offers: [
-                        "Facebook",
-                        "Instagram",
-                        "Twitter"
-                    ]
-                },
-                {
-                    title: 'BASIC',
-                    package: 'Basic',
-                    old_price: 400,
-                    new_price: 150,
-                    posts: 4,
-                    offers: [
-                        "Facebook",
-                        "Instagram",
-                        "Twitter"
-                    ]
-                },
-                {
-                    title: 'ADVANCED',
-                    package: 'Advanced',
-                    old_price: 800,
-                    new_price: 250,
-                    posts: 8,
-                    offers: [
-                        "Facebook",
-                        "Instagram",
-                        "Twitter"
-                    ]
-                }
-            ]
+    computed: {
+        cards() {
+            return store.packages;
         }
     },
     methods: {

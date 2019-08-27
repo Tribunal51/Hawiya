@@ -60,7 +60,7 @@
 import BlackBox from '../../../UI/BlackBox';
 import SubmitButton from '../../../UI/SubmitButton';
 import Cost from './Cost';
-import { store } from './store.js';
+import { store } from '../../../../data/promotional.js';
 import Header from '../../../UI/Header';
 
 export default {

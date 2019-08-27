@@ -17,7 +17,9 @@ Auth::routes();
 
 //Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
 Route::get('/home', 'PagesController@userDashboard')->name('home')->middleware('auth');
-
+Route::get('/home/{any}', function() {
+    return view('home');    
+})->where('any', '.*')->middleware('auth');
 
 Route::get('/dashboard', 'PagesController@dashboard');
 Route::get('/dashboard/users', 'PagesController@users');

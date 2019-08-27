@@ -20,7 +20,7 @@
           </div>
          
           <div class="col-xl" id="section3">
-            <Color v-on:color="updateColors" :color="assignColor()"/>
+            <Color v-on:color="updateColors" :color="assignColor()" />
           </div>
         </div>
         <!-- <ImageUpload v-on:dataurls="updateFileUrls"/> -->
@@ -48,6 +48,7 @@ import axios from "axios";
 import { VBtn } from "vuetify/lib";
 import ImageUpload from "../../../../UI/ImageUpload";
 import SubmitButton from '../../../../UI/SubmitButton';
+import { store } from '../../../../../data/logodesign';
 
 export default {
   mounted() {
@@ -82,14 +83,10 @@ export default {
         ? this.info.form
         : this.$store.state.logodesign.form;
     },
-    updateFileUrls(urls) {
-      // console.log('Inside Info, these are the URLs', urls);
-      // console.log('Number of images', urls.length);
-      // console.log('First URL', urls[0]);
-    },
     updateForm(form) {
       console.log("Form update in Info", form);
       this.info.form = { ...form };
+      // this.updateDisabledButtonStatus();
     },
     assignStyles() {
       return this.$store.state.logodesign.style === null
@@ -107,9 +104,33 @@ export default {
     },
     updateColors(colors) {
       this.info.color = [...colors];
+      // this.updateDisabledButtonStatus();
+    },
+    updateFileUrls(urls) {
+      // console.log('Inside Info, these are the URLs', urls);
+      // console.log('Number of images', urls.length);
+      // console.log('First URL', urls[0]);
     },
     getInfo() {
       console.log(this.info);
+    },
+    updateDisabledButtonStatus() {
+      let colorsCondition = false;
+      let formCondition = true;
+      if(this.info.color.length > 0) {
+        colorsCondition = true;
+      }
+      for(var key in this.info.form) {
+        if(this.info.form[key] === '') {
+          formCondition = false;
+        }
+      }
+      if(colorsCondition && formCondition) {
+        this.isButtonDisabled = false;
+      }
+      else {
+        this.isButtonDisabled = true;
+      }
     },
     isButtonDisabled() {
       return this.info.color.length < 1;
@@ -226,25 +247,11 @@ export default {
     return {
       info: {
         color: [],
-        styles: {
-          modern_classic: 0,
-          mature_youthful: 0,
-          feminine_masculine: 0,
-          playful_sophisticated: 0,
-          economical_luxury: 0,
-          geometric_organic: 0,
-          abstract_literal: 0
-        },
-        form: {
-          brand: "",
-          tagline: "",
-          business_field: "",
-          description: "",
-          subject: ""
-        }
+        styles: store.styles,
+        form: store.form
       }
-    };
-  }
+    }
+  },
 };
 </script>
 

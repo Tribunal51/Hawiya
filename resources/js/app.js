@@ -29,6 +29,7 @@ Vue.component('confirm-order', require('./components/OtherPages/ConfirmOrder/Con
 Vue.component('page-footer', require('./components/UI/Footer.vue').default);
 Vue.component('dashboard', require('./components/OtherPages/Dashboard/Dashboard').default);
 Vue.component('logodesign-report', require('./components/OtherPages/Report/LogoDesign').default);
+Vue.component('settings', require('./components/OtherPages/Dashboard/Settings').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -82,6 +83,7 @@ Vue.component('logodesign-report', require('./components/OtherPages/Report/LogoD
     import ConfirmOrder from './components/OtherPages/ConfirmOrder/ConfirmOrder';
 
     import Dashboard from './components/OtherPages/Dashboard/Dashboard';
+    import Settings from './components/OtherPages/Dashboard/Settings';
 
     import LogodesignReport from './components/OtherPages/Report/LogoDesign';
     
@@ -229,8 +231,12 @@ Vue.component('logodesign-report', require('./components/OtherPages/Report/LogoD
                 }
             ]
         },
-        {path: '/confirm-order', component: ConfirmOrder},
-        // {path: '/home', component: Dashboard},
+        {path: 'confirm-order', component: ConfirmOrder},
+        {
+            name: 'dashboardsettings',
+            path: '/home/settings',
+            component: Settings
+        },
         {path: '/', name: 'root', component: HomePage},
         {path: '*', component: NotFound}       
     ];

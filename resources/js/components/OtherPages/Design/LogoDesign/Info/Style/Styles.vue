@@ -136,7 +136,7 @@ export default {
     },
     mounted() {
         //this.tempStyles = {...this.styles};
-        console.log('TempStyles', this.tempStyles);
+        //console.log('TempStyles', this.tempStyles);
     },
     computed: {
         tempStyles() {

@@ -69,7 +69,7 @@
 import BlackBox from '../../../../../UI/BlackBox';
 import CheckMark from '../../../../../UI/CheckMark';
 import SubHeader from '../../../../../UI/SubHeader';
-import { store } from '../../../../../store';
+import { store } from '../../../../../../data/logodesign';
 
 export default {
     mounted() {
@@ -94,7 +94,7 @@ export default {
     },
     computed: {
         colorsList() {
-            return store.colorsList;
+            return store.colors;
         }
     },
     methods: {
@@ -170,6 +170,7 @@ export default {
     .noColorSection {
         width: 80%;
         cursor: pointer;
+       
     }
 
     @media (max-width: 768px) {

@@ -48,6 +48,7 @@ import IntroSection from '../../../../UI/IntroSection.vue';
 import BlackBox from '../../../../UI/BlackBox.vue';
 import SecondaryNavbar from '../../../../UI/SecondaryNavbar.vue';
 import OrderButton from '../../../../UI/OrderButton';
+import { store } from '../../../../data/logodesign';
 
 export default {
     components: {
@@ -62,45 +63,6 @@ export default {
     },
     data() {
         return {
-            cards: [
-                    {
-                        title: "FAST TRACK",
-                        package: 'Fast Track',
-                        old_price: 150,
-                        new_price: 100,
-                        offers: [
-                            "2 Logo Concepts",
-                            "2 Revisions",
-                            "2 Dedicated Designers",
-                            "48hrs Turnaround Time"
-                        ]
-                    },
-                    {
-                        title: "BASIC",
-                        package: 'Basic',
-                        old_price: 200,
-                        new_price: 350,
-                        offers: [
-                            "4 Logo Concepts",
-                            "4 Revisions",
-                            "2 Dedicated Designers",
-                            "48hrs Turnaround Time"
-                        ]
-                    },
-                    {
-                        title: "ADVANCED",
-                        package: 'Advanced',
-                        old_price: 300,
-                        new_price: 500,
-                        offers: [
-                            "6 Logo Concepts",
-                            "6 Revisions",
-                            "2 Dedicated Designers",
-                            "48hrs Turnaround Time"
-                        ]
-                    }
-
-            ],
             navStyle: {
                 backgroundColor: 'transparent !important',
                 borderTop: 'none',
@@ -114,6 +76,11 @@ export default {
                 fontSize: '1.2rem',
                 fontFamily: 'LatoRegular, sans-serif'
             },
+        }
+    },
+    computed: {
+        cards() {
+            return store.packages;
         }
     },
     methods: {

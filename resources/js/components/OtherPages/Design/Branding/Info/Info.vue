@@ -63,6 +63,7 @@ import BlackBox from '../../../../UI/BlackBox';
 import TextArea from '../../../../UI/TextArea';
 import SubmitButton from '../../../../UI/SubmitButton';
 import SubHeader from '../../../../UI/SubHeader';
+import { store } from '../../../../../data/branding';
 //import * from 'vuetify/lib';
 // import { VBtn } from 'vuetify';
 
@@ -79,19 +80,13 @@ export default {
             comment: '',
             dataurl: '',
             file: '',
-            features: [
-                "LOGO OR WATERMARK",
-                'DIFFERENT LOGO "LOCKUPS"',
-                "KEY COLORS",
-                "ADDITIONAL COLOR PALETTE OPTIONS",
-                "CORPORATE TYPEFACES",
-                "STANDARD TYPOGRAPHIC TREATMENTS",
-                "CONSISTENT STYLE FOR IMAGES",
-                "HAVE A FULL LIBRARY OF GRAPHIC ELEMENTS"
-            ]
+            
         }
     },
     computed: {
+        features() {
+            return store.features;
+        },
         package() {
             return this.$store.state.branding.package;
         }

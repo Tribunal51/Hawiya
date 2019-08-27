@@ -86,7 +86,7 @@ import Form from '../../OtherPages/Design/LogoDesign/Info/Form/Form';
 import Styles from '../../OtherPages/Design/LogoDesign/Info/Style/Styles';
 import axios from 'axios';
 import BlackBox from '../../UI/BlackBox';
-import { store } from '../../store';
+import { store } from '../../../data/logodesign';
 import Font from '../../OtherPages/Design/LogoDesign/LogoFont/Font';
 import Client from './Client';
 

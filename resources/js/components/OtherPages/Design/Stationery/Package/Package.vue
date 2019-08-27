@@ -18,6 +18,7 @@
 import Card from '../../../../UI/Card';
 import BlackBox from '../../../../UI/BlackBox';
 import OrderButton from '../../../../UI/OrderButton';
+import { store } from '../../../../../data/stationery';
 
 export default {
     components: {
@@ -25,49 +26,9 @@ export default {
         BlackBox,
         OrderButton
     },
-    data() {
-        return {
-            cards: [
-                {
-                    title: 'FAST TRACK',
-                    package: 'Fast Track',
-                    old_price: 150,
-                    new_price: 100,
-                    offers: [
-                        "Letter Head",
-                        "Business Card",
-                        "Envelope"
-                    ]
-                },
-                {
-                    title: 'BASIC',
-                    package: 'Basic',
-                    old_price: 350,
-                    new_price: 200,
-                    offers: [
-                        "Letter Head",
-                        "Business Card",
-                        "Envelope",
-                        "Folder",
-                        "Invoice"
-                    ]
-                },
-                {
-                    title: 'ADVANCED',
-                    package: 'Advanced',
-                    old_price: 500,
-                    new_price: 300,
-                    offers: [
-                        "Letter Head",
-                        "Business Card",
-                        "Envelope",
-                        "Folder",
-                        "Invoice",
-                        "Notebook",
-                        "Voucher"
-                    ]
-                }
-            ]
+    computed: {
+        cards() {
+            return store.packages;
         }
     },
     methods: {

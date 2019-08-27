@@ -66,7 +66,7 @@
 </template>
 
 <script>
-import { store } from '../store.js';
+import { store } from '../../../../../data/packaging';
 import BlackBox from '../../../../UI/BlackBox';
 import Cost from './Cost';
 import ProductSettings from '../ProductSettings/ProductSettings';

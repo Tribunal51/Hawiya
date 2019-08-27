@@ -58,7 +58,8 @@
 import Product from './Product';
 import ProductSettings from '../ProductSettings/ProductSettings';
 import BlackBox from '../../../../UI/BlackBox';
-import { store, removeKeyFromObjectsArray } from '../store.js';
+//import { store, removeKeyFromObjectsArray } from '../store.js';
+import { store } from '../../../../../data/packaging';
 import Header from '../../../../UI/Header';
 import NextButton from '../../../../UI/NextButton';
 

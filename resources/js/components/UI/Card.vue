@@ -50,8 +50,10 @@
                         </div>                       
                     </div>
                     <div class="col-sm-5 PriceSection">
-                        <h2>${{ card.new_price }}</h2>                      
-                        <span class="strikeout">${{ card.old_price }}</span>                                               
+                        <div class="prices">
+                            <h2>${{ card.new_price }}</h2>                      
+                            <span class="strikeout">${{ card.old_price }}</span> 
+                        </div>                                              
                     </div>
                 </div>
                 <br />                
@@ -107,12 +109,14 @@ export default {
 <style scoped>
     .packageCard {
         font-family: 'LatoRegular', sans-serif;
-        margin: 10px;
+        /* margin: 10px; */
         /* margin-top: 5px;
         margin-bottom: 5px; */
         font-size: 0.8rem;
-        min-width: 250px;
+        /* min-width: 100px !important; */
+        margin-right: 10px;
         max-width: 18rem;
+        min-width: 250px !important;
         width: 18rem;
         border: 1px solid black !important;
         min-height: 100px;
@@ -126,7 +130,8 @@ export default {
 
     @media (max-width: 330px) {
         .packageCard {
-            min-width: 0px;
+            width: 100%;
+            min-width: 0px !important;
         }
     }
 
@@ -140,11 +145,20 @@ export default {
         display: flex;
         flex-flow: column wrap;
         justify-content: flex-start;
+        /* align-items: center; */
         text-align: center;
         font-family: 'LatoBold', sans-serif;
         /* background-color: black; */
         
         /* font-weight: bold;   */
+    }
+
+    .prices {
+        display: flex;
+        flex-flow: column wrap;
+        justify-content: flex-start;
+        align-items: center;
+        font-family: 'LatoBold', sans-serif;
     }
 
     .packageTitle {
