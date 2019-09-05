@@ -28,12 +28,21 @@
 export default {
     props: [
         "items",
-        "totalPrice"
     ],
+    data() {
+        return {
+            totalPrice: 0
+        }
+    },
     computed: {
         selectedItems() {
             return this.items;
         },
+    },
+    watch: {
+        items: function(newValue, oldValue) {
+            this.totalPrice = newValue.map(item => item.price).reduce((prev, next) => { return prev + next }, 0);
+        }
     }
 
 }

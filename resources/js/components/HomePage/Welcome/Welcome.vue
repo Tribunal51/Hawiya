@@ -1,55 +1,107 @@
+<i18n>
+    {
+        "en": {
+            "line1": "Design your identity with a professional team" 
+        },
+        "ar": {
+            "line1": "صمم هويتك مع فريق محترف"
+        }
+    }
+</i18n>
+
 <template>
     <div class="Cover">
         <div class="navbarHeight"></div>
         <div class="filler">
-            <div class="row">
-                <div class="col-md flex-container-align-bottom">
-                    <IntroSection styling="paddingRight: 0px !important; paddingBottom: 0px">
-                        <IntroSection styling="paddingRight: 0px !important"> 
+            
+            <div class="flex-container-align-bottom">
+                <IntroSection :homePage="true">        
+                    <BlackBox>
+                        <h3 class="bold">{{ $t('line1') }}</h3>
+                    </BlackBox>
+                    <div class="row">
+                        <div class="col gray">
+                            Our design team gives you the professional edge you need to stand out your identity.
+                        </div>
+                    </div>
+                    
+                </IntroSection>
+                
+                    <div class="yellowContainerTopRightCurved">
+                        <IntroSection :homePage="true">  
                             <BlackBox>
-                                <h3>Design your identity with a professional team</h3>
+                                <div class="secondHeader">Let us build an outstanding brand for you</div>
                             </BlackBox>
-                            <div class="row">
+                            <div class="row mt-2">
                                 <div class="col">
-                                    Our design team gives you the professional edge you need to stand out your identity.
+                                    <StartHere />
                                 </div>
                             </div>
                         </IntroSection>
-                    </IntroSection>
-                    <!-- <div class="row yellowRow">
-                        <div class="col-md yellowContainerTopRightCurved">
-                            <IntroSection styling="paddingRight: 0px !important; paddingBottom: 0px">
-                                <IntroSection styling="paddingRight: 0px !important">
-                                    <BlackBox>
-                                        <h5>Let us build an outstanding brand for you</h5>
-                                    </BlackBox>
-                                    <div class="row">
-                                        <div class="col">
-                                            <StartHere />
-                                        </div>
-                                    </div>
-                                </IntroSection>
-                            </IntroSection>
-                        </div>
-                    </div> -->  
-                </div>
-                <div class="col-md rightSide">
-                    <!-- <div class="row">
-                        <button class="btn btn-primary" @mouseenter="showSideBar=true" @mouseleave="showSideBar=false"> Test </button>
-                    </div> -->
+                    </div>
                     
+            </div>
+                <!-- <div class="col-md"></div> -->
+                <!-- <div class="col-md rightSide">                  
                     <div class="arrowButton" @click="showSideBar=!showSideBar"> 
                         {{ this.showSideBar ? '>' : '&lt;' }}
                     </div>
                     <transition name="slide-fade">
-                        <!-- <SideBar v-if="showSideBar" /> -->
+                        <SideBar v-if="showSideBar" />
                     </transition>     
+                </div> -->
+                                            
+
+            <!-- <div class="testBox">
+
+            </div>  -->
+
+            <!-- <div class="row">
+                <div class="col">
+                    <IntroSection :homePage="true">
+                        <div class="A">Test</div>
+                    </IntroSection>
                 </div>
-            </div>                                 
-        </div>               
-        <div class="row">
-            <Footer />
+            </div> -->
+
+
+            <!-- <StickyLeftPanel top="10%" width="60%">
+                <IntroSection> 
+                    <BlackBox>
+                        <h3 class="bold">{{ $t('line1') }}</h3>
+                    </BlackBox>
+                    <div class="row">
+                        <div class="col gray">
+                            Our design team gives you the professional edge you need to stand out your identity.
+                        </div>
+                    </div>
+                </IntroSection>
+                <div class="row yellowRow">
+                    <div class="col-md yellowContainerTopRightCurved">
+                        <IntroSection>
+                            <BlackBox>
+                                <h5>Let us build an outstanding brand for you</h5>
+                            </BlackBox>
+                            <div class="row">
+                                <div class="col">
+                                    <StartHere />
+                                </div>
+                            </div>
+                        </IntroSection>
+                    </div>
+                </div>  
+            </StickyLeftPanel> -->
+
+        
+            <StickySidebar />
+            
+            
+
+        </div> 
+        <div class="footerSection">
+            <Footer />              
         </div>
+        
     </div>
 </template>
 
@@ -59,18 +111,32 @@ import BlackBox from '../../UI/BlackBox';
 import IntroSection from '../../UI/IntroSection';
 import StartHere from '../../UI/StartHere';
 import SideBar from './SideBar';
+import StickySidebar from '../../UI/StickySidebar';
+import StickyLeftPanel from '../../UI/StickyLeftPanel';
+// import VueI18n from 'vue-i18n';
+// import Vue from 'vue';
 
 export default {
+    
     components: {
         Footer,
         BlackBox,
         IntroSection,
         StartHere,
-        SideBar
+        SideBar,
+        StickySidebar,
+        StickyLeftPanel
+    },
+    mounted() {
+        // this.$i18n.locale='ar';
+        console.log(this.$i18n.locale);
+        
     },
     data() {
+
         return {
-            showSideBar: true
+            showSideBar: true,
+            
         }
     }
 }
@@ -85,19 +151,34 @@ export default {
 
     .filler {
         min-height: 75vh;
-        
+        width: 100%;
+        height: 100%;
+        position: relative;
+        /* background-color: red; */
+        display: flex;
+        align-items: flex-end;
     }
 
 
     .flex-container-align-bottom {
-        height: 60vh;
+        /* height: 100%; */
+        min-height: 60vh;
+        width: 50%;
         display: flex;
         flex-direction: column;
-        
+        /* width: 50% !important; */
+
         /* align-items: flex-end; */
-        justify-content: center;
+        justify-content: flex-end;
         /* background-color: red; */
+        /* background-color: green; */
     
+    }
+
+    @media (max-width: 768px) {
+        .flex-container-align-bottom {
+            width: 100%;
+        }
     }
 
     .yellowContainerTopRightCurved {
@@ -118,33 +199,46 @@ export default {
         align-items: center;
     }
 
-
-
-    .arrowButton {
-        /* font-family: 'LatoRegular', sans-serif; */
-        background: transparent;
-        font-size: 4rem;
-        border: none;
-        cursor: pointer;
-        /* position: absolute; */
-    }
-
-    /* Enter and leave animations can use different duration and timing functions */
-
-    .slide-fade-enter-active {
-        transition: all .5s ease;
-    }
-
-    .slide-fade-leave-active {
-        transition: all .5s cubic-bezier(1.0, 1.0, 1.0, 1.0);
-    }
-
-    .slide-fade-enter, .slide-fade-leave-to {
-        /* slide-fade-leave-active below version 2.1.8 */
-        transform: translateX(10px);
-        opacity: 0;
-    }
-
     
+
+
+    .bold {
+        font-family: 'LatoBlack', sans-serif;
+        font-size: 2.3rem;
+        font-weight: 1000;
+    }
+
+    .gray {
+        font-family: 'LatoRegular', sans-serif;
+        color: gray;
+        font-weight: 500;
+        font-size: 1rem;
+    }
+
+    .testBox {
+        width: 100%;
+        height: 100%;
+        display: flex;
+    }
+
+    .secondHeader {
+        font-size: 1.5rem;
+        font-family: 'LatoMedium', sans-serif;
+        font-weight: 500;
+    }
+
+    /* .sidebarSection {
+        width: 100%;
+        height: 100%;
+        position: relative;
+        background-color: red !important;  
+    } */
+
+    .footerSection {
+        display: flex;
+        align-items: center;
+        min-height: 10vh;
+        /* background-color: red; */
+    }
 
 </style>

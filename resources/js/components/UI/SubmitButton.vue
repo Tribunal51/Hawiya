@@ -2,7 +2,7 @@
     <v-btn 
         color="#FFDB00"
         :class="'submitButton '+buttonClass"
-        @click="buttonClicked ? buttonClicked : buttonClickedNative()"
+        @click="buttonClicked ? buttonClicked() : buttonClickedNative()"
         :disabled="buttonDisabled"
         :type="buttonType"
     >Submit</v-btn>

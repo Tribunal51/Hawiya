@@ -50,6 +50,7 @@ export default {
 
     .image {
         height: 80%;
+        width: 100%;
 
     }
 

@@ -45,4 +45,8 @@ class User extends Authenticatable
         //$this->attributes['password'] = Hash::make($pass);
         //$this->attributes['password'] = Hash::needsRehash($pass) ? Hash::make($pass) : $pass;
     }
+
+    public function issues() {
+        return $this->hasMany('App\Issue', 'user_id');
+    }
 }

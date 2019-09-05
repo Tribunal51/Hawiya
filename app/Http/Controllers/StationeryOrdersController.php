@@ -18,7 +18,11 @@ class StationeryOrdersController extends Controller
      */
     public function index()
     {
-        $orders = StationeryOrder::get(['id', 'package', 'comment', 'logo_photo']);
+        $orders = StationeryOrder::get(['id', 'user_id', 'items', 'comment', 'created_at']);
+        foreach($orders as $order) {
+            $order->items = explode(',', $order->items);
+            $order->order_id = "STAT".$order->id;
+        }
         return $orders;
     }
 
@@ -40,26 +44,37 @@ class StationeryOrdersController extends Controller
      */
     public function store(Request $request)
     {
-        
-        if(!isset($request->user_id) || !isset($request->comment) || !isset($request->logo_photo) || !isset($request->package)) {
+
+        if(!isset($request->user_id) || !isset($request->items)) {
             return -2;  // echo "Required fields missing";
         }
         if(!User::find($request->user_id)) {
-            return -3;  //  echo "User not found.";
+            return -3;  // echo "User not found.";
         }
-        if(!Helper::check_file($request->logo_photo)) {
-            return -4;  // echo "Wrong file format.";
+        if(!is_array($request->items)) {
+            return -4;  // echo "Items is not an array.";
+        }
+        else if(sizeof($request->items) < 1) {
+            return -5;  // echo "Items cannot be an empty array.";
+        }
+        foreach($request->items as $item) {
+            if(!is_string($item)) {
+                return -6;  // echo "Item is not a string.";
+            }
         }
         $order = new StationeryOrder;
-        $order->package = $request->package;
         $order->user_id = $request->user_id;
-        $order->comment = $request->comment;
-        $order->logo_photo = Helper::save_file($request->logo_photo);
+        $order->items = implode($request->items, ',');
+        if(isset($request->comment)) {
+            $order->comment = $request->comment;
+        }
         if($order->save()) {
             return $order->id;  // echo "Order registered successfully.";
-        } else {
-            return -1;  // echo "Order could not be registered. Please investigate.";
         }
+        else {
+            return -1;  // echo "Error occured. Order could not be registered.";
+        }
+        
         
 
 

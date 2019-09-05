@@ -7,5 +7,5 @@ use Illuminate\Database\Eloquent\Model;
 class Query extends Model
 {
     //
-    protected $fillable = ['name', 'email', 'phone', 'subject', 'message'];
+    protected $fillable = ['name', 'email', 'phone', 'subject', 'message', 'user'];
 }

@@ -17,8 +17,6 @@ class ProfilesController extends Controller
      */
     public function index(Request $request)
     {
-        
-
         $profiles = Profile::all();
         $complete_profiles = [];
         // return $profiles;
@@ -26,7 +24,7 @@ class ProfilesController extends Controller
             $uploads = Upload::where('upload_id',$profile->id)->get();
             $upload_to_append = [];
             foreach($uploads as $upload) {               
-                array_push($upload_to_append, "http://hawiya.net/storage/uploads/".$upload->filename);
+                array_push($upload_to_append, $upload->filename);
             }
             $profile->uploads = $upload_to_append;
             // $profile->uploads = $uploads;
@@ -43,9 +41,8 @@ class ProfilesController extends Controller
                     array_push($sorted_profiles, $profile);
                 }
             }
-            //return $sorted_profiles;
+            return $sorted_profiles;
         }
-
         
 
         // $profiles = Profile::with('uploads')->get();
@@ -94,6 +91,8 @@ class ProfilesController extends Controller
         //     'title' => $request->title,
         //     'category' => $request->category
         // ]);
+
+        
 
         
         // $file_list = [];
@@ -167,7 +166,7 @@ class ProfilesController extends Controller
             $uploads = Upload::where('upload_id', $profile->id)->get('filename');
             $upload_to_append = [];
             foreach($uploads as $upload) {               
-                array_push($upload_to_append, "http://hawiya.net/storage/uploads/".$upload->filename);
+                array_push($upload_to_append, $upload->filename);
             }
             $profile->uploads = $upload_to_append;
             return $profile;

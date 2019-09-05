@@ -59,7 +59,7 @@ class SocialMediaOrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //return $request->logo_photo;
+        //return Helper::check_file($request->logo_photo);
         if(!isset($request->user_id) || !isset($request->package) || !isset($request->logo_photo) || !isset($request->posts)) {
             return -2;  //echo "Required fields missing";
         } 
@@ -73,12 +73,11 @@ class SocialMediaOrdersController extends Controller
         }
 
 
-        if(Helper::check_file($request->logo_photo)) {
-            $filename = Helper::save_file($request->logo_photo);
+        if(!Helper::check_file($request->logo_photo)) {
+            return -6;  // echo "Wrong file format.";
+            
         }
-        else {
-            return -6;  // echo "Wrong File Format";
-        }        
+  
         
         // if($request->hasFile('logo_photo')) {
         //     $allowedFileExtension = ['pdf', 'jpg', 'png', 'docx'];
@@ -102,7 +101,7 @@ class SocialMediaOrdersController extends Controller
         foreach($request->posts as $post) {
             //return $post;
 
-            if(!isset($post['image']) || !isset($post['comment'])) {
+            if(!isset($post['comment'])) {
                 return -7;  // echo "Required fields missing for the Post";
             }
             else {
@@ -112,11 +111,20 @@ class SocialMediaOrdersController extends Controller
             }
         }
 
-        $order = SocialMediaOrder::create([
-            'user_id' => $request->user_id,
-            'package' => $request->package,
-            'logo_photo' => $filename
-        ]);
+        $order = new SocialMediaOrder;
+        $order->user_id = $request->user_id;
+        $order->package = $request->package;
+        $order->logo_photo = Helper::save_file($request->logo_photo);
+        
+       
+        if(!$order->save()) {
+            return -1;  // echo "Order could not be saved.";
+        }
+        // $order = SocialMediaOrder::create([
+        //     'user_id' => $request->user_id,
+        //     'package' => $request->package,
+        //     'logo_photo' => $filename
+        // ]);
 
         
 
@@ -125,9 +133,9 @@ class SocialMediaOrdersController extends Controller
             $new_post->comment = $post['comment'];
             $new_post->order_id = $order->id;
             $new_post->image = Helper::save_file($post['image']);
-            $new_post->image = $filename;
-            if(!$new_post->save()) {
+            if(!$new_post->save()) {              
                 return -9;  // echo Could not save a Post.
+               
             }
         }
                 // $new_post = new SocialMediaPost;
@@ -155,7 +163,7 @@ class SocialMediaOrdersController extends Controller
                 //     return -8; // echo "File not found for the Post.";
                 // }
         
-    
+                    
         if($order) {
             return $order->id;  // echo "Order registered";
         }

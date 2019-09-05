@@ -30,7 +30,7 @@ export default {
                 email: '',
                 phone: '',
                 subject: '',
-                message: ''
+                message: '',
             },
             success: false,
             error: ''
@@ -38,9 +38,13 @@ export default {
     },
     methods: {
         formSubmitted(event) {
-            this.success = true;
             event.preventDefault();
-            axios.post("http://hawiya.net/api/query", this.form)
+            // alert(this.$store.state.user_id);
+            let data = {
+                ...this.form,
+                user_id: this.$store.state.user_id
+            };
+            axios.post("http://hawiya.net/api/query", data)
             .then(res => {
                 if(res.data > 0) {
                     this.success = true;
@@ -51,6 +55,7 @@ export default {
                     this.error = true;
                 }
                 console.log(res.data);
+                this.clearForm();
             })
             .catch(error => console.log(error.response.data));
             console.log(this.form);

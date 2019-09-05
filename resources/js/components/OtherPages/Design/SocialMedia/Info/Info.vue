@@ -176,7 +176,10 @@ export default {
         isButtonDisabled() {
             let value = false;
             this.posts.forEach(post => {
-                if(!post.show || post.image === '' || post.comment === '') {
+                // if(!post.show || post.image === '' || post.comment === '') {
+                //     value = true;
+                // }
+                if(!post.show || post.comment === '') {
                     value = true;
                 }
             });
@@ -193,9 +196,16 @@ export default {
             console.log('Final State',this.$store.state);
             console.log('Is Social Media Order Valid? ',this.$store.getters['socialmedia/isValid']);
 
-            // axios.post('http://hawiya.net/api/orders/social-media', data)
-            // .then(res => console.log(res.data))
-            // .catch(error => console.log(error.response));
+            let data = {
+                user_id: 1,
+                package: this.$store.state.socialmedia.package,
+                posts: this.$store.state.socialmedia.posts,
+                logo_photo: this.$store.state.socialmedia.logo_photo
+            }
+            console.log('Data', data);
+            axios.post('http://hawiya.net/api/orders/social-media', data)
+            .then(res => console.log('Response',res.data))
+            .catch(error => console.log(error.response));
         }
     }
 

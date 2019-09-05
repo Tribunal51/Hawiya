@@ -21,13 +21,21 @@ class PackagingOrdersController extends Controller
         // $orders = PackagingOrder::with('products')->get();
         // return $orders;
 
-        $orders = PackagingOrder::get(['id','user_id']);
+        // $orders = PackagingOrder::get(['id','user_id']);
         
-        foreach($orders as $order) {
-            $products = PackagingProduct::where('order_id', $order->id)->get(['name','amount','size','color']);
-            $order->products = $products;
-        }
+        // foreach($orders as $order) {
+        //     $products = PackagingProduct::where('order_id', $order->id)->get(['name','amount','size','color']);
+        //     $order->products = $products;
+        // }
 
+        // return $orders;
+
+
+        $orders = PackagingOrder::get(['id', 'user_id', 'products', 'comment']);
+        foreach($orders as $order) {
+            $order->products = explode(',', $order->products);
+            $order->order_id = "PACK".$order->id;
+        }
         return $orders;
     }
 
@@ -49,42 +57,82 @@ class PackagingOrdersController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // After the upgrade, with each product having it's own size, color, amount
+
+        // if(!isset($request->user_id) || !isset($request->products)) {
+        //     return -2;  // echo "Required fields missing.";
+        // }
+        // if(!User::find($request->user_id)) {
+        //     return -3;  // echo "User does not exist.";
+        // }
+        // if(!is_array($request->products)) {
+        //     return -4;  // echo "Products field not an array.";
+        // }
+        // if(sizeof($request->products) < 1) {
+        //     return -5;  // echo "Products array cannot be empty.";
+        // }
+        
+
+        // $order = PackagingOrder::create([
+        //     'user_id' => $request->user_id
+        // ]);
+
+        // $products = $request->products;
+        // foreach($products as $product) {
+        //     if(!isset($product['name']) || !isset($product['size']) || !isset($product['amount']) || !isset($product['color'])) {
+        //         return -6;  // echo "Required fields missing for Product";
+        //     }           
+        //     $new_product = new PackagingProduct;
+        //     $new_product->order_id = $order->id;
+        //     $new_product->name = $product['name'];
+        //     $new_product->size = $product['size'];
+        //     $new_product->amount = $product['amount'];
+        //     $new_product->color = $product['color'];
+        //     if(!$new_product->save()) {
+        //         return -7;  // echo "Could not save a product";
+        //     }
+        // }
+        // if($order) {
+        //     return $order->id;  // echo "Order Registered successfully";
+        // }
+        // else {
+        //     return -1;  // echo "Order could not be registered. Please investigate.";
+        // }
+
+
+
+
         if(!isset($request->user_id) || !isset($request->products)) {
-            return -2;  // echo "Required fields missing.";
+            return -2;  // echo "Required fields missing";
         }
         if(!User::find($request->user_id)) {
-            return -3;  // echo "User does not exist.";
+            return -3;  // echo "User not found.";
         }
         if(!is_array($request->products)) {
             return -4;  // echo "Products field not an array.";
         }
-
-        $order = PackagingOrder::create([
-            'user_id' => $request->user_id
-        ]);
-
-        $products = $request->products;
-        foreach($products as $product) {
-            if(!isset($product['name']) || !isset($product['size']) || !isset($product['amount']) || !isset($product['color'])) {
-                return -5;  // echo "Required fields missing for Product";
-            }           
-            $new_product = new PackagingProduct;
-            $new_product->order_id = $order->id;
-            $new_product->name = $product['name'];
-            $new_product->size = $product['size'];
-            $new_product->amount = $product['amount'];
-            $new_product->color = $product['color'];
-            if(!$new_product->save()) {
-                return -6;  // echo "Could not save a product";
+        if(sizeof($request->products) < 1) {
+            return -5;  // echo "Products array cannot be empty.";
+        }
+        foreach($request->products as $product) {
+            if(!is_string($product)) {
+                return -6;  // echo "Product value is not a string";
             }
         }
-        if($order) {
-            return $order->id;  // echo "Order Registered successfully";
+
+        $order = new PackagingOrder;
+        $order->user_id = $request->user_id;
+        $order->products = implode($request->products, ',');
+        if(isset($request->comment)) {
+            $order->comment = $request->comment;
+        }
+        if($order->save()) {
+            return $order->id;  // echo "Order registered successfully.";
         }
         else {
-            return -1;  // echo "Order could not be registered. Please investigate.";
+            return -1;  // echo "Order could not be registered. Please investigate. ";
         }
+
 
 
 

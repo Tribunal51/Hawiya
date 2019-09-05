@@ -33,12 +33,10 @@
                             
                         </div>
                         <div class="col-md flex-container-align-center">
-                            <div class="checkoutSection">
-                                <Cost 
-                                    :products="selectedProducts" 
-                                    v-on:cost="updateCost"
-                                />
-                            </div>
+                            <Cost 
+                                :products="selectedProducts" 
+                                v-on:cost="updateCost"
+                            />
                         </div>
                     </div>
                 </div>
@@ -66,12 +64,12 @@
 </template>
 
 <script>
-import { store } from '../../../../../data/packaging';
-import BlackBox from '../../../../UI/BlackBox';
-import Cost from './Cost';
+import { store } from '../../../../../../data/packaging';
+import BlackBox from '../../../../../UI/BlackBox';
+import Cost from '../../../../../UI/Cost';
 import ProductSettings from '../ProductSettings/ProductSettings';
-import SubmitButton from '../../../../UI/SubmitButton';
-import Header from '../../../../UI/Header';
+import SubmitButton from '../../../../../UI/SubmitButton';
+import Header from '../../../../../UI/Header';
 
 export default {
     components: {
@@ -133,15 +131,6 @@ export default {
 </script>
 
 <style scoped>
-    
-
-    .checkoutSection {
-        
-        background-color: #FFDB00;
-        width: 100%;
-        min-height: 80%;
-
-    }
 
     .flex-container-align-vertical {
         display: flex;

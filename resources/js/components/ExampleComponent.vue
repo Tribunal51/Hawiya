@@ -258,7 +258,31 @@ export default {
         border-bottom: 2px solid black;
     }
 
-    
+
+    /* Enter and leave animations can use different timing and duration */
+
+    .slide-fade-enter-active {
+        transition: all .5s ease;
+    }
+
+    .slide-fade-leave-active {
+        transition: all .5s cubic-bezier(1.0, 1.0, 1.0, 1.0);
+    }
+
+    .slide-fade-enter, .slide-fade-leave-to {
+        /* slide-fade-leave-active below version 2.1.8 */
+        transform: translateX(10px);
+        opacity: 0;
+    }
+
+    .arrowButton {
+        /* font-family: 'LatoRegular', sans-serif; */
+        background: transparent;
+        font-size: 3rem;
+        border: none;
+        cursor: pointer;
+        /* position: absolute; */
+    }
 
     
 </style>

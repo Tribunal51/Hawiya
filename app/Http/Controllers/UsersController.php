@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 
 use App\User;
+use App\Issue;
 
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
@@ -22,6 +23,9 @@ class UsersController extends Controller
         //return $user;
 
         $users = User::all();
+        foreach($users as $user) {
+            $user->issues = Issue::where('user_id', '=', $user->id)->get(['id', 'title', 'issue']);
+        }
         return $users;
         //return UserResource::collection($users);
     }
@@ -79,9 +83,12 @@ class UsersController extends Controller
      */
     public function show(Request $request)
     {
-        $user = User::find($request->UserId);
+        if(!isset($request->user_id)) {
+            return -2;  // echo "Required fields missing";
+        }
+        $user = User::find($request->user_id);
         if(!$user) {
-            return -2;  // echo "User not found";
+            return -3;  // echo "User not found";
         }
         return $user;
         //return new UserResource($user);
@@ -125,7 +132,8 @@ class UsersController extends Controller
             if(!isset($request->password)) {
                 return -4;  // echo "Required password missing.";
             }
-            if($user->password !== Hash::make($request->password)) {
+            
+            if(!Hash::check($request->password, $user->password)) {
                 return -5;  // echo "Wrong Password.";
             } 
             else {
@@ -133,17 +141,18 @@ class UsersController extends Controller
             }
         }
 
-        if(isset($request->email)) {
-            if(!isset($request->password)) {
-                return -4;  // echo "Required Password missing.";
-            }
-            if($user->password !== Hash::make($request->password)) {
-                return -5;  // echo "Wrong Password.";
-            }
-            else {
-                $user->email = $request->email;
-            }
-        }
+        // Change Email, maybe for later
+        // if(isset($request->email)) {
+        //     if(!isset($request->password)) {
+        //         return -4;  // echo "Required Password missing.";
+        //     }
+        //     if($user->password !== Hash::make($request->password)) {
+        //         return -5;  // echo "Wrong Password.";
+        //     }
+        //     else {
+        //         $user->email = $request->email;
+        //     }
+        // }
         
         if($user->save()) {
             return $user->id;   // echo "User details modified";
@@ -245,6 +254,7 @@ class UsersController extends Controller
     //         return redirect('/dashboard/users')->with('error', 'Could not change admin status. Please investigate');
     //     }
     // }
+
 
     
 }

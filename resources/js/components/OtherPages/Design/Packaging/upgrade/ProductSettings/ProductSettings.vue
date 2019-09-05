@@ -72,8 +72,8 @@
 </template>
 
 <script>
-import BlackBox from '../../../../UI/BlackBox';
-import NextButton from '../../../../UI/NextButton';
+import BlackBox from '../../../../../UI/BlackBox';
+import NextButton from '../../../../../UI/NextButton';
 
 export default {
     props: [

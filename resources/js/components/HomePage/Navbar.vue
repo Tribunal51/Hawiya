@@ -44,25 +44,66 @@
             </div>
         </nav>   -->
 
+        <nav v-if="true" class="navbar-expand-lg newNavbar" :class="{'navbarOpen': show}" v-show="offset !== -50" :style="assignClass(scrollPos)">
+            <IntroSection :styling="{paddingTop: '0px !important', paddingBottom: '0px !important'}">
+                <button ref="dataToggleButton" @click="toggleNavbar()" class="navbar-toggler" type="button" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" :class="{ 'show': show }" id="navbarNav">
+                    <div class="newNavbarMainSection collapse navbar-collapse" :class="{ 'show': show }" id="navbarNav">
+                        <a href="/"><img class="newLogo" src="/storage/HawiyaBrandLogo.PNG" /></a>
+                        <router-link 
+                            :style="displayOrNot(scrollPos)" 
+                            v-on:click.native="toggleNavbar()" 
+                            class="newItem ml-auto" 
+                            to="/" 
+                            v-scroll-to="{el: '#section1', offset: offset}">
+                                HOME
+                        </router-link>
+                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section2', offset: offset}">WHAT WE DO</router-link>
+                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section4', offset: offset}">PROFILE</router-link>
+                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section5', offset: offset}">CASESTUDY</router-link>
+                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">CONTACTUS</router-link>
+                        <slot></slot>
+                        <div class="dropdown newLanguageSection newItem">
+                            <button class="dropdown-toggle newToggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ this.lang | capitalize }}
+                            </button>
+                            <div class="dropdown-menu newDropdownLanguages" aria-labelledby="dropdownMenu2">
+                                <button 
+                                    class="dropdown-item newLanguageButton"
+                                    type="button"
+                                    v-for="language in languages" 
+                                    :key="language"
+                                    @click="setLanguage(language)"
+                                    >{{ language | capitalize }}</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </IntroSection>
+        </nav>
+
         
-        <nav class="navbar navbar-expand-lg navbar-light bg-light navSection" :style="assignClass(scrollPos)" :class="{'navbarOpen': show}" v-show="offset !== -50">
-            
+        <nav v-if="false" class="navbar navbar-expand-lg navbar-light bg-light navSection" :style="assignClass(scrollPos)" :class="{'navbarOpen': show}" v-show="offset !== -50">
+            <IntroSection :styling="{paddingTop: '0px !important', paddingBottom: '0px !important'}">
             <button ref="dataToggleButton" @click="toggleNavbar()" class="navbar-toggler" type="button" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             
             <div ref="collapseSection" class="collapse navbar-collapse" :class="{ 'show' : show }" id="navbarNav">
                 
-                <ul class="navbar-nav mx-auto navItems">
-                    <li class="nav-item">
+                <ul class="navbar-nav navItems">
+                    <li class="nav-item mr-auto">
                         <a href="/"><img class="logo" src="/storage/HawiyaBrandLogo.PNG" /></a>
                     </li>
+                    
                     <span :style="displaySectionOrNot()">
                         <router-link 
                             :style="displayOrNot(scrollPos)" 
                             v-on:click.native="toggleNavbar()" 
                             tag="li" 
-                            class="nav-item navItem" 
+                            class="nav-item navItem ml-auto" 
                             to="/" 
                             v-scroll-to="{el: '#section1', offset: offset}">
                                 HOME
@@ -72,15 +113,16 @@
                         <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section5', offset: offset}">CASESTUDY</router-link>
                         <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">CONTACTUS</router-link>
                     </span>
+                    
                     <slot></slot>
 
                     
                     
 
 
-                    <li class="dropdown nav-item navItem languageSection">
+                    <li class="dropdown languageSection">
                         <button class="btn btn-default dropdown-toggle toggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            {{ this.language }}
+                            {{ currentLanguage | capitalize }}
                         </button>
                         <div class="dropdown-menu dropdownLanguages" aria-labelledby="dropdownMenu2">
                             <button 
@@ -88,18 +130,22 @@
                                 type="button"
                                 v-for="language in languages" 
                                 :key="language"
-                                @click="setLanguage(language)">{{ language }}</button>
+                                @click="setLanguage(language)"
+                                >{{ language | capitalize }}</button>
                         </div>
+                        <!-- <select v-model="currentLanguage">
+                            <option v-for="language in languages" :key="language">{{ language }}</option>
+                        </select> -->
                     </li>
-                    <div class="nav-item navItem searchSection">
+                    <!-- <div class="nav-item navItem searchSection">
                         <input v-model="search" class="navItem searchField" ref="search" type="text" v-if="searchField"  />
                         <img :style="displayOrNot(scrollPos)" src="/storage/icons/searchicon.png" class="navItem searchIcon" @click="searchIconClicked()"  />
-                    </div>
-                    
+                    </div> -->
+                    <!-- <button @click="quickUpdate()">Update</button> -->
                 </ul>
 
             </div>
-            
+            </IntroSection>
         </nav>
         
         
@@ -154,7 +200,7 @@
                     <v-list-tile>
                         <li class="dropdown languageSection">
                             <button class="btn btn-default dropdown-toggle toggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ this.language }}
+                                {{ currentLanguage }}
                             </button>
                             <div class="dropdown-menu dropdownLanguages" aria-labelledby="dropdownMenu2">
                                 <button 
@@ -162,6 +208,7 @@
                                     type="button"
                                     v-for="language in languages" 
                                     :key="language"
+                                    :href="'lang/'+language"
                                     @click="setLanguage(language)">{{ language }}</button>
                             </div>
                         </li>
@@ -203,7 +250,7 @@ Vue.use(VueScrollTo, {
     container: "body",
     duration: 2000,
     easing: "ease",
-    offset: -95,
+    offset: -90,
     force: true,
     cancelable: true,
     onStart: false,
@@ -216,14 +263,15 @@ Vue.use(VueScrollTo, {
 
 export default {
     mounted() {
+        //alert(this.lang);
         this.reconfigureNavbar();
         //console.log('Toggle Button Hidden? ', window.getComputedStyle(this.$refs.dataToggleButton).display === 'none');
         window.addEventListener('scroll', () => {
             this.scrollPos = window.scrollY;
             console.log(this.scrollPos);
         });
-        
-        
+        console.log('i18n', this.$i18n);
+        this.$root.$i18n.locale = this.lang;
         
     },
     updated() {
@@ -238,7 +286,7 @@ export default {
         VToolbarSideIcon
     },
     props: [
-        
+        "lang"
     ],
     data() {
         return {
@@ -248,8 +296,9 @@ export default {
             search: '',
             searchField: false,
             show: false,
-            languages: ["EN", "AR"],
-            language: "EN",
+            languages: ["en", "ar"],
+            currentLanguage: '',
+            navStyle: {},
             homePageNavStyle: {
                 'backgroundColor': 'transparent !important',
                 'position': 'fixed'
@@ -281,7 +330,22 @@ export default {
             handler (val, oldVal) {
                 //console.log('changed');
                 //console.log('Inside watch',val, oldVal);
+                if(val === 0 && this.$route.path === '/') {
+                    this.assignClass
+                }
                 this.navScrollPos = val;
+
+                if(this.$route.path === '/') {
+                    if(this.scrollPos < 1) {
+                        this.navStyle = this.homePageNavStyle;
+                    }
+                    else {
+                        this.navStyle = this.otherSectionNavStyle;
+                    }
+                }
+                else {
+                    this.navStyle = this.otherPageNavStyle;
+                }
             }
         },
         
@@ -289,12 +353,19 @@ export default {
             //this.reconfigureNavbar();
             
         },
+
+        currentLanguage(lang) {
+            location.href="lang/"+lang;
+        }
+
+        
     },
     methods: {
         assignClass(scrollPos) {
             if(this.$route.path === '/') {
-                if(scrollPos < 1) {
-                    if(this.show) {
+                if(scrollPos <= 2) {
+                    if(this.show)
+                     {
                         return this.otherSectionNavStyle;   
                     }
                     else {
@@ -311,7 +382,7 @@ export default {
         },
         reconfigureNavbar() {
             if(this.$refs.dataToggleButton && window.getComputedStyle(this.$refs.dataToggleButton).display === 'none') {
-                this.offset = -95;
+                this.offset = -90;
             }
             else {
                 this.offset = -50;
@@ -369,7 +440,20 @@ export default {
             return flag ? '' : ('display: none');
         },
         setLanguage(language) {
-            this.language = language;
+            // this.languages.forEach(currentLanguage => {
+            //     if(currentLanguage.code === language.code) {
+            //         currentLanguage.active = true;
+            //     }
+            //     else {
+            //         currentLanguage.active = false;
+            //     }
+            // });
+            //alert(language.code);
+            this.$root.$i18n.locale = language;
+            location.href="lang/"+language;
+        },
+        quickUpdate() {
+            alert(this.lang + ' ' + this.currentLanguage + ' ' + this.$root.$i18n.locale);
         },
         resetState() {
             this.$store.dispatch('resetAllStates');
@@ -379,8 +463,14 @@ export default {
     computed: {
         toggleButtonStyle() {
             return window.getComputedStyle(this.$refs.dataToggleButton).display;
+        },
+    },
+    filters: {
+        capitalize(word) {
+            return word.toUpperCase();
         }
     }
+   
 }
 </script>
 
@@ -401,7 +491,14 @@ export default {
 
     nav, .navbar, .navSection {
         min-height: 0px !important;
+        margin: 0 !important;
     }
+
+    .navbar-expand-lg {
+        margin: 0 !important;
+        padding: 0 !important;
+    }
+
 
     .logo {
         width: auto;
@@ -411,7 +508,9 @@ export default {
     .navItems {
         display: flex;
         align-items: center;
-        justify-content: center;
+        width: 100%;
+        background-color: green;
+        /* justify-content: center; */
         /* background-color: red; */
         
     }
@@ -422,7 +521,7 @@ export default {
         margin-right: 1rem;
         color: #333;
         text-decoration: none;
-        font-size: 0.9rem;
+        font-size: 0.8rem;
     }
 
     
@@ -503,7 +602,79 @@ export default {
         position: fixed;
     }
 
-    
+
+
+
+
+
+
+
+
+
+
+    .newNavbar {
+        width: 100%;
+        /* background-color: green; */
+        z-index: 1000;
+        position: absolute fixed;
+    }
+
+    .newNavbarMainSection {
+        display: flex;
+        /* background-color: red; */
+        align-items: center;
+        width: 100%;
+    }
+
+    .newLogo {
+        width: auto;
+        max-height: 60px;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+        margin-right: auto;
+    }
+
+    .newItem {
+        text-decoration: none;
+        font-size: 0.7rem;
+        margin: 1rem;
+        color: #333;
+        /* background-color: red; */
+    }
+
+    .newItem:hover {
+        color: black;
+        cursor: pointer;
+    }
+
+    .newLanguageSection {
+        /* width: 5rem !important; */
+        
+    }
+
+    .newLanguage {
+        width: 100%;
+        font-size: 0.8rem;
+    }
+
+    .newLanguageButton:hover {
+        background-color: #FFDB00;
+    }
+
+    .newToggleButton {
+        width: 100%;
+        border: none;
+        /* background: green !important; */
+        background: transparent;
+    }
+
+    .newLanguageButton {
+        width: 100% ;
+    }
+
+    .newDropdownLanguages {
+        /* width: 3rem !important; */
+    }
 
 
 

@@ -102,13 +102,19 @@ export default {
 
 <style scoped>
 	.card {
-		width: 33.33333%;
+		/* width: 33.33333%; */
+		/* max-width: 500px; */
+		/* min-width: 200px; */
+		/* height: 300px; */
+		width: 300px;
 		height: 300px;
+
+		
 	}
 
-	@media (max-width: 500px) {
+	@media (max-width: 300px) {
 		.card {
-			width: 200px;
+			width: 100%;
 		}
 	}
 

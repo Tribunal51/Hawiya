@@ -58,11 +58,12 @@ class AdminController extends Controller
                 $extension = $file->getClientOriginalExtension();
                 $check = in_array($extension, $allowedFileExtension);
                 if($check) {
+                    // $filename = ltrim($file->store('public/uploads'), 'public/uploads');
                     $filename = ltrim($file->store('public/uploads'), 'public/uploads');
                     
                     $upload = new Upload;
                     $upload->upload_id = $new_profile->id;
-                    $upload->filename = $filename;
+                    $upload->filename = "http://hawiya.net/storage/uploads/".$filename;
                     if(!$upload->save()) {                    
                         return redirect('/dashboard/addProfile')->with('error', 'One or more files could not be uploaded');
                     }

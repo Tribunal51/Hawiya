@@ -85,8 +85,8 @@
         
             {{-- </div>
         </nav> --}} 
-        <navbar>
-            @guest
+        <navbar lang={{session('locale')}}>
+            {{-- @guest
                 <li class="nav-item navItem">
                     
                     <a class="nav-item navItem" href="{{ route('login') }}">{{ __('Login') }}</a>
@@ -125,6 +125,44 @@
                         </form>
                     </div>
                 </li>
+            @endguest --}}
+            @guest                  
+                <a class="newItem" href="{{ route('login') }}">{{ __('Login') }}</a>
+                
+                @if (Route::has('register'))
+                        
+                    
+                    <a class="newItem" href="{{ route('register') }}">{{ __('Register') }}</a>
+                
+                @endif
+            @else
+                <div class="dropdown newItem">
+                    <a id="navbarDropdown" class="dropdown-toggle newItem" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        <img src="/storage/icons/yellow-logo.png" class="hawiyaUserIcon" />{{ Auth::user()->name }} <span class="caret"></span>
+                    </a>
+
+                    <div id="userStatusSection" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                        <a class="dropdown-item" href="{{ route('home') }}">
+                                {{ __('Dashboard') }}
+                        </a>
+                        @if(Auth::user()->admin)
+                            <a class="dropdown-item" href="/dashboard">
+                                    {{ __('Admin Dashboard') }}
+                            </a>
+                        @endif
+                        <a class="dropdown-item" href="{{ route('logout') }}"
+                        onclick="event.preventDefault();
+                                        document.getElementById('logout-form').submit();">
+                            {{ __('Logout') }}
+                        </a>
+                        
+
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                            @csrf
+                        </form>
+                    </div>
+                </div>
             @endguest
         </navbar>
         <main>
@@ -220,6 +258,20 @@
             width: 20px;
             height: 20px;
             margin: 5px;
+        }
+
+        .newItem {
+            text-decoration: none;
+            font-size: 0.8rem;
+            margin: 1rem;
+            color: #333;
+            /* background-color: red; */
+        }
+
+        .navItem:hover {
+            color: black;
+            cursor: pointer;
+            
         }
     </style>
 </body>

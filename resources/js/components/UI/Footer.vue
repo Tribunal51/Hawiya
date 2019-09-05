@@ -1,18 +1,34 @@
 <template>
-    <IntroSection :styling="introSectionStyle">
-        <div class="row bold">
-            <div class="col-md-4 footerLink"><center>C 2019 Hawiya Brands. All rights reserved.</center></div>
-            <div class="col-md-2"></div>
-            <div class="col-md-6">
-                <div class="row footerRow">    
-                    <router-link tag="div" class="col-sm footerLink" to="/about">About</router-link>                        
-                    <router-link tag="div" class="col-sm footerLink" to="/feedback">Client Feedback</router-link>
-                    <router-link tag="div" class="col-sm footerLink" to="/faq">FAQ</router-link>
-                    <router-link tag="div" class="col-sm footerLink" to="/terms">Terms</router-link>
+    <div class="Cover">
+        <IntroSection :styling="introSectionStyle">
+            <div class="row">
+                <div class="col-md-4 footerLink">C 2019 Hawiya Brands. All rights reserved.</div>
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    
+                    <div class="row">
+                        <router-link tag="div" class="col-sm footerLink" to="/about">About</router-link>                        
+                        <router-link tag="div" class="col-sm footerLink" to="/feedback">Client Feedback</router-link>
+                        <router-link tag="div" class="col-sm footerLink" to="/faq">FAQ</router-link>
+                        <router-link tag="div" class="col-sm footerLink" to="/terms">Terms</router-link>
+                    </div>
                 </div>
             </div>
-        </div>
-    </IntroSection>
+            <!-- <div class="row bold">
+                <div class="col-md-4 footerLink">C 2019 Hawiya Brands. All rights reserved.</div>
+                <div class="col-md-2"></div>
+                <div class="col-md-6">
+                    <div class="row footerRow">    
+                        <router-link tag="div" class="col-sm footerLink" to="/about">About</router-link>                        
+                        <router-link tag="div" class="col-sm footerLink" to="/feedback">Client Feedback</router-link>
+                        <router-link tag="div" class="col-sm footerLink" to="/faq">FAQ</router-link>
+                        <router-link tag="div" class="col-sm footerLink" to="/terms">Terms</router-link>
+                    </div>
+                </div>
+            </div>  -->
+        </IntroSection>
+    </div>
+           
 </template>
 
 <script>
@@ -26,7 +42,7 @@ export default {
     data() {
         return {
             introSectionStyle: {
-                'paddingBottom': '0px !important'
+                paddingBottom: '0px !important'
             }
         }
     }
@@ -35,14 +51,21 @@ export default {
 
 <style scoped>
 
-.footerLink {
-    /* font-size: 1rem; */
-    
-    /* margin-top: 5px; */
+    .Cover {
+        width: 100%;
+        height: 100%;
+        /* background-color: green; */
+    }
 
-    padding: 5px;
-    justify-content: space-between;
-}
+    .footerLink {
+        /* font-size: 1rem; */
+        
+        /* margin-top: 5px; */
+        /* background-color: red; */
+        padding: 5px 0px;
+        text-align: center;
+    
+    }
 
 /* #footerLink {
     margin: 5px;

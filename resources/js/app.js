@@ -63,12 +63,14 @@ Vue.component('settings', require('./components/OtherPages/Dashboard/Settings').
 
     import Stationery from './components/OtherPages/Design/Stationery/Stationery';
     import StationeryPackage from './components/OtherPages/Design/Stationery/Package/Package';
-    import StationeryInfo from './components/OtherPages/Design/Stationery/Info/Info';
+    import StationeryProducts from './components/OtherPages/Design/Stationery/Info/Info';
+    import StationeryItems from './components/OtherPages/Design/Stationery/Items/Items';
 
     import Packaging from './components/OtherPages/Design/Packaging/Packaging';
-    import PackagingProducts from './components/OtherPages/Design/Packaging/Products/Products';
-    import PackagingModifyProduct from './components/OtherPages/Design/Packaging/ProductSettings/ProductSettings';
-    import PackagingCheckout from './components/OtherPages/Design/Packaging/Checkout/Checkout';
+    import PackagingProducts from './components/OtherPages/Design/Packaging/Products';
+    import PackagingProductsUpgrade from './components/OtherPages/Design/Packaging/upgrade/Products/Products';
+    import PackagingModifyProduct from './components/OtherPages/Design/Packaging/upgrade/ProductSettings/ProductSettings';
+    import PackagingCheckout from './components/OtherPages/Design/Packaging/upgrade/Checkout/Checkout';
 
     import Promotional from './components/OtherPages/Design/Promotional/Promotional';
 
@@ -82,6 +84,7 @@ Vue.component('settings', require('./components/OtherPages/Dashboard/Settings').
 
     import ConfirmOrder from './components/OtherPages/ConfirmOrder/ConfirmOrder';
 
+    import Home from './components/OtherPages/Dashboard/Home';
     import Dashboard from './components/OtherPages/Dashboard/Dashboard';
     import Settings from './components/OtherPages/Dashboard/Settings';
 
@@ -89,8 +92,12 @@ Vue.component('settings', require('./components/OtherPages/Dashboard/Settings').
     
     // import 'vuetify/src/stylus/app.styl';
 
+    import RingLoader from 'vue-spinner/src/RingLoader.vue';
+
     import Vuetify from 'vuetify';
     import { Ripple } from 'vuetify/lib/directives';
+
+    import VueI18n from 'vue-i18n';
 
     Vue.use(Vuetify, {
         iconfont: 'md',
@@ -190,40 +197,49 @@ Vue.component('settings', require('./components/OtherPages/Dashboard/Settings').
                     path: 'stationery',
                     component: Stationery, 
                     children: [
+                        // {
+                        //     name: 'stationerypackage',
+                        //     path: 'package',
+                        //     component: StationeryPackage
+                        // }, 
                         {
-                            name: 'stationerypackage',
-                            path: 'package',
-                            component: StationeryPackage
-                        }, 
+                            name: 'stationeryproducts',
+                            path: 'products',
+                            component: StationeryProducts
+                        },
                         {
-                            name: 'stationeryinfo',
-                            path: 'info',
-                            component: StationeryInfo
+                            name: 'stationeryitems',
+                            path: 'items',
+                            component: StationeryItems
                         }
                     ]
                 },
-                // {
-                //     name: 'packaging',
-                //     path: 'packaging',
-                //     component: Packaging,
-                //     children: [
-                //         {
-                //             name: 'packagingproducts',
-                //             path: 'products',
-                //             component: PackagingProducts
-                //         }, 
-                //         {
-                //             name: 'packagingmodifyproduct',
-                //             path: 'modify-product',
-                //             component: PackagingModifyProduct
-                //         },
-                //         {
-                //             name: 'packagingcheckout',
-                //             path: 'checkout',
-                //             component: PackagingCheckout
-                //         }
-                //     ]
-                // },
+                {
+                    path: 'packaging',
+                    component: Packaging,
+                    children: [
+                        {
+                            name: 'packagingproducts',
+                            path: 'products',
+                            component: PackagingProducts
+                        }, 
+                        {
+                            name: 'packagingproductsupgrade',
+                            path: 'updatedproducts',
+                            component: PackagingProductsUpgrade
+                        },
+                        {
+                            name: 'packagingmodifyproduct',
+                            path: 'modify-product',
+                            component: PackagingModifyProduct
+                        },
+                        {
+                            name: 'packagingcheckout',
+                            path: 'checkout',
+                            component: PackagingCheckout
+                        }
+                    ]
+                },
                 {
                     name: 'promotionalinfo',
                     path: 'promotional',
@@ -231,14 +247,28 @@ Vue.component('settings', require('./components/OtherPages/Dashboard/Settings').
                 }
             ]
         },
-        {path: 'confirm-order', component: ConfirmOrder},
+        {
+            path: 'confirm-order', component: ConfirmOrder
+        },
+        {
+            name: 'home',
+            path: '/home',
+            component: Home
+        },
         {
             name: 'dashboardsettings',
             path: '/home/settings',
             component: Settings
         },
-        {path: '/', name: 'root', component: HomePage},
-        {path: '*', component: NotFound}       
+        {
+            path: '/', 
+            name: 'root', 
+            component: HomePage
+        },
+        {
+            path: '*', 
+            component: NotFound
+        }       
     ];
 
     const router = new VueRouter({
@@ -256,11 +286,17 @@ Vue.component('settings', require('./components/OtherPages/Dashboard/Settings').
     });
 
     
+Vue.use(VueI18n);
+export const i18n = new VueI18n({
+    locale: 'en',   // set locale 
+    fallbackLocale: 'en'
+})
 
-    
 
 export const app = new Vue({
     el: '#app',
     router,
-    store
+    store,
+    i18n
 });
+

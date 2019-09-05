@@ -31,62 +31,70 @@ use App\Http\Resources\User as UserResource;
 
 
 
+// Route::group(['middleware' => ['api_token']], function() {
 
-Route::get('/users', 'UsersController@index');
-Route::get('/user', 'UsersController@show');
-Route::get('/user/login', 'UsersController@login');
-Route::post('/user', 'UsersController@store');
-Route::put('/user', 'UsersController@update');
-Route::delete('/user', 'UsersController@destroy');
-
-
-Route::get('/profiles', 'ProfilesController@index');
-Route::get('/profile', 'ProfilesController@show');
-Route::post('/profile', 'ProfilesController@store');
-Route::get('/profiles/filter', 'ProfilesController@filter');
+    Route::get('/users', 'UsersController@index');
+    Route::get('/user', 'UsersController@show');
+    Route::get('/user/login', 'UsersController@login');
+    Route::post('/user', 'UsersController@store');
+    Route::put('/user', 'UsersController@update');
+    Route::delete('/user', 'UsersController@destroy');
+    Route::get('/user/{id}/issues', 'UsersController@issues');
 
 
+    Route::get('/profiles', 'ProfilesController@index');
+    Route::get('/profile', 'ProfilesController@show');
+    Route::post('/profile', 'ProfilesController@store');
+    Route::get('/profiles/filter', 'ProfilesController@filter');
 
-Route::get('/orders', 'OrdersController@index');
-Route::get('/orders/getUserOrders', 'OrdersController@getUserOrders');
-Route::get('/orders/getAllOrders', 'OrdersController@getAllOrders');
-Route::get('/orders/getUserOrdersSorted/{id}', 'OrdersController@getUserOrdersSortedByDate');
 
-Route::get('/orders/logo-design', 'LogoDesignOrdersController@index');
-Route::put('/orders/logo-design', 'LogoDesignOrdersController@update');
-Route::post('/orders/logo-design', 'LogoDesignOrdersController@store');
-Route::delete('/orders/logo-design', 'LogoDesignOrdersController@destroy');
 
-// Route::get('/uploads/{filename}', function ($filename)
-// {
-//     $path = app_path('uploads') . '/' . $filename;
+    Route::get('/orders', 'OrdersController@index');
+    Route::get('/orders/getUserOrders', 'OrdersController@getUserOrders');
+    Route::get('/orders/getAllOrders', 'OrdersController@getAllOrders');
+    Route::get('/orders/getUserOrdersSorted/{id}', 'OrdersController@getUserOrdersSortedByDate');
 
-//     $file = File::get($path);
-//     $type = File::mimeType($path);
+    Route::get('/orders/logo-design', 'LogoDesignOrdersController@index');
+    Route::put('/orders/logo-design', 'LogoDesignOrdersController@update');
+    Route::post('/orders/logo-design', 'LogoDesignOrdersController@store');
+    Route::delete('/orders/logo-design', 'LogoDesignOrdersController@destroy');
 
-//     $response = Response::make($file, 200);
-//     $response->header("Content-Type", $type);
+    // Route::get('/uploads/{filename}', function ($filename)
+    // {
+    //     $path = app_path('uploads') . '/' . $filename;
 
-//     return $response;
+    //     $file = File::get($path);
+    //     $type = File::mimeType($path);
+
+    //     $response = Response::make($file, 200);
+    //     $response->header("Content-Type", $type);
+
+    //     return $response;
+    // });
+
+    Route::get('/query', 'QueriesController@index');
+    Route::post('/query', 'QueriesController@store');
+
+    Route::get('/orders/branding', 'BrandingOrdersController@index');
+    Route::post('/orders/branding', 'BrandingOrdersController@store');
+
+    Route::get('/orders/social-media', 'SocialMediaOrdersController@index');
+    Route::post('/orders/social-media', 'SocialMediaOrdersController@store');
+
+    Route::get('/orders/stationery', 'StationeryOrdersController@index');
+    Route::post('/orders/stationery', 'StationeryOrdersController@store');
+
+    Route::get('/orders/packaging', 'PackagingOrdersController@index');
+    Route::post('/orders/packaging', 'PackagingOrdersController@store');
+
+    Route::get('/orders/promotional', 'PromotionalOrdersController@index');
+    Route::post('/orders/promotional', 'PromotionalOrdersController@store');
+
+    Route::get('/issues', 'IssuesController@index');
+    Route::get('/issue/{id}', 'IssuesController@show');
+    Route::get('/issues/user/{id}', 'IssuesController@userIssues');
+    Route::post('/issue', 'IssuesController@store');
 // });
-
-Route::get('/query', 'QueriesController@index');
-Route::post('/query', 'QueriesController@store');
-
-Route::get('/orders/branding', 'BrandingOrdersController@index');
-Route::post('/orders/branding', 'BrandingOrdersController@store');
-
-Route::get('/orders/social-media', 'SocialMediaOrdersController@index');
-Route::post('/orders/social-media', 'SocialMediaOrdersController@store');
-
-Route::get('/orders/stationery', 'StationeryOrdersController@index');
-Route::post('/orders/stationery', 'StationeryOrdersController@store');
-
-Route::get('/orders/packaging', 'PackagingOrdersController@index');
-Route::post('/orders/packaging', 'PackagingOrdersController@store');
-
-Route::get('/orders/promotional', 'PromotionalOrdersController@index');
-Route::post('/orders/promotional', 'PromotionalOrdersController@store');
 
 Route::group([   
     'middleware' => 'api',

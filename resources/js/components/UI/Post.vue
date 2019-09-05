@@ -8,7 +8,7 @@
                     v-on:dataurls="updatePhoto($event, 'logo')"
                     :hideImage="true"
                     label="Upload your Logo"
-                    
+                    :required="imageRequired"
                 />
             </div>
             <div class="col-md">
@@ -17,6 +17,7 @@
                     v-on:dataurls="updatePhoto($event, 'post')" 
                     :hideImage="true" 
                     label="Upload Image"
+                    :required="imageRequired"
                     
                 />
             </div>
@@ -27,6 +28,7 @@
                     v-on:dataurls="updatePhoto($event, 'post')" 
                     :hideImage="true"
                     label="Upload Image"
+                    :required="imageRequired"
                 />
             </div>
         </div>
@@ -58,7 +60,8 @@ export default {
     props: [
         "post",
         "logo",
-        "placeholderText"
+        "placeholderText",
+        "imageRequired"
     ],
     methods: {
         updatePhoto(urls, type) {

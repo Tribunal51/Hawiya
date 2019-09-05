@@ -84,7 +84,7 @@ import BlackBox from '../../../../UI/BlackBox';
 import SubHeader from '../../../../UI/SubHeader';
 import NextButton from '../../../../UI/NextButton';
 import Font from './Font';
-import { store } from '../../../../data/logodesign';
+import { store } from '../../../../../data/logodesign';
 
 export default {
     components: {

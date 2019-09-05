@@ -1,11 +1,11 @@
 <template>
     <div id="cover">
         <section id="section1"><Welcome /></section>
-        <!-- <section id="section2"><WhatWeDo /></section>
+        <section id="section2"><WhatWeDo /></section>
         <section id="section3"><MeetTheTeam /></section>
-        <section id="section4"><Profile /></section>
+        <!-- <section id="section4"><Profile /></section> -->
         <section id="section5"><CaseStudy /></section>
-        <section id="section6"><ContactUs /></section>    -->
+        <section id="section6"><ContactUs /></section>   
     </div>
 </template>
 
@@ -23,8 +23,6 @@ import ContactUs from './ContactUs/ContactUs.vue';
 import MeetTheTeam from './WhatWeDo/MeetTheTeam';
 import Welcome from './Welcome/Welcome';
 
-
- 
 
 export default {
     mounted() {
@@ -76,7 +74,10 @@ export default {
         height: 100vh;
     } */
 
-
+    #section1 {
+        width: 100%;
+        position: relative;
+    }
     
 
     #section2, #section3, #section4, #section5, #section6 {
@@ -90,10 +91,7 @@ export default {
 
     #section1 {
         font-family: 'LatoBold', sans-serif;
-        min-height: 100vh;
-
-        
-       
+        min-height: 100vh;       
         background: url('/storage/HomePage.png') no-repeat center center;
         -webkit-background-size: cover;
         -moz-background-size: cover;

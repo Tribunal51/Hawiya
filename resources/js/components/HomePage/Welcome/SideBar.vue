@@ -41,7 +41,7 @@ export default {
                 },
                 {
                     name: 'Stationery',
-                    link: '/design/stationery/package'
+                    link: '/design/stationery/products'
                 },
                 {
                     name: 'Packaging',

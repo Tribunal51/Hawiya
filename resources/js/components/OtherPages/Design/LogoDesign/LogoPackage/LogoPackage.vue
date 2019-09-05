@@ -48,7 +48,7 @@ import IntroSection from '../../../../UI/IntroSection.vue';
 import BlackBox from '../../../../UI/BlackBox.vue';
 import SecondaryNavbar from '../../../../UI/SecondaryNavbar.vue';
 import OrderButton from '../../../../UI/OrderButton';
-import { store } from '../../../../data/logodesign';
+import { store } from '../../../../../data/logodesign';
 
 export default {
     components: {

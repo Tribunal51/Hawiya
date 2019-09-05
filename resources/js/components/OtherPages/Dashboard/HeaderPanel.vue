@@ -16,7 +16,7 @@
                     <h4 class="userDetail gray">Edit Profile</h4>
                 </div>
                 <div class="col-sm-3 settingsSection">
-                    <img src="/storage/icons/white-settings.png" class="settingsIcon" alt="settingsIcon" />
+                    <img src="/storage/icons/white-settings.png" class="settingsIcon" alt="settingsIcon" @click="settingsIconClicked" />
                 </div>
             </div>
         </IntroSection>
@@ -39,6 +39,13 @@ export default {
             zeroBottomPadding: {
                 paddingBottom: '0px'
             },
+        }
+    },
+    methods: {
+        settingsIconClicked() {
+            this.$router.push({
+                name: 'dashboardsettings'
+            });
         }
     }
 }
@@ -64,7 +71,7 @@ export default {
         color: gray;
         word-wrap: break-word;
     }
-    
+
     .userDetailsSection {
         color: white;
         text-align: right;
@@ -97,6 +104,7 @@ export default {
         display: flex;
         justify-content: center;
         align-items: center;
+        cursor: pointer;
     }
 
     .settingsIcon {

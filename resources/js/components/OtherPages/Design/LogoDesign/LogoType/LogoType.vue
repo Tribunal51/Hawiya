@@ -63,7 +63,7 @@ import CheckMark from '../../../../UI/CheckMark';
 import BlackBox from '../../../../UI/BlackBox';
 import SubHeader from '../../../../UI/SubHeader';
 import NextButton from '../../../../UI/NextButton';
-import { store } from '../../../../data/logodesign';
+import { store } from '../../../../../data/logodesign';
 
 export default {
     mounted() {

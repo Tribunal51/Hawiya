@@ -92,7 +92,7 @@ Route::get('/report/logo-design/{id}', 'ReportsController@logodesign');
 
 
 
- 
+Route::get('/lang/{locale}', 'LocalizationController@index');
 
 
 Route::get('{any}', function () {

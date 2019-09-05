@@ -1,6 +1,9 @@
 <template>
   <div id="cover">
-    <nav class="navbar-expand-md custom-background">
+    <div v-if="loading" class="loadingSection">
+        <RingLoader color="#FFDB00"></RingLoader>
+    </div>
+    <nav v-else class="navbar-expand-md custom-background">
         <div class="container">
             <ul class="navbar-nav py-1 mx-auto">
                 <li v-for="navLink in navLinks" class="nav-item navLink px-4" :key="navLink.type">
@@ -59,11 +62,13 @@
 import ItemCard from './ItemCard';
 import data from './data';
 import axios from 'axios';
+import RingLoader from 'vue-spinner/src/RingLoader.vue';
 
 export default {
 	name: 'SearchPage',
 	components: {
-		ItemCard
+        ItemCard,
+        RingLoader
 	},
 	computed: {
 		selectedFilters: function() {
@@ -77,7 +82,8 @@ export default {
             search: '',
             checkedLinks: [],
             navLinks: [],
-            navButtonStyle: {}
+            navButtonStyle: {},
+            loading: true
 		};
     },
 	methods: {
@@ -228,7 +234,7 @@ export default {
 
 
             
-            
+            this.loading = false;
             return res.data;
 
         })
@@ -260,5 +266,11 @@ export default {
 
     .custom-background {
         background-color: #FFDB00;
+    }
+
+    .loadingSection {
+        display: flex;
+        justify-content: center;
+        align-items: center;
     }
 </style>

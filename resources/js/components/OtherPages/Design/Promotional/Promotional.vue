@@ -26,8 +26,7 @@
             <div class="col-md flex-container-align-vertical">
                 <div class="checkoutSection">
                     <Cost 
-                        :items="selectedItems" 
-                        :totalPrice="totalPrice"                        
+                        :items="selectedItems"                         
                     />
                 </div>
             </div>
@@ -72,7 +71,6 @@ export default {
     },
     data() {
         return {
-            totalPrice: 0,
             selectedItems: []
         }
     },
@@ -93,13 +91,13 @@ export default {
             console.log(this.$store.state);
         }
     },
-    watch: {
-        selectedItems: function(newValue, oldValue) {
-            this.totalPrice = this.selectedItems.map(item => item.price).reduce((prev, next) => {
-                return prev + next;
-            },0);
-        }
-    }
+    // watch: {
+    //     selectedItems: function(newValue, oldValue) {
+    //         this.totalPrice = this.selectedItems.map(item => item.price).reduce((prev, next) => {
+    //             return prev + next;
+    //         },0);
+    //     }
+    // }
 
 }
 </script>

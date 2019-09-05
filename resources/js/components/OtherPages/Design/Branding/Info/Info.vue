@@ -122,7 +122,6 @@ export default {
             //console.log('Current Image: ',this.dataurls);
             //console.log('Curent comment', this.comment);
 
-
             let data = {
                 user_id: 1,
                 package: 'Test',
@@ -140,9 +139,9 @@ export default {
             console.log('Is Branding Order valid? ',this.$store.getters['branding/isValid'] );
             console.log(this.$store.state);
             // console.log('Data', data);
-            // axios.post('http://hawiya.net/api/orders/branding', data)
-            // .then(res => console.log(res.data))
-            // .catch(error => console.log(error.response));
+            axios.post('http://hawiya.net/api/orders/branding', data)
+            .then(res => console.log(res.data))
+            .catch(error => console.log(error.response));
         }
     }
 

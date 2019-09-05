@@ -12,6 +12,7 @@
                 <th scope="col">Title</th>
                 <th scope="col">Category</th>
                 <th scope="col">Images</th>
+                <th scope="col">Details</th>
                 <th scope="col"></th>
             </tr>
         </thead>
@@ -27,9 +28,10 @@
                     <td>{{ $profile->category }}</td>
                     <td>
                         @foreach($profile->uploads as $upload)
-                            <img style="width: 200px; height: 200px; border: 1px solid gray;" class="img-fluid" src="{{ '/storage/uploads/'.$upload->filename }}" />
+                            <img style="width: 200px; height: 200px; border: 1px solid gray;" class="img-fluid" src="{{ $upload->filename }}" />
                         @endforeach
                     </td>
+                    <td>{{ $profile->details }}</td>
                     <td>
                         {{-- <form action="ProfilesController@deleteProfile" method="POST">
                             <input type="hidden" name="id" value="{{$profile->id}}" />

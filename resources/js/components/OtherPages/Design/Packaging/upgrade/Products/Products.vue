@@ -11,6 +11,7 @@
         <BlackBox /> -->
             
         <div v-show="!productSettings">
+            
             <div class="flex-container">
                 <Product v-for="product in products" :key="product.id" :product="product">  
                     <template v-slot:edit>
@@ -55,13 +56,13 @@
 </template>
 
 <script>
-import Product from './Product';
+import Product from '../../../../../UI/Product';
 import ProductSettings from '../ProductSettings/ProductSettings';
-import BlackBox from '../../../../UI/BlackBox';
+import BlackBox from '../../../../../UI/BlackBox';
 //import { store, removeKeyFromObjectsArray } from '../store.js';
-import { store } from '../../../../../data/packaging';
-import Header from '../../../../UI/Header';
-import NextButton from '../../../../UI/NextButton';
+import { store } from '../../../../../../data/packaging';
+import Header from '../../../../../UI/Header';
+import NextButton from '../../../../../UI/NextButton';
 
 export default {
     components: {
