@@ -136,7 +136,7 @@
                 
                 @endif
             @else
-                <div class="dropdown newItem">
+                <div class="dropdown">
                     <a id="navbarDropdown" class="dropdown-toggle newItem" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                         <img src="/storage/icons/yellow-logo.png" class="hawiyaUserIcon" />{{ Auth::user()->name }} <span class="caret"></span>
                     </a>
@@ -253,25 +253,26 @@
             
         });
     </script>
+
     <style scoped>
         .hawiyaUserIcon {
             width: 20px;
             height: 20px;
-            margin: 5px;
+            margin: 3px;
         }
 
         .newItem {
             text-decoration: none;
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             margin: 1rem;
             color: #333;
             /* background-color: red; */
         }
 
-        .navItem:hover {
+        .newItem:hover {
             color: black;
             cursor: pointer;
-            
+            text-decoration: none;
         }
     </style>
 </body>

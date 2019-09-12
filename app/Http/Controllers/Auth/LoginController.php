@@ -51,6 +51,9 @@ class LoginController extends Controller
     protected function authenticated(Request $request, $user)
     {
         //
+        if(isset($user->lang)) {
+            session()->put('locale', strtolower($user->lang));
+        }
         return redirect()->intended('/');
        
     }

@@ -44,7 +44,7 @@
             </div>
         </nav>   -->
 
-        <nav v-if="true" class="navbar-expand-lg newNavbar" :class="{'navbarOpen': show}" v-show="offset !== -50" :style="assignClass(scrollPos)">
+        <nav v-if="true" class="navbar-expand-lg newNavbar" v-show="offset !== -50" :style="navStyle">
             <IntroSection :styling="{paddingTop: '0px !important', paddingBottom: '0px !important'}">
                 <button ref="dataToggleButton" @click="toggleNavbar()" class="navbar-toggler" type="button" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -53,21 +53,23 @@
                     <div class="newNavbarMainSection collapse navbar-collapse" :class="{ 'show': show }" id="navbarNav">
                         <a href="/"><img class="newLogo" src="/storage/HawiyaBrandLogo.PNG" /></a>
                         <router-link 
-                            :style="displayOrNot(scrollPos)" 
+                            v-show="displayOrNot(scrollPos)" 
                             v-on:click.native="toggleNavbar()" 
                             class="newItem ml-auto" 
                             to="/" 
                             v-scroll-to="{el: '#section1', offset: offset}">
                                 HOME
                         </router-link>
-                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section2', offset: offset}">WHAT WE DO</router-link>
-                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section4', offset: offset}">PROFILE</router-link>
-                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section5', offset: offset}">CASESTUDY</router-link>
-                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">CONTACTUS</router-link>
-                        <slot></slot>
-                        <div class="dropdown newLanguageSection newItem">
+                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section2', offset: offset}">WHAT WE DO</router-link>
+                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section4', offset: offset}">PROFILE</router-link>
+                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section5', offset: offset}">CASESTUDY</router-link>
+                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">CONTACTUS</router-link>
+                        <div :style="displayOrNot(scrollPos) ? '' : 'marginLeft: auto'" class="authSlot">
+                            <slot></slot>
+                        </div>
+                        <div class="newLanguageSection newItem">
                             <button class="dropdown-toggle newToggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ this.lang | capitalize }}
+                                {{ (lang ? lang: 'en') | capitalize }} 
                             </button>
                             <div class="dropdown-menu newDropdownLanguages" aria-labelledby="dropdownMenu2">
                                 <button 
@@ -113,8 +115,8 @@
                         <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section5', offset: offset}">CASESTUDY</router-link>
                         <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">CONTACTUS</router-link>
                     </span>
-                    
                     <slot></slot>
+                    
 
                     
                     
@@ -286,7 +288,8 @@ export default {
         VToolbarSideIcon
     },
     props: [
-        "lang"
+        "lang",
+        "user"
     ],
     data() {
         return {
@@ -297,7 +300,7 @@ export default {
             searchField: false,
             show: false,
             languages: ["en", "ar"],
-            currentLanguage: '',
+            currentLanguage: this.$root.$i18n.locale,
             navStyle: {},
             homePageNavStyle: {
                 'backgroundColor': 'transparent !important',
@@ -330,22 +333,8 @@ export default {
             handler (val, oldVal) {
                 //console.log('changed');
                 //console.log('Inside watch',val, oldVal);
-                if(val === 0 && this.$route.path === '/') {
-                    this.assignClass
-                }
-                this.navScrollPos = val;
-
-                if(this.$route.path === '/') {
-                    if(this.scrollPos < 1) {
-                        this.navStyle = this.homePageNavStyle;
-                    }
-                    else {
-                        this.navStyle = this.otherSectionNavStyle;
-                    }
-                }
-                else {
-                    this.navStyle = this.otherPageNavStyle;
-                }
+                this.assignNavbarStyle(val);
+                
             }
         },
         
@@ -361,23 +350,38 @@ export default {
         
     },
     methods: {
-        assignClass(scrollPos) {
-            if(this.$route.path === '/') {
-                if(scrollPos <= 2) {
-                    if(this.show)
-                     {
-                        return this.otherSectionNavStyle;   
-                    }
-                    else {
-                        return this.homePageNavStyle;
-                    }   
+        assignNavbarStyle(val) {
+            // if(this.$route.path === '/') {
+            //     if(scrollPos <= 2) {
+            //         if(this.show)
+            //          {
+            //             return this.otherSectionNavStyle;   
+            //         }
+            //         else {
+            //             return this.homePageNavStyle;
+            //         }   
+            //     }
+            //     else {
+            //         return this.otherSectionNavStyle;
+            //     }
+            // }
+            // else {
+            //     return this.otherPageNavStyle;
+            // }
+
+            if(val === 0 && this.$route.path === '/') {
+                this.navStyle = this.homePageNavStyle;
+            }
+            else if(this.$route.path === '/') {
+                if(this.scrollPos < 1) {
+                    this.navStyle = this.homePageNavStyle;
                 }
                 else {
-                    return this.otherSectionNavStyle;
+                    this.navStyle = this.otherSectionNavStyle;
                 }
             }
             else {
-                return this.otherPageNavStyle;
+                this.navStyle = this.otherPageNavStyle;
             }
         },
         reconfigureNavbar() {
@@ -411,10 +415,12 @@ export default {
             return "collapse";
         },
         displayOrNot() {
-            if(this.exceptionPages.indexOf(this.$route.path) > -1) {
-                console.log('Inside Login');
-                return ('display: none');
-            }      
+            // if(this.exceptionPages.indexOf(this.$route.path) > -1) {
+            //     console.log('Inside Login');
+            //     return ('display: none');
+            // }      
+            return this.exceptionPages.indexOf(this.$route.path) > -1 ? false : true;
+            
             // this.exceptionPages.forEach(link => {
             //     console.log(link, this.$route.path);
             //     if(this.$route.path.includes(link)) {
@@ -642,6 +648,12 @@ export default {
         /* background-color: red; */
     }
 
+    .authSlot {
+        display: flex;
+        align-items: center;
+        /* background-color: green; */
+    }
+
     .newItem:hover {
         color: black;
         cursor: pointer;
@@ -649,12 +661,14 @@ export default {
 
     .newLanguageSection {
         /* width: 5rem !important; */
-        
+        height: 100%;
+        align-self: center;
+        /* background-color: red; */
     }
 
     .newLanguage {
         width: 100%;
-        font-size: 0.8rem;
+        font-size: 0.7rem;
     }
 
     .newLanguageButton:hover {
@@ -669,7 +683,7 @@ export default {
     }
 
     .newLanguageButton {
-        width: 100% ;
+        width: 100%;
     }
 
     .newDropdownLanguages {

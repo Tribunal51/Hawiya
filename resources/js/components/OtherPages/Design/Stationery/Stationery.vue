@@ -2,8 +2,12 @@
     <div class="Cover">
         <Header 
             title="Stationery" 
-            :text="getHeaderInfo()"
         />
+
+        <!-- <Header 
+            title="Stationery" 
+            :text="getHeaderInfo()"
+        /> -->
         <router-view />
     </div>
 </template>

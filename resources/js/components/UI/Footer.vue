@@ -64,7 +64,7 @@ export default {
         /* background-color: red; */
         padding: 5px 0px;
         text-align: center;
-    
+        cursor: pointer;
     }
 
 /* #footerLink {

@@ -5,8 +5,9 @@
     </div>
     <nav v-else class="navbar-expand-md custom-background">
         <div class="container">
-            <ul class="navbar-nav py-1 mx-auto">
-                <li v-for="navLink in navLinks" class="nav-item navLink px-4" :key="navLink.type">
+        
+            <ul class="navbar-nav mx-auto">
+                <li v-for="navLink in navLinks" class="nav-item navLink px-4 mx-auto" :key="navLink.type">
                     <button :style="isNavButtonSelected(navLink.type, navLink.selected)" @click="updateCheckedLinks(navLink)">{{ navLink.name }}</button>
                 </li>
             </ul>

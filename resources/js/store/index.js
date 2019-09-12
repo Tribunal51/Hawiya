@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
 import createPersistedState from 'vuex-persistedstate';
+import VuexPersistence from 'vuex-persist';
+import localforage from 'localforage';
 import * as Cookies from 'js-cookie';
 
 // import 'vuetify/dist/vuetify.min.css'; // Ensure you are using css-loader
@@ -24,6 +26,10 @@ import { Ripple } from 'vuetify/lib/directives';
     //     }
     // });
 
+const vuexLocal = new VuexPersistence({
+    storage: localforage
+})
+
 export default new Vuex.Store({
     
     modules: {
@@ -35,7 +41,8 @@ export default new Vuex.Store({
         promotional
     },
     plugins: [
-        createPersistedState()
+        vuexLocal.plugin
+        // createPersistedState()
         // createPersistedState({
         //     getState: (key) => Cookies.getJSON(key),
         //     setState: (key,state) => Cookies.set(key, state, { expires: 1000, secure: true }),

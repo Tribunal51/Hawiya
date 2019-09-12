@@ -4,43 +4,43 @@ export const store = Vue.observable({
     items: [
         {
             name: 'Roll Up',
-            price: 10
+            cost: 10
         },
         {
             name: 'T-Shirt',
-            price: 20
+            cost: 20
         },
         {
             name: 'Flyer',
-            price: 15
+            cost: 15
         },
         {
             name: 'Book Cover',
-            price: 25
+            cost: 25
         },
         {
             name: 'Profile',
-            price: 23
+            cost: 23
         },
         {
             name: 'Pop up',
-            price: 20
+            cost: 20
         },
         {
             name: 'Sticker',
-            price: 29
+            cost: 29
         },
         {
             name: 'Notepad',
-            price: 30
+            cost: 30
         },
         {
             name: 'Cap',
-            price: 35
+            cost: 35
         },
         {
             name: 'Brochure',
-            price: 32
+            cost: 32
         }
     ]
 })

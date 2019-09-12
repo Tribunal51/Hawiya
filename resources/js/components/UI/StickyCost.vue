@@ -1,11 +1,12 @@
 <template>       
-    <transition name="slide-fade">
-        <div class="Cover" v-show="show">
-            <div class="arrowButton text-right" v-if="show" @click="show = !show">></div>
-            <div class="arrowButton text-right" v-else @click="show = !show">&lt;</div>
-                <Cost v-on:cost="updateCost" :products="products" />
-        </div>
-    </transition>
+    
+    <div class="Cover">
+        <div class="arrowButton text-right" @click="show = !show">{{ show ? '>' : '&lt;' }}</div>
+        <!-- <div class="arrowButton text-right" v-else @click="show = !show">&lt;</div> -->
+        <transition name="slide-fade">
+            <Cost v-on:cost="updateCost" :products="products" v-show="show" />
+        </transition>
+    </div>
 </template>
 
 <script>

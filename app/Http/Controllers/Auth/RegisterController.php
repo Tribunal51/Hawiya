@@ -80,6 +80,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'mobile' => ['string'],
+            'lang' => ['string'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             
         ]);
@@ -97,6 +98,7 @@ class RegisterController extends Controller
             'name' => $data['name'],
             'email' => $data['email'],
             'mobile' => $data['mobile'],
+            'lang' => $data['lang'],
             'password' => Hash::make($data['password']),
             
         ]);
@@ -104,6 +106,9 @@ class RegisterController extends Controller
 
     protected function registered(Request $request, $user)
     {
+        if(isset($user->lang)) {
+            session()->put('locale', strtolower($user->lang));
+        }
         return redirect()->intended('/');
             
     }

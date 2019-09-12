@@ -10,7 +10,7 @@
             </template>
 
             <template v-slot:label>
-                <label class="checkBoxLabel" :for="product.name">{{ product.name }}</label>
+                <!-- <label class="checkBoxLabel" :for="product.name">{{ product.name }}{{ product.cost }}</label> -->
             </template>
 
             <input type="checkbox" class="inputCheckBox" :id="product.name" :value="product.name" v-model="selectedNames" />
@@ -45,6 +45,8 @@ export default {
     .Cover {
         display: flex;
         flex-flow: row wrap;
+        align-items: flex-start;
+        position: relative;
     }
 
 </style>

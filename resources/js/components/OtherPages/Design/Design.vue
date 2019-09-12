@@ -49,7 +49,7 @@ export default {
                 "logopackage",
                 "brandingpackage",
                 "socialmediapackage",
-                "stationerypackage",
+                "stationeryitems",
                 "packagingproducts",
                 "promotionalinfo"
             ]

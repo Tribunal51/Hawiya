@@ -17,6 +17,7 @@ class ProfilesController extends Controller
      */
     public function index(Request $request)
     {
+       
         $profiles = Profile::all();
         $complete_profiles = [];
         // return $profiles;
@@ -30,14 +31,36 @@ class ProfilesController extends Controller
             // $profile->uploads = $uploads;
             array_push($complete_profiles, $profile);          
         }
+
         
         if(!isset($request->category)) {
             return $complete_profiles;
         }
         else {
+            switch($request->category) {
+                case 'logodesign': $category='Logo Design';
+                break;
+
+                case 'stationery': $category='Stationery';
+                break;
+
+                case 'packaging': $category='Packaging';
+                break;
+
+                case 'promotional': $category='Promotional';
+                break;
+
+                case 'socialmedia': $category='Social Media'; 
+                break; 
+
+                case 'branding': $category='branding';
+                break;
+
+                default: $category=$request->category;
+            }
             $sorted_profiles = [];
             foreach($complete_profiles as $profile) {
-                if($profile->category === $request->category) {
+                if($profile->category === $category) {
                     array_push($sorted_profiles, $profile);
                 }
             }

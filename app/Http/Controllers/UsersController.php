@@ -55,17 +55,20 @@ class UsersController extends Controller
         else {
             $new_user = new User;
             // $new_user -> id = $request->input('id');
-            $new_user-> name = $request -> input('name');
-            $new_user -> email = $request -> input('email');
-            $new_user -> mobile = $request -> input('mobile');
-            $new_user -> password = Hash::make($request -> input('password'));
-            $new_user -> admin = false;
+            $new_user->name = $request -> input('name');
+            $new_user->email = $request -> input('email');
+            $new_user->mobile = $request -> input('mobile');
+            $new_user->password = Hash::make($request -> input('password'));
+            $new_user->admin = false;
+            $new_user->device_token = $request->input('device_token');
+            $new_user->device_OS = $request->input('device_OS');
+            $new_user->lang = $request->input('lang');
 
             if(!isset($new_user->name) || !isset($new_user->email) || !isset($new_user->password)) {
                 return -3; //echo "Required fields missing"
             } else if($new_user -> save()) {
                 //echo "User registered";
-                return User::where('email',$new_user->email)->first()->id;
+                return $new_user->id;
                 //return User::where('email','=',$new_user->email)->id;
                 //return new UserResource($new_user);
             }
@@ -153,7 +156,16 @@ class UsersController extends Controller
         //         $user->email = $request->email;
         //     }
         // }
-        
+        if(isset($request->lang)) {
+            $user->lang = $request->lang;
+        }
+        if(isset($request->device_token)) {
+            $user->device_token = $request->device_token;
+        }
+        if(isset($request->device_OS)) {
+            $user->device_OS = $request->device_OS;
+        }
+
         if($user->save()) {
             return $user->id;   // echo "User details modified";
         } else {
@@ -223,7 +235,22 @@ class UsersController extends Controller
         if(User::where('email',$request->email)->first()) {
             $user = User::where('email', $request->email)->first();
             if(Hash::check($request->password, $user->password)) {
-                return $user->id; // echo "User ID";
+
+                if(isset($request->device_token)) {
+                    $user->device_token = $request->device_token;
+                } 
+                if(isset($request->device_OS)) {
+                    $user->device_OS = $request->device_OS;
+                }
+                if(isset($request->lang)) {
+                    $user->lang = $request->lang;
+                } 
+                if($user->save()) {
+                    return $user->id;   // echo "User ID";
+                }
+                else {
+                    return -5;  // echo "User device settings could not be saved.";
+                }
             }
             else {
                 return -4; // echo "Wrong Password";

@@ -21,7 +21,8 @@
                 <div class="col-sm-4">
                     <h5><strong>${{ totalCost }}</strong></h5>
                 </div>
-            </div>      
+            </div> 
+            <div class="whiteTriangleLeft" :style="assignTriangleColor(triangleColor)"></div>     
         </div>
     </div>
 </template>
@@ -68,7 +69,8 @@ export default {
     },
     props: [
         "products",
-        "isSticky"
+        "isSticky",
+        "triangleColor"
     ],
     methods: {
         calculateCost(product) {
@@ -87,6 +89,13 @@ export default {
             }
             return price;
         },
+        assignTriangleColor(color) {
+            return color ? {
+                borderRight: '15px solid '+color
+            } : {
+                borderRight: '15px solid white'
+            }
+        }
     },
     watch: {
         totalCost: function(newValue, oldValue) {
@@ -108,8 +117,21 @@ export default {
 
     .Cover {        
         padding: 20px;
+        position: relative;
     }
 
+    .whiteTriangleLeft {
+        position: absolute;
+        right: 0;
+        top: 30%;
+        
+        width: 0;
+        height: 0;
+        border-top: 10px solid transparent;
+        border-bottom: 10px solid transparent;
+        border-right: 15px solid white;
+        position: absolute;
+    }
     
 
 </style>

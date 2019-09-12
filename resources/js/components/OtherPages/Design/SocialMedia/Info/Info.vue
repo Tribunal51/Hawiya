@@ -188,24 +188,36 @@ export default {
         formSubmit() {
             event.preventDefault();
             console.log(this.posts);
+            
+
+            // let data = {
+            //     user_id: 1,
+            //     package: "test",
+            //     posts: this.posts,
+            //     logo_photo: this.logo_photo
+            // }
+
             let payload = {
                 posts: this.posts,
                 logo_photo: this.logo_photo
             };
+
             this.$store.dispatch('socialmedia/setInfo', payload);
             console.log('Final State',this.$store.state);
             console.log('Is Social Media Order Valid? ',this.$store.getters['socialmedia/isValid']);
 
-            let data = {
-                user_id: 1,
-                package: this.$store.state.socialmedia.package,
-                posts: this.$store.state.socialmedia.posts,
-                logo_photo: this.$store.state.socialmedia.logo_photo
-            }
-            console.log('Data', data);
-            axios.post('http://hawiya.net/api/orders/social-media', data)
-            .then(res => console.log('Response',res.data))
-            .catch(error => console.log(error.response));
+            // let data = {
+            //     user_id: 1,
+            //     package: this.$store.state.socialmedia.package,
+            //     posts: this.$store.state.socialmedia.posts,
+            //     logo_photo: this.$store.state.socialmedia.logo_photo
+            // }
+
+            
+            // console.log('Data', data);
+            // axios.post('http://hawiya.net/api/orders/social-media', data)
+            // .then(res => console.log('Response',res.data))
+            // .catch(error => console.log(error.response));
         }
     }
 

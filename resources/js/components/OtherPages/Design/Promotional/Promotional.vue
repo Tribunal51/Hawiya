@@ -26,7 +26,9 @@
             <div class="col-md flex-container-align-vertical">
                 <div class="checkoutSection">
                     <Cost 
-                        :items="selectedItems"                         
+                        :products="selectedItems" 
+                        v-on:update="updateCost"     
+                        triangleColor='lightgray'                   
                     />
                 </div>
             </div>
@@ -58,7 +60,7 @@
 <script>
 import BlackBox from '../../../UI/BlackBox';
 import SubmitButton from '../../../UI/SubmitButton';
-import Cost from './Cost';
+import Cost from '../../../UI/Cost';
 import { store } from '../../../../data/promotional.js';
 import Header from '../../../UI/Header';
 
@@ -71,7 +73,8 @@ export default {
     },
     data() {
         return {
-            selectedItems: []
+            selectedItems: [],
+            totalCost: 0
         }
     },
     computed: {
@@ -80,6 +83,9 @@ export default {
         }
     },
     methods: {
+        updateCost(cost) {
+            this.totalCost = cost;
+        },
         submitButtonClicked() {
             let arrayOfItemNames = this.selectedItems.map(item => item.name);
             let price = this.totalPrice;

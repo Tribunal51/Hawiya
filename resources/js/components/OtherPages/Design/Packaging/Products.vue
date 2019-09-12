@@ -1,9 +1,9 @@
 <template>
     <div class="Cover">
         <Header title="Packaging" />
-        <!-- <StickyCost :products="selectedProducts" v-on:cost="updateCost" /> -->
+        <StickyCost :products="selectedProducts" v-on:cost="updateCost" />
         <ProductsGrid :products="products" v-on:update="updateProducts" />
-        <Cost :products="selectedProducts" v-on:cost="updateCost" />
+        <!-- <Cost :products="selectedProducts" v-on:cost="updateCost" /> -->
         
     </div>
 </template>
@@ -49,6 +49,7 @@ export default {
         font-family: 'LatoRegular', sans-serif;
         font-size: 1.1rem;
         width: 100%;
+        position: relative;
     }
 
 </style>

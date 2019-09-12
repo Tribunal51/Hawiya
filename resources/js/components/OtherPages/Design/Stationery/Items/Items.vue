@@ -1,6 +1,5 @@
 <template>
     <div class="Cover">
-        <Header title="Stationery" />
         <StickyCost :products="selectedProducts" v-on:cost="updateCost" />
         <ProductsGrid :products="products" v-on:update="updateProducts" />
     </div>

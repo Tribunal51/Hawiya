@@ -41,7 +41,7 @@
 <script>
 import IntroSection from '../../UI/IntroSection';
 import Services from '../../UI/Services'; 
-import RingLoader from 'vue-spinner/src/RingLoader.vue';
+import RingLoader from 'vue-spinner/src/RingLoader';
 
 export default {
     props: [
