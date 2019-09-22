@@ -50,13 +50,13 @@ class AdminController extends Controller
         
         $file_list = [];
         if($request -> hasFile('my_file')) {
-            $allowedFileExtension = ['pdf', 'jpg', 'png', 'docx'];
+            $allowedFileExtension = ['pdf', 'jpg', 'png', 'docx', 'jpeg'];
             $files = $request->file('my_file');
             
             foreach($files as $file) {
                 $filename = $file->getClientOriginalName();
                 $extension = $file->getClientOriginalExtension();
-                $check = in_array($extension, $allowedFileExtension);
+                $check = in_array(strtolower($extension), $allowedFileExtension);
                 if($check) {
                     // $filename = ltrim($file->store('public/uploads'), 'public/uploads');
                     $filename = ltrim($file->store('public/uploads'), 'public/uploads');
@@ -113,13 +113,14 @@ class AdminController extends Controller
                 }    
                 else {
                     if($profile_to_delete->delete()) {
-                        return redirect('/dashboard/addProfile')->with('success', 'Profile(s) deleted');
+                        //return redirect('/dashboard/addProfile')->with('success', 'Profile(s) deleted');
                     }
                     else {
                         return redirect('/dashboard/addProfile')->with('error', 'Profile(s) could not be deleted');
                     }
                 }
             }
+            return redirect('/dashboard/addProfile')->with('success', 'Profile(s) deleted');
         }
         
 

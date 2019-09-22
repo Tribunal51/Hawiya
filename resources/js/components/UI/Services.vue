@@ -22,7 +22,7 @@
                     <div class="row">
                         <div class="col">
                             <h3>Let us build an outstanding brand for you. </h3>
-                            <StartHere />
+                            <StartHere :differentPage="differentPage" />
                         </div>
                     </div>
                 </div>
@@ -62,7 +62,7 @@ export default {
                 },
                 {
                     name: 'Stationery',
-                    link: '/design/stationery/package'
+                    link: '/design/stationery/items'
                 },
                 {
                     name: 'Packaging',
@@ -78,9 +78,12 @@ export default {
     methods: {
         buttonClicked(link) {
             this.$store.dispatch('resetAllStates');
-            this.$router.push(link);
+            //this.$router.push(link);
             if(this.differentPage) {
-               location.reload();
+               location.href=link;
+            }
+            else {
+                this.$router.push(link);
             }
         }
     }

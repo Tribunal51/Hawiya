@@ -2,13 +2,16 @@
     <div class="Cover" v-if="authuser !== -1">
         
         <HeaderPanel :user="user" />
-        <router-view :authuser="authuser" />
+        <IntroSection :styling="highTopPadding">
+            <router-view :authuser="authuser" />
+        </IntroSection>
         
     </div>
 </template>
 
 <script>
 import HeaderPanel from './HeaderPanel.vue';
+import IntroSection from '../../UI/IntroSection';
 
 export default {
     props: [
@@ -17,11 +20,15 @@ export default {
     ],
     data() {
         return {
-            user: this.authuser,           
+            user: this.authuser,
+            highTopPadding: {
+                paddingTop: '100px'
+            },           
         }
     },
     components: {
-        HeaderPanel
+        HeaderPanel,
+        IntroSection
     },
     methods: {
         buttonClicked() {

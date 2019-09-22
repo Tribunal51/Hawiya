@@ -4,7 +4,7 @@
         <StickyCost :products="selectedProducts" v-on:cost="updateCost" />
         <ProductsGrid :products="products" v-on:update="updateProducts" />
         <!-- <Cost :products="selectedProducts" v-on:cost="updateCost" /> -->
-        
+        <SubmitButton :buttonClicked="buttonClicked" />
     </div>
 </template>
 
@@ -14,6 +14,7 @@ import ProductsGrid from '../../../UI/ProductsGrid';
 import Header from '../../../UI/Header';
 import Cost from '../../../UI/Cost';
 import StickyCost from '../../../UI/StickyCost';
+import SubmitButton from '../../../UI/SubmitButton';
 
 export default {
     data() {
@@ -26,7 +27,8 @@ export default {
         ProductsGrid,
         Header,
         Cost,
-        StickyCost
+        StickyCost,
+        SubmitButton
     },
     computed: {
         products() {
@@ -39,6 +41,17 @@ export default {
         },
         updateCost(totalCost) {
             this.totalCost = totalCost;
+        },
+        buttonClicked() {
+            let payload = {
+                products: [...this.selectedProducts],
+                price: this.totalCost
+            }
+            this.$store.dispatch('packaging/setInfo', payload).then(() => {
+                console.log(this.$store.state.packaging);
+            });
+            //console.log(this.$store.state.packaging);
+            document.location = '/payment';
         }
     }
 }

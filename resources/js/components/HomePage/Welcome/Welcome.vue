@@ -1,15 +1,21 @@
 <i18n>
     {
         "en": {
-            "line1": "Design your identity with a professional team" 
+            "line1": "Design your identity with a professional team",
+            "line2": "Our design team gives you the professional edge you need to stand out your identity.",
+            "line3": "Let us build an outstanding brand for you"
+
         },
         "ar": {
-            "line1": "صمم هويتك مع فريق محترف"
+            "line1": "صمم هويتك مع فريق محترف",
+            "line2": "يمنحك فريق التصميم لدينا الميزة الاحترافية التي تحتاجها لتبرز هويتك.",
+            "line3": "دعونا نبني علامة تجارية متميزة لك"
         }
     }
 </i18n>
 
 <template>
+    <!-- <div v-if="this.$root.$i18n.locale === 'en'" class="Cover"> -->
     <div class="Cover">
         <div class="navbarHeight"></div>
         <div class="filler">
@@ -17,23 +23,23 @@
             <div class="flex-container-align-bottom">
                 <IntroSection :homePage="true">        
                     <BlackBox>
-                        <h3 class="bold">{{ $t('line1') }}</h3>
+                        <h3 class="bold alignLang">{{ $t('line1') }}</h3>
                     </BlackBox>
                     <div class="row">
-                        <div class="col gray">
-                            Our design team gives you the professional edge you need to stand out your identity.
+                        <div class="col gray alignLang">
+                            {{ $t('line2') }}
                         </div>
                     </div>
                     
                 </IntroSection>
                 
-                    <div class="yellowContainerTopRightCurved">
+                    <div class="yellowContainerCurved">
                         <IntroSection :homePage="true">  
                             <BlackBox>
-                                <div class="secondHeader">Let us build an outstanding brand for you</div>
+                                <div class="secondHeader alignLang">{{ $t('line3') }}</div>
                             </BlackBox>
                             <div class="row mt-2">
-                                <div class="col">
+                                <div class="col alignLang">
                                     <StartHere />
                                 </div>
                             </div>
@@ -181,11 +187,11 @@ export default {
         }
     }
 
-    .yellowContainerTopRightCurved {
+    .yellowContainerCurved {
         width: 100%;
         height: auto;
         background-color: #FFDB00;
-        border-radius: 0px 50px 0px 0px;
+        /* border-radius: 0px 50px 0px 0px; */
     }
 
     .rightSide {
@@ -239,6 +245,29 @@ export default {
         align-items: center;
         min-height: 10vh;
         /* background-color: red; */
+    }
+
+
+
+    /* 
+    LTR RTL Specific Styles
+    */
+
+    html[dir="ltr"] .alignLang {
+        text-align: left;
+    }
+
+    html[dir="rtl"] .alignLang {
+        text-align: right;
+    }
+
+
+    html[dir="ltr"] .yellowContainerCurved {
+        border-radius: 0px 50px 0px 0px;
+    }
+
+    html[dir="rtl"] .yellowContainerCurved {
+        border-radius: 50px 0px 0px 0px;
     }
 
 </style>

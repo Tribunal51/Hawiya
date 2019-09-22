@@ -1,10 +1,12 @@
 @extends('layouts.app')
 
 @section('content')
-<dashboard
-    :authuser="{{ Auth::user() ? Auth::user() : -1 }}" 
-    :verified="{{ Auth::user() ? (Auth::user()->email_verified_at ? 1 : 0) : 0 }}" 
->
+
+    <dashboard
+        :authuser="{{ Auth::user() ? Auth::user() : -1 }}" 
+        :verified="{{ Auth::user() ? (Auth::user()->email_verified_at ? 1 : 0) : 0 }}" 
+    >
+
 @if (session('status'))   
     <div class="alert alert-success" role="alert">
         {{ session('status') }}
@@ -12,6 +14,7 @@
     </div>  
 @endif
 </dashboard>
+
 {{-- <div class="container">
     <div class="row justify-content-center">
         <div class="col-md-8">

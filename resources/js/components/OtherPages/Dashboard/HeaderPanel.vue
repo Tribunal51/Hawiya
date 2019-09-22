@@ -13,6 +13,7 @@
                 <div class="col-sm-5 userDetailsSection">
                     <h2 class="userDetail bold">{{ user.name }}</h2>
                     <h4 class="userDetail gray">{{ user.email }}</h4>
+                    <h4 class="userDetail gray" v-if="user.mobile">{{ user.mobile }}</h4>
                     <h4 class="userDetail gray">Edit Profile</h4>
                 </div>
                 <div class="col-sm-3 settingsSection">

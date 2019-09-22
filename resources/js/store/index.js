@@ -80,7 +80,6 @@ export default new Vuex.Store({
         },
         resetAllStates: (state) => {
             console.log('Inside Global Reset');
-            
         }
     },
     actions: {

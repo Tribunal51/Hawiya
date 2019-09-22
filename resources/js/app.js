@@ -87,6 +87,9 @@ Vue.component('settings', require('./components/OtherPages/Dashboard/Settings').
     import Home from './components/OtherPages/Dashboard/Home';
     import Dashboard from './components/OtherPages/Dashboard/Dashboard';
     import Settings from './components/OtherPages/Dashboard/Settings';
+    import UserInfo from './components/OtherPages/Dashboard/Settings/UserInfo';
+    import UserPassword from './components/OtherPages/Dashboard/Settings/UserPassword';
+    import UserSupport from './components/OtherPages/Dashboard/Settings/Support';
 
     import LogodesignReport from './components/OtherPages/Report/LogoDesign';
     
@@ -253,7 +256,29 @@ Vue.component('settings', require('./components/OtherPages/Dashboard/Settings').
         {
             name: 'home',
             path: '/home',
-            component: Home
+            component: Home,
+            // children: [
+            //     {
+            //         name: 'dashboardsettings',
+            //         path: '/home/settings',
+            //         component: Settings
+            //     },
+            //     {
+            //         name: 'updateUserInfo',
+            //         path: '/home/settings/info',
+            //         component: UserInfo
+            //     },
+            //     {
+            //         name: 'updateUserPassword',
+            //         path: '/home/settings/password',
+            //         component: UserPassword
+            //     },
+            //     {
+            //         name: 'userSupport',
+            //         path: '/home/settings/support',
+            //         component: UserSupport
+            //     }
+            // ]
         },
         {
             name: 'dashboardsettings',
@@ -261,8 +286,28 @@ Vue.component('settings', require('./components/OtherPages/Dashboard/Settings').
             component: Settings
         },
         {
-            path: '/', 
-            name: 'root', 
+            name: 'updateUserInfo',
+            path: '/home/settings/info',
+            component: UserInfo
+        },
+        {
+            name: 'updateUserPassword',
+            path: '/home/settings/password',
+            component: UserPassword
+        },
+        {
+            name: 'userSupport',
+            path: '/home/settings/support',
+            component: UserSupport
+        },
+        {
+            name: 'payment',
+            path: '/payment',
+            component: Payment
+        },
+        {
+            name: 'root',
+            path: '/',  
             component: HomePage
         },
         {
@@ -271,27 +316,32 @@ Vue.component('settings', require('./components/OtherPages/Dashboard/Settings').
         }       
     ];
 
-    const router = new VueRouter({
-        routes,
-        linkActiveClass: "active",
-        mode: 'history',
-        // scrollBehavior(to, from, savedPosition) {
-        //     if(to.hash) {
-        //         return {
-        //             selector: to.hash,
-        //             offset: {x:0, y:0}
-        //         }
-        //     }
-        // }
-    });
+const router = new VueRouter({
+    routes,
+    linkActiveClass: "active",
+    mode: 'history',
+    // scrollBehavior(to, from, savedPosition) {
+    //     if(to.hash) {
+    //         return {
+    //             selector: to.hash,
+    //             offset: {x:0, y:0}
+    //         }
+    //     }
+    // }
+});
+
+const waitForStorageToBeReady = async (to, from, next) => {
+    await store.restored;
+    next();
+}
+
+router.beforeEach(waitForStorageToBeReady);
 
     
-Vue.use(VueI18n);
-export const i18n = new VueI18n({
-    locale: 'en',   // set locale 
-    fallbackLocale: 'en'
-})
 
+
+
+import { i18n } from './plugins/i18n';
 
 export const app = new Vue({
     el: '#app',

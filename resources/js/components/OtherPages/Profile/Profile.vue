@@ -121,19 +121,29 @@ export default {
             // });
         },
         setPrevNextItems() {
-            if(this.orders) {
-                if(this.orders.indexOf(this.currentItem) !== this.orders.length - 1) {
-                    this.nextItem = this.orders.find(order => order.id === this.currentItem.id + 1);
+            if(this.orders && this.orders.length > 0) {
+                let index = this.orders.findIndex(order => this.currentItem.id === order.id);
+
+                if(index !== this.orders.length - 1) {
+                    this.nextItem = this.orders[index + 1];
+                    //this.nextItem = this.orders.find(order => order.id === this.currentItem.id + 1);
                 } else {
                     this.nextItem = null;
                 }
 
-                if(this.currentItem.id === 0) {
+                if(index === 0) {
                     this.prevItem = null;
                 }
                 else {
-                    this.prevItem = this.orders.find(order => order.id === this.currentItem.id - 1);
+                    this.prevItem = this.orders[index-1];
                 }
+
+                // if(this.currentItem.id === 0) {
+                //     this.prevItem = null;
+                // }
+                // else {
+                //     this.prevItem = this.orders.find(order => order.id === this.currentItem.id - 1);
+                // }
             }
             else {
                 this.currentItem = null;
@@ -158,6 +168,8 @@ export default {
 <style scoped>
     .Cover {
         font-family: 'LatoRegular', sans-serif;
+        height: 100%;
+        position: relative;
     }
 
     .bold {

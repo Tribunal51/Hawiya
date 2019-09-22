@@ -122,7 +122,7 @@ export default {
     },
     computed: {
         types() {
-            return store.logotypes;
+            return store[this.$i18n.locale].logotypes;
         }
     },
     methods: {

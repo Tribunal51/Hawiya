@@ -1,3 +1,27 @@
+<i18n>
+    {
+        "en": {
+            "Logo Design": "Logo Design",
+            "Branding": "Branding",
+            "Stationery": "Stationery",
+            "Packaging": "Packaging",
+            "Social Media": "Social Media",
+            "Website": "Website",
+            "Promotional": "Promotional"
+        },
+        "ar": {
+            "Logo Design": "تصميم شعار",
+            "Branding": "العلامات التجارية",
+            "Stationery": "ادوات مكتبيه",
+            "Packaging": "التعبئة والتغليف",
+            "Social Media": "وسائل التواصل الاجتماعي",
+            "Website": "موقع الكتروني",
+            "Promotional": "الترويجية"
+        }
+    }
+
+</i18n>
+
 <template>
     <div class="Cover">
         
@@ -5,7 +29,7 @@
         <div v-for="(link, index) in links" :key="link.name">
             <div class="row">
                 <div class="col">
-                    <button class="btn sideBarButton text-left" @click="buttonClicked(link.link)">{{ link.name }}</button>
+                    <button class="btn sideBarButton text-left" @click="buttonClicked(link.link)">{{ $t(link.name) }}</button>
                 </div>
             </div>
             <div class="row" v-if="index < links.length - 1">

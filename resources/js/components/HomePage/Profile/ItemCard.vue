@@ -106,13 +106,17 @@ export default {
 		/* max-width: 500px; */
 		/* min-width: 200px; */
 		/* height: 300px; */
-		width: 300px;
-		height: 300px;
-
+		/* min-width: 300px;
+		min-height: 300px; */
+		width: 25%;
+		height: auto;
+		min-width: 300px;
+		min-height: 300px;
+		position: relative;
 		
 	}
 
-	@media (max-width: 300px) {
+	@media (max-width: 500px) {
 		.card {
 			width: 100%;
 		}
@@ -176,7 +180,7 @@ export default {
 
 	.cardCoverImage {
 		
-		height: 300px;
+		height: 100%;
 		width: 100%;
 		max-width: 100%;
 		-webkit-filter: grayscale(100%);

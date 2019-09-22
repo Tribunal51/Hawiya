@@ -12,14 +12,14 @@
 */
 
 Route::get('/', 'PagesController@index');
-Auth::routes();
-//Auth::routes(['verify' => true]);
+// Auth::routes();
+Auth::routes(['verify' => true]);
 
-//Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
-Route::get('/home', 'PagesController@userDashboard')->name('home')->middleware('auth');
+Route::get('/home', 'HomeController@index')->name('home')->middleware(['auth', 'verified']);
+//Route::get('/home', 'PagesController@userDashboard')->name('home')->middleware('auth');
 Route::get('/home/{any}', function() {
     return view('home');    
-})->where('any', '.*')->middleware('auth');
+})->where('any', '.*')->middleware('verified');
 
 Route::get('/dashboard', 'PagesController@dashboard');
 Route::get('/dashboard/users', 'PagesController@users');
@@ -33,7 +33,7 @@ Route::post('/dashboard/addProfile', 'AdminController@addProfile');
 Route::put('/dashboard/editProfile', 'AdminController@editProfile');
 Route::delete('/dashboard/deleteProfile', 'AdminController@deleteProfile');
 
-Route::get('/payment', 'PagesController@payment')->middleware('auth');
+Route::get('/payment', 'PagesController@payment')->middleware(['auth', 'verified']);
 Route::get('/confirm-order', 'PagesController@orderConfirm')->middleware('auth');
 Route::get('/test', function() {
     return view('pages.test');

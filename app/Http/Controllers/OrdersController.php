@@ -112,37 +112,37 @@ class OrdersController extends Controller
     public function getUserOrdersSortedByDate($id) {
         $all_orders = array();
 
-        $logodesign_orders = LogodesignOrder::where('user_id','=', $id)->get(['id', 'user_id', 'package']);        
+        $logodesign_orders = LogodesignOrder::where('user_id','=', $id)->get(['id', 'user_id', 'package', 'created_at']);        
         foreach($logodesign_orders as $order) {
             $order->type="logodesign";
             array_push($all_orders, $order);
         }
         
-        $branding_orders = BrandingOrder::where('user_id', '=', $id)->get(['id', 'user_id', 'package']);
+        $branding_orders = BrandingOrder::where('user_id', '=', $id)->get(['id', 'user_id', 'package', 'created_at']);
         foreach($branding_orders as $order) {
             $order->type="branding";
             array_push($all_orders, $order);
         }
 
-        $socialmedia_orders = SocialMediaOrder::where('user_id', '=', $id)->get(['id', 'user_id', 'package']);
+        $socialmedia_orders = SocialMediaOrder::where('user_id', '=', $id)->get(['id', 'user_id', 'package', 'created_at']);
         foreach($socialmedia_orders as $order) {
             $order->type="socialmedia";
             array_push($all_orders, $order);
         }
 
-        $promotional_orders = PromotionalOrder::where('user_id', '=', $id)->get(['id', 'user_id']);
+        $promotional_orders = PromotionalOrder::where('user_id', '=', $id)->get(['id', 'user_id', 'created_at']);
         foreach($promotional_orders as $order) {
             $order->type="promotional";
             array_push($all_orders, $order);
         }
 
-        $stationery_orders = StationeryOrder::where('user_id', '=', $id)->get(['id', 'user_id']);
+        $stationery_orders = StationeryOrder::where('user_id', '=', $id)->get(['id', 'user_id', 'created_at']);
         foreach($stationery_orders as $order) {
             $order->type="stationery";
             array_push($all_orders, $order);
         }
 
-        $packaging_orders = PackagingOrder::where('user_id', '=', $id)->get(['id', 'user_id']);
+        $packaging_orders = PackagingOrder::where('user_id', '=', $id)->get(['id', 'user_id', 'created_at']);
         foreach($packaging_orders as $order) {
             $order->type="packaging";
             array_push($all_orders, $order);

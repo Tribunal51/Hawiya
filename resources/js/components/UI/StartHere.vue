@@ -1,3 +1,14 @@
+<i18n>
+    {
+        "en": {
+            "buttonText": "START HERE"
+        },
+        "ar": {
+            "buttonText": "أبدأ هنا"
+        }
+    }
+</i18n>
+
 <template>
     <button class=" btn btn-outline-dark startButton" @click="buttonClicked()">{{ buttonText }}</button>
 </template>
@@ -7,11 +18,13 @@ export default {
     props: [
         "link",
         "text",
-        "styling"
+        "styling",
+        "differentPage"
     ],
     computed: {
         buttonText() {
-            return this.text ? this.text : 'START HERE';
+            //console.log('START HERE', this.$root.$i18n);
+            return this.text ? this.text : this.$i18n.messages[this.$root.$i18n.locale].buttonText;
         },
         buttonLink() {
             return this.link ? this.link : '/design/branding/package';
@@ -22,7 +35,13 @@ export default {
     },
     methods: {
         buttonClicked() {
-            this.$router.push(this.buttonLink);
+            if(this.differentPage) {
+                location.href = this.buttonLink;
+            }
+            else {
+                this.$router.push(this.buttonLink);
+            }
+            //this.$router.push(this.buttonLink);
         }
     }
 }

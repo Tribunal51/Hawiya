@@ -1,9 +1,9 @@
 <template>
     <div id="cover">
-        <!-- <section id="section1"><Welcome /></section> -->
+        <section id="section1"><Welcome /></section>
         <section id="section2"><WhatWeDo /></section>
         <section id="section3"><MeetTheTeam /></section>
-        <!-- <section id="section4"><Profile /></section> -->
+        <section id="section4"><Profile /></section>
         <section id="section5"><CaseStudy /></section>
         <section id="section6"><ContactUs /></section>   
     </div>
@@ -37,7 +37,7 @@ export default {
             // });
             this.$store.dispatch('resetAllStates');
             console.log('Is LogoDesign Valid',this.$store.getters['logodesign/isValid']);
-            let url = "http://localhost:8000/leadmanager/api/lead";
+            // let url = "http://localhost:8000/leadmanager/api/lead";
             // axios.get(url)
             // .then(res => console.log(res.data))
             // .catch(error => console.log(error));

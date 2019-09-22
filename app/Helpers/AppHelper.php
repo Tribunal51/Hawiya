@@ -70,7 +70,7 @@ class AppHelper {
         }
     
         if(!isset($extension)) {
-            $extension = 'jpg';
+            $extension = 'png';
         }
         $file = uniqid().".".$extension;
     

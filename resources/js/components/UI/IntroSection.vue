@@ -26,23 +26,34 @@ export default {
 
 <style scoped>
     .introSections {
-        padding-left: 33%;
+        padding-left: 30%;
         padding-top: 5px;
-        padding-right: 27%;
+        padding-right: 30%;
         padding-bottom: 40px;
         font-size: 1.3rem;
         /* background-color: green; */
     }
 
     .home {
-        padding-left: 66%;
         padding-top: 2px;
-        padding-right: 0%;
         padding-bottom: 10px;
         font-size: 1.3rem;
         /* background-color: red; */
 
     }
+
+        html[dir="ltr"] .home {
+            padding-left: 60%;
+            padding-right: 0%;
+        }
+
+        
+
+        html[dir="rtl"] .home {
+            padding-left: 0%;
+            padding-right: 60%;
+        }
+
 
     @media(max-width: 349px) {
         .introSections, .home {
@@ -54,7 +65,7 @@ export default {
 
     @media(min-width: 350px) and (max-width: 800px) {
         .introSections, .home {
-            width: 100% !important;
+            width: 100%;
             padding-left: 20px;
             padding-right: 20px;
             
@@ -65,9 +76,9 @@ export default {
 
     @media (min-width: 801px) and (max-width: 1000px) {
         .introSections, .home {
-            width: 100% !important;
-            padding-left: 100px !important;
-            padding-right: 100px !important;
+            width: 100%;
+            padding-left: 100px;
+            padding-right: 100px;
 
             font-size: 0.8rem;
 
@@ -76,20 +87,41 @@ export default {
 
     @media (min-width: 1001px) and (max-width: 2200px) {
         .introSections {
-            width: 100% !important;
-            padding-left: 17% !important;
-            padding-right: 10% !important;
+            width: 100%;
+            padding-left: 15%;
+            padding-right: 15%;
             
             font-size: 0.85rem;
         }
 
         .home {
-            width: 100% !important;
-            padding-left: 34% !important;
-            padding-right: 0% !important;
+            width: 100%;
             font-size: 0.85rem;
         }
 
+        html[dir="ltr"] .home {
+            padding-left: 30% !important;
+            padding-right: 0% !important;
+        }
+
+        html[dir="rtl"] .home {
+            padding-left: 0% !important;
+            padding-right: 30% !important;
+        }
+
     }
+
+
+
+    /* RTL LTR */
+
+    
+
+
+
+
+
+
+    
 
 </style>

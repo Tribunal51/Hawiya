@@ -17,6 +17,8 @@
                 <option value="Social Media">Social Media</option>
                 <option value="Stationery">Stationery</option>
                 <option value="Website">Website</option>
+                <option value="Packaging">Packaging</option>
+                <option value="Promotional">Promotional</option>
             </select>
                                     
         </div>

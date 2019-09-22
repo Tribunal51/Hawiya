@@ -1,7 +1,7 @@
 <template>
     <span class="cover">
         <div class="row">
-            <div class="col">
+            <div class="col alignLang">
                 <div class="box">
 
                 </div>
@@ -49,7 +49,7 @@ export default {
         width: 25px !important;
         height: 6px !important;
         border: 1px solid black;
-        float: left;
+        /* float: left; */
         background-color: black;
         display: block;        
     }
@@ -57,5 +57,7 @@ export default {
     .cover {
         margin-bottom: 20px;
     }
+
+
     
 </style>

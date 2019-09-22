@@ -114,7 +114,7 @@ export default {
             
         },
         fonts() {
-            return store.fonts;
+            return store[this.$i18n.locale].fonts;
         }
     },
     methods: {

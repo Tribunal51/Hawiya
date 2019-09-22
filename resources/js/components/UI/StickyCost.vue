@@ -47,6 +47,7 @@ export default {
         right: 0 !important;
         top: 30% !important;
         width: 300px !important;
+        max-width: 70% !important;
     }
 
 </style>

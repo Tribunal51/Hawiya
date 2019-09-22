@@ -14,12 +14,17 @@ const mutations = {
     resetState: (state) => {
         console.log('Inside ResetState, Packaging');
         Object.assign(state, initialState);
+        console.log(state);
     },
     setProducts: (state, products) => {
         state.products = [...products];
     },
     setPrice: (state, price) => {
         state.price = price;
+    },
+    setInfo: (state, payload) => {
+        state.products = payload.products;
+        state.price = payload.price;
     }
 }
 
@@ -32,7 +37,14 @@ const actions = {
     },
     setPrice: (store, price) => {
         store.commit('setPrice', price);
-    }
+    },
+    setInfo: (store, payload) => {
+        return new Promise((resolve, reject) => {
+            store.commit('setInfo', payload);
+            resolve();
+        })
+    },
+    
     
 }
 

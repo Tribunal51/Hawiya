@@ -126,44 +126,95 @@
                     </div>
                 </li>
             @endguest --}}
-            @guest                  
-                <a class="newItem" href="{{ route('login') }}">{{ __('Login') }}</a>
-                
-                @if (Route::has('register'))
-                        
+            <template v-slot:navbar>
+                @guest                  
+                    <a class="newItem" href="{{ route('login') }}">{{ __('Login') }}</a>
                     
-                    <a class="newItem" href="{{ route('register') }}">{{ __('Register') }}</a>
-                
-                @endif
-            @else
-                <div class="dropdown">
-                    <a id="navbarDropdown" class="dropdown-toggle newItem" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        <img src="/storage/icons/yellow-logo.png" class="hawiyaUserIcon" />{{ Auth::user()->name }} <span class="caret"></span>
-                    </a>
-
-                    <div id="userStatusSection" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-
-                        <a class="dropdown-item" href="{{ route('home') }}">
-                                {{ __('Dashboard') }}
-                        </a>
-                        @if(Auth::user()->admin)
-                            <a class="dropdown-item" href="/dashboard">
-                                    {{ __('Admin Dashboard') }}
-                            </a>
-                        @endif
-                        <a class="dropdown-item" href="{{ route('logout') }}"
-                        onclick="event.preventDefault();
-                                        document.getElementById('logout-form').submit();">
-                            {{ __('Logout') }}
-                        </a>
+                    @if (Route::has('register'))
+                            
                         
+                        <a class="newItem" href="{{ route('register') }}">{{ __('Register') }}</a>
+                    
+                    @endif
+                @else
+                    <div class="dropdown">
+                        <a id="navbarDropdown" class="dropdown-toggle newItem navUsernameSection" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                            <img src="/storage/icons/yellow-logo.png" class="hawiyaUserIcon" />{{ Auth::user()->name }} <span class="caret"></span>
+                        </a>
 
-                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                            @csrf
-                        </form>
+                        <div id="userStatusSection" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                            <a class="dropdown-item" href="{{ route('home') }}">
+                                    {{ __('Dashboard') }}
+                            </a>
+                            @if(Auth::user()->admin)
+                                <a class="dropdown-item" href="/dashboard">
+                                        {{ __('Admin Dashboard') }}
+                                </a>
+                            @endif
+                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            onclick="event.preventDefault();
+                                            document.getElementById('logout-form').submit();">
+                                {{ __('Logout') }}
+                            </a>
+                            
+
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </div>
                     </div>
-                </div>
-            @endguest
+                @endguest
+            </template>
+
+            <template v-slot:drawer>
+                @guest   
+                    <v-list-tile>    
+                        <v-list-tile-action>           
+                            <a class="drawerItem" href="{{ route('login') }}">{{ __('Login') }}</a>
+                        </v-list-tile-action>
+                    </v-list-tile>
+                    @if (Route::has('register'))    
+                        <v-list-tile>
+                            <v-list-tile-action>
+                                <a class="drawerItem" href="{{ route('register') }}">{{ __('Register') }}</a>
+                            </v-list-tile-action>
+                        </v-list-tile>
+                    @endif
+                @else
+                    <v-list-tile>
+                        <v-list-tile-action>
+                            <div class="dropdown">
+                                <a id="navbarDropdown" class="dropdown-toggle drawerItem navUsernameSection" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                                    <img src="/storage/icons/yellow-logo.png" class="hawiyaUserIcon" />{{ Auth::user()->name }} <span class="caret"></span>
+                                </a>
+
+                                <div id="userStatusSection" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
+
+                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                            {{ __('Dashboard') }}
+                                    </a>
+                                    @if(Auth::user()->admin)
+                                        <a class="dropdown-item" href="/dashboard">
+                                                {{ __('Admin Dashboard') }}
+                                        </a>
+                                    @endif
+                                    <a class="dropdown-item" href="{{ route('logout') }}"
+                                    onclick="event.preventDefault();
+                                                    document.getElementById('logout-form').submit();">
+                                        {{ __('Logout') }}
+                                    </a>
+                                    
+
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                        @csrf
+                                    </form>
+                                </div>
+                            </div>
+                        </v-list-tile-action>
+                    </v-list-tile>
+                @endguest
+            </template>
         </navbar>
         <main>
             @yield('content')            
@@ -258,7 +309,8 @@
         .hawiyaUserIcon {
             width: 20px;
             height: 20px;
-            margin: 3px;
+            /* margin: 3px; */
+            margin-right: 3px;
         }
 
         .newItem {
@@ -273,6 +325,27 @@
             color: black;
             cursor: pointer;
             text-decoration: none;
+        }
+
+        .navUsernameSection {
+            display: flex;
+            align-items: center;
+            /* background-color: green; */
+        }
+
+        .drawerItem {
+            color: #333;
+            text-decoration: none;
+            cursor: pointer;
+            
+            /* margin: 1rem; */
+        }
+        
+
+        .drawerItem:hover {
+            color: black;
+            text-decoration: none;
+            cursor: pointer;
         }
     </style>
 </body>

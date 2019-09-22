@@ -1,3 +1,28 @@
+<i18n>
+    {
+        "en": {
+            "All": "All",
+            "Logo Design": "Logo Design",
+            "Branding": "Branding",
+            "Stationery": "Stationery",
+            "Packaging": "Packaging",
+            "Social Media": "Social Media",
+            "Website": "Website",
+            "Promotional": "Promotional"
+        },
+        "ar": {
+            "All": "الكل",
+            "Logo Design": "تصميم شعار",
+            "Branding": "العلامات التجارية",
+            "Stationery": "ادوات مكتبيه",
+            "Packaging": "التعبئة والتغليف",
+            "Social Media": "وسائل التواصل الاجتماعي",
+            "Website": "موقع الكتروني",
+            "Promotional": "الترويجية"
+        }
+    }
+</i18n>
+
 <template>
   <div id="cover">
     <div v-if="loading" class="loadingSection">
@@ -8,7 +33,7 @@
         
             <ul class="navbar-nav mx-auto">
                 <li v-for="navLink in navLinks" class="nav-item navLink px-4 mx-auto" :key="navLink.type">
-                    <button :style="isNavButtonSelected(navLink.type, navLink.selected)" @click="updateCheckedLinks(navLink)">{{ navLink.name }}</button>
+                    <button :style="isNavButtonSelected(navLink.type, navLink.selected)" @click="updateCheckedLinks(navLink)">/{{ $t(navLink.name) }}</button>
                 </li>
             </ul>
         </div>                         
@@ -21,6 +46,7 @@
             <div class="col-10">
                 <input type="text" class="form-control" placeholder="Enter key word  ..." v-model="search" v-on:keyup="getfilteredData">
             </div>
+            
             <div class="col-2">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
             </div>
@@ -159,7 +185,7 @@ export default {
         
         this.orders = data;
         //axios.get('http://hawiya.net/api/orders/getAllOrders')
-        axios.get('http://hawiya.net/api/profiles')
+        axios.get('/api/profiles')
         .then(res => {           
             this.orders = res.data.slice(0);
             this.getfilteredData();
@@ -176,7 +202,7 @@ export default {
             navLinks = uniqueWords.map(uniqueWord => {
                 return {
                     type: uniqueWord,
-                    name: '/' + uniqueWord.charAt(0).toUpperCase() + uniqueWord.slice(1),
+                    name: uniqueWord.charAt(0).toUpperCase() + uniqueWord.slice(1),
                     selected: false,
                     
                 }
@@ -239,7 +265,7 @@ export default {
             return res.data;
 
         })
-        .catch(error => console.log('Error', error));
+        .catch(error => console.log('Error', error.response));
         
     }
     

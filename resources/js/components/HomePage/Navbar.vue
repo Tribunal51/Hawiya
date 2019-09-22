@@ -1,3 +1,27 @@
+<i18n>
+    {
+        "en": {
+            "HOME": "HOME",
+            "WHAT WE DO": "WHAT WE DO", 
+            "PROFILE": "PROFILE",
+            "CASE STUDY": "CASE STUDY",
+            "CONTACT US": "CONTACT US",
+            "EN": "EN",
+            "AR": "عربى" 
+        },
+        "ar": {
+            "HOME": "الصفحة الرئيسية",
+            "WHAT WE DO": "الذي نفعله",
+            "PROFILE": "الملف الشخصي",
+            "CASE STUDY": "دراسة الحالة",
+            "CONTACT US": "اتصل بنا",
+            "EN": "EN",
+            "AR": "عربى"
+        }
+    }
+
+</i18n>
+
 <template>
     <div id="cover">
         <!-- <nav class="nav navbar navbar-expand-lg" :style="assignClass(scrollPos)" id="nav">
@@ -45,6 +69,9 @@
         </nav>   -->
 
         <nav v-if="true" class="navbar-expand-lg newNavbar" v-show="offset !== -50" :style="navStyle">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
             <IntroSection :styling="{paddingTop: '0px !important', paddingBottom: '0px !important'}">
                 <button ref="dataToggleButton" @click="toggleNavbar()" class="navbar-toggler" type="button" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -55,21 +82,21 @@
                         <router-link 
                             v-show="displayOrNot(scrollPos)" 
                             v-on:click.native="toggleNavbar()" 
-                            class="newItem ml-auto" 
+                            class="newItem firstItem" 
                             to="/" 
                             v-scroll-to="{el: '#section1', offset: offset}">
-                                HOME
+                                {{ $t('HOME') }}
                         </router-link>
-                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section2', offset: offset}">WHAT WE DO</router-link>
-                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section4', offset: offset}">PROFILE</router-link>
-                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section5', offset: offset}">CASESTUDY</router-link>
-                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">CONTACTUS</router-link>
+                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section2', offset: offset}">{{ $t('WHAT WE DO') }}</router-link>
+                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section4', offset: offset}">{{ $t('PROFILE') }}</router-link>
+                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section5', offset: offset}">{{ $t('CASE STUDY') }}</router-link>
+                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">{{ $t('CONTACT US') }}</router-link>
                         <div :style="displayOrNot(scrollPos) ? '' : 'marginLeft: auto'" class="authSlot">
-                            <slot></slot>
+                            <slot name="navbar"></slot>
                         </div>
                         <div class="newLanguageSection newItem">
                             <button class="dropdown-toggle newToggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ (lang ? lang: 'en') | capitalize }} 
+                                {{ $t(lang ? lang.toUpperCase() : 'EN')}}
                             </button>
                             <div class="dropdown-menu newDropdownLanguages" aria-labelledby="dropdownMenu2">
                                 <button 
@@ -78,7 +105,7 @@
                                     v-for="language in languages" 
                                     :key="language"
                                     @click="setLanguage(language)"
-                                    >{{ language | capitalize }}</button>
+                                    >{{ $t(language.toUpperCase()) }}</button>
                             </div>
                         </div>
                     </div>
@@ -123,7 +150,7 @@
 
 
                     <li class="dropdown languageSection">
-                        <button class="btn btn-default dropdown-toggle toggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <button class="btn btn-default dropdown-toggle drawerToggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ currentLanguage | capitalize }}
                         </button>
                         <div class="dropdown-menu dropdownLanguages" aria-labelledby="dropdownMenu2">
@@ -165,44 +192,62 @@
         </v-toolbar>    -->
        
         
-        <v-toolbar-side-icon large class="hidden-sm-and-down drawerHamburger" v-show="false" @click="drawer=!drawer" v-if="offset === -50"></v-toolbar-side-icon>
+        <v-toolbar-side-icon large class="hidden-sm-and-down drawerHamburger" v-show="true" @click="drawer=!drawer" v-if="offset === -50"></v-toolbar-side-icon>
         <v-navigation-drawer app v-model="drawer" temporary>
             <v-list nav>
-                <ul class="nav-items">
-                    <a class="nav-item" href="/"><img src="/storage/HawiyaBrandLogo.PNG" class="logo" /></a>
+                <ul class="navigationDrawerSection">
+                    <a class="drawerItem" href="/"><img src="/storage/HawiyaBrandLogo.PNG" class="newLogo" /></a>
                     <span :style="displaySectionOrNot()">
                         <v-list-tile>
                             <v-list-tile-action>
-                                <router-link tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section1'">HOME</router-link>
+                                <router-link class="drawerItem" to="/" v-scroll-to="{el: '#section1', offset: 0}" v-on:click.native="toggleDrawer()">HOME</router-link>
                             </v-list-tile-action>
                         </v-list-tile>
 
                         <v-list-tile>
-                            <router-link tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section2'">WHAT WE DO</router-link>
+                            <router-link class="drawerItem" to="/" v-scroll-to="{el: '#section2', offset: 0}" v-on:click.native="toggleDrawer()">WHAT WE DO</router-link>
                         </v-list-tile>
 
                         <v-list-tile>
-                            <router-link tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section4'">PROFILE</router-link>
+                            <router-link class="drawerItem" to="/" v-scroll-to="{ el: '#section4', offset: 0}" v-on:click.native="toggleDrawer()">PROFILE</router-link>
                         </v-list-tile>
                         
                         <v-list-tile>
-                            <router-link tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section5'">CASESTUDY</router-link>
+                            <router-link class="drawerItem" to="/" v-scroll-to="{ el: '#section5', offset: 0}" v-on:click.native="toggleDrawer()">CASESTUDY</router-link>
                         </v-list-tile>
                         
                         <v-list-tile>
-                            <router-link tag="li" class="nav-item navItem" to="/" v-scroll-to="'#section6'">CONTACTUS</router-link>
+                            <router-link class="drawerItem" to="/" v-scroll-to="{ el: '#section6', offset: 0}" v-on:click.native="toggleDrawer()">CONTACTUS</router-link>
                         </v-list-tile>
                     
                     </span>
 
-                    <v-list-tile>
-                        <slot></slot> 
-                    </v-list-tile>
+                    
+                    <div class="drawerAuthSlot">
+                        <slot name="drawer"></slot> 
+                    </div>
+                    
 
                     <v-list-tile>
-                        <li class="dropdown languageSection">
+                        <v-list-tile-action>
+                        <div class="drawerLanguageSection drawerItem">
+                            <button class="text-left dropdown-toggle newToggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                {{ (lang ? lang: 'en') | capitalize }} 
+                            </button>
+                            <div class="dropdown-menu newDropdownLanguages" aria-labelledby="dropdownMenu2">
+                                <button 
+                                    class="dropdown-item newLanguageButton"
+                                    type="button"
+                                    v-for="language in languages" 
+                                    :key="language"
+                                    @click="setLanguage(language)"
+                                    @click.native="toggleDrawer()"
+                                    >{{ language | capitalize }}</button>
+                            </div>
+                        </div>
+                        <!-- <div class="drawerItem dropdown languageSection">
                             <button class="btn btn-default dropdown-toggle toggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ currentLanguage }}
+                                {{ ( lang ? lang : 'en') | capitalize }}
                             </button>
                             <div class="dropdown-menu dropdownLanguages" aria-labelledby="dropdownMenu2">
                                 <button 
@@ -213,24 +258,25 @@
                                     :href="'lang/'+language"
                                     @click="setLanguage(language)">{{ language }}</button>
                             </div>
-                        </li>
+                        </div> -->
+                        </v-list-tile-action>
                     </v-list-tile>
 
-                    <v-list-tile>
+                    <!-- <v-list-tile>
                         <div class="searchSection">
                             <input v-model="search" class="searchField" ref="search" type="text" v-if="searchField"  />
                             <img :style="displayOrNot(scrollPos)" src="/storage/icons/searchicon.png" class="searchIcon" @click="searchIconClicked()"  />
                         </div>
-                    </v-list-tile>
+                    </v-list-tile> -->
                 </ul> 
-                <v-list-tile>
+                <!-- <v-list-tile>
                     <v-list-tile-action>
                         <v-icon class="white">dashboard</v-icon>
                     </v-list-tile-action>
                     <v-list-tile-content>
                         <v-list-tile-title class="white--text">Dashboard</v-list-tile-title>
                     </v-list-tile-content>
-                </v-list-tile>
+                </v-list-tile> -->
                 
             </v-list>
         </v-navigation-drawer>
@@ -252,7 +298,7 @@ Vue.use(VueScrollTo, {
     container: "body",
     duration: 2000,
     easing: "ease",
-    offset: -90,
+    offset: 0,
     force: true,
     cancelable: true,
     onStart: false,
@@ -266,7 +312,8 @@ Vue.use(VueScrollTo, {
 export default {
     mounted() {
         //alert(this.lang);
-        this.reconfigureNavbar();
+        // this.reconfigureNavbar();
+        // this.assignNavbarStyle();
         //console.log('Toggle Button Hidden? ', window.getComputedStyle(this.$refs.dataToggleButton).display === 'none');
         window.addEventListener('scroll', () => {
             this.scrollPos = window.scrollY;
@@ -274,11 +321,13 @@ export default {
         });
         console.log('i18n', this.$i18n);
         this.$root.$i18n.locale = this.lang;
-        
+        this.setRTLFormat(this.lang);
     },
     updated() {
         this.reconfigureNavbar();
-        
+        this.assignNavbarStyle();
+        this.$root.$i18n.locale = this.lang;
+        this.setRTLFormat(this.lang);
     },
     components: {
         // VToolbar,
@@ -299,6 +348,7 @@ export default {
             search: '',
             searchField: false,
             show: false,
+            currentRoute: this.$route.path,
             languages: ["en", "ar"],
             currentLanguage: this.$root.$i18n.locale,
             navStyle: {},
@@ -337,7 +387,6 @@ export default {
                 
             }
         },
-        
         offset: function(newValue, oldValue) {
             //this.reconfigureNavbar();
             
@@ -345,7 +394,7 @@ export default {
 
         currentLanguage(lang) {
             location.href="lang/"+lang;
-        }
+        },
 
         
     },
@@ -368,7 +417,7 @@ export default {
             // else {
             //     return this.otherPageNavStyle;
             // }
-
+            //console.log('Current Route',this.$route.path);
             if(val === 0 && this.$route.path === '/') {
                 this.navStyle = this.homePageNavStyle;
             }
@@ -382,6 +431,14 @@ export default {
             }
             else {
                 this.navStyle = this.otherPageNavStyle;
+            }
+        },
+        setRTLFormat(lang) {
+            if(lang === 'ar') {
+                document.documentElement.dir = "rtl";
+            }
+            else {
+                document.documentElement.dir = "ltr";
             }
         },
         reconfigureNavbar() {
@@ -413,6 +470,9 @@ export default {
         toggleNavbar() {
             this.show = !this.show;
             return "collapse";
+        },
+        toggleDrawer() {
+            this.drawer = !this.drawer;
         },
         displayOrNot() {
             // if(this.exceptionPages.indexOf(this.$route.path) > -1) {
@@ -456,7 +516,13 @@ export default {
             // });
             //alert(language.code);
             this.$root.$i18n.locale = language;
-            location.href="lang/"+language;
+            if(language === 'ar') {
+                document.documentElement.dir = "rtl";
+            }
+            else {
+                document.documentElement.dir = "ltr";
+            }
+            location.href="/lang/"+language;
         },
         quickUpdate() {
             alert(this.lang + ' ' + this.currentLanguage + ' ' + this.$root.$i18n.locale);
@@ -509,6 +575,11 @@ export default {
     .logo {
         width: auto;
         max-height: 80px;
+    }
+
+    html[dir="rtl"] .logo {
+        width: 500px;
+        height: 500px;
     }
 
     .navItems {
@@ -689,6 +760,61 @@ export default {
     .newDropdownLanguages {
         /* width: 3rem !important; */
     }
+
+    .navigationDrawerSection {
+        display: flex;
+        width: 100%;
+        flex-direction: column;
+        /* background-color: green; */
+    }
+
+    .drawerItem {
+        
+        text-decoration: none;
+        color: #333;
+        
+    }
+
+    .drawerItem:hover {
+        color: black;
+    }
+
+    .drawerAuthSlot {
+        display: flex;
+        flex-direction: column;
+        /* background-color: red; */
+        width: 100%;
+    }
+    
+    .drawerLanguageSection {
+
+    }
+
+    .drawerToggleButton {
+        width: 100%;
+        background: transparent;
+        border: none;
+        padding: 0;
+    }
+
+
+
+
+
+
+
+    /*** RTL LTR Format  ***/
+    html[dir="ltr"] .firstItem {
+        margin-left: auto;
+    }
+
+    html[dir="rtl"] .firstItem {
+        margin-right: auto;
+    }
+
+
+
+   
 
 
 

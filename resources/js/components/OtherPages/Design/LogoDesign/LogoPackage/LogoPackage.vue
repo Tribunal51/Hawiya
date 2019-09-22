@@ -1,3 +1,15 @@
+<i18n>
+    {
+        "en": {
+            "package1": "Fast Track"
+        },
+        "ar": {
+            "package1": "Fast Track in Arabic"
+        }
+    }
+
+</i18n>
+
 <template>
     <div id="cover">
         
@@ -60,6 +72,7 @@ export default {
     },
     mounted() {
         console.log('Just mounted Package', this.$store.state.logodesign);
+        console.log(this.$i18n);
     },
     data() {
         return {
@@ -80,7 +93,7 @@ export default {
     },
     computed: {
         cards() {
-            return store.packages;
+            return store[this.$i18n.locale].packages;
         }
     },
     methods: {
