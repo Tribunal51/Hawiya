@@ -1,6 +1,33 @@
+<i18n>
+    {
+        "en": {
+            "Logo Information": "Logo Information",
+            "Fill your Brand Information": "Fill your Brand Information",
+            "placeholders": {
+                "brand_name": "BRAND NAME (REQUIRED)",
+                "tagline": "TAGLINE (OPTIONAL)",
+                "business_field": "BUSINESS FIELD (REQUIRED)",
+                "subject": "SUBJECT (REQUIRED)",
+                "description": "DESCRIPTION OF YOUR BUSINESS (REQUIRED)"
+            }
+        },
+        "ar": {
+            "Logo Information": "معلومات الشعار",
+            "Fill your Brand Information": "ملء معلومات العلامة التجارية الخاصة بك",
+            "placeholders": {
+                "brand_name": "اسم العلامة التجارية (مطلوب)",
+                "tagline": "الشعار (اختياري)",
+                "business_field": "مجال العمل (مطلوب)",
+                "subject": "الموضوع (مطلوب)",
+                "description": "وصف عملك (مطلوب)"
+            }
+        }
+    }
+</i18n>
+
 <template>
     <div class="Cover">
-        <SubHeader><h5><strong>{{ title ? title : 'Logo Information' }}</strong></h5></SubHeader>
+        <SubHeader><h5><strong>{{ title ? title : $t('Logo Information') }}</strong></h5></SubHeader>
         <!-- <div class="row">
             <div class="col-md-4">
                 <BlackBox>
@@ -13,7 +40,7 @@
         </div> -->
         <div class="row">
             <div class="col-md mt-2 mb-2">
-                <h5>Fill your brand information</h5>
+                <h5>{{ $t('Fill your Brand Information') }}</h5>
             </div>
         </div>
         
@@ -23,7 +50,7 @@
                 type="text" 
                 class="input-bottom-border" 
                 id="brandName" 
-                placeholder="BRAND NAME (REQUIRED)" 
+                :placeholder="$t('placeholders.brand_name')" 
                 @input="updateForm($event.target.value, 'brand')"
                 :value="this.Form.brand"
                 required
@@ -36,7 +63,7 @@
             <input 
                 type="text" 
                 class="input-bottom-border" 
-                placeholder="TAGLINE (OPTIONAL)" 
+                :placeholder="$t('placeholders.tagline')"
                 @input="updateForm($event.target.value, 'tagline')"
                 :value="this.Form.tagline"
                 :readonly="readonly"
@@ -48,7 +75,7 @@
             <input 
                 type="text" 
                 class="input-bottom-border" 
-                placeholder="BUSINESS FIELD (REQUIRED)"  
+                :placeholder="$t('placeholders.business_field')"  
                 @input="updateForm($event.target.value, 'business_field')"
                 :value="this.Form.business_field"
                 required
@@ -60,7 +87,7 @@
             <input 
                 type="text" 
                 class="input-bottom-border"
-                placeholder="SUBJECT (REQUIRED)" 
+                :placeholder="$t('placeholders.subject')"
                 @input="updateForm($event.target.value, 'subject')"
                 :value="this.Form.subject" 
                 required 
@@ -73,7 +100,7 @@
             <textarea 
                 type="text" 
                 class="input-bottom-border" 
-                placeholder="DESCRIPTION OF YOUR BUSINESS (REQUIRED)" 
+                :placeholder="$t('placeholders.description')" 
                 @input="updateForm($event.target.value, 'description')"
                 :value="this.Form.description" 
                 required
@@ -136,9 +163,7 @@ export default {
 </script>
 
 <style scoped>
-    .Cover {
-        text-align: left;
-    }
+    
     
     
 

@@ -1,11 +1,22 @@
+<i18n>
+    {
+        "en": {
+            "NEXT": "NEXT"
+        },
+        "ar": {
+            "NEXT": "التالى"
+        }
+    }
+</i18n>
+
 <template>
     <button 
         :class="'btn btn-light nextButton '+buttonClass"
         @click="buttonClicked" 
         :disabled="buttonDisabled"
         v-show="!buttonDisabled">
-            {{ this.text ? this.text : 'NEXT' }}
-            <img src="/storage/icons/right-arrow.png" class="rightArrow" />
+            {{ this.text ? this.text : $t('NEXT') }}
+            <img src="/storage/icons/right-arrow.png" class="rightArrow" :style="$root.$i18n.locale === 'ar' ? 'transform: scaleX(-1)' : ''" />
     </button>
 </template>
 

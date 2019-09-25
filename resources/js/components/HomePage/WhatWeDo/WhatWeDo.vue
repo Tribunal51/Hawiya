@@ -1,32 +1,56 @@
+<i18n>
+    {
+        "en": {
+            "title": "What We Do",
+            "line1": "We have years of experience working with entrepreneurs just like you. We've learned it's best to start by listening to your story. Then we review your existing brand and offer you options from there. Below we've listed our most requested packages, but each of these can be tweaked or we can give you a completely custom quote. ",
+            "line2": "We believe in every project we take on. Our belief can be seen in our attention to detail and meticulous care which shines through, in every brand we build.",
+            "line3": "We help businesses find a brand experience that's fresh & distinct by providing them with innovative, strategic & creative solutions.",
+            "line4": "Details Matter",
+            "line5": "We focus on every little detail while understanding your core business, which in turn helps us to precisely define your brand's meaning, character and personality. In turn, this helps us to connect all elements of your brand thus leading to a complete brand experience. All made possible by a team bursting with passion to build fine brands."
+        },
+        "ar": {
+            "title": "الذي نفعله",
+            "line1": "لدينا سنوات من الخبرة في العمل مع رواد الأعمال مثلك تمامًا. لقد تعلمنا أنه من الأفضل أن تبدأ بالاستماع إلى قصتك. ثم نقوم بمراجعة علامتك التجارية الحالية ونقدم لك خيارات من هناك. أدناه ، أدرجنا الحزم الأكثر طلبًا ، لكن يمكن تعديل كل منها أو يمكن أن نقدم لك عرض أسعار مخصص تمامًا.",
+            "line2": "نحن نؤمن بكل مشروع نقوم به. يمكن أن نرى إيماننا في اهتمامنا بالتفاصيل والرعاية الدقيقة التي تتألق في كل علامة تجارية نبنيها.",
+            "line3": "نحن نساعد الشركات على إيجاد تجربة العلامة التجارية الجديدة والمتميزة من خلال تزويدهم بحلول مبتكرة واستراتيجية وخلاقة.",
+            "line4": "التفاصيل",
+            "line5": "نحن نركز على كل التفاصيل الصغيرة بينما نفهم عملك الأساسي ، والذي بدوره يساعدنا على تحديد معنى علامتك التجارية وشخصيتها وشخصيتها بدقة. وهذا بدوره يساعدنا على ربط جميع عناصر علامتك التجارية مما يؤدي إلى تجربة العلامة التجارية الكاملة. كل ذلك جعله ممكنًا من خلال فريق مليء بالشغف لبناء علامات تجارية راقية."
+        }
+    }
+</i18n>
+
 <template>
-    <div id="cover">
+    <div id="cover" class="alignLang">  
+
+        
         <div class="bannerHeader">
-                   
-            <div class="bannerText">
-                <h1>What We Do</h1>
-            </div>
-                                         
-        </div> 
+            <IntroSection :styling="{paddingTop: '0px !important', paddingBottom: '0px !important'}">
+                <h1> {{ $t('title') }}</h1>
+            </IntroSection>
+        </div>
+        
+                                           
+        
         <div class="row">
             <div class="col-sm">                
                 <IntroSection>
                     <div id="IntroSection1">
                         <BlackBox>                   
-                            We have years of experience working with entrepreneurs just like you. We've learned it's best to start by listening to your story. Then we review your existing brand and offer you options from there. Below we've listed our most requested packages, but each of these can be tweaked or we can give you a completely custom quote.                   
+                            {{ $t('line1') }}
                         </BlackBox>
                     </div>
                     <div class="row">
                         <div class="col-md">
                             <div id="IntroSection2">
                                 <BlackBox >                               
-                                    We believe in every project we take on. Our belief can be seen in our attention to detail and meticulous care which shines through, in every brand we build.
+                                    {{ $t('line2') }}
                                 </BlackBox>
                             </div>
                         </div>
                         <div class="col-md">
                             <div id="IntroSection3">
-                                <BlackBox>                              
-                                    We help businesses find a brand experience that's fresh & distinct by providing them with innovative, strategic & creative solutions.                               
+                                <BlackBox>   
+                                    {{ $t('line3') }}                           
                                 </BlackBox>
                             </div>
                         </div>
@@ -47,11 +71,11 @@
         
         <IntroSection>
             <BlackBox>
-                <h2>Details Matter.</h2>
+                <h2>{{ $t('line4') }}</h2>
             </BlackBox>
             <div class= "row">
                 <div class="col">
-                    We focus on every little detail while understanding your core business, which in turn helps us to precisely define your brand's meaning, character and personality. In turn, this helps us to connect all elements of your brand thus leading to a complete brand experience. All made possible by a team bursting with passion to build fine brands.
+                    {{ $t('line5') }}
                 </div>
             </div>
         </IntroSection>
@@ -145,14 +169,21 @@ export default {
     } */
 
     .bannerHeader {
-        /* display: flex; */
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
         align-items: center;
-        padding-left: 33% !important;
         background-color: #FFDB00;
-        height: 6rem !important;
-        display: table !important;
+        /* height: 6rem !important; */
         width: 100%;
         /* vertical-align: middle; */
+        padding-top: 10px;
+        padding-bottom: 10px;
+    }
+
+    .bannerHeaderContent {
+        width: 100%;
+        height: 100%;
     }
 
     .bannerText {
@@ -168,20 +199,6 @@ export default {
         margin-left: 40px;
         
     }
-
-    @media (max-width: 800px) {
-        .bannerHeader {
-            padding-left:20px !important;
-        }
-    }
-
-     @media (min-width: 1001px) and (max-width: 2200px) {
-         .bannerHeader {
-            padding-left: 17% !important;
-            padding-right: 17% !important;
-            height: 4rem !important;
-         }
-     }
 
      
     

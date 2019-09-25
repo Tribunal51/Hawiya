@@ -30,6 +30,7 @@ Vue.component('page-footer', require('./components/UI/Footer.vue').default);
 Vue.component('dashboard', require('./components/OtherPages/Dashboard/Dashboard').default);
 Vue.component('logodesign-report', require('./components/OtherPages/Report/LogoDesign').default);
 Vue.component('settings', require('./components/OtherPages/Dashboard/Settings').default);
+Vue.component('meet-the-team', require('./components/HomePage/WhatWeDo/MeetTheTeam').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application

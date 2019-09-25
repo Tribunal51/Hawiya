@@ -1,6 +1,19 @@
+<i18n>
+    {
+        "en": {
+            "title": "Logo Color",
+            "Choose your Brand Color": "Choose your Brand Color"
+        },
+        "ar": {
+            "title": "لون الشعار",
+            "Choose your Brand Color": "اختيار لون العلامة التجارية الخاصة بك"
+        }
+    }
+</i18n>
+
 <template>
     <div id="cover">
-        <SubHeader><h5><strong>Logo Color</strong></h5></SubHeader>
+        <SubHeader><h5><strong>{{ $t('title') }}</strong></h5></SubHeader>
         <!-- <div class="row">
             <div class="col-md-4">
                 <BlackBox>
@@ -13,11 +26,11 @@
         </div> -->
         <div class="row">
             <div class="col-md mt-2 mb-2">
-                <h5>Choose your brand Color</h5>
+                <h5>{{ $t('Choose your Brand Color') }}</h5>
             </div>
         </div>
-        <div class="rowSection my-2" v-for="(colorcode,color) in colorsList" :key="color">
-            <div class="checkmarkSection">
+        <div class="row rowSection my-2" v-for="(colorcode,color) in colorsList" :key="color">
+            <div class="col-2 checkmarkSection">
                 <CheckMark>
                     <input  
                     type="checkbox" 
@@ -28,7 +41,7 @@
                     />
                 </CheckMark>                
             </div>
-            <label :for="color" class="colorSection">
+            <label :for="color" class="col-10 colorSection">
                 <div class="row">
                     <div v-for="index in 8" :key="index" class="col-xs shadeSection">
                         
@@ -46,7 +59,15 @@
             
             
         </div>
-        <div class="rowSection my-2">
+       
+        <div class="noColorSection">
+            <NoIdea id="noColor">
+                <input type="checkbox" :value="noColor" v-model="colors" id="noColor" />
+            </NoIdea>
+        </div>
+        
+       
+        <!-- <div class="rowSection my-2">
             <div class="checkmarkSection">
                 <CheckMark>
                     <input 
@@ -61,7 +82,7 @@
             <label class="noColorSection" for="noColor">
                 <h4>I don't have an idea.</h4>
             </label>
-        </div>
+        </div> -->
     </div>
 </template>
 
@@ -70,6 +91,7 @@ import BlackBox from '../../../../../UI/BlackBox';
 import CheckMark from '../../../../../UI/CheckMark';
 import SubHeader from '../../../../../UI/SubHeader';
 import { store } from '../../../../../../data/logodesign';
+import NoIdea from '../../../../../UI/NoIdea';
 
 export default {
     mounted() {
@@ -81,7 +103,8 @@ export default {
     components: {
         CheckMark,
         BlackBox,
-        SubHeader
+        SubHeader,
+        NoIdea
     },
     props: [
         "color"
@@ -135,7 +158,7 @@ export default {
 
 <style scoped>
 
-    #colorRow {
+    .colorRow {
         margin-top: 5px;
         margin-bottom: 5px;
     }
@@ -148,8 +171,7 @@ export default {
     }
     
     .rowSection {
-        display: flex;
-
+        /* background-color: green; */
     }
 
 
@@ -159,6 +181,7 @@ export default {
 
     .checkmarkSection {
         width: 20%;
+        /* background-color: red; */
     }
 
     .colorSection {
@@ -167,11 +190,7 @@ export default {
         cursor: pointer;
     }
 
-    .noColorSection {
-        width: 80%;
-        cursor: pointer;
-       
-    }
+    
 
     @media (max-width: 768px) {
         .shadeSection {
@@ -186,7 +205,11 @@ export default {
     /* @media (max-width: 575px) {
         
     } */
-
+    
+    .noColorSection {
+        display: flex;
+        justify-content: center;
+    }
     
 
 </style>

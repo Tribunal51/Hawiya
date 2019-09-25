@@ -1,10 +1,10 @@
 <i18n>
     {
         "en": {
-            "package1": "Fast Track"
+            "line1": "We believe logos speak louder than anything and that's why, with pristine designs, we produce stirring identities for brands all around the world."
         },
         "ar": {
-            "package1": "Fast Track in Arabic"
+            "line1": "نحن نعتقد أن الشعارات تتحدث بصوت أعلى من أي شيء ، ولهذا السبب ، مع التصاميم البكر ، ننتج هويات قوية للعلامات التجارية في جميع أنحاء العالم."
         }
     }
 
@@ -25,7 +25,7 @@
                 
                 <div class="row">
                     <div class="col">
-                        We believe logos speak louder than anything and that's why, with pristine designs, we produce stirring identities for brands all around the world.
+                        {{ $t('line1') }}
                     </div>
                 </div>
                 

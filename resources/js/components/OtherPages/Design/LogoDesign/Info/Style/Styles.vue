@@ -1,3 +1,45 @@
+<i18n>
+    {
+        "en": {
+            "Logo Style": "Logo Style",
+            "Choose your Logo Style": "Choose your Logo Style",
+            "Classic": "Classic",
+            "Modern": "Modern",
+            "Youthful": "Youthful",
+            "Mature": "Mature",
+            "Masculine": "Masculine",
+            "Feminine": "Feminine",
+            "Playful": "Playful",
+            "Sophisticated": "Sophisticated",
+            "Luxury": "Luxury",
+            "Economical": "Economical",
+            "Organic": "Orgnic",
+            "Geometric": "Geometric",
+            "Literal": "Literal",
+            "Abstract": "Abstract"
+
+        },
+        "ar": {
+            "Logo Style": "نمط الشعار",
+            "Choose your Logo Style": "اختر شعارك",
+            "Classic": "كلاسيكي",
+            "Modern": "حديث",
+            "Youthful": "شاب",
+            "Mature": "ناضج",
+            "Masculine": "مذكر",
+            "Feminine": "المؤنث",
+            "Playful": "لعوب",
+            "Sophisticated": "متطور",
+            "Luxury": "ترف",
+            "Economical": "اقتصادي",
+            "Organic": "عضوي",
+            "Geometric": "هندسي",
+            "Literal": "حرفي",
+            "Abstract": "نبذة مختصرة"
+        }
+    }
+</i18n>
+
 <template>
     <div id="cover">
         <!-- <div class="row">
@@ -10,15 +52,15 @@
 
             </div>
         </div> -->
-        <SubHeader><h5><strong>{{ title ? title : 'Logo Style' }}</strong></h5></SubHeader>
+        <SubHeader><h5><strong>{{ title ? title : $t('Logo Style') }}</strong></h5></SubHeader>
         <div class="row">
             <div class="col-md mt-2 mb-2">
-                <h5 v-show="!readonly">Choose your Logo style</h5>
+                <h5 v-show="!readonly">{{ $t('Choose your Logo Style') }}</h5>
             </div>
         </div>
         <div class="row" v-for="(value,style) in tempStyles" :key="style" :style="readonly ? 'height: 60px !important' : 'height: 30px !important'">
             
-            <div class="col-3 labelLeft">{{ style.split('_')[0] | capitalizeFirstLetter }}</div>
+            <div class="col-3 labelFirst">{{ capitalizeFirstLetterAndTranslate(style.split('_')[0]) }}</div>
             <div class="col-6 slider">
                 <!-- <input 
                 type="range" 
@@ -52,7 +94,7 @@
                 
                                     
             </div>
-            <div class="col-3 labelRight">{{ style.split('_')[1] | capitalizeFirstLetter }}</div>
+            <div class="col-3 labelSecond">{{ capitalizeFirstLetterAndTranslate(style.split('_')[1]) }}</div>
                 
             
         </div>
@@ -64,7 +106,7 @@
 // import { VSlider } from 'vuetify/lib';
 
 
-import VueSlider from 'vue-slider-component';
+// import VueSlider from 'vue-slider-component';
 // import 'vue-slider-component/theme/antd.css';
 
 import BlackBox from '../../../../../UI/BlackBox';
@@ -74,7 +116,6 @@ import SubHeader from '../../../../../UI/SubHeader';
 export default {
     components: {
         VSlider,
-        VueSlider,
         BlackBox,
         SubHeader
     },
@@ -146,7 +187,11 @@ export default {
     methods: {
         updateStyles() {
             this.$emit('styles', this.tempStyles);
+        },
+        capitalizeFirstLetterAndTranslate(word) {
+            return this.$t(word.charAt(0).toUpperCase() + word.slice(1));
         }
+
     }
 }
 </script>
@@ -157,10 +202,17 @@ export default {
         height: 30px !important;        
     }
 
-    .labelLeft {       
-        padding-top: 8px;
-        text-align: right;       
+    .labelFirst {       
+        padding-top: 8px;      
     }
+
+        html[dir="ltr"] .labelFirst {
+            text-align: right;
+        }
+
+        html[dir="rtl"] .labelFirst {
+            text-align: left;
+        }
 
     .slider {       
         width: 100%;
@@ -168,11 +220,17 @@ export default {
         vertical-align: middle;      
     }
 
-    .labelRight {
-        text-align: left;
+    .labelSecond {
         padding-top: 8px;
-        
     }
+
+        html[dir="ltr"] .labelSecond {
+            text-align: left;
+        }
+
+        html[dir="rtl"] .labelSecond {
+            text-align: right;
+        }
 
     @media (max-width:576px) {
         .sliderRow {
@@ -185,7 +243,7 @@ export default {
             width: 100%;
         }
 
-        .labelLeft {
+        .labelFirst {
             width: 10%;
            
             /* text-align: center; */
@@ -193,7 +251,7 @@ export default {
             /* font-size: 0.5rem; */
         }
 
-        .labelRight {
+        .labelSecond {
             width: 10%; 
             /* display: none;  */
             /* font-size: 0.5rem; */

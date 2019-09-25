@@ -1,5 +1,5 @@
 <template>    
-    <v-app class="Cover" >
+    <v-app class="Cover alignLang" >
         
         <router-view />
         
@@ -259,22 +259,6 @@ export default {
     }
 
 
-    /* Enter and leave animations can use different timing and duration */
-
-    .slide-fade-enter-active {
-        transition: all .5s ease;
-    }
-
-    .slide-fade-leave-active {
-        transition: all .5s cubic-bezier(1.0, 1.0, 1.0, 1.0);
-    }
-
-    .slide-fade-enter, .slide-fade-leave-to {
-        /* slide-fade-leave-active below version 2.1.8 */
-        transform: translateX(10px);
-        opacity: 0;
-    }
-
     .arrowButton {
         /* font-family: 'LatoRegular', sans-serif; */
         background: transparent;
@@ -282,6 +266,14 @@ export default {
         border: none;
         cursor: pointer;
         /* position: absolute; */
+    }
+
+    html[dir="ltr"] .alignLang {
+        text-align: left;
+    }
+
+    html[dir="rtl"] .alignLang {
+        text-align: right;
     }
 
     

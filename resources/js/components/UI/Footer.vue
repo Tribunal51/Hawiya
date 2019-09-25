@@ -73,6 +73,8 @@ export default {
 
     .Cover {
         width: 100%;
+        max-height: 100%;
+        
         overflow-y: hidden;
         /* background-color: green; */
     }

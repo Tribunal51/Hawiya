@@ -1,8 +1,8 @@
 <template>
-    <div class="card flex">
-        <center><img :src="image" class="card-img-top" :alt="alt"></center>
+    <div class="Cover flex">
+        <img :src="image" class="step-image" :alt="alt">
         <!-- <div class="card-body"></div> -->
-        <div class="card-footer">
+        <div class="step-footer">
             <h5>{{ alt }}</h5>
         </div>
     </div>
@@ -19,33 +19,35 @@ export default {
 
 <style scoped>
 
-    .card {
+    .Cover {
         border: none;
         margin-top: 5px;
         margin-left: 5px;
         margin-right: 5px;
         padding: none;
         font-family: 'LatoRegular', sans-serif;
-        text-align: center;
+        text-align: center !important;
         vertical-align: middle !important;
         /* background-color: red; */
     }
 
-    img {
+    .step-image {
         width: 100px;
         height: 100px;
         object-fit: contain;
-        
+        text-align: center !important;
     }
 
-    .card-footer {
+    .step-footer {
+        padding: 5px;
         border: none;
         background-color: white;
        
     }
 
-    .card-body {
-        height: 1px !important;
+    .flex {
+        text-align: center !important;
+        /* background-color: red; */
     }
     
 </style>

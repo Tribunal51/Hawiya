@@ -1,3 +1,31 @@
+<i18n>
+    {
+       "en": {
+            "Logo Design": "Logo Design",
+            "Branding": "Branding",
+            "Stationery": "Stationery",
+            "Packaging": "Packaging",
+            "Social Media": "Social Media",
+            "Website": "Website",
+            "Promotional": "Promotional",
+            "Interested": "Interested?",
+            "line1": "Let us build an outstanding brand for you."
+        },
+        "ar": {
+            "Logo Design": "تصميم شعار",
+            "Branding": "العلامات التجارية",
+            "Stationery": "ادوات مكتبيه",
+            "Packaging": "التعبئة والتغليف",
+            "Social Media": "وسائل التواصل الاجتماعي",
+            "Website": "موقع الكتروني",
+            "Promotional": "الترويجية",
+            "Interested": "مهتم؟",
+            "line1": "دعونا نبني علامة تجارية متميزة لك."
+
+        }
+    }
+</i18n>
+
 <template>
     <div class="Cover">
         <IntroSection>
@@ -10,18 +38,18 @@
                             v-for="service in services" 
                             :key="service.name"
                             @click="buttonClicked(service.link)">
-                            <strong>{{ service.name }}</strong>
+                            <strong>{{ $t(service.name) }}</strong>
                         </button>
                     </div>
                     
                 </div>
                 <div class="col-md">
                     <BlackBox>
-                        <h5>Interested?</h5>
+                        <h5>{{ $t('Interested') }}</h5>
                     </BlackBox>
                     <div class="row">
                         <div class="col">
-                            <h3>Let us build an outstanding brand for you. </h3>
+                            <h3>{{ $t('line1') }} </h3>
                             <StartHere :differentPage="differentPage" />
                         </div>
                     </div>

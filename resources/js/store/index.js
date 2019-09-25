@@ -1,9 +1,9 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import createPersistedState from 'vuex-persistedstate';
+// import createPersistedState from 'vuex-persistedstate';
 import VuexPersistence from 'vuex-persist';
 import localforage from 'localforage';
-import * as Cookies from 'js-cookie';
+// import * as Cookies from 'js-cookie';
 
 // import 'vuetify/dist/vuetify.min.css'; // Ensure you are using css-loader
 

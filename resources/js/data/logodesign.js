@@ -1,10 +1,11 @@
 import Vue from 'vue';
+import { i18n } from '../plugins/i18n.js';
 
 export const store = Vue.observable({
     en: {
         packages: [
             {
-                title: 'FAST TRACK',
+                title: i18n.messages.en['Fast Track'],
                 package: 'Fast Track',
                 old_price: 150,
                 new_price: 100,
@@ -16,7 +17,7 @@ export const store = Vue.observable({
                 ]
             },
             {
-                title: "BASIC",
+                title: i18n.messages['Basic'],
                 package: 'Basic',
                 old_price: 200,
                 new_price: 350,
@@ -28,7 +29,7 @@ export const store = Vue.observable({
                 ]
             },
             {
-                title: "ADVANCED",
+                title: i18n.messages.en['Advanced'],
                 package: 'Advanced',
                 old_price: 300,
                 new_price: 500,
@@ -93,21 +94,25 @@ export const store = Vue.observable({
         fonts: [
             {
                 name: 'Serif',
+                title: 'Serif',
                 description: 'Traditional, have feel.',
                 file: '/storage/Fonts/Serif.png'
             },
             {
                 name: 'Sans Serif',
+                title: 'Sans Serif',
                 description: 'Modern, feel free.',
                 file: '/storage/Fonts/SansSerif.png'
             },
             {
                 name: 'Script',
+                title: 'Script',
                 description: 'Cursive, a bit more decorative.',
                 file: '/storage/Fonts/Script.png'
             },
             {
                 name: 'Display',
+                title: 'Display',
                 description: 'Decorative, good as a design focal point.',
                 file: '/storage/Fonts/Display.png'
             }
@@ -132,19 +137,19 @@ export const store = Vue.observable({
     ar: {
         packages: [
             {
-                title: 'Arabic Fast Track',
+                title: i18n.messages.ar['Fast Track'],
                 package: 'Fast Track',
                 old_price: 150,
                 new_price: 100,
                 offers: [
-                    "2 Logo Concepts",
-                    "2 Revisions",
-                    "2 Dedicated Designers",
-                    "48hrs Turnaround Time"
+                    "٢ مفاهيم الشعار",
+                    "٢ التنقيحات",
+                    "٢ المصممين المتفانين",
+                    "٤٨ ساعات تحول الوقت"
                 ]
             },
             {
-                title: "BASIC",
+                title: i18n.messages.ar['Basic'],
                 package: 'Basic',
                 old_price: 200,
                 new_price: 350,
@@ -156,7 +161,7 @@ export const store = Vue.observable({
                 ]
             },
             {
-                title: "ADVANCED",
+                title: i18n.messages.ar['Advanced'],
                 package: 'Advanced',
                 old_price: 300,
                 new_price: 500,
@@ -221,22 +226,26 @@ export const store = Vue.observable({
         fonts: [
             {
                 name: 'Serif',
-                description: 'Traditional, have feel.',
+                title: 'سآريف',
+                description: 'التقليدية ، ويشعر.',
                 file: '/storage/Fonts/Serif.png'
             },
             {
                 name: 'Sans Serif',
-                description: 'Modern, feel free.',
+                title: 'سانس سآريف',
+                description: 'الحديث ، لا تتردد.',
                 file: '/storage/Fonts/SansSerif.png'
             },
             {
                 name: 'Script',
-                description: 'Cursive, a bit more decorative.',
+                title: 'سثريبت',
+                description: 'مخطوطة ، وأكثر قليلا الزخرفية.',
                 file: '/storage/Fonts/Script.png'
             },
             {
                 name: 'Display',
-                description: 'Decorative, good as a design focal point.',
+                title: 'ديسبلاي',
+                description: 'ديكور ، وحسن كنقطة محورية التصميم.',
                 file: '/storage/Fonts/Display.png'
             }
         ],

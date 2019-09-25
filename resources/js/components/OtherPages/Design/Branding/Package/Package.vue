@@ -1,8 +1,19 @@
+<i18n>  
+    {
+        "en": {
+            "line1": "As much as effective branding design is an art, it's also a clearly defined science. In fact, it's a topic that has been thoroughly studied by countless researchers over past several decades."
+        },
+        "ar": {
+            "line1": "بقدر ما يكون التصميم الفعال للعلامة التجارية فنًا ، فهو أيضًا علم محدد بوضوح. في الحقيقة ، إنه موضوع تمت دراسته بدقة من قبل عدد لا يحصى من الباحثين على مدار العقود الماضية."
+        }
+    }
+</i18n>
+
 <template>
     <div class="Cover">
         <div class="row">
             <div class="col">
-                As much as effective branding design is an art, it's also a clearly defined science. In fact, it's a topic that has been thoroughly studied by countless researchers over the past several decades.
+                {{ $t('line1') }}
             </div>
         </div>
 
@@ -33,7 +44,7 @@ export default {
     },
     computed: {
         cards() {
-            return store.packages;
+            return store[this.$root.$i18n.locale].packages;
         },
         packages() {
             let packages = this.cards.map(card => card.title);

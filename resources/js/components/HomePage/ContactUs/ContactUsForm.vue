@@ -1,22 +1,65 @@
+<i18n>
+    {
+        "en": {
+            "placeholders": {
+                "name": "NAME (REQUIRED)",
+                "email": "EMAIL (REQUIRED)",
+                "phone": "PHONE",
+                "subject": "SUBJECT (REQUIRED)",
+                "message": "MESSAGE (REQUIRED)"
+            },
+            "alerts": {
+                "success": "Form submitted. We will reach out to you soon.",
+                "errorThen": "Please enter all mandatory fields.",
+                "errorCatch": "There was an error in submitting the form. Please refresh or try again later."
+            },
+            "Submit": "Submit"
+        },
+        "ar": {
+            "placeholders": {
+                "name": "الاسم (مطلوب)",
+                "email": "البريد الإلكتروني (مطلوب)",
+                "phone": "هاتف",
+                "subject": "الموضوع (مطلوب)",
+                "message": "رسالة (مطلوب)"
+            },
+            "alerts": {
+                "success": "نموذج مقدم. سوف نتواصل معك قريبا.",
+                "errorThen": "الرجاء إدخال جميع الحقول الإلزامية.",
+                "errorCatch": "حدث خطأ في إرسال النموذج. يرجى التحديث أو إعادة المحاولة لاحقًا."
+            },
+            "Submit": "تقديم"
+        }
+    }
+</i18n>
+
 <template>
-    <div id="cover">
+    <div class="Cover">
         <form @submit="formSubmitted">
             <div class="formSection">
-                <input class="input-bottom-border" type="text" placeholder="NAME (REQUIRED)" v-model="form.name" required/>
-                <input class="input-bottom-border" type="email" placeholder="EMAIL (REQUIRED)" v-model="form.email" required />
-                <input class="input-bottom-border" type="tel" placeholder="PHONE" v-model="form.phone" />
-                <input class="input-bottom-border" type="text" placeholder="SUBJECT (REQUIRED)" v-model="form.subject" required />
-                <textarea class="input-bottom-border" type="text" placeholder="MESSAGE (REQUIRED)" v-model="form.message" required />
+                <input class="input-bottom-border" type="text" :placeholder="$t('placeholders.name')" v-model="form.name" required/>
+                <input class="input-bottom-border" type="email" :placeholder="$t('placeholders.email')" v-model="form.email" required />
+                <input class="input-bottom-border" type="tel" :placeholder="$t('placeholders.phone')" v-model="form.phone" />
+                <input class="input-bottom-border" type="text" :placeholder="$t('placeholders.subject')" v-model="form.subject" required />
+                <textarea class="input-bottom-border" type="text" :placeholder="$t('placeholders.message')" v-model="form.message" required />
             </div>
-            <input type="submit" class="btn btn-dark" value="Submit" />       
+            <button type="submit" class="btn btn-dark">{{ $t('Submit') }}</button>     
             <!-- <button type="submit" class="btn btn-dark" @click="submitButtonClicked">Submit</button> -->
         </form>
-        <div v-if="success" class="alert alert-success py-2 my-2" role="alert">
-            Form submitted. We will reach out to you soon.
-        </div>
 
-        <div v-if="error" class="alert alert-danger py-2 my-2" role="alert">
-            There was an alert in submitting the form. Please try again later.
+        <div v-if="submit">
+            <div v-if="success">
+                <div v-if="error === ''" class="alert alert-success py-2 my-2" role="alert">
+                    {{ $t('alerts.success') }}
+                </div>
+                <div v-else class="alert alert-danger py-2 my-2" role="alert">
+                    {{ $t('alerts.errorThen') }}
+                </div>
+            </div>
+            <div v-else>
+                {{ $t('alerts.errorCatch') }}
+            </div>
+            
         </div>
     </div>
 </template>
@@ -33,6 +76,7 @@ export default {
                 message: '',
             },
             success: false,
+            submit: false,
             error: ''
         }
     },
@@ -46,18 +90,23 @@ export default {
             };
             axios.post("http://hawiya.net/api/query", data)
             .then(res => {
+                this.submit = true;
+                this.success = true;
                 if(res.data > 0) {
-                    this.success = true;
-                    this.error = false;
                     this.clearForm();
                 }
                 else {
-                    this.error = true;
+                    this.error = "Please enter all mandatory fields.";
                 }
                 console.log(res.data);
                 this.clearForm();
             })
-            .catch(error => console.log(error.response.data));
+            .catch(error => {
+                this.submit = true;
+                this.success = false;
+                this.error = error.response.data;
+                console.log(error.response.data);
+            });
             console.log(this.form);
             
         },
@@ -71,12 +120,18 @@ export default {
 </script>
 
 <style scoped>
-    #cover {
+    .Cover {
         width: 100%;
         height: 100%;
-        padding-right: 5% !important;
-        
     }
+
+        html[dir="ltr"] .Cover {
+            padding-right: 5% !important;
+        }
+
+        html[dir="rtl"] .Cover {
+            padding-left: 5% !important;
+        }
     /* .input-bottom-border {
         border: 0;
         outline: 0;

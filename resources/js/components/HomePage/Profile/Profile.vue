@@ -1,8 +1,18 @@
+<i18n>
+    {
+        "en": {
+            "title": "PROFILE"
+        },
+        "ar": {
+            "title": "الملف الشخصي"
+        }
+    }
+</i18n>
 <template>
-    <div id="cover">
+    <div class="Cover">
         <IntroSection styling="paddingBottom: 20px">
             <BlackBox>
-                <h2>PROFILE </h2>
+                <h2>{{ $t('title') }}</h2>
             </BlackBox>
             
         </IntroSection>
@@ -33,9 +43,10 @@ export default {
 </script>
 
 <style scoped>
-    #cover {
+    .Cover {
         font-family: 'LatoRegular', sans-serif;
-        background-color: #E9E9E9;
+        /* background-color: #E9E9E9; */
+        background-color: white;
         
     }
 

@@ -147,7 +147,7 @@ export default {
     }
 
     .name {
-        text-align: left;
+        
         width: 70%;
     }
 

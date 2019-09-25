@@ -1,3 +1,14 @@
+<i18n>
+    {
+        "en": {
+            "line1": "The logo is a pictorial mark which is also called the logo symbol and logo brand. It is used as the identity of the company. The logo is of several types. Logo put lives in the company. It is so beautifully designed that the viewers are attracted towards him. Logo for a company is very important."
+        },
+        "ar": {
+            "line1": "الشعار هو علامة تصويرية تُسمى أيضًا رمز الشعار والعلامة التجارية للشعار. يتم استخدامه بمثابة هوية الشركة. الشعار من عدة أنواع. وضع شعار حياة في الشركة. إنه مصمم بشكل جميل بحيث ينجذب المشاهدون نحوه. شعار لشركة مهم جدا."
+        }
+    }
+</i18n>
+
 <template>
     <div id="cover">
         <!-- <div class="row mt-4">
@@ -17,7 +28,7 @@
         <div class="row">
             <div class="col-md">              
                 <div class="intro">
-                    <p>The logo is a pictorial mark which is also called the logo symbol and logo brand. It is used as the identity of the company. The logo of several types. Logo put lives in the company. It is so beautifully designed that the viewers are attracted towards him. The logo for the company is very important.</p>
+                    <p>{{ $t('line1') }}</p>
                 </div>
             </div>
         </div>

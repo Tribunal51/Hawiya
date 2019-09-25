@@ -1,3 +1,14 @@
+<i18n>
+    {
+        "en": {
+            "Packages begin at": "Packages begin at"
+        },
+        "ar": {
+            "Packages begin at": "الحزم تبدأ في"
+        }
+    }
+</i18n>
+
 <template>
 
     <!-- <div class="package">
@@ -46,13 +57,13 @@
                                 {{ card.comment }}
                             </div>
                             <br />
-                            Packages begin at ${{ card.new_price }}
+                            {{ $t('Packages begin at')}} ${{ $root.$t('prices.'+card.new_price) }}
                         </div>                       
                     </div>
                     <div class="col-sm-5 PriceSection">
                         <div class="prices">
-                            <h2>${{ card.new_price }}</h2>                      
-                            <span class="strikeout">${{ card.old_price }}</span> 
+                            <h2>{{ $root.$t('prices.'+card.new_price) }}</h2>                      
+                            <span class="strikeout">{{ $root.$t('prices.'+card.old_price) }}</span> 
                         </div>                                              
                     </div>
                 </div>
@@ -114,7 +125,6 @@ export default {
         margin-bottom: 5px; */
         font-size: 0.8rem;
         /* min-width: 100px !important; */
-        margin-right: 10px;
         max-width: 18rem;
         min-width: 250px !important;
         width: 18rem;
@@ -123,6 +133,14 @@ export default {
         padding-bottom: 10px;   
         background-color: inherit !important;
     }
+
+        html[dir="rtl"] .packageCard {
+            margin-left: 10px;
+        }
+
+        html[dir="ltr"] .packageCard {
+            margin-right: 10px;
+        }
 
     
 
@@ -221,12 +239,19 @@ export default {
     .upperHalfOfUpperHalf {
         width: 100%;
         height: 80%;
-        padding-left: 10px;
         display: flex;
         flex-direction: column;
         justify-content: flex-end;
         align-items: flex-start;
     }
+        html[dir="ltr"] .upperHalfOfUpperHalf {
+            padding-left: 10px;
+        }
+
+        html[dir="rtl"] .upperHalfOfUpperHalf {
+            padding-right: 10px;
+        }
+
 
     .lowerHalfOfUpperHalf {
         display: flex;
@@ -234,10 +259,17 @@ export default {
         justify-content: flex-end;
         align-items: flex-start;
         width: 100%;
-        padding-left: 40px;
         height: 20%;
         /* background-color: red; */
     }
+
+        html[dir="ltr"] .lowerHalfOfUpperHalf {
+            padding-left: 40px;
+        }
+
+        html[dir="rtl"] .lowerHalfOfUpperHalf {
+            padding-right: 40px;
+        }
 
 
     .triangle {
@@ -251,8 +283,15 @@ export default {
     .lowerHalf {       
         /* background-color: black; */
         background-color: white;
-        padding-left: 5px;
     }
+
+        html[dir="ltr"] .lowerHalf {
+            padding-left: 5px;
+        }
+
+        html[dir="rtl"] .lowerHalf {
+            padding-right: 5px;
+        }
 
     .postsDescription {
         font-size: 0.9rem;
@@ -303,10 +342,17 @@ export default {
     .posts {
         font-family: 'LatoBold', sans-serif;
         font-weight: 900;
-        padding-left: 4px;
         font-size: 2rem;
         color: darkgoldenrod;
     }
+
+        html[dir="ltr"] .posts {
+            padding-left: 4px;
+        }
+
+        html[dir="rtl"] .posts {
+            padding-right: 4px;
+        }
 
     
     

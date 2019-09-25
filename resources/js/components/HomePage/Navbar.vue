@@ -193,31 +193,31 @@
        
         
         <v-toolbar-side-icon large class="hidden-sm-and-down drawerHamburger" v-show="true" @click="drawer=!drawer" v-if="offset === -50"></v-toolbar-side-icon>
-        <v-navigation-drawer app v-model="drawer" temporary>
+        <v-navigation-drawer app v-model="drawer" temporary :right="lang === 'ar'">
             <v-list nav>
                 <ul class="navigationDrawerSection">
                     <a class="drawerItem" href="/"><img src="/storage/HawiyaBrandLogo.PNG" class="newLogo" /></a>
                     <span :style="displaySectionOrNot()">
                         <v-list-tile>
                             <v-list-tile-action>
-                                <router-link class="drawerItem" to="/" v-scroll-to="{el: '#section1', offset: 0}" v-on:click.native="toggleDrawer()">HOME</router-link>
+                                <router-link class="drawerItem" to="/" v-scroll-to="{el: '#section1', offset: 0}" v-on:click.native="toggleDrawer()">{{ $t('HOME') }}</router-link>
                             </v-list-tile-action>
                         </v-list-tile>
 
                         <v-list-tile>
-                            <router-link class="drawerItem" to="/" v-scroll-to="{el: '#section2', offset: 0}" v-on:click.native="toggleDrawer()">WHAT WE DO</router-link>
+                            <router-link class="drawerItem" to="/" v-scroll-to="{el: '#section2', offset: 0}" v-on:click.native="toggleDrawer()">{{ $t('WHAT WE DO') }}</router-link>
                         </v-list-tile>
 
                         <v-list-tile>
-                            <router-link class="drawerItem" to="/" v-scroll-to="{ el: '#section4', offset: 0}" v-on:click.native="toggleDrawer()">PROFILE</router-link>
+                            <router-link class="drawerItem" to="/" v-scroll-to="{ el: '#section4', offset: 0}" v-on:click.native="toggleDrawer()">{{ $t('PROFILE') }}</router-link>
                         </v-list-tile>
                         
                         <v-list-tile>
-                            <router-link class="drawerItem" to="/" v-scroll-to="{ el: '#section5', offset: 0}" v-on:click.native="toggleDrawer()">CASESTUDY</router-link>
+                            <router-link class="drawerItem" to="/" v-scroll-to="{ el: '#section5', offset: 0}" v-on:click.native="toggleDrawer()">{{ $t('CASE STUDY') }}</router-link>
                         </v-list-tile>
                         
                         <v-list-tile>
-                            <router-link class="drawerItem" to="/" v-scroll-to="{ el: '#section6', offset: 0}" v-on:click.native="toggleDrawer()">CONTACTUS</router-link>
+                            <router-link class="drawerItem" to="/" v-scroll-to="{ el: '#section6', offset: 0}" v-on:click.native="toggleDrawer()">{{ $t('CONTACT US') }}</router-link>
                         </v-list-tile>
                     
                     </span>
@@ -232,7 +232,7 @@
                         <v-list-tile-action>
                         <div class="drawerLanguageSection drawerItem">
                             <button class="text-left dropdown-toggle newToggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                {{ (lang ? lang: 'en') | capitalize }} 
+                                {{ $t(lang ? lang.toUpperCase() : 'EN') }} 
                             </button>
                             <div class="dropdown-menu newDropdownLanguages" aria-labelledby="dropdownMenu2">
                                 <button 
@@ -242,7 +242,7 @@
                                     :key="language"
                                     @click="setLanguage(language)"
                                     @click.native="toggleDrawer()"
-                                    >{{ language | capitalize }}</button>
+                                    >{{ $t(language.toUpperCase()) }}</button>
                             </div>
                         </div>
                         <!-- <div class="drawerItem dropdown languageSection">
@@ -708,7 +708,7 @@ export default {
         max-height: 60px;
         margin-top: 1rem;
         margin-bottom: 1rem;
-        margin-right: auto;
+        
     }
 
     .newItem {
@@ -765,6 +765,7 @@ export default {
         display: flex;
         width: 100%;
         flex-direction: column;
+        align-items: flex-start;
         /* background-color: green; */
     }
 
@@ -811,6 +812,26 @@ export default {
     html[dir="rtl"] .firstItem {
         margin-right: auto;
     }
+
+    html[dir="ltr"] .newLogo {
+        margin-right: auto;
+    }
+
+    html[dir="rtl"] .newLogo {
+        margin-left: auto;
+    }
+
+    html[dir="ltr"] .drawerHamburger {
+        left: 0;
+    }
+
+    html[dir="rtl"] .drawerHamburger {
+        right: 0;
+    }
+
+   
+
+
 
 
 

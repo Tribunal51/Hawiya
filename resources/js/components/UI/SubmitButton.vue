@@ -1,3 +1,14 @@
+<i18n>
+    {
+        "en": {
+            "Submit": "Submit"
+        },
+        "ar": {
+            "Submit": "تقديم"
+        }
+    }
+</i18n>
+
 <template>
     <v-btn 
         color="#FFDB00"
@@ -5,7 +16,7 @@
         @click="buttonClicked ? buttonClicked() : buttonClickedNative()"
         :disabled="buttonDisabled"
         :type="buttonType"
-    >Submit</v-btn>
+    >{{ $t('Submit') }}</v-btn>
 </template>
 
 <script>

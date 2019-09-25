@@ -85,7 +85,7 @@
         
             {{-- </div>
         </nav> --}} 
-        <navbar lang={{session('locale')}}>
+        <navbar lang={{session('locale') ? session('locale') : 'en'}}>
             {{-- @guest
                 <li class="nav-item navItem">
                     

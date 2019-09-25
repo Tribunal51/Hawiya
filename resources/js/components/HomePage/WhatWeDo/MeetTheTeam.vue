@@ -1,5 +1,16 @@
+<i18n>  
+    {
+        "en": {
+            "title": "Meet the Team"
+        },
+        "ar": {
+            "title": "قابل الفريق"
+        }
+    }
+</i18n>
+
 <template>
-    <div id="cover">
+    <div class="Cover">
         <!-- <div class="container">
             <div class="row" style="height: 100%">
                 <div class="col-md-6" id="intro">
@@ -26,17 +37,13 @@
                
         </div> -->
         <IntroSection>
-            <BlackBox>     
-                <div class="row">    
-                    <div class="col">                  
-                        <h2>Meet the Team</h2> 
-                    </div>
-                </div>               
+            <BlackBox>             
+                <h2>Meet the Team</h2>              
             </BlackBox>
                      
             <div class="row mt-2">
-                <div class="col" id="IntroSection1">
-                    We have years of experience working with entrepreneurs just like you. We've learned it's best to start by listening to your story. Then we review your existing brand and offer you options from there. Blow we've listed our most requested packages, but each of these can be tweaked or we can give you a completely custom quote.       
+                <div class="col"> 
+                    We have years of experiences working with entrepreneurs just like you. We've learned it's best to start by listening to your story. Then we review your existing brand and offer you options from there. Below we've listed our most requested packages, but each of these can be tweaked or we can give you a completely custom quote.               
                 </div>
             </div>
         
@@ -112,7 +119,7 @@ export default {
         margin-right: -10px !important;
     }
 
-    #cover {
+    .Cover {
         background-color: white !important;
         font-family: 'LatoRegular', sans-serif;
         font-size: 0.85rem;

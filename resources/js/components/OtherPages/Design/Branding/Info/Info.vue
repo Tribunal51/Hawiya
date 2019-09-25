@@ -1,3 +1,14 @@
+<i18n>
+    {
+        "en": {
+            "YOU WILL GET": "YOU WILL GET"
+        },
+        "ar": {
+            "YOU WILL GET": "ستحصل"
+        }
+    }
+</i18n>
+
 <template>
     <div class="Cover">
         <!-- <BlackBox>
@@ -9,17 +20,17 @@
             </div>
         </BlackBox> -->
         <SubHeader>
-            <h2>{{ this.$store.state.branding.package }}</h2>
+            <h2>{{ $root.$t(this.$store.state.branding.package) }}</h2>
         </SubHeader>
         <div class="row mt-3">
             <div class="col-md textSection">
                 <div class="row">
-                    <h5 class="col">YOU WILL GET </h5>
+                    <h5 class="col">{{ $t('YOU WILL GET') }}</h5>
                 </div>
                 <div class="row">
-                    <div class="col">
+                    <div class="col p-4">
                         <div class="row" v-for="feature in features" :key="feature">
-                            <p class="col pl-3">- {{ feature }}</p>
+                            <p class="col"> - {{ feature }}</p>
                         </div>
                     </div>
                 </div>
@@ -85,7 +96,7 @@ export default {
     },
     computed: {
         features() {
-            return store.features;
+            return store[this.$root.$i18n.locale].features;
         },
         package() {
             return this.$store.state.branding.package;
@@ -169,5 +180,9 @@ export default {
         margin-top: 10px;
         height: 300px;
         width: 100%;
+    }
+
+    .featuresSection {
+        padding: 10px;
     }
 </style>

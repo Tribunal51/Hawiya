@@ -1,7 +1,7 @@
 <template>
-    <span class="cover">
+    <span class="Cover">
         <div class="row">
-            <div class="col alignLang">
+            <div class="col">
                 <div class="box">
 
                 </div>
@@ -54,7 +54,7 @@ export default {
         display: block;        
     }
 
-    .cover {
+    .Cover {
         margin-bottom: 20px;
     }
 

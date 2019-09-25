@@ -1,8 +1,19 @@
+<i18n>
+    {
+        "en": {
+            "ORDER": "ORDER"
+        },
+        "ar": {
+            "ORDER": "طلب"
+        }
+    }
+</i18n>
+
 <template>
     <button 
         class="btn btn-outline-dark orderButton"
         @click="buttonClicked"
-        >ORDER</button>
+        >{{ $t('ORDER')}}</button>
 </template>
 
 <script>

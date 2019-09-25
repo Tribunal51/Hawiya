@@ -1,5 +1,5 @@
 <template>
-    <div id="cover">
+    <div class="Cover">
         
           
             <!-- <center>
@@ -32,7 +32,7 @@
         </BlackBox>    -->
         <Header 
             :title="getHeaderInfo('title')"
-            :text="getHeaderInfo('text')"
+            :packageText="getHeaderInfo('text')"
         /> 
           
         <router-view />
@@ -61,7 +61,7 @@ export default {
     mounted() {
         if(this.$route.fullPath === '/design/logo-design') {
             this.$router.push({
-                name: 'brandingpackage'
+                name: 'logopackage'
             });
         }
         
@@ -71,12 +71,6 @@ export default {
         LogoPackage,
         BlackBox,
         Header
-    },
-    data() {
-        return {
-           
-            
-        } 
     },
     methods: {
         getHeaderInfo(option) {
@@ -91,18 +85,7 @@ export default {
                 if(!packageName) {
                     packageName = '';
                 }
-                return packageName + ' / Package';
-            }
-        }
-    },
-    watch: {
-        branding: function(newValue, oldValue) {
-            console.log('CHANGED');
-            if(newValue) {
-                this.title = "Branding: "+this.$store.state.logodesign.package;
-            }
-            else {
-               this.title = "Logo Design"; 
+                return packageName;
             }
         }
     }
@@ -110,7 +93,7 @@ export default {
 </script>
 
 <style scoped>
-    #cover {
+    .Cover {
        font-family: 'LatoRegular', sans-serif;
        width: 100%;
     }

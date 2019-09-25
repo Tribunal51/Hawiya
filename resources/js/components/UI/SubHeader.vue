@@ -45,11 +45,19 @@ export default {
     }
 
     .textSection {
-        padding-right: 25px;
+        /* padding-right: 25px; */
         flex-grow: 0;
         flex-shrink: 0;
         flex-basis: auto;
     }
+
+        html[dir="ltr"] .textSection {
+            padding-right: 25px;
+        }
+
+        html[dir="rtl"] .textSection {
+            padding-left: 25px;
+        }
 
     .yellowLineSection {
         flex-grow: 1;

@@ -1,24 +1,10 @@
 <i18n>
     {
         "en": {
-            "All": "All",
-            "Logo Design": "Logo Design",
-            "Branding": "Branding",
-            "Stationery": "Stationery",
-            "Packaging": "Packaging",
-            "Social Media": "Social Media",
-            "Website": "Website",
-            "Promotional": "Promotional"
+            
         },
         "ar": {
-            "All": "الكل",
-            "Logo Design": "تصميم شعار",
-            "Branding": "العلامات التجارية",
-            "Stationery": "ادوات مكتبيه",
-            "Packaging": "التعبئة والتغليف",
-            "Social Media": "وسائل التواصل الاجتماعي",
-            "Website": "موقع الكتروني",
-            "Promotional": "الترويجية"
+            
         }
     }
 </i18n>
@@ -29,14 +15,14 @@
         <RingLoader color="#FFDB00"></RingLoader>
     </div>
     <nav v-else class="navbar-expand-md custom-background">
-        <div class="container">
         
-            <ul class="navbar-nav mx-auto">
-                <li v-for="navLink in navLinks" class="nav-item navLink px-4 mx-auto" :key="navLink.type">
-                    <button :style="isNavButtonSelected(navLink.type, navLink.selected)" @click="updateCheckedLinks(navLink)">/{{ $t(navLink.name) }}</button>
+        <div class="container">
+            <ul class="navbar-nav">
+                <li v-for="navLink in navLinks" class="nav-item navLink mx-auto my-auto" :key="navLink.type">
+                    <button :style="isNavButtonSelected(navLink.type, navLink.selected)" @click="updateCheckedLinks(navLink)">/{{ $root.$t(navLink.name) }}</button>
                 </li>
             </ul>
-        </div>                         
+        </div>                        
     </nav>
 
     <div class="search-wrapper">
@@ -46,7 +32,7 @@
             <div class="col-10">
                 <input type="text" class="form-control" placeholder="Enter key word  ..." v-model="search" v-on:keyup="getfilteredData">
             </div>
-            
+
             <div class="col-2">
                 <button type="submit" class="btn btn-primary"><i class="fa fa-search"></i></button>
             </div>
@@ -296,8 +282,10 @@ export default {
     }
 
     .loadingSection {
+        height: 100%;
         display: flex;
         justify-content: center;
         align-items: center;
+        
     }
 </style>

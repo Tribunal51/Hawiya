@@ -59,7 +59,7 @@ class AdminController extends Controller
                 $check = in_array(strtolower($extension), $allowedFileExtension);
                 if($check) {
                     // $filename = ltrim($file->store('public/uploads'), 'public/uploads');
-                    $filename = ltrim($file->store('public/uploads'), 'public/uploads');
+                    $filename = ltrim($file->store('public/profiles'), 'public/profiles');
                     
                     $upload = new Upload;
                     $upload->upload_id = $new_profile->id;

@@ -57,8 +57,8 @@ export default {
 
     @media(max-width: 349px) {
         .introSections, .home {
-            padding-left: 5px;
-            padding-right: 5px;
+            padding-left: 5px !important;
+            padding-right: 5px !important;
             font-size: 0.8rem;
         }
     }
@@ -66,8 +66,8 @@ export default {
     @media(min-width: 350px) and (max-width: 800px) {
         .introSections, .home {
             width: 100%;
-            padding-left: 20px;
-            padding-right: 20px;
+            padding-left: 20px !important;
+            padding-right: 20px !important;
             
 
             font-size: 0.8rem;
@@ -77,8 +77,8 @@ export default {
     @media (min-width: 801px) and (max-width: 1000px) {
         .introSections, .home {
             width: 100%;
-            padding-left: 100px;
-            padding-right: 100px;
+            padding-left: 100px !important;
+            padding-right: 100px !important;
 
             font-size: 0.8rem;
 
@@ -88,8 +88,8 @@ export default {
     @media (min-width: 1001px) and (max-width: 2200px) {
         .introSections {
             width: 100%;
-            padding-left: 15%;
-            padding-right: 15%;
+            padding-left: 15% !important;
+            padding-right: 15% !important;
             
             font-size: 0.85rem;
         }

@@ -23,20 +23,20 @@
 
 <template>
     <div class="FullCover">
-        <span class="arrowButton text-right" @click="showSideBar = !showSideBar">
-            {{ this.showSideBar ? '>' : '&lt;' }}
+        <span class="arrowButton" @click="showSideBar = !showSideBar">
+            {{ this.showSideBar ?  '>' : '&lt;'  }}
         </span>
         <!-- <div class="arrowButton text-right" @click="showSideBar = true" v-else>&lt;</div> -->
-        <transition name="slide-fade">
+        <transition :name="$root.$i18n.locale === 'en' ? 'slide-fade-right' : 'slide-fade-left'">
             <div class="Cover" v-show="showSideBar">        
                 <div v-for="(link, index) in links" :key="link.name">
                     <div class="row">
                         <div class="col">
-                            <button class="btn sideBarButton text-left" @click="buttonClicked(link.link)">{{ $t(link.name) }}</button>
+                            <button class="btn sideBarButton" @click="buttonClicked(link.link)">{{ $t(link.name) }}</button>
                         </div>
                     </div>
                     <div class="row" v-if="index < links.length - 1">
-                        <div class="col">
+                        <div class="col whiteBoxSection">
                             <WhiteBox />
                         </div>
                     </div>
@@ -105,22 +105,27 @@ export default {
         right: 0;
         top: 30%; */
         /* position: fixed; */
-        right: 0 !important;
         /* float: right; */
         position: fixed;
-        z-index: 900 !important;
+        z-index: 1 !important;
         top: 30% !important;
         /* background-color: red; */
         display: flex;
         flex-flow: column;
     }
 
+        html[dir="ltr"] .FullCover {
+            right: 0 !important;
+        }
+
+        html[dir="rtl"] .FullCover {
+            left: 0 !important;
+        }
+
     .Cover {
         padding-top: 20px;
-        padding-left: 30px;
         width: 200px;
         background-color: #FFDB00;
-        border-radius: 15px 0 0 15px;
         height: auto;
         display: flex;
         flex-flow: column;
@@ -129,19 +134,86 @@ export default {
         padding-bottom: 20px;
     }
 
+        html[dir="ltr"] .Cover {
+            padding-left: 30px;
+            border-radius: 15px 0 0 15px;
+
+        }
+
+        html[dir="rtl"] .Cover {
+            padding-right: 30px;
+            border-radius: 0 15px 15px 0;
+        }
+
     
 
     .sideBarButton {
         width: 125px;
         background: transparent;
-        padding-left: 0px !important;
         /* border-bottom: 2px solid white; */
         border-top: none;
         border-left: none;
         border-right: none;
-        text-align: left;
-
     }
+
+        html[dir="ltr"] .sideBarButton {
+            padding-left: 0px !important;
+            text-align: left;
+        }
+
+        html[dir="rtl"] .sideBarButton {
+            padding-right: 0px !important;
+            text-align: right;
+        }
+
+
+
+    html[dir="ltr"] .arrowButton {
+        text-align: right !important;
+    }
+
+    html[dir="rtl"] .arrowButton {
+        text-align: left !important;
+    }
+
+
+    /* Enter and leave animations can use different timing and duration */
+
+    .slide-fade-right-enter-active {
+        transition: all .5s ease;
+    }
+
+    .slide-fade-right-leave-active {
+        transition: all .5s cubic-bezier(1.0, 1.0, 1.0, 1.0);
+    }
+
+    .slide-fade-right-enter, .slide-fade-right-leave-to {
+        /* slide-fade-leave-active below version 2.1.8 */
+        opacity: 0;
+        transform: translateX(30px);
+    }
+
+
+
+    /* Enter and leave animations can use different timing and duration */
+
+    .slide-fade-left-enter-active {
+        transition: all .5s ease;
+    }
+
+    .slide-fade-left-leave-active {
+        transition: all .5s cubic-bezier(1.0, 1.0, 1.0, 1.0);
+    }
+
+    .slide-fade-left-enter, .slide-fade-left-leave-to {
+        /* slide-fade-leave-active below version 2.1.8 */
+        opacity: 0;
+        transform: translateX(-30px);
+    }
+
+       
+
+        
 
 
 </style>

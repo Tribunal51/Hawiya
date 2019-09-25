@@ -1,3 +1,14 @@
+<i18n>
+	{
+		"en": {
+        
+        },
+        "ar": {
+            
+        }
+	}
+</i18n>
+
 <template>
   <div class="card clickableCard wrapper" 
 	@click="redirectToProfile(item)" 
@@ -12,7 +23,7 @@
 
 		<div class="wrapperContent">
 				<h2 class="wrapperHeader"> {{ item.title }}</h2>
-				<h6 class="wrapperSubtitle">{{ item.category || capitalize }}</h6>
+				<h6 class="wrapperSubtitle">{{ $root.$t(item.category) }}</h6>
 		</div>
     <div>
         <!-- <span v-for="(group, index) in item.order_type" :key="index" :class="`badge badge-${tags[group]}`">{{ group }}</span>				 -->

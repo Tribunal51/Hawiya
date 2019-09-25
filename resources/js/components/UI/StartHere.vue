@@ -23,7 +23,8 @@ export default {
     ],
     computed: {
         buttonText() {
-            //console.log('START HERE', this.$root.$i18n);
+            // console.log('START HERE local', this.$i18n);
+            // console.log('START HERE root', this.$root.$i18n);
             return this.text ? this.text : this.$i18n.messages[this.$root.$i18n.locale].buttonText;
         },
         buttonLink() {
@@ -49,7 +50,7 @@ export default {
 
 <style scoped>
     .startButton {
-        border-radius: 0% ;
+        border-radius: 0%;
         border: 3px solid black ;
         font-family: 'LatoBold', sans-serif;
         font-size: 1.1rem;

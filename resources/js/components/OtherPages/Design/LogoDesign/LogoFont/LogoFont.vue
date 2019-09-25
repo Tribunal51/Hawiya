@@ -1,6 +1,21 @@
+<i18n>
+    {
+        "en": {
+            "title": "Choose your Brand Font",
+            "line1": "Used correctly, typography can convey a certain mood or feeling. The audience needs to understand what message you are trying to send and be interested in it. Having appropriate font sets the tone for your Branding before you even begin.",
+            "line2": "Using fonts that are clean and easy to read are key to any Brand. If fonts are too small or cramped together, your brand will be immediately ignored. It is fun to have a cool and complex Logo, but the audience should be able to easily comprehend what your Logo is saying."
+        },
+        "ar": {
+            "title": "اختيار خط العلامة التجارية الخاصة بك",
+            "line1": "تستخدم بشكل صحيح ، يمكن أن تنقل الطباعة مزاج أو شعور معين. يجب أن يفهم الجمهور الرسالة التي تحاول إرسالها وأن يهتم بها. إن وجود الخط المناسب يضبط نغمة علامتك التجارية قبل أن تبدأ.",
+            "line2": "يعد استخدام الخطوط النظيفة وسهلة القراءة مفتاحًا لأي علامة تجارية. إذا كانت الخطوط صغيرة جدًا أو ضيقة معًا ، فسيتم تجاهل علامتك التجارية على الفور. من الممتع أن يكون لديك شعار رائع ومعقد ، لكن يجب أن يكون الجمهور قادرًا على فهم ما يقوله شعارك بسهولة."
+        }
+    }
+</i18n>
+
 <template>
     <div class="Cover">
-        <SubHeader :hideYellowLine="true"><h3>Choose Your Brand Font</h3></SubHeader>
+        <SubHeader :hideYellowLine="true"><h3>{{ $t('title') }}</h3></SubHeader>
             
         <!-- <BlackBox>
             <h2> Choose Your Brand Font </h2>
@@ -8,11 +23,11 @@
         <div class="row Intro mt-2">
             <div class="col-md">
                 <p>
-                    Used correctly, typography can convey a certain mood or feeling. The audience needs to understand what message you are trying to send and be interested in it. Having the appropriate font sets the tone for your Branding before you even begin.
+                    {{ $t('line1') }}
                 </p>
 
                 <p>
-                    Using fonts that are clean and easy to read are key to any Brand. If fonts are too small or cramped together, your Brand will be immediately ignored. It is fun to have a cool and complex Logo, but the audience should be able to easily comprehend what your Logo is saying.
+                    {{ $t('line2') }}
                 </p>
             </div>
         </div>
@@ -49,20 +64,29 @@
             </div>
         </div>
         
-        <div class="row my-2">
-            <div class="col-sm-2">
-                <CheckMark>
-                    <input 
-                    type="radio" 
-                    value="No Font Selected" 
-                    v-model="selectedFont"
-                    id="noIdea"   />
-                </CheckMark>
-            </div>
-            <label for="noIdea" class="col-sm-10 noIdeaSection">
-                <h4>I don't have an idea.</h4>
-            </label>
-        </div>
+            <!-- <div class="row my-2">
+                <div class="col-sm-2">
+                    <CheckMark>
+                        <input 
+                        type="radio" 
+                        value="No Font Selected" 
+                        v-model="selectedFont"
+                        id="noIdea"   />
+                    </CheckMark>
+                </div>
+                <label for="noIdea" class="col-sm-10 noIdeaSection">
+                    <h4>I don't have an idea.</h4>
+                </label>
+            </div> -->
+
+        <NoIdea id="noIdea">
+            <input 
+                type="radio" 
+                value="No Font Selected" 
+                v-model="selectedFont"
+                id="noIdea"   
+            />
+        </NoIdea>
 
         <div class="row">
             <div class="col-md-8"></div>
@@ -85,6 +109,7 @@ import SubHeader from '../../../../UI/SubHeader';
 import NextButton from '../../../../UI/NextButton';
 import Font from './Font';
 import { store } from '../../../../../data/logodesign';
+import NoIdea from '../../../../UI/NoIdea';
 
 export default {
     components: {
@@ -92,7 +117,8 @@ export default {
         BlackBox,
         SubHeader,
         NextButton,
-        Font
+        Font,
+        NoIdea
     },
     mounted() {
         if(this.$store.state.logodesign.font !== null) {

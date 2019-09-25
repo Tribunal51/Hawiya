@@ -2,7 +2,7 @@
     <div id="cover">
         <section id="section1"><Welcome /></section>
         <section id="section2"><WhatWeDo /></section>
-        <section id="section3"><MeetTheTeam /></section>
+        <!-- <section id="section3"><MeetTheTeam /></section> -->
         <section id="section4"><Profile /></section>
         <section id="section5"><CaseStudy /></section>
         <section id="section6"><ContactUs /></section>   
@@ -74,6 +74,8 @@ export default {
         height: 100vh;
     } */
 
+    
+
     #section1 {
         width: 100%;
         position: relative;
@@ -81,10 +83,11 @@ export default {
     
 
     #section2, #section3, #section4, #section5, #section6 {
-        /* min-height: 90vh; */
+        min-height: 90vh;
         font-family: 'Lato', sans-serif;
-        
+        /* min-height: 80vh; */
     }
+
 
     
 
