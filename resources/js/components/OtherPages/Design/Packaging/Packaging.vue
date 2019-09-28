@@ -8,7 +8,8 @@
         <!-- <BlackBox>
             <h2>Packaging</h2>
         </BlackBox> -->
-        
+
+        <Header title="Packaging" />
         <router-view/>
     </div>
 </template>
@@ -32,6 +33,9 @@ export default {
     },
     watch: {
         
+    },
+    mounted() {
+        console.log(this.$i18n);
     }
 
 }

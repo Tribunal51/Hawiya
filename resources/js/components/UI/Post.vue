@@ -1,3 +1,14 @@
+<i18n>
+    {
+        "en": {
+            "Post Information": "Post Information"
+        },
+        "ar": {
+            "Post Information": "نشر المعلومات"
+        }
+    }
+</i18n>
+
 <template>
     <div class="Cover">
             
@@ -36,7 +47,7 @@
             <textarea 
                 class="input-textarea-gray" 
                 v-model="comment" 
-                :placeholder="placeholderText"
+                :placeholder="$t(placeholderText)"
                 required></textarea>
         </div>
        

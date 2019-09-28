@@ -1,8 +1,20 @@
+<i18n>
+    {
+        "en": {
+            "line1": "Our social media packages for small business can help you utilize social media marketing and take advantage of the many benefits social networks have to offer to businesses."
+        },
+        "ar": {
+            "line1": "يمكن أن تساعدك حزم الوسائط الاجتماعية للشركات الصغيرة على الاستفادة من تسويق وسائل التواصل الاجتماعي والاستفادة من المزايا الكثيرة التي تقدمها الشبكات الاجتماعية للشركات."
+        }
+    }
+
+</i18n>
+
 <template>
     <div class="Cover">
         <div class="row">
             <div class="col">
-                Our social media packages for small business can help you utilize social media marketing and take advantage of the many benefits social networks have to offer to businesses.
+                {{ $t('line1') }}
             </div>
         </div>      
         <div class="card-group packageCards">
@@ -31,7 +43,7 @@ export default {
     },
     computed: {
         cards() {
-            return store.packages;
+            return store[this.$root.$i18n.locale].packages;
         }
     },
     methods: {

@@ -276,5 +276,19 @@ export default {
         text-align: right;
     }
 
+    .arrow {
+        width: 15px;
+        height: 15px;
+    }
+
+        html[dir="rtl"] .arrow {
+            transform: scaleX(-1);
+            margin-right: 10px;
+        }
+
+        html[dir="ltr"] .arrow {
+            margin-left: 10px;
+        }   
+
     
 </style>

@@ -1,3 +1,14 @@
+<i18n>
+    {
+        "en": {
+            "PostNumber": "Post Number: "
+        },
+        "ar": {
+            "PostNumber": "الرقم البريدى:"
+        }
+    }
+</i18n>
+
 <template>
     <div class="Cover">
         
@@ -11,7 +22,7 @@
         </div> -->
 
         <SubHeader>
-            <h3>{{ this.$store.state.socialmedia.package }}</h3>
+            <h3>{{ $root.$t(this.$store.state.socialmedia.package) }}</h3>
         </SubHeader>
 
         <form @submit="formSubmit">
@@ -29,7 +40,7 @@
                     <div v-for="post in posts" :key="post.id">
                         <div class="row">
                             <div class="col-md-4 postLabel" @click="togglePost(post)">
-                                Post No: {{ post.id }} <img :src="arrowImage(post.show)" class="arrow" />
+                                {{ $t('PostNumber') }}{{ number(post.id, self) }} <img :src="arrowImage(post.show)" class="arrow" />
 
                             </div>
 
@@ -115,7 +126,8 @@ export default {
             },
             posts: [],
             showSomething: false,
-            placeholderText: 'Post Information'
+            placeholderText: 'Post Information',
+            self: this
         }
     },
     computed: {
@@ -249,11 +261,6 @@ export default {
     .slide-fade-enter, .slide-fade-leave-to {
         transform: translateY(-30px);
         opacity:0;
-    }
-
-   .arrow {
-       width: 15px;
-       height: 15px;
     }
 
     /* .slide-fade-leave-to {

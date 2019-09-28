@@ -16,7 +16,7 @@
         :disabled="buttonDisabled"
         v-show="!buttonDisabled">
             {{ this.text ? this.text : $t('NEXT') }}
-            <img src="/storage/icons/right-arrow.png" class="rightArrow" :style="$root.$i18n.locale === 'ar' ? 'transform: scaleX(-1)' : ''" />
+            <img src="/storage/icons/right-arrow.png" class="arrow" />
     </button>
 </template>
 
@@ -42,10 +42,9 @@ export default {
 
 
 
-    .rightArrow {
-        margin-left: 10px;
-        width: 1.1rem;
-        height: 1.1rem;
+    .arrow {
+        width: 15px;
+        height: 15px;
     }
 
 

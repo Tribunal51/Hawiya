@@ -342,7 +342,13 @@ router.beforeEach(waitForStorageToBeReady);
 
 
 
-import { i18n } from './plugins/i18n';
+import { i18n, number } from './plugins/i18n';
+
+Vue.mixin({
+    methods: {
+        number
+    }
+})
 
 export const app = new Vue({
     el: '#app',

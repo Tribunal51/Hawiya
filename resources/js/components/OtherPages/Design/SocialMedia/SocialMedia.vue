@@ -5,7 +5,7 @@
         </BlackBox> -->
         <Header 
             title="Social Media" 
-            :text="getHeaderInfo()"
+            :packageText="getHeaderInfo()"
         />
         <router-view />
     </div>
@@ -26,7 +26,7 @@ export default {
             if(!packageName) {
                 packageName = '';
             }
-            return packageName + ' / Package';
+            return packageName;
         }
     }
 }

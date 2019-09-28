@@ -4,7 +4,7 @@
         <div class="arrowButton text-right" @click="show = !show">{{ show ? '>' : '&lt;' }}</div>
         <!-- <div class="arrowButton text-right" v-else @click="show = !show">&lt;</div> -->
         <transition name="slide-fade">
-            <Cost v-on:cost="updateCost" :products="products" v-show="show" />
+            <Cost v-on:cost="updateCost" :products="products" v-if="show" />
         </transition>
     </div>
 </template>
@@ -44,11 +44,18 @@ export default {
     .Cover {
         position: fixed !important;
         z-index: 1000 !important;
-        right: 0 !important;
         top: 30% !important;
         width: 300px !important;
-        max-width: 70% !important;
+        max-width:70% !important;
     }
+
+        html[dir="ltr"] .Cover {
+            right: 0 !important;
+        }
+
+        html[dir="rtl"] .Cover {
+            left: 0 !important;
+        }
 
     /* Enter and leave animations can use different */
     /* durations and timing functions.              */

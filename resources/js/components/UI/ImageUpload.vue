@@ -1,3 +1,18 @@
+<i18n>
+    {
+        "en": {
+            "Upload your Logo": "Upload your Logo",
+            "Upload Image": "Upload Image",
+            "Upload File": "Upload File"
+        },
+        "ar": {
+            "Upload your Logo": "تحميل الشعار الخاص بك",
+            "Upload Image": "تحميل الصور",
+            "Upload File": "رفع ملف"
+        }
+    }
+</i18n>
+
 <template>
     <div id="cover">
         <input type="checkbox" disabled v-model="filePresent" />
@@ -9,10 +24,10 @@
             :required="required" 
             :id="labelID"
             novalidate /> 
-        <label :for="labelID" class="fileUploadLabel">{{ this.fileLabel }} </label>
+        <label :for="labelID" class="fileUploadLabel">{{ $t(this.fileLabel) }} </label>
         <div v-if="showImage">
             <div v-if="loading">
-                Loading...
+                {{ $root.$t('loading') }}
             </div>
             <div v-else>
                 <div v-if="files.length > 0">

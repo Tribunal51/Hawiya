@@ -1,6 +1,17 @@
+<i18n>
+    {
+        "en": {
+
+        },
+        "ar": {
+            
+        }
+    }
+</i18n>
+
 <template>
     <div class="Cover">
-        <Header title="Packaging" />
+        
         <StickyCost :products="selectedProducts" v-on:cost="updateCost" />
         <ProductsGrid :products="products" v-on:update="updateProducts" />
         <!-- <Cost :products="selectedProducts" v-on:cost="updateCost" /> -->

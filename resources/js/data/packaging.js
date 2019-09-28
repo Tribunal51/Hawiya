@@ -5,6 +5,10 @@ export const store = Vue.observable({
         {
             id: 1,
             name: "Paper Bag",
+            title: {
+                en: "Paper Bag",
+                ar: "حقيبة اوراق",
+            },
             size: "Small",
             amount: 500,
             color: "Natural",
@@ -28,6 +32,10 @@ export const store = Vue.observable({
         {
             id: 2,
             name: "Pizza Box",
+            title: {
+                en: "Pizza Box",
+                ar: "بيتزا بوكس",
+            },
             size: "Small",
             amount: 500,
             color: "Natural",
@@ -51,6 +59,10 @@ export const store = Vue.observable({
         {
             id: 3,
             name: "Cookies Box",
+            title: {
+                en: "Cookies Box",
+                ar: "صندوق الكوكيز"
+            },
             size: "Small",
             amount: 500,
             color: "Natural",
@@ -74,6 +86,10 @@ export const store = Vue.observable({
         {
             id: 4,
             name: "Noodles Box",
+            title: {
+                en: "Noodles Box",
+                ar: "صندوق المعكرونة"
+            },
             size: "Small",
             amount: 500,
             color: "Natural",
@@ -97,6 +113,10 @@ export const store = Vue.observable({
         {
             id: 5,
             name: "Cup Sleeve",
+            title: {
+                en: "Cup Sleeve",
+                ar: "كأس الأكمام"
+            },
             size: "Small",
             amount: 500,
             color: "Natural",
@@ -120,6 +140,10 @@ export const store = Vue.observable({
         {
             id: 6,
             name: "Fries Box",
+            title: {
+                en: "Fries Box",
+                ar: "صندوق فرايز",
+            },
             size: "Small",
             amount: 500,
             color: "Natural",
@@ -143,6 +167,10 @@ export const store = Vue.observable({
         {
             id: 7,
             name: "Cake Box",
+            title: {
+                en: "Cake Box",
+                ar: "كعكة مربع",
+            },
             size: "Small",
             amount: 500,
             color: "Natural",
@@ -166,6 +194,10 @@ export const store = Vue.observable({
         {
             id: 8,
             name: "Perfume Box",
+            title: {
+                en: "Perfume Box",
+                ar: "صندوق العطور",
+            },
             size: "Small",
             amount: 500,
             color: "Natural",
@@ -189,6 +221,10 @@ export const store = Vue.observable({
         {
             id: 9,
             name: "Food Sleeve",
+            title: {
+                en: "Food Sleeve",
+                ar: "كم الغذاء",
+            },
             size: "Small",
             amount: 500,
             color: "Natural",
@@ -212,6 +248,10 @@ export const store = Vue.observable({
         {
             id: 10,
             name: "Cup Holder",
+            title: {
+                en: "Cup Holder",
+                ar: "حامل الكأس"
+            },
             size: "Small",
             amount: 500,
             color: "Natural",

@@ -27,8 +27,8 @@
 
         <slot></slot>
         <div class="checkBoxLabel labelContainer" :for="product.name">           
-            <div class="name">{{ product.name }}</div> 
-            <div class="cost">${{ product.cost }}</div>
+            <div class="name">{{ product.title[$root.$i18n.locale] }}</div> 
+            <div class="cost">${{ number(product.cost, this) }}</div>
         </div>
 
         <!-- <div class="label">

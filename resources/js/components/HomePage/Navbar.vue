@@ -171,7 +171,7 @@
                         <img :style="displayOrNot(scrollPos)" src="/storage/icons/searchicon.png" class="navItem searchIcon" @click="searchIconClicked()"  />
                     </div> -->
                     <!-- <button @click="quickUpdate()">Update</button> -->
-                </ul>
+                </ul> 
 
             </div>
             </IntroSection>

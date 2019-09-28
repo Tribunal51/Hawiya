@@ -1,10 +1,12 @@
 <i18n>
     {
         "en": {
-            "Packages begin at": "Packages begin at"
+            "Packages begin at": "Packages begin at",
+            "posts": "High Quality Post"
         },
         "ar": {
-            "Packages begin at": "الحزم تبدأ في"
+            "Packages begin at": "الحزم تبدأ في",
+            "posts": "وظائف عالية الجودة"
         }
     }
 </i18n>
@@ -39,10 +41,10 @@
                         <div class="offers">
                             <div v-if="card.posts">
                                 <div class="posts">
-                                    {{ card.posts }}
+                                    {{ number(card.posts, this) }}
                                 </div>
                                 <div class="postsDescription">
-                                    <strong>{{ card.posts }} High Quality Post</strong>
+                                    <strong>{{ number(card.posts, this) }} {{ $t('posts') }}</strong>
                                 </div>
                             </div>
                             <div v-if="card.header">
@@ -57,13 +59,13 @@
                                 {{ card.comment }}
                             </div>
                             <br />
-                            {{ $t('Packages begin at')}} ${{ $root.$t('prices.'+card.new_price) }}
+                            {{ $t('Packages begin at')}} ${{ number(card.new_price, this) }}
                         </div>                       
                     </div>
                     <div class="col-sm-5 PriceSection">
                         <div class="prices">
-                            <h2>{{ $root.$t('prices.'+card.new_price) }}</h2>                      
-                            <span class="strikeout">{{ $root.$t('prices.'+card.old_price) }}</span> 
+                            <h2>{{ number(card.new_price, this) }}</h2>                      
+                            <span class="strikeout">{{ number(card.old_price, this) }}</span> 
                         </div>                                              
                     </div>
                 </div>
