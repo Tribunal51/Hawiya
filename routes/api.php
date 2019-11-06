@@ -36,6 +36,7 @@ use App\Http\Resources\User as UserResource;
     Route::get('/users', 'UsersController@index');
     Route::get('/user', 'UsersController@show');
     Route::get('/user/login', 'UsersController@login');
+    Route::post('/user/login/google', 'UsersController@googleLogin');
     Route::post('/user', 'UsersController@store');
     Route::put('/user', 'UsersController@update');
     Route::delete('/user', 'UsersController@destroy');
@@ -50,7 +51,7 @@ use App\Http\Resources\User as UserResource;
 
 
     Route::get('/orders', 'OrdersController@index');
-    Route::get('/orders/getUserOrders', 'OrdersController@getUserOrders');
+    Route::get('/orders/getUserOrders/{id}', 'OrdersController@getUserOrders');
     Route::get('/orders/getAllOrders', 'OrdersController@getAllOrders');
     Route::get('/orders/getUserOrdersSorted/{id}', 'OrdersController@getUserOrdersSortedByDate');
 
@@ -94,6 +95,23 @@ use App\Http\Resources\User as UserResource;
     Route::get('/issue/{id}', 'IssuesController@show');
     Route::get('/issues/user/{id}', 'IssuesController@userIssues');
     Route::post('/issue', 'IssuesController@store');
+
+    Route::post('/push/user', 'PushNotificationsController@pushToUser');
+
+    Route::post('/data/category', 'DataController@addCategories');
+
+    
+    
+    Route::get('/data/packages/category/{id}', 'DataController@getPackagesByCategory');
+    Route::get('/data/package/{id}', 'DataController@getPackage');
+    Route::get('/data/packages', 'DataController@getAllPackages');
+    Route::post('/data/package', 'DataController@addPackage');
+
+    Route::get('/data/products/category/{id}', 'DataController@getProductsByCategory');
+    Route::get('/data/product/{id}', 'DataController@getProduct');
+    Route::get('/data/products', 'DataController@getAllProducts');
+    Route::post('/data/product', 'DataController@addProduct');
+
 // });
 
 Route::group([   

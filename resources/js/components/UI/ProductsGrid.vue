@@ -1,6 +1,6 @@
 <template>
     <div class="Cover">
-        <Product v-for="product in products" :key="product.name" :product="product">
+        <Product v-for="product in products" :key="product.title" :product="product">
             <template v-slot:edit>
                 <!-- <v-btn fab small
                     :color="isProductEdited(product.id) ? 'primary' : ''" 
@@ -13,7 +13,7 @@
                 <!-- <label class="checkBoxLabel" :for="product.name">{{ product.name }}{{ product.cost }}</label> -->
             </template>
 
-            <input type="checkbox" class="inputCheckBox" :id="product.name" :value="product.name" v-model="selectedNames" />
+            <input type="checkbox" class="inputCheckBox" :id="product.title" :value="product.title" v-model="selectedNames" />
         </Product>
     </div> 
 </template>
@@ -45,6 +45,7 @@ export default {
     .Cover {
         display: flex;
         flex-flow: row wrap;
+        justify-content: center; 
         align-items: flex-start;
         position: relative;
     }

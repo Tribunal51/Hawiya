@@ -63,6 +63,7 @@ class UsersController extends Controller
             $new_user->device_token = $request->input('device_token');
             $new_user->device_OS = $request->input('device_OS');
             $new_user->lang = $request->input('lang');
+            $new_user->google = false;
 
             if(!isset($new_user->name) || !isset($new_user->email) || !isset($new_user->password)) {
                 return -3; //echo "Required fields missing"
@@ -263,6 +264,7 @@ class UsersController extends Controller
         
 
         
+        
     }
 
     public function resetPassword(Request $request) {
@@ -281,6 +283,46 @@ class UsersController extends Controller
     //         return redirect('/dashboard/users')->with('error', 'Could not change admin status. Please investigate');
     //     }
     // }
+
+    public function googleLogin(Request $request) {
+        if(!isset($request->email)) {
+            return -2;  // echo "Required fields missing.";
+        }
+        $user = User::where('email', $request->email)->first();
+        if($user) {
+            // if($user->google) {
+            //     return -3;  // echo "Existing user has a google login already.";
+            // }
+            $user->google = true;
+            
+            if($user->save()) {
+                return $user->id;   // echo "Existing user logged into Google successfully.";
+            }
+            else {
+                return -1;  // echo "Existing user could not be logged into Google. Please investigate.";
+            }
+        }
+        else {
+            if(!isset($request->name)) {
+                return -2;  // echo "Required fields missing";
+            }
+            $new_user = new User;
+            $new_user->email = $request->email;
+            $new_user->name = $request->name;
+            $new_user->google = true;
+            $new_user->mobile = $request->mobile;
+            $new_user->lang = $request->lang ? $request->lang : 'en';
+            $new_user->device_token = $request->device_token;
+            $new_user->device_OS = $request->device_OS;
+            if($new_user->save()) {
+                return $new_user->id;   // echo "New User registered and logged into Google successfully.";
+            }
+            else {
+                return -1;  // echo "New User could not be registered. Please investigate.";
+            }
+        }
+    }
+
 
 
     

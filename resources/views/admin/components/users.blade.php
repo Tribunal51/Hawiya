@@ -13,7 +13,7 @@
             @foreach($users as $user)
                 <tr>
                     <th scope="row">{{ $user->id }}</th>
-                    <td>{{ $user->name }}</td>
+                    <td><a href={{"/dashboard/admin/user/".$user->id}}>{{ $user->name }}</a></td>
                     <td>{{ $user->email }}</td>
                     <td>
                         {!! Form::open(['action' => ['AdminController@setAdmin'], 'method' => 'POST']) !!}

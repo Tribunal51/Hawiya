@@ -11,6 +11,8 @@
 
     <!-- Scripts -->
     <script src="{{ asset('js/app.js') }}" defer></script>
+    <script src="https://apis.google.com/js/platform.js" defer></script>
+    <meta name="google-signin-client_id" content={{ config('services.google.client_id')}}>
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
@@ -144,15 +146,20 @@
 
                         <div id="userStatusSection" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                            <a class="dropdown-item" href="{{ route('home') }}">
+                            <a class="dropdown-item alignLang" href="{{ route('home') }}">
                                     {{ __('Dashboard') }}
                             </a>
                             @if(Auth::user()->admin)
-                                <a class="dropdown-item" href="/dashboard">
+                                <a class="dropdown-item alignLang" href="/dashboard/admin">
                                         {{ __('Admin Dashboard') }}
                                 </a>
                             @endif
-                            <a class="dropdown-item" href="{{ route('logout') }}"
+                            @if(Auth::user()->designer)
+                                <a class="dropdown-item alignlang" href="/dashboard/designer">
+                                    {{ __('Designer Dashboard') }}
+                                </a> 
+                            @endif 
+                            <a class="dropdown-item alignLang" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
                                 {{ __('Logout') }}
@@ -195,14 +202,19 @@
                                             {{ __('Dashboard') }}
                                     </a>
                                     @if(Auth::user()->admin)
-                                        <a class="dropdown-item" href="/dashboard">
-                                                {{ __('Admin Dashboard') }}
+                                        <a class="dropdown-item alignLang" href="/dashboard/admin">
+                                                 {{ __('Admin Dashboard') }}
                                         </a>
                                     @endif
+                                    @if(Auth::user()->designer)
+                                        <a class="dropdown-item alignLang" href="/dashboard/designer">
+                                            {{ __('Designer Dashboard') }}
+                                        </a> 
+                                    @endif 
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
+                                         {{ __('Logout') }}
                                     </a>
                                     
 
@@ -272,7 +284,6 @@
             // var imagesPreview = function(input, placeToInsertImagePreview) {
 
                 if (input.files) {   
-                                    
                     var filesAmount = input.files.length;
                     console.log('Input Files', input.files);
 
@@ -302,7 +313,11 @@
             };
 
             
+
+            
         });
+
+        
     </script>
 
     <style scoped>
@@ -346,6 +361,33 @@
             color: black;
             text-decoration: none;
             cursor: pointer;
+        }
+
+        html[dir="ltr"] .alignLang {
+            text-align: left;
+        }
+
+        html[dir="rtl"] .alingLang {
+            text-align: right;
+        }
+
+        html[dir="ltr"] .alignLangOpposite {
+            text-align: right;
+        }
+
+        html[dir="rtl"] .alignLangOpposite {
+            text-align: left;
+        }
+
+        @media(max-width: 767px) {
+
+            html[dir="ltr"] .alignLangOpposite {
+                text-align: left;
+            }
+
+            html[dir="rtl"] .alignLangOpposite {
+                text-align: right;
+            }
         }
     </style>
 </body>

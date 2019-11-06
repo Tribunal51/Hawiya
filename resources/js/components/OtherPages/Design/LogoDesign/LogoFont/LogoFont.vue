@@ -37,9 +37,9 @@
                 <input 
                     type="radio" 
                     :id="font.name" 
-                    :value="font.name" 
+                    :value="font.name"  
                     v-model="selectedFont"
-                    class="inputRadio"
+                    class="inputRadio"  
                 />
                 <label :for="font.name" class="checkBoxLabel">
                     <!-- <img 
@@ -140,7 +140,7 @@ export default {
             
         },
         fonts() {
-            return store[this.$i18n.locale].fonts;
+            return store.fonts;
         }
     },
     methods: {
@@ -167,6 +167,7 @@ export default {
 
     .checkBoxGroup {
         display: flex;
+        /* background-color: red !important; */
     }
 
     .checkBox {
@@ -178,7 +179,11 @@ export default {
         /* width: 200px !important;
         height: 200px !important; */
         /* flex: 1 1 auto; */
-        
+        /* background-color: green !important; */
+    }
+
+    .checkBoxLabel {
+        /* background-color: blue !important; */
     }
 
     .checkBox img:hover {
@@ -198,7 +203,7 @@ export default {
     }
 
     .fontBox {
-        display: inline-block;
+        /* display: inline-block; */
         color: gray;
         border-bottom: solid #FFDB00 2px;
     }

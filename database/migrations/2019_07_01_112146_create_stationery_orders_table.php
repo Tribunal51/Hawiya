@@ -16,7 +16,7 @@ class CreateStationeryOrdersTable extends Migration
         Schema::create('stationery_orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
-            $table->string('items');
+            $table->string('products');
             $table->text('comment')->nullable();
             $table->timestamps();
         });

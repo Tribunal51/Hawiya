@@ -1,10 +1,26 @@
 <i18n>
     {
         "en": {
-            "YOU WILL GET": "YOU WILL GET"
+            "YOU WILL GET": "YOU WILL GET",
+            "branding_feature1": "LOGO OR WATERMARK",
+            "branding_feature2": "DIFFERENT LOGO 'LOCKUPS'",
+            "branding_feature3": "KEY COLORS",
+            "branding_feature4": "ADDITIONAL COLOR PALETTE OPTIONS",
+            "branding_feature5": "CORPORATE TYPEFACES",
+            "branding_feature6": "STANDARD TYPOGRAPHIC TREATMENTS",
+            "branding_feature7": "CONSISTENT STYLE FOR IMAGES",
+            "branding_feature8": "HAVE A FULL LIBRARY OF GRAPHIC ELEMENTS"
         },
         "ar": {
-            "YOU WILL GET": "ستحصل"
+            "YOU WILL GET": "ستحصل",
+            "branding_feature1": "شعار أو علامة مائية",
+            "branding_feature2": "شعار مختلف 'الأقفال'",
+            "branding_feature3": "الألوان الرئيسية",
+            "branding_feature4": "خيارات لوح الألوان الإضافية",
+            "branding_feature5": "أنواع الشركات",
+            "branding_feature6": "المعالجات الطباعية القياسية",
+            "branding_feature7": "نمط ثابت للصور",
+            "branding_feature8": "لديك مكتبة كاملة من العناصر الرسومية"
         }
     }
 </i18n>
@@ -30,7 +46,7 @@
                 <div class="row">
                     <div class="col p-4">
                         <div class="row" v-for="feature in features" :key="feature">
-                            <p class="col"> - {{ feature }}</p>
+                            <p class="col"> - {{ $t(feature) }}</p>
                         </div>
                     </div>
                 </div>
@@ -96,7 +112,7 @@ export default {
     },
     computed: {
         features() {
-            return store[this.$root.$i18n.locale].features;
+            return store.features;
         },
         package() {
             return this.$store.state.branding.package;

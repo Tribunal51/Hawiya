@@ -16,7 +16,7 @@ class CreatePromotionalOrdersTable extends Migration
         Schema::create('promotional_orders', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->bigInteger('user_id');
-            $table->string('items');
+            $table->string('products');
             $table->timestamps();
         });
     }

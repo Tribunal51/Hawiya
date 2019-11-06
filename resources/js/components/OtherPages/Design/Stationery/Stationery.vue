@@ -8,18 +8,22 @@
             title="Stationery" 
             :text="getHeaderInfo()"
         /> -->
-        <router-view />
+        <RingLoader v-if="!loaded" />
+        <router-view v-else />
     </div>
 </template>
 
 <script>
 import BlackBox from '../../../UI/BlackBox';
 import Header from '../../../UI/Header';
+import { getProducts } from '../../../../data/stationery';
+import RingLoader from 'vue-spinner/src/RingLoader';
 
 export default {
     components: {
         BlackBox,
-        Header
+        Header,
+        RingLoader
     },
     methods: {
         getHeaderInfo() {
@@ -28,6 +32,16 @@ export default {
                 packageName = '';
             }
             return packageName + ' / Package';
+        }
+    },
+    mounted() {
+        getProducts().then(res => {
+            this.loaded = true;
+        });
+    },
+    data() {
+        return {
+            loaded: false
         }
     }
 }

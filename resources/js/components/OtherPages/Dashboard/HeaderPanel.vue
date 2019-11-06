@@ -1,3 +1,14 @@
+<i18n>
+    {
+        "en": {
+            "Edit Profile": "Edit Profile"
+        },
+        "ar": {
+            "Edit Profile": "تعديل الملف الشخصي"
+        }
+    }
+</i18n>
+
 <template>
     <div class="headerSection">
         <div class="row">
@@ -14,10 +25,11 @@
                     <h2 class="userDetail bold">{{ user.name }}</h2>
                     <h4 class="userDetail gray">{{ user.email }}</h4>
                     <h4 class="userDetail gray" v-if="user.mobile">{{ user.mobile }}</h4>
-                    <h4 class="userDetail gray">Edit Profile</h4>
+                    <!-- <h4 class="userDetail gray">Edit Profile</h4> -->
                 </div>
                 <div class="col-sm-3 settingsSection">
                     <img src="/storage/icons/white-settings.png" class="settingsIcon" alt="settingsIcon" @click="settingsIconClicked" />
+                    <h4 class="userDetail gray">{{ $t('Edit Profile') }}</h4>
                 </div>
             </div>
         </IntroSection>
@@ -75,12 +87,19 @@ export default {
 
     .userDetailsSection {
         color: white;
-        text-align: right;
         display: flex;
         flex-flow: column wrap;
         justify-content: flex-end;
         word-break: break-all;
     }
+
+        html[dir="ltr"] .userDetailsSection {
+            text-align: right;
+        }
+
+        html[dir="rtl"] .userDetailsSection {
+            text-align: left;
+        }
 
     .hawiyaLogoSection {
         display: flex;
@@ -103,6 +122,7 @@ export default {
 
      .settingsSection {
         display: flex;
+        flex-direction: column;
         justify-content: center;
         align-items: center;
         cursor: pointer;

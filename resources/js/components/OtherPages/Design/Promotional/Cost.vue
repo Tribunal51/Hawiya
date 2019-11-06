@@ -5,9 +5,9 @@
                 <h3>Your Order</h3>
             </div>           
         </div>
-        <div class="row" v-for="item in selectedItems" :key="item.name">
+        <div class="row" v-for="item in selectedItems" :key="item.title">
             <div class="col-sm-8">
-                <h5>{{ item.name }}</h5>
+                <h5>{{ $t(item.title) }}</h5>
             </div>
             <div class="col-sm-4">
                 <h5>${{ item.price }}</h5>

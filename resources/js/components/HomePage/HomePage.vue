@@ -83,7 +83,11 @@ export default {
     
 
     #section2, #section3, #section4, #section5, #section6 {
+        /* min-height: 90vh; */
         min-height: 90vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
         font-family: 'Lato', sans-serif;
         /* min-height: 80vh; */
     }

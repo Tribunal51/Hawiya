@@ -8,6 +8,7 @@ use App\SocialMediaOrder;
 use App\SocialMediaPost;
 use App\User;
 use App\Helpers\AppHelper as Helper;
+use App\Category;
 
 class SocialMediaOrdersController extends Controller
 {
@@ -27,12 +28,12 @@ class SocialMediaOrdersController extends Controller
         
         foreach($orders as $order) {
             $filename = $order->logo_photo;
-            $order->logo_photo = "http://hawiya.net/storage/uploads/".$filename;
+            $order->logo_photo = $filename;
             $posts_to_append = [];
             $posts = SocialMediaPost::where('order_id', $order->id)->get(['image', 'comment']);
             
             foreach($posts as $post) {
-                $post->image = "http://hawiya.net/storage/uploads/".$post->image;
+                $post->image = $post->image;
                 array_push($posts_to_append, $post);
             }
             $order->posts = $posts_to_append;
@@ -114,6 +115,7 @@ class SocialMediaOrdersController extends Controller
         $order = new SocialMediaOrder;
         $order->user_id = $request->user_id;
         $order->package = $request->package;
+        $order->category_id = Category::where('name', '=', 'Social Media')->first()->id;
         $order->logo_photo = Helper::save_file($request->logo_photo);
         
        

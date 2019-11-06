@@ -2,8 +2,9 @@
 <div class="container">      
     <main>
         <center>
-            @include('admin.components.messages') 
-            @yield('admin')
+            @include('components.messages') 
+            @yield('admin') 
+            @include('admin.templates.division_template')
         </center>
     </main>
 </div>

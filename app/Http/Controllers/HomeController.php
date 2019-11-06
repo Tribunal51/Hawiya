@@ -25,7 +25,13 @@ class HomeController extends Controller
      */
     public function index()
     {   
-        return view('home');       
+        if(session()->get('url.intended')) {
+            return redirect()->intended();
+        }
+        else {
+            return view('home');
+        }
+             
     }
 
     

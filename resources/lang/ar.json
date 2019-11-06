@@ -1,3 +1,27 @@
 {
-    "Hello": "مرحبا"
+    "Hello": "مرحبا",
+    "Login": "تسجيل الدخول",
+    "Register": "تسجيل",
+    "E-Mail Address": "عنوان بريد الكتروني",
+    "Password": "كلمه السر",
+    "Remember Me": "تذكرنى",
+    "Forgot Your Password?": "نسيت رقمك السري؟",
+    "Dashboard": "لوحة القيادة",
+    "Admin Dashboard": "لوحة القيادة الادارية",
+    "Designer Dashboard": "مصمم لوحة القيادة",
+    "Logout": "تسجيل خروج",
+    "Name": "اسم",
+    "Mobile Number": "رقم الهاتف المحمول",
+    "Confirm Password": "تأكيد كلمة المرور",
+    "Preferred Language": "اللغة المفضلة",
+    "Have an account? Login here": "لديك حساب؟ تسجيل الدخول هنا",
+    "Verify Your Email Address": "تحقق من عنوان بريدك الإلكتروني",
+    "A fresh verification link has been sent to your email address.": "تم إرسال رابط تحقق جديد إلى عنوان بريدك الإلكتروني.",
+    "Before proceeding, please check your email for a verification link.": "قبل المتابعة ، يرجى التحقق من بريدك الإلكتروني لمعرفة رابط التحقق.",
+    "If you did not receive the email": "إذا لم تتلقى البريد الإلكتروني",
+    "click here to receive another": "انقر هنا لطلب آخر",
+    "Reset Password": "إعادة تعيين كلمة المرور",
+    "Send Password Reset Link": "إرسال رابط إعادة تعيين كلمة المرور"
+
+
 }

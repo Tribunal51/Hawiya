@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\StationeryOrder;
 use App\User;
+use App\Category;
 
 use App\Helpers\AppHelper as Helper;
 
@@ -20,7 +21,7 @@ class StationeryOrdersController extends Controller
     {
         $orders = StationeryOrder::get(['id', 'user_id', 'items', 'comment', 'created_at']);
         foreach($orders as $order) {
-            $order->items = explode(',', $order->items);
+            $order->products = explode(',', $order->products);
             $order->order_id = "STAT".$order->id;
         }
         return $orders;
@@ -64,7 +65,8 @@ class StationeryOrdersController extends Controller
         }
         $order = new StationeryOrder;
         $order->user_id = $request->user_id;
-        $order->items = implode($request->items, ',');
+        $order->products = implode($request->items, ',');
+        $order->category_id = Category::where('name', '=', 'Stationery')->first()->id;
         if(isset($request->comment)) {
             $order->comment = $request->comment;
         }

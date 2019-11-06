@@ -1,10 +1,12 @@
 <i18n>
     {
         "en": {
-            "line1": "The logo is a pictorial mark which is also called the logo symbol and logo brand. It is used as the identity of the company. The logo is of several types. Logo put lives in the company. It is so beautifully designed that the viewers are attracted towards him. Logo for a company is very important."
+            "line1": "The logo is a pictorial mark which is also called the logo symbol and logo brand. It is used as the identity of the company. The logo is of several types. Logo put lives in the company. It is so beautifully designed that the viewers are attracted towards him. Logo for a company is very important.",
+            "Choose the design you like": "Choose the design you like"
         },
         "ar": {
-            "line1": "الشعار هو علامة تصويرية تُسمى أيضًا رمز الشعار والعلامة التجارية للشعار. يتم استخدامه بمثابة هوية الشركة. الشعار من عدة أنواع. وضع شعار حياة في الشركة. إنه مصمم بشكل جميل بحيث ينجذب المشاهدون نحوه. شعار لشركة مهم جدا."
+            "line1": "الشعار هو علامة تصويرية تُسمى أيضًا رمز الشعار والعلامة التجارية للشعار. يتم استخدامه بمثابة هوية الشركة. الشعار من عدة أنواع. وضع شعار حياة في الشركة. إنه مصمم بشكل جميل بحيث ينجذب المشاهدون نحوه. شعار لشركة مهم جدا.",
+            "Choose the design you like": "اختيار التصميم الذي تريده"
         }
     }
 </i18n>
@@ -23,7 +25,7 @@
             </div>
         </div> -->
         <SubHeader :hideYellowLine="false">
-            <h3>{{ this.$store.state.logodesign.branding ? this.$store.state.logodesign.package : 'Choose the design you like' }}</h3>        
+            <h3>{{ this.$store.state.logodesign.branding ? $t(this.$store.state.logodesign.package) : $t('Choose the design you like') }}</h3>        
         </SubHeader>
         <div class="row">
             <div class="col-md">              
@@ -133,7 +135,7 @@ export default {
     },
     computed: {
         types() {
-            return store[this.$i18n.locale].logotypes;
+            return store.logotypes;
         }
     },
     methods: {

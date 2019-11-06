@@ -51,7 +51,10 @@ class RegisterController extends Controller
 
     protected function redirectTo() {
         if(session()->has('referralUrl')) {
-            return session('referralUrl');
+            //return session('referralUrl');
+        }
+        else {
+            return '/home';
         }
     }
     

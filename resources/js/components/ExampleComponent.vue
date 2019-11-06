@@ -156,7 +156,6 @@ export default {
         border: 1px solid grey;
         position: absolute;
         bottom: -5px;
-        right: -5px;
         width: 25px;
         height: 25px;
         text-align: center;
@@ -164,6 +163,14 @@ export default {
         transition-duration: 0.4s;
         transform: scale(0);
     }
+
+        html[dir="ltr"] .checkBoxLabel:before {
+            right: -5px;
+        }
+
+        html[dir="rtl"] .checkBoxLabel:before {
+            left: -5px;
+        }
 
     .checkBoxLabel img {
         width: 100%;
@@ -264,9 +271,16 @@ export default {
         background: transparent;
         font-size: 3rem;
         border: none;
-        cursor: pointer;
         /* position: absolute; */
     }
+
+        html[dir="ltr"] .arrowButton {
+            text-align: right;
+        }
+
+        html[dir="rtl"] .arrowButton {
+            text-align: left;
+        }
 
     html[dir="ltr"] .alignLang {
         text-align: left;
@@ -284,6 +298,7 @@ export default {
         html[dir="rtl"] .arrow {
             transform: scaleX(-1);
             margin-right: 10px;
+            
         }
 
         html[dir="ltr"] .arrow {

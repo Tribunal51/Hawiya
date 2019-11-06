@@ -30,7 +30,10 @@ class AddSubjectToLogodesignOrders extends Migration
     {
         Schema::table('logodesign_orders', function (Blueprint $table) {
             //
+            
             $table->dropColumn('subject');
+            
+            
         });
     }
 }

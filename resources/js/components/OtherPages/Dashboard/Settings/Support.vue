@@ -1,19 +1,44 @@
+<i18n>
+    {
+        "en": {
+            "Support": "Support",
+            "line1": "We will provide support for any issues you might have. Please enter information in the fields below to register an issue and we will get back to you soon.",
+            "Title": "Title",
+            "Issue": "Issue",
+            "Register": "Register",
+            "success": "Issue registered successfully.",
+            "errorThen": "Some problem occurred. Please try again.",
+            "errorCatch": "Request could not be sent. Please refresh and try again."
+        },
+        "ar": {
+            "Support": "الدعم",
+            "line1": "سوف نقدم الدعم لأية مشاكل قد تكون لديكم. الرجاء إدخال المعلومات في الحقول أدناه لتسجيل مشكلة وسنعاود الاتصال بك قريبًا.",
+            "Title": "عنوان",
+            "Issue": "القضية",
+            "Register": "تسجيل",
+            "success": "تم تسجيل المشكلة بنجاح.",
+            "errorThen": "حدثت بعض المشاكل. حاول مرة اخرى.",
+            "errorCatch": "لا يمكن إرسال الطلب. يرجى تحديث وحاول مرة أخرى."
+        }
+    }
+</i18n>
+
 <template>
     <div class="Cover">
-        <h3>Support</h3>
-        <p>We will provide support for any issues you might have. Please enter information in the fields below to register an issue and we will get back to you soon.</p> 
+        <h3>{{ $t('Support') }}</h3>
+        <p> {{ $t('line1') }}</p>
         <form @submit="formSubmit">
             <div class="form-group row">
-                <label for="title" class="col-md-4">Title</label>
+                <label for="title" class="col-md-1">{{ $t('Title')}}</label>
                 <input type="text" id="title" class="form-control col-md-6" v-model="form.title" required />
             </div>
 
             <div class="form-group row">
-                <label for="issue" class="col-md-4">Issue</label>
+                <label for="issue" class="col-md-1">{{ $t('Issue')}}</label>
                 <textarea id="issue" class="form-control col-md-6" v-model="form.issue" required />
             </div>
 
-            <button class="btn btn-warning" :disabled="loading"><RingLoader v-if="loading"></RingLoader>Register</button>
+            <button class="btn btn-warning" :disabled="loading"><RingLoader v-if="loading"></RingLoader>{{ $t('Register')}}</button>
             <div :class="'mt-4 ' + assignAlertClass()" v-if="alert.message !== ''">{{ alert.message }}</div>
         </form>
     </div>
@@ -55,16 +80,16 @@ export default {
                 .then(res => {
                     
                     if(res.data > 0) {
-                        this.setAlert('Issue registered successfully.', false);
+                        this.setAlert(this.$t('success'), false);
                     }
                     else {
-                        this.setAlert('Some problem occurred. Please try again.', true);
+                        this.setAlert(this.$t('errorThen'), true);
                     }
                 })
                 .catch(error => {
                     
                     console.log(error.response);
-                    this.setAlert('Request could not be sent. Please refresh and try again.', true);
+                    this.setAlert(this.$t('errorCatch'), true);
                 });
 
         },

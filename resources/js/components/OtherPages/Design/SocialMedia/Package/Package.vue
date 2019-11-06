@@ -18,7 +18,7 @@
             </div>
         </div>      
         <div class="card-group packageCards">
-            <Card v-for="card in cards" :card="card" :key="card.title">
+            <Card v-for="(card, index) in cards" :card="card" :key="index">
                 <OrderButton :buttonClicked="() => orderButtonClicked(card)" />
             </Card>
         </div>
@@ -43,13 +43,13 @@ export default {
     },
     computed: {
         cards() {
-            return store[this.$root.$i18n.locale].packages;
+            return store.packages;
         }
     },
     methods: {
         orderButtonClicked(card) {
             let payload = {
-                package: card.package,
+                package: card.title,
                 posts: card.posts,
                 price: card.new_price
             };

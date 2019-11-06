@@ -247,8 +247,8 @@ export default {
     return {
       info: {
         color: [],
-        styles: store[this.$i18n.locale].styles,
-        form: store[this.$i18n.locale].form
+        styles: store.styles,
+        form: store.form
       }
     }
   },

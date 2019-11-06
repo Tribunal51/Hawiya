@@ -18,7 +18,7 @@
         </div>
 
         <div class="card-group packageCards">
-            <Card v-for="card in cards" :key="card.title" :card="card">
+            <Card v-for="(card, index) in cards" :key="index" :card="card">
                 <OrderButton
                 :buttonClicked="() => orderButtonClicked(card)"
                 />
@@ -31,11 +31,12 @@
 import Card from '../../../../UI/Card';
 import BlackBox from '../../../../UI/BlackBox';
 import OrderButton from '../../../../UI/OrderButton';
-import { store } from '../../../../../data/branding';
+import { store, getPackages } from '../../../../../data/branding';
 
 export default {
     mounted() {
         console.log('Packages', this.packages);
+        getPackages();
     },
     components: {
         Card,
@@ -44,7 +45,7 @@ export default {
     },
     computed: {
         cards() {
-            return store[this.$root.$i18n.locale].packages;
+            return store.packages;
         },
         packages() {
             let packages = this.cards.map(card => card.title);
@@ -54,7 +55,7 @@ export default {
     methods: {
         orderButtonClicked(card) {
             let payload = {
-                package: card.package,
+                package: card.title,
                 price: card.new_price
             };
             if(card.title === this.cards[0].title) {

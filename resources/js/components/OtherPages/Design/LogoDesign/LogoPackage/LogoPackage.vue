@@ -2,9 +2,12 @@
     {
         "en": {
             "line1": "We believe logos speak louder than anything and that's why, with pristine designs, we produce stirring identities for brands all around the world."
+
+
         },
         "ar": {
             "line1": "نحن نعتقد أن الشعارات تتحدث بصوت أعلى من أي شيء ، ولهذا السبب ، مع التصاميم البكر ، ننتج هويات قوية للعلامات التجارية في جميع أنحاء العالم."
+            
         }
     }
 
@@ -72,6 +75,7 @@ export default {
     },
     mounted() {
         console.log('Just mounted Package', this.$store.state.logodesign);
+        // getPackages();
         console.log(this.$i18n);
     },
     data() {
@@ -93,13 +97,13 @@ export default {
     },
     computed: {
         cards() {
-            return store[this.$i18n.locale].packages;
+            return store.packages;
         }
     },
     methods: {
         orderButtonClicked(card) {
             let payload = {
-                package: card.package,
+                package: card.title,
                 price: card.new_price
             }
             this.$store.dispatch('logodesign/setPackage',payload);

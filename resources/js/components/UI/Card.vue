@@ -2,11 +2,87 @@
     {
         "en": {
             "Packages begin at": "Packages begin at",
-            "posts": "High Quality Post"
+            "posts": "High Quality Post",
+            "logodesign_package1_offer1": "2 Logo Concepts",
+            "logodesign_package1_offer2": "2 Revisions",
+            "logodesign_package1_offer3": "2 Dedicated Designers", 
+            "logodesign_package1_offer4": "48hrs Turnaround Time",
+
+            "logodesign_package2_offer1": "4 Logo Concepts", 
+            "logodesign_package2_offer2": "4 Revisions",
+            "logodesign_package2_offer3": "2 Dedicated Designers",
+            "logodesign_package2_offer4": "48hrs Turnaround Time", 
+
+            "logodesign_package3_offer1": "6 Logo Concepts", 
+            "logodesign_package3_offer2": "6 Revisions",
+            "logodesign_package3_offer3": "2 Dedicated Designers",
+            "logodesign_package3_offer4": "48hrs Turnaround Time",
+
+
+            "branding_package1_header": "YOU HAVE LOGO AND YOU NEED ONLY BRANDING",
+            "branding_package1_offer1": "2 Revisions",
+            "branding_package1_offer2": "2 Dedicated Designers",
+            "branding_package1_offer3": "48hrs Turnaround Time",
+            "branding_package1_comment": "Planner to Design your logo, Story & Strategy",
+
+            "branding_package2_offer1": "1 Professional Logo",
+            "branding_package2_offer2": "2 Revisions",
+            "branding_package2_offer3": "2 Dedicated Designers",
+            "branding_package2_offer4": "48hrs Turnaround Time",
+            "branding_package2_comment": "Planner to Design your logo, Story & Strategy",
+
+            "branding_package3_offer1": "2 Professional Logo",
+            "branding_package3_offer2": "2 Revisions",
+            "branding_package3_offer3": "2 Dedicated Designers",
+            "branding_package3_offer4": "48hrs Turnaround Time",
+            "branding_package3_comment": "Planner to Design your logo Story & Strategy",
+
+            "Facebook": "Facebook",
+            "Instagram": "Instagram",
+            "Twitter": "Twitter"
+            
         },
         "ar": {
             "Packages begin at": "الحزم تبدأ في",
-            "posts": "وظائف عالية الجودة"
+            "posts": "وظائف عالية الجودة",
+
+            "logodesign_package1_offer1": "٢ مفاهيم الشعار",
+            "logodesign_package1_offer2": "٢ التنقيحات",
+            "logodesign_package1_offer3": "٢ المصممين المتفانين",
+            "logodesign_package1_offer4": "٤٨ ساعات تحول الوقت",
+
+            "logodesign_package2_offer1": "٤ مفاهيم الشعار",
+            "logodesign_package2_offer2": "٤ التنقيحات",
+            "logodesign_package2_offer3": "٢ المصممين المتفانين",
+            "logodesign_package2_offer4": "٤٨ ساعات تحول الوقت",
+
+            "logodesign_package3_offer1": "٦ مفاهيم الشعار",
+            "logodesign_package3_offer2": "٦ التنقيحات",
+            "logodesign_package3_offer3": "٢ المصممين المتفانين",
+            "logodesign_package3_offer4": "٤٨ ساعات تحول الوقت",
+
+            "branding_package1_header": "لديك شعار وتحتاج إلى العلامة التجارية فقط",
+            "branding_package1_offer1": "٢ التنقيحات",
+            "branding_package1_offer2": "٢ المصممين المتفانين",
+            "branding_package1_offer3": "٤٨ ساعات تحول الوقت",
+            "branding_package1_comment": "مخطط لتصميم شعارك ، قصة والاستراتيجية",
+
+            "branding_package2_offer1": "١ شعار المهنية",
+            "branding_package2_offer2": "٢ التنقيحات",
+            "branding_package2_offer3": "٢ المصممين المتفانين",
+            "branding_package2_offer4": "٤٨ ساعات تحول الوقت",
+            "branding_package2_comment": "مخطط لتصميم شعارك ، قصة والاستراتيجية",
+
+            "branding_package3_offer1": "٢ شعار المهنية",
+            "branding_package3_offer2": "٢ التنقيحات",
+            "branding_package3_offer3": "٢ المصممين المتفانين",
+            "branding_package3_offer4": "٤٨ ساعات تحول الوقت",
+            "branding_package3_comment": "مخطط لتصميم شعارك ، قصة والاستراتيجية",
+
+            "Facebook": "فيسبوك",
+            "Instagram": "انستقرام",
+            "Twitter": "تويتتآر"
+            
         }
     }
 </i18n>
@@ -29,7 +105,7 @@
         <div class="card-body body">
             <div class="upperHalf">
                 <div class="upperHalfOfUpperHalf">
-                    <h2> {{ card.title }} </h2>
+                    <h2> {{ $root.$t(card.title) }} </h2>
                 </div>
                 <div class="lowerHalfOfUpperHalf">
                     <div class="triangle"></div>
@@ -49,14 +125,14 @@
                             </div>
                             <div v-if="card.header">
                                 <div class="header">
-                                    {{ card.header }}
+                                    {{ $t(card.header) }}
                                 </div>
                             </div>
                             <div v-for="offer in card.offers" v-bind:key="offer" class="offer">
-                                {{ offer }}                       
+                                {{ $t(offer) }}                       
                             </div>
                             <div class="comment" v-if="card.comment">
-                                {{ card.comment }}
+                                {{ $t(card.comment) }}
                             </div>
                             <br />
                             {{ $t('Packages begin at')}} ${{ number(card.new_price, this) }}
@@ -64,8 +140,8 @@
                     </div>
                     <div class="col-sm-5 PriceSection">
                         <div class="prices">
-                            <h2>{{ number(card.new_price, this) }}</h2>                      
-                            <span class="strikeout">{{ number(card.old_price, this) }}</span> 
+                            <h2>${{ number(card.new_price, this) }}</h2>                      
+                            <span class="strikeout">${{ number(card.old_price, this) }}</span> 
                         </div>                                              
                     </div>
                 </div>

@@ -41,6 +41,7 @@ class VerificationController extends Controller
     }
 
     public function show(Request $request) {
+        
         return $request->user()->hasVerifiedEmail() ? redirect($this->redirectPath()) : view('auth.verify');
     }
 
@@ -49,6 +50,10 @@ class VerificationController extends Controller
         if(session()->get('redirect_after_email_verification')) {
             return session()->get('redirect_after_email_verification');
         }
-        return $this->redirectTo;
+        else if(session()->get('url.intended')) {
+            return session()->get('url.intended');
+        } 
+        else return '/home';
+        
     }
 }

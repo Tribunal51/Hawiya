@@ -161,7 +161,6 @@ return [
         Illuminate\Translation\TranslationServiceProvider::class,
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
-        
         /*
          * Package Service Providers...
          */
@@ -176,8 +175,10 @@ return [
         App\Providers\RouteServiceProvider::class,
 
         Collective\Html\HtmlServiceProvider::class,
-        Ejarnutowski\LaravelApiKey\Providers\ApiKeyServiceProvider::class
-
+        Ejarnutowski\LaravelApiKey\Providers\ApiKeyServiceProvider::class,
+        Laravel\Socialite\SocialiteServiceProvider::class,
+        // 'Davibennun\LaravelPushNotification\LaravelPushNotificationServiceProvider'
+        // 'Edujugon\PushNotification\Providers\PushNotificationServiceProvider'
         
     ],
 
@@ -231,8 +232,11 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         
         'Form' => Collective\Html\FormFacade::class,
-        'Html' => Collective\Html\HtmlFacade::class
-
+        'Html' => Collective\Html\HtmlFacade::class,
+        'Socialite' => Laravel\Socialite\Facades\Socialite::class,
+        'PushNotification' => 'Edujugon\PushNotification\PushNotification'
+        // 'PushNotification' => 'Davibennun\LaravelPushNotification\Facades\PushNotification'
+        
     ],
 
 ];

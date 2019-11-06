@@ -18,7 +18,7 @@
                 @click.native="linkClicked(link)"  
                 event=""        
                 :key="link.name">
-                    <span id="link">/{{ link.name }}</span>
+                    <span id="link">/{{ $root.$t(link.name) }}</span>
                 </router-link>
                 <!-- <router-link :style="this.stylesList" tag="li" class="nav-link" to="/design/logo-design/package">/Logo Design</router-link>
                 <router-link :style="this.stylesList" tag="li" class="nav-link" to="/design/branding">/Branding</router-link>

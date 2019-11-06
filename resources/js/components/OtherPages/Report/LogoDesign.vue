@@ -129,8 +129,8 @@ export default {
                     description: this.order.description
                 },
                 style: { ...this.order.style },
-                logotype: [...this.order.logotype],
-                color: [...this.order.color],
+                logotype: this.order.logotype.split(','),
+                color: this.order.color.split(','),
                 font: this.order.font
             };
         },
@@ -149,9 +149,10 @@ export default {
             }
         },
         assignColor(color) {
-            console.log('COLOR', color, store.colorsList[color]);
+
+            console.log('COLOR', color, store.colors[color]);
             return {
-                backgroundColor: store.colorsList[color]
+                backgroundColor: store.colors[color]
             }
         },
         assignFont() {

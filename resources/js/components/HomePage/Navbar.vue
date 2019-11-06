@@ -91,16 +91,16 @@
                         <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section4', offset: offset}">{{ $t('PROFILE') }}</router-link>
                         <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section5', offset: offset}">{{ $t('CASE STUDY') }}</router-link>
                         <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">{{ $t('CONTACT US') }}</router-link>
-                        <div :style="displayOrNot(scrollPos) ? '' : 'marginLeft: auto'" class="authSlot">
+                        <div :style="alignAuthSlot()" class="authSlot">
                             <slot name="navbar"></slot>
                         </div>
                         <div class="newLanguageSection newItem">
                             <button class="dropdown-toggle newToggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ $t(lang ? lang.toUpperCase() : 'EN')}}
                             </button>
-                            <div class="dropdown-menu newDropdownLanguages" aria-labelledby="dropdownMenu2">
+                            <div :class="'newDropdownLanguages dropdown-menu '+(lang === 'ar' ? 'dropdown-menu-right' : 'dropdown-menu-left')" aria-labelledby="dropdownMenu2">
                                 <button 
-                                    class="dropdown-item newLanguageButton"
+                                    class="dropdown-item newLanguageButton alignLang"
                                     type="button"
                                     v-for="language in languages" 
                                     :key="language"
@@ -231,7 +231,7 @@
                     <v-list-tile>
                         <v-list-tile-action>
                         <div class="drawerLanguageSection drawerItem">
-                            <button class="text-left dropdown-toggle newToggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <button class="dropdown-toggle newToggleButton" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 {{ $t(lang ? lang.toUpperCase() : 'EN') }} 
                             </button>
                             <div class="dropdown-menu newDropdownLanguages" aria-labelledby="dropdownMenu2">
@@ -288,7 +288,8 @@
 
 <script>
 
-import VueRouter from 'vue-router';
+import VueRouter 
+from 'vue-router';
 import { VToolbar, VNavigationDrawer, VToolbarSideIcon } from 'vuetify/lib';
 import VContainer from 'vuetify/lib';
 import IntroSection from '../UI/IntroSection';
@@ -368,11 +369,19 @@ export default {
                 "/login",
                 "/register",
                 "/home",
+                "/home/settings",
+                "/home/settings/info",
+                "/home/settings/password",
+                "/home/settings/support",
+                "/home/settings/faq",
                 "/dashboard",
                 "/dashboard/addProfile",
                 "/dashboard/users",
                 "/payment",
-                "/report"
+                "/report",
+                "/password/reset",
+                "/email/verify"
+        
                 
             ],
         }
@@ -478,15 +487,18 @@ export default {
             // if(this.exceptionPages.indexOf(this.$route.path) > -1) {
             //     console.log('Inside Login');
             //     return ('display: none');
-            // }      
+            // }     
+
+            // WORKS
             return this.exceptionPages.indexOf(this.$route.path) > -1 ? false : true;
             
             // this.exceptionPages.forEach(link => {
             //     console.log(link, this.$route.path);
             //     if(this.$route.path.includes(link)) {
             //         // alert();
-            //         return 'display: none';
+            //         return false;
             //     }
+            //     else return true;
             // });
             
                  
@@ -504,6 +516,9 @@ export default {
                 }
             });
             return flag ? '' : ('display: none');
+        },
+        alignAuthSlot() {
+            return this.displayOrNot(this.scrollPos) ? '' : (this.lang === 'ar' ? 'marginRight: auto' : 'marginLeft: auto')
         },
         setLanguage(language) {
             // this.languages.forEach(currentLanguage => {
@@ -734,6 +749,7 @@ export default {
         /* width: 5rem !important; */
         height: 100%;
         align-self: center;
+        text-align: right;
         /* background-color: red; */
     }
 
@@ -770,10 +786,8 @@ export default {
     }
 
     .drawerItem {
-        
         text-decoration: none;
         color: #333;
-        
     }
 
     .drawerItem:hover {

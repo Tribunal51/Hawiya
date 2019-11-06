@@ -25,7 +25,7 @@
                         <input type="checkbox" name="selectedProfiles[]" value="{{ $profile->id }}" />                           
                     </td>
                     <td>{{ $profile->title }}</td>
-                    <td>{{ $profile->category }}</td>
+                    <td>{{ $profile->category_name }}</td>
                     <td>
                         @foreach($profile->uploads as $upload)
                             <img style="width: 200px; height: 200px; border: 1px solid gray;" class="img-fluid" src="{{ $upload->filename }}" />

@@ -34,8 +34,9 @@
             :title="getHeaderInfo('title')"
             :packageText="getHeaderInfo('text')"
         /> 
-          
-        <router-view />
+        
+        <RingLoader v-if="!loaded" />  
+        <router-view v-else />
             
     </div>
 </template>
@@ -47,12 +48,15 @@ import LogoPackage from './LogoPackage/LogoPackage.vue';
 import BlackBox from '../../../UI/BlackBox.vue';
 import IntroSection from '../../../UI/IntroSection.vue';
 import Header from '../../../UI/Header.vue';
+import { store, getPackages } from '../../../../data/logodesign';
+import RingLoader from 'vue-spinner/src/RingLoader';
 
 export default {
     data() {
         return {
             headerInfo: '',
-            packageInfo: ''
+            packageInfo: '',
+            loaded: false
         }
     },
     filters: {
@@ -64,13 +68,24 @@ export default {
                 name: 'logopackage'
             });
         }
+        getPackages().then(res => {
+            this.loaded = true;
+        });
+        
+        
+        
+    },
+    updated() {
+        console.log(store, 'updated');
+        
         
     },
     components: {
         SecondaryNavbar,
         LogoPackage,
         BlackBox,
-        Header
+        Header,
+        RingLoader
     },
     methods: {
         getHeaderInfo(option) {

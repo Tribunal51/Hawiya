@@ -1,7 +1,8 @@
 <template>
-    <div class="Cover" v-if="authuser !== -1">
+    <div class="Cover alignLang" v-if="authuser !== -1">
         
         <HeaderPanel :user="user" />
+        <slot></slot>
         <IntroSection :styling="highTopPadding">
             <router-view :authuser="authuser" />
         </IntroSection>

@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\User;
 use App\PromotionalOrder;
+use App\Category;
 
 class PromotionalOrdersController extends Controller
 {
@@ -19,7 +20,7 @@ class PromotionalOrdersController extends Controller
         //
         $orders = PromotionalOrder::get(['id', 'items']);
         foreach($orders as $order) {
-            $order->items = explode(",", $order->items);
+            $order->products = explode(",", $order->products);
             //$order->items = $items;
         }
         return $orders;
@@ -59,8 +60,8 @@ class PromotionalOrdersController extends Controller
 
         $order = new PromotionalOrder;
         $order->user_id = $request->user_id;
-        $order->items = implode(",", $request->items);
-        
+        $order->products = implode(",", $request->items);
+        $order->category_id = Category::where('name', '=', 'Promotional')->first()->id;
         if($order->save()) {
             return $order->id;  // echo "Order registered successfully.";
         }

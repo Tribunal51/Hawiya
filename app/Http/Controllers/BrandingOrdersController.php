@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 
 use App\BrandingOrder;
 use App\User;
+use App\Category;
 
 use App\Helpers\AppHelper as Helper;
 
@@ -50,6 +51,7 @@ class BrandingOrdersController extends Controller
         $order->package = $request->package;
         $order->comment = $request->comment;
         $order->logo_photo = $request->logo_photo;
+        $order->category_id = Category::where('name', '=', 'Branding')->first()->id;
        //return $request;
         
         if(!isset($order->user_id) || !isset($order->package) || !isset($order->comment) || !isset($request->logo_photo)) {

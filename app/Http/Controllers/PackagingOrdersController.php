@@ -6,7 +6,7 @@ use Illuminate\Http\Request;
 
 use App\PackagingOrder;
 use App\PackagingProduct;
-
+use App\Category;
 use App\User;
 
 class PackagingOrdersController extends Controller
@@ -123,6 +123,7 @@ class PackagingOrdersController extends Controller
         $order = new PackagingOrder;
         $order->user_id = $request->user_id;
         $order->products = implode($request->products, ',');
+        $order->category_id = Category::where('name', '=', 'Packaging')->first()->id;
         if(isset($request->comment)) {
             $order->comment = $request->comment;
         }

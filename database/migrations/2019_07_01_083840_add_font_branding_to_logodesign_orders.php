@@ -29,8 +29,11 @@ class AddFontBrandingToLogodesignOrders extends Migration
     {
         Schema::table('logodesign_orders', function (Blueprint $table) {
             //
-            $table->dropColumn('font');
-            $table->dropColumn('branding');
+            if(Schema::hasColumn('font', 'branding')) {
+                $table->dropColumn('font');
+                $table->dropColumn('branding');
+            }
+           
         });
     }
 }

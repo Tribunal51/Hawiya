@@ -31,6 +31,7 @@ Vue.component('dashboard', require('./components/OtherPages/Dashboard/Dashboard'
 Vue.component('logodesign-report', require('./components/OtherPages/Report/LogoDesign').default);
 Vue.component('settings', require('./components/OtherPages/Dashboard/Settings').default);
 Vue.component('meet-the-team', require('./components/HomePage/WhatWeDo/MeetTheTeam').default);
+Vue.component('google-login', require('./components/UI/GoogleLogin').default);
 /**
  * Next, we will create a fresh Vue application instance and attach it to
  * the page. Then, you may begin adding components to this application
@@ -45,8 +46,6 @@ Vue.component('meet-the-team', require('./components/HomePage/WhatWeDo/MeetTheTe
     import HomePage from './components/HomePage/HomePage.vue';
 
     import Design from './components/OtherPages/Design/Design.vue';
-
-    
 
     import LogoDesign from './components/OtherPages/Design/LogoDesign/LogoDesign.vue';
     import LogoPackage from './components/OtherPages/Design/LogoDesign/LogoPackage/LogoPackage.vue';
@@ -63,8 +62,8 @@ Vue.component('meet-the-team', require('./components/HomePage/WhatWeDo/MeetTheTe
     import SocialMediaInfo from './components/OtherPages/Design/SocialMedia/Info/Info';
 
     import Stationery from './components/OtherPages/Design/Stationery/Stationery';
-    import StationeryPackage from './components/OtherPages/Design/Stationery/Package/Package';
-    import StationeryProducts from './components/OtherPages/Design/Stationery/Info/Info';
+    // import StationeryPackage from './components/OtherPages/Design/Stationery/Package/Package';
+    // import StationeryProducts from './components/OtherPages/Design/Stationery/Info/Info';
     import StationeryItems from './components/OtherPages/Design/Stationery/Items/Items';
 
     import Packaging from './components/OtherPages/Design/Packaging/Packaging';
@@ -91,7 +90,7 @@ Vue.component('meet-the-team', require('./components/HomePage/WhatWeDo/MeetTheTe
     import UserInfo from './components/OtherPages/Dashboard/Settings/UserInfo';
     import UserPassword from './components/OtherPages/Dashboard/Settings/UserPassword';
     import UserSupport from './components/OtherPages/Dashboard/Settings/Support';
-
+    import GoogleLogin from './components/UI/GoogleLogin';
     import LogodesignReport from './components/OtherPages/Report/LogoDesign';
     
     // import 'vuetify/src/stylus/app.styl';
@@ -206,11 +205,11 @@ Vue.component('meet-the-team', require('./components/HomePage/WhatWeDo/MeetTheTe
                         //     path: 'package',
                         //     component: StationeryPackage
                         // }, 
-                        {
-                            name: 'stationeryproducts',
-                            path: 'products',
-                            component: StationeryProducts
-                        },
+                        // {
+                        //     name: 'stationeryproducts',
+                        //     path: 'products',
+                        //     component: StationeryProducts
+                        // },
                         {
                             name: 'stationeryitems',
                             path: 'items',
@@ -348,7 +347,7 @@ Vue.mixin({
     methods: {
         number
     }
-})
+});
 
 export const app = new Vue({
     el: '#app',

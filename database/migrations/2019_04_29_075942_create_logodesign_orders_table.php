@@ -14,8 +14,8 @@ class CreateLogodesignOrdersTable extends Migration
     public function up()
     {
         Schema::create('logodesign_orders', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->bigInteger('user_id');
+            $table->increments('id');
+            $table->bigInteger('user_id')->unsigned();
             $table->string('package');
             $table->string('logotype');
             $table->text('style');
@@ -26,6 +26,10 @@ class CreateLogodesignOrdersTable extends Migration
             $table->text('description');
             $table->string('subject');
             $table->timestamps();
+        });
+
+        Schema::table('logodesign_orders', function(Blueprint $table) {
+            $table->foreign('user_id')->references('id')->on('users');
         });
     }
 

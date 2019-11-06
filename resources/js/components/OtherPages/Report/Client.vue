@@ -7,7 +7,7 @@
             <h5 class="clientFormHeader">CLIENT CONTACT</h5>
             <div class="clientFormField">Name: {{ this.client.name }}</div>
             <div class="clientFormField">Email: {{ this.client.email }}</div>
-            <div class="clientFormField">Phone No: {{ this.client.phone }}</div> 
+            <div class="clientFormField">Phone No: {{ this.client.mobile }}</div> 
             <div class="clientFormField">City, State: {{ this.client.address }}</div>
         </div>
     </div>

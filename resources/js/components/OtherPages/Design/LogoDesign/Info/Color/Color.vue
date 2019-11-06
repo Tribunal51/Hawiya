@@ -117,7 +117,7 @@ export default {
     },
     computed: {
         colorsList() {
-            return store[this.$i18n.locale].colors;
+            return store.colors;
         }
     },
     methods: {

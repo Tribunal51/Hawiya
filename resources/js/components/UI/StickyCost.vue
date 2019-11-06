@@ -1,11 +1,13 @@
 <template>       
     
     <div class="Cover">
-        <div class="arrowButton text-right" @click="show = !show">{{ show ? '>' : '&lt;' }}</div>
+        <div class="arrowButton"><span style="cursor: pointer" @click="show = !show">{{ show ? '>' : '&lt;' }}</span></div>
         <!-- <div class="arrowButton text-right" v-else @click="show = !show">&lt;</div> -->
-        <transition name="slide-fade">
-            <Cost v-on:cost="updateCost" :products="products" v-if="show" />
+       
+        <transition :name="$root.$i18n.locale === 'en' ? 'slide-fade-right' : 'slide-fade-left'">
+            <Cost v-on:cost="updateCost" :products="products" v-show="show" />
         </transition>
+        
     </div>
 </template>
 
@@ -59,19 +61,40 @@ export default {
 
     /* Enter and leave animations can use different */
     /* durations and timing functions.              */
-    .slide-fade-enter-active {
+    .slide-fade-right-enter-active {
         transition: all .5s ease;
     }
 
-    .slide-fade-leave-active {
+    .slide-fade-right-leave-active {
         transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
     }
 
-    .slide-fade-enter, .slide-fade-leave-to
+    .slide-fade-right-enter, .slide-fade-right-leave-to
     /* .slide-fade-leave-active below version 2.1.8 */
     {
         transform: translateX(50px);
         opacity: 0;
     }
+
+
+
+    .slide-fade-left-enter-active {
+        transition: all .5s ease;
+    }
+
+    .slide-fade-left-leave-active {
+        transition: all .5s cubic-bezier(1.0, 0.5, 0.8, 1.0);
+    }
+
+    .slide-fade-left-enter, .slide-fade-left-leave-to
+    /* .slide-fade-leave-active below version 2.1.8 */
+    {
+        transform: translateX(-50px);
+        opacity: 0;
+    }
+
+
+
+
 
 </style>

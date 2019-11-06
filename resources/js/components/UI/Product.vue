@@ -1,5 +1,5 @@
 <template>
-    <label class="Cover" :for="product.name">       
+    <label class="Cover" :for="product.title">       
          
         <!-- <label :style="imageStyle" :for="product.name">          
             <slot name="edit"></slot>                
@@ -11,7 +11,7 @@
 
         <div class="imageSection">
             <slot name="edit"></slot>
-            <img :src="product.image" :alt="product.name" class="product-image" />
+            <img :src="product.image" :alt="product.title" class="product-image" />
         </div>
 
 
@@ -26,8 +26,8 @@
 
 
         <slot></slot>
-        <div class="checkBoxLabel labelContainer" :for="product.name">           
-            <div class="name">{{ product.title[$root.$i18n.locale] }}</div> 
+        <div class="checkBoxLabel labelContainer" :for="product.title">           
+            <div class="name">{{ $root.$t(product.title) }}</div> 
             <div class="cost">${{ number(product.cost, this) }}</div>
         </div>
 

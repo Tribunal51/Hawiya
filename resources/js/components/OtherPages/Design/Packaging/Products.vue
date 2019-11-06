@@ -48,7 +48,7 @@ export default {
     },
     methods: {
         updateProducts(selectedNames) {
-            this.selectedProducts = selectedNames.map(name => store.products.find(product => product.name === name));
+            this.selectedProducts = selectedNames.map(name => store.products.find(product => product.title === name));
         },
         updateCost(totalCost) {
             this.totalCost = totalCost;

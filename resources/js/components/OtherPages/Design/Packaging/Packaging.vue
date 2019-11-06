@@ -10,22 +10,26 @@
         </BlackBox> -->
 
         <Header title="Packaging" />
-        <router-view/>
+        <RingLoader v-if="!loaded" />
+        <router-view v-else />
     </div>
 </template>
 
 <script>
 import BlackBox from '../../../UI/BlackBox';
 import Header from '../../../UI/Header';
+import { getProducts } from '../../../../data/packaging';
+import RingLoader from 'vue-spinner/src/RingLoader';
 
 export default {
     components: {
         BlackBox,
-        Header
+        Header,
+        RingLoader
     },
     data() {
         return {
-            
+            loaded: false
         }
     },
     methods: {
@@ -36,6 +40,9 @@ export default {
     },
     mounted() {
         console.log(this.$i18n);
+        getProducts().then( res => {
+            this.loaded = true;
+        });
     }
 
 }

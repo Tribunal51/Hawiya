@@ -1,25 +1,50 @@
+<i18n>
+    {
+        "en": {
+            "User Settings": "User Settings",
+            "Name": "Name",
+            "Mobile": "Mobile",
+            "Preferred Language": "Preferred Language",
+            "Update": "Update",
+            "success": "Account updated. Please wait for refresh.",
+            "errorThen": "Account could not be updated. Please verify the details entered.",
+            "errorCatch": "Request could not be sent. Please refresh and try again."
+        },
+        "ar": {
+            "User Settings": "إعدادات المستخدم",
+            "Name": "اسم",
+            "Mobile": "التليفون المحمول",
+            "Preferred Language": "اللغة المفضلة",
+            "Update": "تحديث",
+            "success": "تم تحديث الحساب. يرجى الانتظار للتحديث.",
+            "errorThen": "لا يمكن تحديث الحساب. يرجى التحقق من التفاصيل المرسلة.",
+            "errorCatch": "لا يمكن إرسال الطلب. يرجى تحديث وحاول مرة أخرى."
+        }
+    }
+</i18n>
+
 <template>
     <div class="Cover">
-        <h3>User Settings</h3>
+        <h3>{{ $t('User Settings') }}</h3>
         <form @submit="formSubmit">
             <div class="form-group row">
-                <label class="col-md-4" for="name">Name</label> 
+                <label class="col-md-2" for="name">{{ $t('Name') }}</label> 
                 <input class="col-md-6 form-control" type="text" id="name" v-model="form.name" required /> 
             </div>
 
             <div class="form-group row">
-                <label class="col-md-4" for="mobile">Mobile</label> 
+                <label class="col-md-2" for="mobile">{{ $t('Mobile') }}</label> 
                 <input class="col-md-6 form-control" type="tel" id="mobile" v-model="form.mobile" />
             </div>
 
             <div class="form-group row">
-                <label class="col-md-4" for="lang">Preferred Language</label> 
+                <label class="col-md-2" for="lang">{{ $t('Preferred Language') }}</label> 
                 <select class="col-md-6" v-model="form.lang" id="lang">
                     <option v-for="language in languages" :key="language.title" :value="language.value">{{ language.title }}</option>
                 </select>
             </div>
             
-            <button :disabled="loading" class="btn btn-warning" type="submit"><RingLoader v-if="loading"></RingLoader>Update</button>
+            <button :disabled="loading" class="btn btn-warning" type="submit"><RingLoader v-if="loading"></RingLoader>{{ $t('Update')}}</button>
             <div :class="'mt-4 '+setAlertClass()" v-if="alert.message !== ''">{{ alert.message }}</div>
         </form>
     </div>
@@ -53,16 +78,16 @@ export default {
                 .then(res => {
                     console.log(res.data);
                     if(res.data > 0) {
-                        this.setAlert('Account updated. Please wait for refresh.', false);
+                        this.setAlert(this.$t('success'), false);
                         location.href="/lang/"+data.lang;
                     }   
                     else {
-                        this.setAlert('Account could not be updated. Please verify the details entered.', true);
+                        this.setAlert(this.$t('errorThen'), true);
                     }
                 })
                 .catch(error => {
                     console.log(error.response);
-                    this.setAlert('Request could not be sent. Please refresh and try again.', true);
+                    this.setAlert(this.$t('errorCatch'), true);
                 });
            // alert('Form submit');
         },

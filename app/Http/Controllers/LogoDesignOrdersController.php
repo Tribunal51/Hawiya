@@ -7,6 +7,7 @@ use App\LogoDesignOrder;
 use App\User;
 use App\Http\Resources\LogoDesignOrderPOST;
 use Illuminate\Support\Facades\Input;
+use App\Category;
 
 class LogoDesignOrdersController extends Controller
 {
@@ -83,6 +84,7 @@ class LogoDesignOrdersController extends Controller
         $new_order->font = $request->font;
         $new_order->branding = $request->branding;
         $new_order->subject = $request->subject;
+        $new_order->category_id = Category::where('name', '=', 'Logo Design')->first()->id;
 
         if($new_order -> save()) {
             return $new_order->id;
@@ -125,6 +127,7 @@ class LogoDesignOrdersController extends Controller
         $order->logotype = isset($request->logotype) ? implode(",", $request->logotype) : null;
         return $order;
     }
+
 
     /**
      * Show the form for editing the specified resource.

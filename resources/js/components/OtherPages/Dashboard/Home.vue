@@ -1,3 +1,30 @@
+<i18n>
+    {
+        "en": {
+            "Make New Order": "Make New Order",
+            "My Orders": "My Orders",
+            "Show my Orders": "Show my Orders",
+            "Order Number": "Order Number",
+            "Category": "Category",
+            "Package": "Package",
+            "Created At": "Created At",
+            "ETA": "ETA",
+            "error": "Some error has occured"
+        },
+        "ar": {
+            "Make New Order": "جعل النظام الجديد",
+            "My Orders" : "طلباتي",
+            "Show my Orders": "أظهر طلبي",
+            "Order Number": "رقم الطلب",
+            "Category": "الفئة",
+            "Package": "صفقة",
+            "Created At": "أنشئت في",
+            "ETA": "الوقت المتبقي",
+            "error": "حدث خطأ ما."
+        }
+    }
+</i18n>
+
 <template>
     <div class="bottomSection">
         <!-- {{ this.authuser }} -->
@@ -5,24 +32,24 @@
         
         
         <PendingOrders />
-        <h5>Make New Order</h5>
+        <h5>{{ $t('Make New Order')}}</h5>
         <Services :differentPage="true" />
         <hr class="blackLine">
-        <h5>My Orders</h5>
+        <h5>{{ $t('My Orders') }}</h5>
         <RingLoader v-if="loader.loading" :color="loader.color"></RingLoader>
         <div v-else class="showMyOrders" @click="showOrders=!showOrders">
-            Show my Orders <div class="ordersIcon">{{ this.orders.length }}</div>
+            {{ $t('Show my Orders') }} <div class="ordersIcon">{{ number(this.orders.length, this) }}</div>
         </div>
         <hr class="blackLine">
         <div v-if="showOrders">
             <table class="table">
                 <thead class="thead-dark">
                     <tr>
-                        <th>Order Number</th>
-                        <th>Category</th>
-                        <th>Package</th>
-                        <th>Created At</th>
-                        <th>ETA</th>
+                        <th>{{ $t('Order Number') }}</th>
+                        <th>{{ $t('Category') }}</th>
+                        <th>{{ $t('Package') }}</th>
+                        <th>{{ $t('Created At') }}</th>
+                        <th>{{ $t('ETA') }}</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -37,7 +64,7 @@
             </table>
             
         </div>
-        <div class="alert alert-danger" role="alert" v-if="error !== ''">Some error has occurred. {{ error }}</div>
+        <div class="alert alert-danger" role="alert" v-if="error !== ''">{{ $t('error')}} {{ error }}</div>
         
     </div>
 </template>
@@ -115,7 +142,6 @@ export default {
     }
 
     .showMyOrders {
-        margin-left: 10px;
         margin-top: -5px;
         font-size: 0.75rem;
         color: #FFDB00;
@@ -124,6 +150,14 @@ export default {
         display: flex;
         align-items: center;
     }
+
+        html[dir="ltr"] .showMyOrders {
+            margin-left: 10px;
+        }
+
+        html[dir="rtl"] .showMyOrders {
+            margin-right: 10px;
+        }
 
     .ordersIcon {
         margin: 5px;

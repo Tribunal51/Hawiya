@@ -4,6 +4,7 @@ namespace App\Console;
 
 use Illuminate\Console\Scheduling\Schedule;
 use Illuminate\Foundation\Console\Kernel as ConsoleKernel;
+use App\User;
 
 class Kernel extends ConsoleKernel
 {
@@ -14,6 +15,7 @@ class Kernel extends ConsoleKernel
      */
     protected $commands = [
         //
+        Commands\DecrementOrderTimeDaily::class,
     ];
 
     /**
@@ -26,6 +28,17 @@ class Kernel extends ConsoleKernel
     {
         // $schedule->command('inspire')
         //          ->hourly();
+
+        //$schedule->call($this->decrementOrderDays())->daily();
+        $schedule->call(function() {
+            $user = User::find(2);
+            $user->admin = $user->admin + 1;
+            $user->save();
+        })->everyMinute();
+
+        $schedule->command('decrement:ordertime')->everyMinute();
+
+        
     }
 
     /**
@@ -39,4 +52,7 @@ class Kernel extends ConsoleKernel
 
         require base_path('routes/console.php');
     }
+
+
+    
 }

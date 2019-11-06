@@ -1,23 +1,50 @@
+<i18n>
+    {
+        "en": {
+            "Update Password": "Update Password",
+            "Current Password": "Current Password",
+            "New Password": "New Password",
+            "Confirm Password": "Confirm Password",
+            "Update": "Update",
+            "noMatch": "Passwords do not match.",
+            "success": "Password changed successfully.",
+            "errorThen": "Incorrect Password. Please try again.",
+            "errorCatch": "Request could not be sent. Please refresh and try again."
+        },
+        "ar": {
+            "Update Password": "تطوير كلمة السر",
+            "Current Password": "كلمة المرور الحالية",
+            "New Password": "كلمة سر جديدة",
+            "Confirm Password": "تأكيد كلمة المرور",
+            "Update": "تحديث",
+            "noMatch": "كلمة المرور غير مطابقة.",
+            "success": "تم تغيير الرقم السري بنجاح.",
+            "errorThen": "كلمة سر خاطئة. حاول مرة اخرى.",
+            "errorCatch": "لا يمكن إرسال الطلب. يرجى تحديث وحاول مرة أخرى."
+        }
+    }
+</i18n>
+
 <template>
     <div class="Cover">
         <form @submit="formSubmit">
-            <h5>Update Password</h5>
+            <h5>{{ $t('Update Password') }}</h5>
             <div class="form-group row">
-                <label class="col-md-4" for="currentPassword">Current Password</label> 
+                <label class="col-md-2" for="currentPassword">{{ $t('Current Password') }}</label> 
                 <input class="form-control col-md-6" id="currentPassword" type="password" v-model="form.currentPassword" required>
             </div>
 
             <div class="form-group row">
-                <label class="col-md-4" for="newPassword">New Password</label> 
+                <label class="col-md-2" for="newPassword">{{ $t('New Password') }}</label> 
                 <input class="form-control col-md-6" id="newPassword" type="password" v-model="form.newPassword" required>
             </div>
 
             <div class="form-group row">
-                <label class="col-md-4" for="confirmPassword">Confirm Password</label> 
+                <label class="col-md-2" for="confirmPassword">{{ $t('Confirm Password') }}</label> 
                 <input class="form-control col-md-6" id="confirmPassword" type="password" v-model="form.confirmPassword" required>
             </div>
 
-            <button :disabled="loading" class="btn btn-warning" type="submit"><RingLoader v-if="loading"></RingLoader>Update</button>
+            <button :disabled="loading" class="btn btn-warning" type="submit"><RingLoader v-if="loading"></RingLoader>{{ $t('Update') }}</button>
             <div :class="'mt-3 ' + setAlertClass()" v-if="alert.message !== ''">{{ alert.message }}</div>
         </form>
     </div>
@@ -51,7 +78,7 @@ export default {
         formSubmit(event) {
             event.preventDefault();
             if(this.form.newPassword !== this.form.confirmPassword) {
-                this.setAlert('Passwords do not match', true);
+                this.setAlert(this.$t('noMatch'), true);
             }
             else {
                 this.loading = true;
@@ -64,15 +91,15 @@ export default {
                     .then(res => {
                         console.log(res.data);
                         if(res.data > 0) {
-                            this.setAlert('Password changed successfully.', false);
+                            this.setAlert(this.$t('success'), false);
                         }
                         else {
-                            this.setAlert('Incorrect password. Please try again.', true);
+                            this.setAlert(this.$t('errorThen'), true);
                         }
                     })
                     .catch(error => {
                         console.log(error.response);
-                        this.setAlert('Request could not be sent. Please refresh the page and try again', true);
+                        this.setAlert(this.$t('errorCatch'), true);
                     })
             }
         },

@@ -8,7 +8,7 @@ use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Support\Facades\Hash;
 
 
-    class User extends Authenticatable implements MustVerifyEmail
+class User extends Authenticatable implements MustVerifyEmail
 //class User extends Authenticatable 
 {
     use Notifiable;
@@ -19,7 +19,7 @@ use Illuminate\Support\Facades\Hash;
      * @var array
      */
     protected $fillable = [
-        'name', 'email', 'mobile', 'lang', 'password'
+        'name', 'email', 'mobile', 'lang', 'password', 'google_id'
     ];
 
     /**

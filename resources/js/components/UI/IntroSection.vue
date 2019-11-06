@@ -26,9 +26,9 @@ export default {
 
 <style scoped>
     .introSections {
-        padding-left: 30%;
+        padding-left: 15%;
         padding-top: 5px;
-        padding-right: 30%;
+        padding-right: 15%;
         padding-bottom: 40px;
         font-size: 1.3rem;
         /* background-color: green; */
@@ -43,7 +43,7 @@ export default {
     }
 
         html[dir="ltr"] .home {
-            padding-left: 60%;
+            padding-left: 30%;
             padding-right: 0%;
         }
 
@@ -51,7 +51,7 @@ export default {
 
         html[dir="rtl"] .home {
             padding-left: 0%;
-            padding-right: 60%;
+            padding-right: 30%;
         }
 
 
@@ -88,8 +88,8 @@ export default {
     @media (min-width: 1001px) and (max-width: 2200px) {
         .introSections {
             width: 100%;
-            padding-left: 15% !important;
-            padding-right: 15% !important;
+            padding-left: 12% !important;
+            padding-right: 12% !important;
             
             font-size: 0.85rem;
         }
@@ -100,13 +100,13 @@ export default {
         }
 
         html[dir="ltr"] .home {
-            padding-left: 30% !important;
+            padding-left: 24% !important;
             padding-right: 0% !important;
         }
 
         html[dir="rtl"] .home {
             padding-left: 0% !important;
-            padding-right: 30% !important;
+            padding-right: 24% !important;
         }
 
     }

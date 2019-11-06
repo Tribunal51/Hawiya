@@ -10,15 +10,13 @@
     <div class="form-group row">
         <label for="type" class="col-md-4 col-form-label text-md-right">Category</label>
         <div class="col-md-6 form-group">
-                                    
-            <select class="form-control" id="exampleFormControlSelect1" name="category">
-                <option value="Logo Design">Logo Design</option>
-                <option value="Branding">Branding</option>
-                <option value="Social Media">Social Media</option>
-                <option value="Stationery">Stationery</option>
-                <option value="Website">Website</option>
-                <option value="Packaging">Packaging</option>
-                <option value="Promotional">Promotional</option>
+
+            <select class="form-control" id="exampleFormControlSelect1" name="category_id">
+                @foreach(App\Category::all() as $category) 
+                    <option 
+                        value="{{$category->id}}"> {{ $category->name }}
+                    </option>
+                @endforeach
             </select>
                                     
         </div>
