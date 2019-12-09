@@ -8,7 +8,7 @@ use App\User;
 
 
 class AppHelper {
-    public static function check_file($data) {
+    public static function check_file($data, $allowed_extensions = null) {
         // $characters = array(';', ',', '/', ':');
 
         // foreach($characters as $character) {
@@ -43,7 +43,7 @@ class AppHelper {
             }
         }
         
-        $allowedFileExtension = ['pdf', 'jpg', 'png', 'docx', 'jpeg'];
+        $allowedFileExtension = isset($allowed_extensions) ? $allowed_extensions : ['pdf', 'jpg', 'png', 'docx', 'jpeg'];
         if(isset($extension)) {
             $check = in_array($extension, $allowedFileExtension);
         }
@@ -174,7 +174,7 @@ class AppHelper {
         return $result;
     }
 
-    public static function store_data_image($file, $category_id) {
+    public static function store_data_image($file, $category_id = null) {
         $allowedFileExtensions = ['png', 'jpg', 'jpeg', 'tif'];
         // $file = file($image);
         // return $file->getClientOriginalName();
@@ -182,26 +182,31 @@ class AppHelper {
         $extension = $file->getClientOriginalExtension();
         $check = in_array(strtolower($extension), $allowedFileExtensions);
         if($check) {
-            switch($category_id) {
-                case 1: $folder = 'packages/logodesign';
-                break; 
+            if($category_id !== null) {
+                switch($category_id) {
+                    case 1: $folder = 'packages/logodesign';
+                    break; 
 
-                case 2: $folder = 'packages/branding';
-                break; 
+                    case 2: $folder = 'packages/branding';
+                    break; 
 
-                case 3: $folder = 'packages/socialmedia';
-                break; 
-                
-                case 4: $folder = 'products/stationery';
-                break;
+                    case 3: $folder = 'packages/socialmedia';
+                    break; 
+                    
+                    case 4: $folder = 'products/stationery';
+                    break;
 
-                case 5: $folder = 'products/packaging';
-                break;
+                    case 5: $folder = 'products/packaging';
+                    break;
 
-                case 6: $folder = 'products/promotional';
-                break;
+                    case 6: $folder = 'products/promotional';
+                    break;
 
-                default: return redirect()->back()->with('error', 'Invalid Category.');
+                    default: return redirect()->back()->with('error', 'Invalid Category.');
+                }
+            }
+            else {
+                $folder = 'uploads';
             }
             $relative_filepath = $file->store('public/'.$folder);
             $image = 'http://hawiya.net/storage/'.substr($relative_filepath, strlen('public/'));

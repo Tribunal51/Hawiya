@@ -23,7 +23,7 @@
 
 <template>
     <div class="FullCover">
-        <span class="arrowButton" @click="showSideBar = !showSideBar">
+        <span class="arrowButton" style="cursor: pointer" @click="showSideBar = !showSideBar">
             {{ this.showSideBar ?  '>' : '&lt;'  }}
         </span>
         <!-- <div class="arrowButton text-right" @click="showSideBar = true" v-else>&lt;</div> -->
@@ -40,10 +40,7 @@
                             <WhiteBox />
                         </div>
                     </div>
-
-                </div>
-                
-                
+                </div>            
             </div>
         </transition>
     </div>

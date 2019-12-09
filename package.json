@@ -10,6 +10,8 @@
         "production": "cross-env NODE_ENV=production node_modules/webpack/bin/webpack.js --no-progress --hide-modules --config=node_modules/laravel-mix/setup/webpack.config.js"
     },
     "devDependencies": {
+        "@babel/preset-react": "^7.7.0",
+        "@babel/plugin-proposal-class-properties": "^7.7.0",
         "@kazupon/vue-i18n-loader": "^0.4.1",
         "axios": "^0.18.0",
         "bootstrap": "^4.0.0",
@@ -19,6 +21,8 @@
         "laravel-mix": "^4.0.7",
         "lodash": "^4.17.5",
         "popper.js": "^1.12",
+        "react": "^16.2.0",
+        "react-dom": "^16.2.0",
         "resolve-url-loader": "^2.3.1",
         "sass": "^1.15.2",
         "sass-loader": "^7.1.0",
@@ -26,7 +30,13 @@
         "stylus": "^0.54.5",
         "stylus-loader": "^3.0.2",
         "vue": "^2.5.17",
-        "vue-template-compiler": "^2.6.10"
+        "vue-template-compiler": "^2.6.10",
+        "babel-cli": "^6.26.0",
+        "babel-eslint": "^8.2.6",
+        "babel-polyfill": "^6.26.0",
+        "babel-preset-env": "^1.7.0",
+        "babel-preset-stage-0": "^6.24.1",
+        "babel-preset-react": "^6.24.1"
     },
     "dependencies": {
         "localforage": "^1.7.3",
@@ -34,6 +44,7 @@
         "vue-router": "^3.0.6",
         "vue-scrollto": "^2.15.0",
         "vue-spinner": "^1.0.3",
+        "vuera": "^0.2.6",
         "vuetify": "^1.5.14",
         "vuetify-loader": "^1.2.2",
         "vuex": "^3.1.0",

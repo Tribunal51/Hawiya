@@ -76,5 +76,7 @@ class DecrementOrderTimeDaily extends Command
             $order->save();
         }
         $this->info('Days left decremented for all orders.');
+
+       
     }
 }

@@ -12,6 +12,14 @@ use App\Category;
 use App\Package;
 use App\Product;
 
+use App\Models\BusinessCard\BusinessCard; 
+use App\Models\BusinessCard\BusinessCardColor; 
+use App\Models\BusinessCard\BusinessCardLabel;
+use App\Models\BusinessCard\BusinessCardModel;
+use App\Models\BusinessCard\BusinessCardLabelColor;
+
+use App\Models\Commercial\CommercialItem;
+
 use Illuminate\Support\Facades\URL;
 
 use App\Helpers\AppHelper as Helper;
@@ -75,7 +83,7 @@ class PagesController extends Controller
         }
         // return $category_links;
         
-        return view('admin.databoard')->with(compact('category_links'));
+        return view('admin.design.databoard')->with(compact('category_links'));
     }
 
     public function addData(Request $request, $id) {
@@ -89,16 +97,16 @@ class PagesController extends Controller
         $category = Category::find($id);
         
         if(!$category) {
-            return view('admin.databoard')->with('error', 'Invalid Category');
+            return view('admin.design.databoard')->with('error', 'Invalid Category');
         }
         if($category->id <= 3) {
             $data = array('packages' => Package::where('category_id', '=', $category->id)->get(), 'category' => $category);
 
-            return view('admin.addpackage', compact('data', 'category_links'));
+            return view('admin.design.addpackage', compact('data', 'category_links'));
         }
         else {
             $data = array('products' => Product::where('category_id', '=', $category->id)->get(), 'category' => $category);
-            return view('admin.addproduct', compact('data', 'category_links'));
+            return view('admin.design.addproduct', compact('data', 'category_links'));
         }
     }
 
@@ -108,7 +116,7 @@ class PagesController extends Controller
             return redirect()->back()->with('error', 'Invalid Product ID.');
         }
         
-        return view('admin.editproduct', compact('data'));
+        return view('admin.design.editproduct', compact('data'));
     }
 
     public function editPackage(Request $request, $id) {
@@ -116,7 +124,7 @@ class PagesController extends Controller
         if(!$data) {
             return redirect()->back()->with('error', 'Invalid Package ID');
         }
-        return view('admin.editpackage', compact('data'));
+        return view('admin.design.editpackage', compact('data'));
     }
 
     public function payment(Request $request) {
@@ -142,7 +150,7 @@ class PagesController extends Controller
         foreach($categories as $category) {
             array_push($category_links, json_encode(array('name' => $category->name, 'link' => '/dashboard/admin/orderboard/category/'.$category->id)));
         }
-        return view('admin.orderboard')->with(compact('orders', 'category_links'));
+        return view('admin.design.orderboard')->with(compact('orders', 'category_links'));
     }
 
     public function categorizedOrders($id) {
@@ -159,7 +167,7 @@ class PagesController extends Controller
         $category = Category::find($id);
         // return $orders;
         
-        return view('admin.categoryorders', compact('orders', 'category', 'category_links'));
+        return view('admin.design.categoryorders', compact('orders', 'category', 'category_links'));
         
         
     }
@@ -174,7 +182,7 @@ class PagesController extends Controller
         
         //return is_numeric($request->id).' '.is_numeric($request->category_id);
         $order = $this->getAllOrdersSortedByDate($request->category_id, $request->id);
-        return view('admin.order', compact('order', 'designers'));
+        return view('admin.design.order', compact('order', 'designers'));
         
     }
 
@@ -203,6 +211,48 @@ class PagesController extends Controller
         $user = User::find($order->user_id);
        
         return view('designer.order', compact('order', 'user'));
+    }
+
+    public function businesscards() {
+        $cards = BusinessCard::with('price')->get();
+        return view('admin.businesscard.addbusinesscard', compact('cards'));
+    }
+
+    public function businesscard($id) {
+        $card = BusinessCard::with('price')->where('id', $id)->first();
+        $card_colors = BusinessCard::with('colors', 'colors.labels')->where('id', $id)->first();
+        $card_labels = BusinessCard::with('labels', 'labels.colors')->where('id', $id)->first();
+        $label = new BusinessCardLabel;
+        $label_columns = $label->getTableColumns();
+        return view('admin.businesscard.businesscard', compact('card', 'card_colors', 'card_labels', 'label_columns'));
+    }
+
+    public function businesscardLabel($id) {
+        $label = BusinessCardLabel::with('colors')->find($id);
+        return view('admin.businesscard.label', compact('label'));
+    }
+
+    public function addBusinesscard() {
+        
+    }
+
+    public function commercialItems() {
+        $items = CommercialItem::all();
+        return view('admin.commercial.items', compact('items'));
+    }
+
+    public function commercialItem($id) {
+        $item = CommercialItem::find($id);
+        if(!$item) {
+            return redirect()->back()->with('error', 'Commercial Item not found.');
+        }
+        return view('admin.commercial.item', compact('item'));
+    }
+
+    public function printingDashboard() {
+        $user = Auth::guard()->user();
+        $orders = $this->getAllPrintingOrdersSortedByDate(null, null, $user->id);
+        return view('printing.dashboard', compact('orders'));
     }
 
     public function report($id) {

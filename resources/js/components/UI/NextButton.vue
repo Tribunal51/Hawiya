@@ -12,12 +12,15 @@
 <template>
     <button 
         :class="'btn btn-light nextButton '+buttonClass"
-        @click="buttonClicked"  
-        :disabled="buttonDisabled"
+        @click="buttonClicked" 
+        :disabled="buttonDisabled" 
         v-show="!buttonDisabled">
             {{ this.text ? this.text : $t('NEXT') }}
             <img src="/storage/icons/right-arrow.png" class="arrow" />
     </button>
+
+    
+
 </template>
 
 <script>

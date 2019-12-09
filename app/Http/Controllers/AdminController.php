@@ -11,6 +11,14 @@ use App\Product;
 use App\Category;
 use App\Package;
 
+use App\Models\BusinessCard\BusinessCard; 
+use App\Models\BusinessCard\BusinessCardColor;
+use App\Models\BusinessCard\BusinessCardLabel;
+use App\Models\BusinessCard\BusinessCardLabelColor;
+use App\Models\BusinessCard\BusinessCardPrice;
+
+use App\Models\Commercial\CommercialItem;
+
 use App\Helpers\AppHelper as Helper;
 
 use App\Traits\GetOrders;
@@ -329,11 +337,16 @@ class AdminController extends Controller
         if(!$category) {
             return redirect()->back()->with('error', 'Invalid Category');
         }
+        if(is_file($request->image)) {
+            $file = $request->file('image');
+           $image = Helper::store_data_image($file, $request->category_id);
+        }
         $package = new Package;
         $package->title = $request->title;
         $package->title_ar = $request->title_ar;
         $package->category_id = $category->id;
         $package->category_name = $category->name;
+        $package->image = isset($image) ? $image : null;
         $package->old_price = $request->old_price;
         $package->new_price = $request->new_price;
         if($package->save()) {
@@ -370,7 +383,7 @@ class AdminController extends Controller
         $package->title_ar = $request->title_ar;
         $package->old_price = $request->old_price;
         $package->new_price = $request->new_price;
-        // $package->image = isset($image) ? $image : $package->image;
+        $package->image = isset($image) ? $image : $package->image;
         if(!$package->save()) {
             return redirect()->back()->with('error', 'Package could not be modified.');
         }
@@ -423,6 +436,7 @@ class AdminController extends Controller
         }
     }
 
+
     public function editOrder(Request $request) {
         // return "test";
         // return $request;
@@ -445,5 +459,228 @@ class AdminController extends Controller
         else {
             return redirect()->back()->with('success', 'Order updated');
         }
+
+        
     }
+
+    public function deleteBusinesscard(Request $request) {
+        if(isset($request->cards)) {
+            foreach($request->cards as $current_card) {
+                $card = BusinessCard::find($current_card);
+                if(!$card) {
+                    //
+                    continue;
+                }
+                if(!$card->delete()) {
+                    return redirect()->back()->with('error', 'Business Card '.$card->id.' could not be deleted');
+                }
+                
+            }
+            return redirect()->back()->with('success', 'Business Card(s) deleted.');
+        }
+    }
+
+    public function addBusinesscard(Request $request) {
+        // return is_file($request->fronttextphoto) ? "yes" : "no";
+        $this->validate($request, [
+            'shape' => 'required|string',
+            'price_with_cover' => 'required|numeric',
+            'price_without_cover' => 'required|numeric',
+            'fronttextphoto' => 'required|image',
+            'frontbasephoto' => 'required|image',
+            'backtextphoto' => 'required|image',
+            'backbasephoto' => 'required|image'
+        ]);
+        $card = BusinessCard::create([
+            'shape' => $request->shape,
+            'fronttextphoto' => Helper::store_data_image($request->fronttextphoto),
+            'frontbasephoto' => Helper::store_data_image($request->backbasephoto),
+            'backtextphoto' => Helper::store_data_image($request->backtextphoto),
+            'backbasephoto' => Helper::store_data_image($request->backbasephoto)
+        ]);
+        if($card) {
+            $price = BusinessCardPrice::create([
+                'business_card_id' => $card->id,
+                'with_cover' => $request->price_with_cover,
+                'without_cover' => $request->price_without_cover
+            ]);
+            if($price) {
+                return redirect()->back()->with('success', 'Business Card created.');
+            }
+            else {
+                return redirect()->back()->with('error', 'Business Card created, but prices could not be added.');
+            }
+        }
+        else {
+            return redirect()->back()->with('error', 'Business Card could not be created.');
+        }
+    }
+
+    public function deleteBusinesscards(Request $request) {
+        if(!isset($request->cards)) {
+            return redirect()->back()->with('error', 'Required fields missing.');
+        }
+        if(!is_array($request->cards)) {
+            return redirect()->back()->with('error', 'Required field is not an array.');
+        }
+        foreach($request->cards as $card_id) {
+            if(!BusinessCard::find($card_id)->delete()) {
+                return redirect()->back()->with('error', 'Business card '.$card_id.' could not be deleted.');
+            }
+        }
+        return redirect()->back()->with('success', 'Selected Business cards deleted successfully.');
+
+    }
+
+
+    public function addBusinesscardLabel(Request $request, $id) {
+        // foreach($request->colors as $key => $value) {
+        //     echo $key." ".$value;
+        //     echo BusinessCardColor::find($key);
+        // }
+        // return $request;
+
+        $card = BusinessCard::find($id);
+        if(!$card) {
+            return redirect()->back()->with('error', 'Invalid Business Card.');
+        }
+        $request->validate([
+            'x1' => 'required|numeric',
+            'y1' => 'required|numeric',
+            'x2' => 'required|numeric',
+            'y2' => 'required|numeric',
+            'font_name' => 'required|string',
+            'font_weight' => 'required|string',
+            'font_size' => 'required|numeric',
+            'colors' => 'nullable|array'
+        ]);
+        $label = new BusinessCardLabel;
+        $label->x1 = $request->x1;
+        $label->y1 = $request->y1;
+        $label->x2 = $request->x2;
+        $label->y2 = $request->y2;
+        $label->font_name = $request->font_name;
+        $label->font_weight = $request->font_weight;
+        $label->font_size = $request->font_size;
+        if(!$card->labels()->save($label)) {
+            return redirect()->back()->with('error', 'Label could not be created.');
+        }
+        if(isset($request->colors)) {
+            foreach($request->colors as $key => $value) {
+                $color = BusinessCardColor::find($key);
+                if(!$color) {
+                    $label->delete();
+                    return redirect()->back()->with('error', 'Color '.$color->name.' not found. Label deleted to maintain consistency.');
+                }
+                $label->colors()->attach($color->id, ['color' => $value]);
+
+                if(!$label->colors()->find($color->id)) {
+                    $label->delete();
+                    return redirect()->back()->with('error', 'Color '.$color->name.' could not be attached to Label. To maintain consistency, label was deleted.');
+                }
+            }
+        }
+        return redirect()->back()->with('success', 'Label created and Colors attached.');
+        
+
+    }
+
+    public function deleteBusinesscardLabels(Request $request) {
+        $this->validate($request, [
+            'labels' => 'required|array'
+        ]);
+        foreach($request->labels as $label_id) {
+            $label = BusinessCardLabel::find($label_id);
+            if(!$label) {
+                return redirect()->back()->with('error', 'Label ID '.$label->id.' does not exist.');
+            }
+            if(!$label->delete()) {
+                return redirect()->back()->with('error', 'Label ID '.$label->id.' could not be deleted.');
+            }
+        }
+        return redirect()->back()->with('success', 'Labels successfully deleted.');
+    }
+
+    public function addBusinesscardColor(Request $request, $id) {
+        $card = BusinessCard::find($id);
+        if(!$card) {
+            return redirect()->back()->with('error', 'Business card does not exist.');
+        }
+        $this->validate($request, [
+            'labels' => 'nullable|array',
+            'color' => 'required|string'
+        ]);
+        $color = new BusinessCardColor;
+        $color->name = $request->color;
+        if(!$card->colors()->save($color)) {
+            return redirect()->back()->with('error', 'Color could not be created.');
+        }
+        if(isset($request->labels)) {
+            foreach($request->labels as $key => $value) {
+                $label = BusinessCardLabel::find($key);
+                if(!$label) {
+                    $color->delete();
+                    return redirect()->back()->with('error', 'Label not found. Color deleted to restore consistency.');
+                }
+                $color->labels()->attach($label->id, ['color' => $value]);
+
+                if(!$color->labels()->find($label->id)) {
+                    $color->delete();
+                    return redirect()->back()->with('error', 'Label could not be attached. Color deleted to maintain consistency.');
+                }
+            }
+        }
+        return redirect()->back()->with('success', 'Color created and Labels attached.');
+    }
+
+    public function deleteBusinesscardColor(Request $request, $id) {
+        $color = BusinessCardColor::find($id);
+        if(!$color) {
+            return redirect()->back()->with('error', 'Color not found.');
+        }
+        if(!$color->delete()) {
+            return redirect()->back()->with('error', 'Color could not be deleted.');
+        }
+        return redirect()->back()->with('success', 'Color deleted successfully.');
+    }
+
+
+    public function addCommercialItem(Request $request) {
+        $this->validate($request, [
+            'name' => 'required|string',
+            'image' => 'required|image',
+            'price' => 'required|numeric'
+        ]);
+        $item = new CommercialItem;
+        $item->name = $request->name;
+        $item->image = Helper::store_data_image($request->image);
+        $item->price = $request->price;
+        if(!$item->save()) {
+            return redirect()->back()->with('error', 'Item could not be created.');
+        }
+        return redirect()->back()->with('success', 'Item created successfully.');
+    }
+
+    public function deleteCommercialItems(Request $request) {
+        $this->validate($request, [
+            'items' => 'required|array'
+        ]);
+        $items = $request->items;
+        foreach($items as $item_id) {
+            $item = CommercialItem::find($item_id);
+            if(!$item) {
+                return redirect()->back()->with('error', 'Item '.$item_id.' does not exist.');
+            }
+            if(!$item->delete()) {
+                return redirect()->back()->with('error', 'Item '.$item_id.' could not be deleted.');
+            }
+            
+        }
+        return redirect()->back()->with('success', 'Items deleted.');
+    }
+
+
+
 }
+
+

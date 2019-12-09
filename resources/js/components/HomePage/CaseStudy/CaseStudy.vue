@@ -148,6 +148,7 @@ export default {
         border-top: solid #FFDB00 10px;
         border-bottom: solid #FFDB00 10px;
         display: flex;
+        flex-flow: row wrap;
         /* margin-left: 30% !important;
         margin-right: 35% !important;
         padding-right:40% !important; */

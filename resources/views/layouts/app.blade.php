@@ -15,6 +15,8 @@
     <meta name="google-signin-client_id" content={{ config('services.google.client_id')}}>
 
     <!-- Fonts -->
+
+     
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet" type="text/css">
 
@@ -28,9 +30,13 @@
 
     {{-- <!-- Style for Vuetify -->
     <link id="vuetify-style" rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vuetify/1.3.7/vuetify.min.css" disabled> --}}
- 
+        
+    @stack('head')
 </head>
 <body>
+    <div id="react">
+
+    </div>
     <div id="app">
         
         {{-- <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
@@ -159,6 +165,16 @@
                                     {{ __('Designer Dashboard') }}
                                 </a> 
                             @endif 
+                            @if(Auth::user()->printing_admin)
+                                <a class="dropdown-item alignLang" href="/dashboard/printing">
+                                    {{ __('Printing Dashboard') }}
+                                </a> 
+                            @endif 
+                            @if(Auth::user()->store_admin)
+                                <a class="dropdown-item alignLang" href="/dashboard/store">
+                                    {{ __('Store Dashboard') }}
+                                </a> 
+                            @endif 
                             <a class="dropdown-item alignLang" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
@@ -211,6 +227,17 @@
                                             {{ __('Designer Dashboard') }}
                                         </a> 
                                     @endif 
+                                    @if(Auth::user()->printing_admin)
+                                        <a class="dropdown-item alignLang" href="/dashboard/printing">
+                                            {{ __('Printing Dashboard') }}
+                                        </a> 
+                                    @endif 
+                                    @if(Auth::user()->store_admin)
+                                        <a class="dropdown-item alignLang" href="/dashboard/store">
+                                            {{ __('Store Dashboard') }}
+                                        </a> 
+                                    @endif 
+                                    
                                     <a class="dropdown-item" href="{{ route('logout') }}"
                                     onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -233,17 +260,23 @@
         </main>
     </div>
 
+    <div id="test">
+
+    </div>
+
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <script type="text/javascript">
         $(function() {
             window.images = [];
             window.files = [];
+            
             $('#my_files').on('change', function() {
                 imagesPreview(this, 'div.gallery');
                 
             });
 
+            
             
             function dataURLtoBlob() {
                 console.log('Inside dataURLtoBlob');
@@ -361,6 +394,11 @@
             color: black;
             text-decoration: none;
             cursor: pointer;
+        }
+
+        .small-img {
+            width: 100px;
+            height: auto;
         }
 
         html[dir="ltr"] .alignLang {

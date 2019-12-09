@@ -43,6 +43,12 @@ Route::group([
 
     Route::get('/order', 'PagesController@editOrder');
 
+    Route::get('/data/businesscards', 'PagesController@businesscards');
+    Route::get('/data/businesscard/{id}', 'PagesController@businesscard');
+    Route::get('/data/businesscard/label/{id}', 'PagesController@businesscardLabel');
+    Route::get('/data/commercial/items', 'PagesController@commercialItems');
+    Route::get('/data/commercial/item/{id}', 'PagesController@commercialItem');
+
     Route::post('/databoard/addPackage', 'AdminController@addPackage');
     Route::put('/databoard/editPackage/{id}', 'AdminController@editPackage');
     Route::delete('/databoard/deletePackage', 'AdminController@deletePackage');
@@ -59,8 +65,18 @@ Route::group([
 
     Route::put('/order', 'AdminController@editOrder');
 
-    
+    Route::post('/businesscard', 'AdminController@addBusinesscard');
+    Route::delete('/businesscards', 'AdminController@deleteBusinesscards');
 
+    Route::post('/businesscard/{id}/label', 'AdminController@addBusinesscardLabel');
+    Route::delete('/businesscard/labels', 'AdminController@deleteBusinesscardLabels');
+
+    Route::post('/businesscard/{id}/color', 'AdminController@addBusinesscardColor');
+    Route::get('/businesscard/deleteColor/{id}', 'AdminController@deleteBusinesscardColor');
+    Route::delete('/businesscard/colors', 'AdminController@deleteBusinesscardColors');
+
+    Route::post('/data/commercial/item', 'AdminController@addCommercialItem');
+    Route::delete('/data/commercial/items', 'AdminController@deleteCommercialItems');
 });
 
 Route::group([
@@ -70,6 +86,40 @@ Route::group([
     Route::get('', 'PagesController@designerDashboard');
     Route::get('/order', 'PagesController@designerOrder');
 });
+
+
+// Route::group([
+//     'middleware' => 'store', 
+//     'prefix' => 'dashboard/store'
+// ], function() {
+//     Route::get('', 'PagesController@storeDashboard');
+//     Route::get('/order', 'PagesController@storeOrder');
+// });
+
+Route::group([
+    'middleware' => 'printing',
+    'prefix' => 'dashboard/printing'
+], function() {
+    Route::get('', 'PagesController@printingDashboard');
+
+    Route::get('/commercial/orders', 'PagesController@printingCommercialOrders');
+    Route::get('/commercial/order/{id}', 'PagesController@printingCommercialOrder');
+
+    Route::get('/personal/orders', 'PagesController@printingPersonalOrders');
+    Route::get('/personal/order/{id}', 'PagesController@printingPersonalOrder');
+});
+
+// Route::group([
+//     'middleware' => 'sales', 
+//     'prefix' => 'dashboard/sales'
+// ], function() {
+//     Route::get('', 'PagesController@salesDashboard');
+//     Route::get('/createUser', 'PagesController@salesCreateUser');
+//     Route::get('/user/{id}', 'PagesController@salesDisplayUser');
+// });
+
+
+
 // Route::get('/dashboard', 'PagesController@dashboard');
 // Route::get('/dashboard/users', 'PagesController@users');
 

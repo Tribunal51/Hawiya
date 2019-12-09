@@ -3,19 +3,22 @@
         
         <router-view />
         
-
         <page-footer />
+
+        <Cover />
         
     </v-app>
 </template>
 
 <script>   
 import Vue from 'vue';
-
+import Cover from '../react/components/Cover';
 // import { VApp } from 'vuetify/lib';
 //import 'vuetify/src/stylus/app.styl';
 import VToolbarSideIcon from 'vuetify/lib';
+import { VuePlugin } from 'vuera';
 
+Vue.use(VuePlugin);
 
 
 export default {
@@ -24,6 +27,8 @@ export default {
         "verified"
     ],
     components: {
+        VToolbarSideIcon,
+        Cover,
         VToolbarSideIcon
     },
     mounted() {
@@ -40,10 +45,7 @@ export default {
             console.log('Reset false');
         }
 
-    },
-    components: {
-        
-    },   
+    },  
     computed: {
         userLoginStatus() {
             return this.$store.state.user_id;

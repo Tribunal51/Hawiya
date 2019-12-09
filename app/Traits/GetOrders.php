@@ -10,9 +10,12 @@ use App\PackagingOrder;
 use App\PromotionalOrder;
 use App\Category;
 
+use App\Models\Commercial\CommercialOrder;
+use App\Models\Personal\PersonalOrder;
+
 trait GetOrders {
 
-    public function getAllOrders() {
+    public function getAllDesignOrders() {
         $logodesign_orders = LogodesignOrder::all();    // Array of objects, each object is an order
         foreach($logodesign_orders as $order) {
             $order->order_type="logodesign";
@@ -56,7 +59,7 @@ trait GetOrders {
         
     }
 
-    public function getUserOrders($id) {
+    public function getUserOrdersForDesign($id) {
         // Object with key-value pairs 
 
         $logodesign_orders = LogodesignOrder::where('user_id','=', $id)->get();
@@ -77,7 +80,7 @@ trait GetOrders {
         return $all_orders;
     }
 
-    public function getUserOrdersSortedByDate(int $id) {
+    public function getUserOrdersForDesignSortedByDate(int $id) {
         
         $all_orders = array();
 
@@ -126,7 +129,7 @@ trait GetOrders {
         return $sorted_orders;
     }
 
-    public function getAllOrdersSortedByDate(int $category_id = null, int $id = null, int $designer_id = null) {
+    public function getAllDesignOrdersSortedByDate(int $category_id = null, int $id = null, int $designer_id = null) {
         $orders = [];
         switch($category_id) {
             case 1: $orders = LogodesignOrder::all();
@@ -195,6 +198,17 @@ trait GetOrders {
             return $sorted_orders;
         }
     }
+
+    public function getAllPrintingOrdersSortedByDate($category_id = null, int $id = null, int $printing_admin_id = null) {
+        $commercial_orders = CommercialOrder::all();
+        $all_orders = Helper::merge_collections([
+            $commercial_orders
+        ]);
+
+    }
+
+
+
 
     
 }

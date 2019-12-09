@@ -7,6 +7,8 @@ const state = {
     price: null
 }
 
+
+
 const initialState = {
     package: null,
     logo_photo: null,
@@ -60,3 +62,8 @@ export default {
     getters,
     state
 }
+
+
+
+
+

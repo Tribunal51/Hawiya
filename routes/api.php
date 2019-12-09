@@ -112,6 +112,15 @@ use App\Http\Resources\User as UserResource;
     Route::get('/data/products', 'DataController@getAllProducts');
     Route::post('/data/product', 'DataController@addProduct');
 
+    Route::get('/businesscards/designs', 'BusinessCardsController@index');
+    Route::get('/businesscards/design', 'BusinessCardsController@design');
+
+    Route::get('/data/commercial/items', 'CommercialItemsController@index');
+    Route::get('/data/commercial/item/{id}', 'CommercialItemsController@show');
+    Route::get('/orders/commercial', 'CommercialOrdersController@index');
+    Route::get('/orders/commercial/{id}', 'CommercialOrdersController@show');
+    Route::post('/orders/commercial', 'CommercialOrdersController@store');
+    
 // });
 
 Route::group([   

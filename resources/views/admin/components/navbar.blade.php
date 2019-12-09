@@ -6,21 +6,46 @@
     
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto">
-        <li class="nav-item adminNav">
-            <a class="nav-link" href="/dashboard/admin/users">Users <span class="sr-only">(current)</span></a>
-        </li>
-        <li class="nav-item adminNav">
-            <a class="nav-link" href="/dashboard/admin/addProfile">Profiles</a>
-        </li>
-        <li class="nav-item adminNav">
-            <a class="nav-link" href="/dashboard/admin/orderboard">Orders</a>
-        </li>
-        <li class="nav-item adminNav">
-            <a class="nav-link" href="/dashboard/admin/databoard">Data</a>
-        </li>
-        <li class="nav-item adminNav">
-            <a class="nav-link" href="#">Option 5</a>
-        </li>
+            <li class="nav-item adminNav">
+                <a class="nav-link" href="/dashboard/admin/users">Users <span class="sr-only">(current)</span></a>
+            </li>
+            <li class="nav-item adminNav">
+                <a class="nav-link" href="/dashboard/admin/addProfile">Profiles</a>
+            </li>
+            {{-- <li class="nav-item adminNav">
+                <a class="nav-link" href="/dashboard/admin/orderboard">Orders</a>
+            </li> --}}
+            <li class="nav-item adminNav dropdown" style="cursor:pointer">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown">Orders</a> 
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/dashboard/admin/orderboard/printing">Printing</a> 
+                    <a class="dropdown-item" href="/dashboard/admin/orderboard/design">Design</a> 
+                    <a class="dropdown-item" href="/dashboard/admin/orderboard/store">Store</a> 
+                </div> 
+            </li> 
+            <li class="nav-item adminNav dropdown" style="cursor:pointer">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown">Data</a> 
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/dashboard/admin/databoard">Design</a> 
+                    <a class="dropdown-item" href="/dashboard/admin/data/commercial/items">Items</a> 
+                    <a class="dropdown-item" href="/dashboard/admin/data/businesscards">Business Card</a> 
+                    <a class="dropdown-item" href="#">Option 2</a>
+                </div> 
+            </li> 
+    
+            {{-- <li class="nav-item adminNav dropdown" style="cursor:pointer">
+                <a class="nav-link dropdown-toggle" data-toggle="dropdown">Commercial</a> 
+                <div class="dropdown-menu">
+                    <a class="dropdown-item" href="/dashboard/admin/data/commercial/items">Items</a>
+                    <a class="dropdown-item" href="/dashboard/admin/data/businesscards">Business Card</a> 
+                    <a class="dropdown-item">Option 2</a>
+                </div> 
+            </li> --}}
+            <li class="nav-item adminNav">
+                <a class="nav-link" href="#">Option 5</a>
+            </li>
+        
+        
         {{-- <li class="nav-item dropdown">
             <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
             Dropdown

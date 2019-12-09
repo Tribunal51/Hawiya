@@ -38,6 +38,11 @@ class User extends Authenticatable implements MustVerifyEmail
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'admin' => 'boolean',
+        'designer' => 'boolean',
+        'sales_admin' => 'boolean',
+        'printing_admin' => 'boolean',
+        'store_admin' => 'boolean'
     ];
 
     public function setPasswordAttribute($pass) {

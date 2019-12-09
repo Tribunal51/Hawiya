@@ -8,7 +8,7 @@
             </div>
             <div class="row" v-for="product in productsCost" :key="product.name">
                 <div class="col-sm-8">
-                    <h5>{{ product.name }}</h5>
+                    <h5>{{ product.title }}</h5>
                 </div>
                 <div class="col-sm-4">
                     <h5>${{ product.price }}</h5>
@@ -47,7 +47,7 @@ export default {
                 return this.selectedProducts.map(currentProduct => {
                     let price = this.calculateCost(currentProduct);
                     return {
-                        name: currentProduct.name,
+                        title: currentProduct.title,
                         price: price
                     }
                 });
@@ -105,6 +105,7 @@ export default {
     }
 
 }
+
 </script>
 
 <style scoped>
@@ -114,6 +115,9 @@ export default {
         width: 100%;
         min-height: 80%;
     }
+
+    
+    
 
     .Cover {        
         padding: 20px;

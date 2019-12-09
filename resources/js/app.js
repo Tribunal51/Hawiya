@@ -7,6 +7,8 @@
 
 require('./bootstrap');
 
+
+
 window.Vue = require('vue');
 
 /**
@@ -355,4 +357,6 @@ export const app = new Vue({
     store,
     i18n
 });
+
+require('./react/components/Cover');
 
