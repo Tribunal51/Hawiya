@@ -21,6 +21,9 @@ use App\Models\BusinessCard\BusinessCardLabelColor;
 use App\Models\Commercial\CommercialItem;
 use App\Models\Commercial\CommercialOrder;
 
+use App\Models\Personal\PersonalItem;
+use App\Models\Personal\PersonalSubitem;
+
 use Illuminate\Support\Facades\URL;
 
 use App\Helpers\AppHelper as Helper;
@@ -320,5 +323,20 @@ class PagesController extends Controller
         }
         return view('printing.user', compact('user'));
     }
+
+    public function adminDisplayPersonalItems(Request $request) {
+        $items = PersonalItem::with('subitems')->get();
+        return view('admin.personal.items', compact('items'));
+    }
+
+    public function adminDisplayPersonalItem(Request $request, $id) {
+        $item = PersonalItem::find($id);
+        $subitems = PersonalSubitem::where('personal_item_id', $id)->get();
+        if(!$item) {
+            return redirect()->back()->with('error', 'Item not found.');
+        }
+        return view('admin.personal.item', compact('item', 'subitems'));
+    }
+
     
 }

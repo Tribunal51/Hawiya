@@ -51,6 +51,9 @@ Route::group([
     Route::get('/data/commercial/items', 'PagesController@commercialItems');
     Route::get('/data/commercial/item/{id}', 'PagesController@commercialItem');
 
+    Route::get('/data/personal/items', 'PagesController@adminDisplayPersonalItems');
+    Route::get('/data/personal/item/{id}', 'PagesController@adminDisplayPersonalItem');
+
     Route::get('/orderboard/commercial', 'PagesController@commercialOrderboard');
     Route::get('/orderboard/commercial/{id}', 'PagesController@commercialOrder');
     Route::put('/orderboard/commercial/{id}', 'AdminController@editCommercialOrder');
@@ -83,6 +86,13 @@ Route::group([
 
     Route::post('/data/commercial/item', 'AdminController@addCommercialItem');
     Route::delete('/data/commercial/items', 'AdminController@deleteCommercialItems');
+
+    Route::post('/data/personal/item', 'AdminController@addPersonalItem');
+    Route::delete('/data/personal/items', 'AdminController@deletePersonalItems');
+    Route::post('/data/personal/item/{id}/subitem', 'AdminController@addPersonalSubitem');
+    Route::delete('/data/personal/subitems', 'AdminController@deletePersonalSubitems');
+
+    
 });
 
 Route::group([

@@ -120,6 +120,8 @@ use App\Http\Resources\User as UserResource;
     Route::get('/orders/commercial', 'CommercialOrdersController@index');
     Route::get('/orders/commercial/{id}', 'CommercialOrdersController@show');
     Route::post('/orders/commercial', 'CommercialOrdersController@store');
+
+    Route::get('/data/personal/items', 'PersonalItemsController@index');
     
 // });
 

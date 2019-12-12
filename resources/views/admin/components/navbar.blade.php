@@ -30,6 +30,7 @@
                     <a class="dropdown-item" href="/dashboard/admin/databoard">Design</a> 
                     <a class="dropdown-item" href="/dashboard/admin/data/commercial/items">Commercial Items</a> 
                     <a class="dropdown-item" href="/dashboard/admin/data/businesscards">Business Card</a> 
+                    <a class="dropdown-item" href="/dashboard/admin/data/personal/items">Personal Items</a>
                     <a class="dropdown-item" href="#">Option 2</a>
                 </div> 
             </li> 
