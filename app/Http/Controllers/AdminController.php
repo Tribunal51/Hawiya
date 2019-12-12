@@ -18,6 +18,7 @@ use App\Models\BusinessCard\BusinessCardLabelColor;
 use App\Models\BusinessCard\BusinessCardPrice;
 
 use App\Models\Commercial\CommercialItem;
+use App\Models\Commercial\CommercialOrder;
 
 use App\Helpers\AppHelper as Helper;
 
@@ -48,6 +49,57 @@ class AdminController extends Controller
             //return $this->routeIfAdmin('users')->with('error', 'Could not change admin status. Please investigate');
             return redirect()->back()->with('error', 'Could not change admin status. Please investigate');
         }
+    }
+
+    public function toggleAdmin(Request $request, $id, $type) {
+        // return $request;
+        if(!isset($id) || !isset($type)) {
+            return redirect()->back()->with('error', 'Required fields missing.');
+        }
+        $user = User::find($id);
+        switch($type) {
+            case 'super_admin': 
+                $user->admin = !$user->admin;
+            break; 
+
+            case 'printing_admin':
+                $user->printing_admin = !$user->printing_admin;
+            break;
+
+            case 'designer': 
+                $user->designer = !$user->designer;
+            break;
+
+            case 'store_admin': 
+                $user->store_admin = !$user->store_admin; 
+            break;
+
+            case 'sales_admin': 
+                $user->sales_admin = !$user->sales_admin; 
+            break;
+
+            default: return redirect()->back()->with('error', 'Invalid Admin Type.');
+
+        }
+        if(!$user->save()) {
+            return redirect()->back()->with('error', 'Admin Status could not be changed.');
+        }
+        return redirect()->back()->with('success', 'Admin status changed successfully.');
+    }
+
+    public function toggleStar(Request $request, $id) {
+        if(!isset($request->id)) {
+            return redirect()->back()->with('error', 'Required fields missing.');
+        }
+        $user = User::find($request->id);
+        if(!$user) {
+            return redirect()->back()->with('error', 'Invalid User.');
+        }
+        $user->star = !$user->star;
+        if(!$user->save()) {
+            return redirect()->back()->with('error', 'User star status could not be toggled.');
+        }
+        return redirect()->back()->with('success', 'User star status toggled successfully.');
     }
 
 
@@ -608,10 +660,12 @@ class AdminController extends Controller
         }
         $this->validate($request, [
             'labels' => 'nullable|array',
-            'color' => 'required|string'
+            'color' => 'required|string',
+            'preview_text_color' => 'nullable|string'
         ]);
         $color = new BusinessCardColor;
         $color->name = $request->color;
+        $color->preview_text_color = $request->preview_text_color;
         if(!$card->colors()->save($color)) {
             return redirect()->back()->with('error', 'Color could not be created.');
         }
@@ -677,6 +731,20 @@ class AdminController extends Controller
             
         }
         return redirect()->back()->with('success', 'Items deleted.');
+    }
+
+    public function editCommercialOrder(Request $request, $id) {
+        $order = CommercialOrder::find($id);
+        if(!$order) {
+            return redirect()->back()->with('error', 'Invalid Commercial Order.');
+        }
+        if(isset($request->printing_admin)) {
+            $order->printing_admin_id = $request->printing_admin;
+        }
+        if(!$order->save()) {
+            return redirect()->back()->with('error', 'Order could not be updated.');
+        }
+        return redirect()->back()->with('success', 'Order updated.');
     }
 
 

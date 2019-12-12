@@ -18,10 +18,24 @@ class BusinessCardsController extends Controller
     public function index(Request $request) {
         if(isset($request->shape)) {
             $shape = $request->shape;
-            $cards = BusinessCard::with(['colors', 'price', 'labels'])->where('shape', '=', $shape);
-            return $cards;
+            $cards = BusinessCard::with('price')->where('shape', '=', $shape)->get();
+            
         }
-        $cards = BusinessCard::with(['colors', 'price', 'labels'])->get();
+        else {
+            $cards = BusinessCard::with('price')->get();
+        }
+        
+        foreach($cards as $card) {
+            $colors_big_object = BusinessCardColor::where('business_card_id', $card->id)->get();
+            $colors = array();
+            $preview_text_colors = array();
+            foreach($colors_big_object as $color) {
+                array_push($colors, $color->name);
+                array_push($preview_text_colors, $color->preview_text_color);
+            }
+            $card->colors = $colors;
+            $card->preview_text_colors = $preview_text_colors;
+        }
         return $cards;
 
     }

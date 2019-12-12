@@ -1,17 +1,19 @@
 {!! Form::open(['action' => 'AdminController@addCommercialItem', 'method' => 'POST', 'files' => true]) !!}
+    <h3> Add Commercial Item </h3>
     @csrf 
     <div class="form-group mt-2 row">
-        <label for="name" class="col-md-4 col-form-label text-md-right">Name</label> 
+        <label for="name" class="col-md-2 col-form-label">Name</label> 
         <input class="col-md-6" type="text" name="name" id="name" />
     </div> 
 
     <div class="form-group mt-2 row">
-        <label for="my_files" class="col-md-4 col-form-label text-md-right">Image</label> 
-        <input class="col-md-6" type="file" name="image" id="my_files" />
+        <label for="my_files" class="col-md-2 col-form-label">Image</label> 
+        <input class="col-md-3" type="file" name="image" id="my_file" />
+        <div class="col-md-3 gallery"></div>
     </div> 
 
     <div class="form-group mt-2 row">
-        <label for="price" class="col-md-4 col-form-label text-md-right">Price</label> 
+        <label for="price" class="col-md-2 col-form-label">Price</label> 
         <input class="col-md-6" type="number" name="price" id="price" />
     </div> 
 

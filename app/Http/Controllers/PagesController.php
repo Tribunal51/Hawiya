@@ -19,6 +19,7 @@ use App\Models\BusinessCard\BusinessCardModel;
 use App\Models\BusinessCard\BusinessCardLabelColor;
 
 use App\Models\Commercial\CommercialItem;
+use App\Models\Commercial\CommercialOrder;
 
 use Illuminate\Support\Facades\URL;
 
@@ -144,7 +145,7 @@ class PagesController extends Controller
     }
 
     public function orderboard() {
-        $orders = $this->getAllOrdersSortedByDate();
+        $orders = $this->getAllDesignOrdersSortedByDate();
         $categories = Category::all();
         $category_links = [];
         foreach($categories as $category) {
@@ -181,7 +182,7 @@ class PagesController extends Controller
         $designers = User::where('designer','=', true)->get();
         
         //return is_numeric($request->id).' '.is_numeric($request->category_id);
-        $order = $this->getAllOrdersSortedByDate($request->category_id, $request->id);
+        $order = $this->getAllDesignOrdersSortedByDate($request->category_id, $request->id);
         return view('admin.design.order', compact('order', 'designers'));
         
     }
@@ -191,8 +192,8 @@ class PagesController extends Controller
         if(!$user) {
             return redirect()->back()->with('error', 'User not found.');
         }
-        $orders = $this->getUserOrdersSortedByDate($user->id);
-        return view('admin.user', compact('user', 'orders'));
+        $design_orders = $this->getUserOrdersforDesignSortedBydate($user->id);
+        return view('admin.user', compact('user', 'design_orders'));
     }
 
     public function designerDashboard() {
@@ -263,7 +264,61 @@ class PagesController extends Controller
         return view('pages.orderconfirm');
     }
 
-    
+    public function commercialOrderboard() {
+        $orders = CommercialOrder::all();
+        return view('admin.commercial.orderboard', compact('orders'));
+    }
 
+    public function commercialOrder($id) {
+        $order = CommercialOrder::find($id);
+        if(!$order) {
+            return redirect()->back()->with('error', 'Commercial Order not found.');
+        }
+        $printing_admins = User::where('printing_admin', true)->get();
+        return view('admin.commercial.order', compact('order', 'printing_admins'));
+    }
+
+    public function salesDashboard(Request $request) {
+        $user = Auth::guard()->user();
+        return view('sales.dashboard');
+    }
+
+    public function salesCreateUser() {
+        return view('sales.adduser');
+    }
+
+    public function salesDisplayUsers() {
+        $users = User::all();
+        return view('sales.users', compact('users'));
+    }
+
+    public function salesDisplayUser(Request $request, $id) {
+        $user = User::find($id);
+        if(!$user) {
+            return redirect()->back()->with('error', 'User not found.');
+        }
+        return view('sales.user', compact('user'));
+    }
+
+    
+    public function printingDisplayCommercialOrders(Request $request) {
+        $user = Auth::user();
+        $orders = CommercialOrder::where('printing_admin_id', $user->id)->get();
+        return view('printing.commercial_orders', compact('orders'));
+    }
+
+    public function printingDisplayCommercialOrder(Request $request, $id) {
+        $user = Auth::user();
+        $order = CommercialOrder::find($id);
+        return view('printing.commercial_order', compact('order'));
+    }
+
+    public function printingDisplayUser(Request $request, $id) {
+        $user = User::find($id);
+        if(!$user) {
+            return redirect()->back()->with('error', 'Invalid User ID. User not found.');
+        }
+        return view('printing.user', compact('user'));
+    }
     
 }

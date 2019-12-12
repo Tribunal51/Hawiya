@@ -18,8 +18,9 @@
             <li class="nav-item adminNav dropdown" style="cursor:pointer">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown">Orders</a> 
                 <div class="dropdown-menu">
-                    <a class="dropdown-item" href="/dashboard/admin/orderboard/printing">Printing</a> 
-                    <a class="dropdown-item" href="/dashboard/admin/orderboard/design">Design</a> 
+                    <a class="dropdown-item" href="/dashboard/admin/orderboard/commercial">Commercial</a> 
+                    <a class="dropdown-item" href="/dashboard/admin/orderboard/personal">Personal</a> 
+                    <a class="dropdown-item" href="/dashboard/admin/orderboard">Design</a> 
                     <a class="dropdown-item" href="/dashboard/admin/orderboard/store">Store</a> 
                 </div> 
             </li> 
@@ -27,11 +28,13 @@
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown">Data</a> 
                 <div class="dropdown-menu">
                     <a class="dropdown-item" href="/dashboard/admin/databoard">Design</a> 
-                    <a class="dropdown-item" href="/dashboard/admin/data/commercial/items">Items</a> 
+                    <a class="dropdown-item" href="/dashboard/admin/data/commercial/items">Commercial Items</a> 
                     <a class="dropdown-item" href="/dashboard/admin/data/businesscards">Business Card</a> 
                     <a class="dropdown-item" href="#">Option 2</a>
                 </div> 
             </li> 
+
+            
     
             {{-- <li class="nav-item adminNav dropdown" style="cursor:pointer">
                 <a class="nav-link dropdown-toggle" data-toggle="dropdown">Commercial</a> 

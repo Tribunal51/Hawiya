@@ -28,7 +28,9 @@ Route::group([
     Route::get('', 'PagesController@dashboard');
     Route::get('/users', 'PagesController@users');
     Route::get('/user/{id}', 'PagesController@user');
-    Route::post('/users/setAdmin', 'AdminController@setAdmin');
+    Route::post('/user/setAdmin', 'AdminController@setAdmin');
+    Route::get('/user/{id}/toggleAdmin/{type}', 'AdminController@toggleAdmin');
+    Route::get ('/user/{id}/toggleStar', 'AdminController@toggleStar');
 
     Route::get('/addProfile', 'PagesController@addProfile');
     Route::get('/editProfile/{id}', 'PagesController@editProfile');
@@ -48,6 +50,10 @@ Route::group([
     Route::get('/data/businesscard/label/{id}', 'PagesController@businesscardLabel');
     Route::get('/data/commercial/items', 'PagesController@commercialItems');
     Route::get('/data/commercial/item/{id}', 'PagesController@commercialItem');
+
+    Route::get('/orderboard/commercial', 'PagesController@commercialOrderboard');
+    Route::get('/orderboard/commercial/{id}', 'PagesController@commercialOrder');
+    Route::put('/orderboard/commercial/{id}', 'AdminController@editCommercialOrder');
 
     Route::post('/databoard/addPackage', 'AdminController@addPackage');
     Route::put('/databoard/editPackage/{id}', 'AdminController@editPackage');
@@ -102,21 +108,26 @@ Route::group([
 ], function() {
     Route::get('', 'PagesController@printingDashboard');
 
-    Route::get('/commercial/orders', 'PagesController@printingCommercialOrders');
-    Route::get('/commercial/order/{id}', 'PagesController@printingCommercialOrder');
+    Route::get('/orders/commercial', 'PagesController@printingDisplayCommercialOrders');
+    Route::get('/order/commercial/{id}', 'PagesController@printingDisplayCommercialOrder');
 
     Route::get('/personal/orders', 'PagesController@printingPersonalOrders');
     Route::get('/personal/order/{id}', 'PagesController@printingPersonalOrder');
+
+    Route::get('/user/{id}', 'PagesController@printingDisplayUser');
 });
 
-// Route::group([
-//     'middleware' => 'sales', 
-//     'prefix' => 'dashboard/sales'
-// ], function() {
-//     Route::get('', 'PagesController@salesDashboard');
-//     Route::get('/createUser', 'PagesController@salesCreateUser');
-//     Route::get('/user/{id}', 'PagesController@salesDisplayUser');
-// });
+Route::group([
+    'middleware' => 'sales', 
+    'prefix' => 'dashboard/sales'
+], function() {
+    Route::get('', 'PagesController@salesDashboard');
+    Route::get('/users', 'PagesController@salesDisplayUsers');
+    Route::get('/user/create', 'PagesController@salesCreateUser');
+    Route::get('/user/{id}', 'PagesController@salesDisplayUser');
+
+    Route::post('/user/create', 'SalesAdminController@createUser');
+});
 
 
 

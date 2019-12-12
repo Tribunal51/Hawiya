@@ -28,6 +28,9 @@ class CreateCommercialOrdersTable extends Migration
             $table->boolean('backside')->default(false);
             $table->string('frontside_file');
             $table->string('backside_file')->nullable();
+            $table->bigInteger('printing_admin_id')->unsigned()->nullable();
+            $table->foreign('printing_admin_id')->references('id')->on('users')->onDelete('set null');
+            $table->integer('days_left')->nullable();
             $table->timestamps();
         });
     }

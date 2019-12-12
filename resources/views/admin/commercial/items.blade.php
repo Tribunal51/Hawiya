@@ -1,5 +1,5 @@
 @extends('layouts.app')
 
 @section('content')
-    @include('admin.commercial.templates.commercialitems_template')
+    @include('admin.commercial.templates.items_template')
 @endsection

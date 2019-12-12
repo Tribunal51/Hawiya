@@ -43,7 +43,7 @@ User: {{ $user }}
 <button>Update User</button>
 <hr>
 
-<h2>User Orders</h2> 
+<h2>User Orders (Design)</h2> 
 <table class="table">
     <thead class="thead-dark">
         <tr>
@@ -54,7 +54,7 @@ User: {{ $user }}
         </tr>
     </thead>
     <tbody>
-    @foreach($orders as $order)
+    @foreach($design_orders as $order)
         <tr>
             <td><a href={{"/dashboard/admin/order?id=".$order->id."&category_id=".$order->category_id}}>{{ $order->order_id }}</a></td> 
             <td>{{ $order->type }}</td> 

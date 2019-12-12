@@ -9,6 +9,12 @@ use App\User;
 use App\Models\Commercial\CommercialItem;
 use App\Helpers\AppHelper as Helper;
 
+use App\Rules\UserExists;
+use App\Rules\Exists;
+use App\Rules\CommercialItemExists;
+
+use Validator;
+
 class CommercialOrdersController extends Controller
 {
     //
@@ -29,6 +35,35 @@ class CommercialOrdersController extends Controller
 
 
     public function store(Request $request) {
+
+        $validator = Validator::make($request->all(), [
+            'item_id' => ['required', new CommercialItemExists],
+            'user_id' => ['required', new UserExists],
+            'shape' => 'required|string',
+            'orientation' => 'required|string',
+            'size' => 'required|string',
+            'paper_thickness' => 'required|string',
+            'finishing' => 'required|string',
+            'backside' => 'required|boolean',
+            'frontside_file' => 'string',
+            'backside_file' => 'sometimes|required|string'
+        ], [
+            'required' => '-2',
+            'string' => '-4',
+            'boolean' => '-5'
+        ]);
+
+        // 'user_id' => ['required', function($attribute, $value, $fail) {
+        //     if(!User::find($attribute)) {
+        //         $fail('-3');
+        //     }
+        // }],
+        if($validator->fails()) {
+            return $validator->errors()->first();
+        }
+
+        // return "passed";
+
         if(
             !isset($request->item_id) || 
             !isset($request->user_id) || 
@@ -46,13 +81,13 @@ class CommercialOrdersController extends Controller
         }
         $item = CommercialItem::find($request->item_id);
         if(!$item) {
-            return -4;  // echo "Item not found.";
+            return -7;  // echo "Item not found.";
         }
         $allowed_extensions = ['pdf', 'ai', 'epd', 'docx', 'png', 'jpg', 'jpeg', 'svg'];
         if(
             !Helper::check_file($request->frontside_file, $allowed_extensions) || 
             ($request->backside && isset($request->backside_file) && !Helper::check_file($request->backside_file))) {
-            return -5;  // echo "Wrong file format.";
+            return -8;  // echo "Wrong file format.";
         }
         
         $order = new CommercialOrder;

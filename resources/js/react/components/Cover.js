@@ -18,4 +18,4 @@ class Cover extends Component {
 }
 
 export default Cover;
-ReactDOM.render(<Cover />, document.getElementById('react'));
+// ReactDOM.render(<Cover />, document.getElementById('react'));

@@ -200,10 +200,13 @@ trait GetOrders {
     }
 
     public function getAllPrintingOrdersSortedByDate($category_id = null, int $id = null, int $printing_admin_id = null) {
-        $commercial_orders = CommercialOrder::all();
-        $all_orders = Helper::merge_collections([
-            $commercial_orders
-        ]);
+        $commercial_orders = CommercialOrder::where('printing_admin_id', $printing_admin_id)->get();
+        
+        // $all_orders = Helper::merge_collections([
+        //     $commercial_orders
+        // ]);
+        $all_orders = $commercial_orders;
+        return $all_orders;
 
     }
 

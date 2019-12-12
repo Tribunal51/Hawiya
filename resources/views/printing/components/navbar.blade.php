@@ -1,6 +1,6 @@
 <nav class="navbar navbar-expand-lg navbar-dark bg-secondary">
     
-    <a class="navbar-brand" href="/dashboard/admin">Printing Dashboard</a>
+    <a class="navbar-brand" href="/dashboard/printing">Printing Dashboard</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
         <span class="navbar-toggler-icon"></span>
     </button>
@@ -8,10 +8,10 @@
     <div class="collapse navbar-collapse" id="navbarSupportedContent">
         <ul class="navbar-nav mx-auto">
             <li class="nav-item adminNav">
-                <a class="nav-link" href="/dashboard/printing/commercial/orders">Commercial Orders</a>
+                <a class="nav-link" href="/dashboard/printing/orders/commercial">Commercial Orders</a>
             </li>
             <li class="nav-item adminNav">
-                <a class="nav-link" href="/dashboard/printing/personal/orders">Personal Orders</a>
+                <a class="nav-link" href="/dashboard/printing/orders/personal">Personal Orders</a>
             </li>
             <li class="nav-item adminNav">
                 <a class="nav-link" href="/dashboard/designer/option2">Option 2</a>

@@ -34,9 +34,9 @@
     @stack('head')
 </head>
 <body>
-    <div id="react">
+    {{-- <div id="react">
 
-    </div>
+    </div> --}}
     <div id="app">
         
         {{-- <nav class="navbar navbar-expand-md navbar-light navbar-laravel">
@@ -175,6 +175,11 @@
                                     {{ __('Store Dashboard') }}
                                 </a> 
                             @endif 
+                            @if(Auth::user()->sales_admin)
+                                <a class="dropdown-item alignLang" href="/dashboard/sales">
+                                    {{ __('Sales Dashboard') }}
+                                </a> 
+                            @endif 
                             <a class="dropdown-item alignLang" href="{{ route('logout') }}"
                             onclick="event.preventDefault();
                                             document.getElementById('logout-form').submit();">
@@ -272,8 +277,12 @@
             window.files = [];
             
             $('#my_files').on('change', function() {
-                imagesPreview(this, 'div.gallery');
+                imagesPreview(this, 'div.gallery', 'multiple');
                 
+            });
+
+            $('#my_file').on('change', function() {
+                imagesPreview(this, 'div.gallery', 'single')
             });
 
             
@@ -313,8 +322,12 @@
 
             // Multiple images preview in browser
            
-            function imagesPreview(input, placeToInsertImagePreview) {
+            function imagesPreview(input, placeToInsertImagePreview, file_count) {
             // var imagesPreview = function(input, placeToInsertImagePreview) {
+                console.log('Inside');
+                if(input.files.length !== window.images.length) {
+                    $(placeToInsertImagePreview).empty();
+                }
 
                 if (input.files) {   
                     var filesAmount = input.files.length;
@@ -330,7 +343,23 @@
                         var reader = new FileReader();
 
                         reader.onload = function(event) {
-                            $($.parseHTML('<img style="width: 100px; height: 100px">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                            // $($.parseHTML('<img style="width: 100px; height: 100px">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                            console.log('file_count', file_count, placeToInsertImagePreview);
+                            switch(file_count) {
+                                case 'single': 
+                                    console.log('single', $(placeToInsertImagePreview));
+                                    $(placeToInsertImagePreview).empty();
+                                    $($.parseHTML('<img class="small-img" />')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                                break; 
+
+                                case 'multiple':
+                                    console.log('multiple');
+                                    $($.parseHTML('<img class="small-img" />')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                                break; 
+
+                                default: $($.parseHTML('<img class="small-img"')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+
+                            }
                         }
 
                         reader.readAsDataURL(input.files[i]);

@@ -63,6 +63,7 @@
             @foreach($card->labels as $label)
                 <th scope="col"><a href={{"/dashboard/admin/data/businesscard/label/".$label->id}}>Label ID {{$label->id}}</a></th>
             @endforeach
+            <th scope="col">Preview Text Color</th>
             <th scope="col"></th>
         </tr> 
     </thead>
@@ -73,6 +74,7 @@
             @foreach($color->labels as $label)
                 <td>{{ $label->pivot->color }}</td>
             @endforeach 
+            <td>{{ $color->preview_text_color}}</td> 
             <td>
                 {{ link_to_action('AdminController@deleteBusinesscardColor', 'Delete', ['id' => $color->id], ['class' => 'btn btn-danger'] )}}
                 {{-- <input type="checkbox" value={{$color->id}} name={{"colors[".$color->id."]"}} required /> --}}
@@ -84,6 +86,7 @@
             @foreach($card->labels as $label)
                 <td><input type="text" name={{ "labels[".$label->id."]" }} required /></td>
             @endforeach 
+            <td><input type="text" name="preview_text_color" /></td>
             <td><button type="submit" name="action" value="addColor" class="btn btn-success">Add</button></td>
         </tr>
     </tbody> 

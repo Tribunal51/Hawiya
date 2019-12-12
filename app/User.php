@@ -42,7 +42,9 @@ class User extends Authenticatable implements MustVerifyEmail
         'designer' => 'boolean',
         'sales_admin' => 'boolean',
         'printing_admin' => 'boolean',
-        'store_admin' => 'boolean'
+        'store_admin' => 'boolean',
+        'star' => 'boolean',
+        'google' => 'boolean'
     ];
 
     public function setPasswordAttribute($pass) {
