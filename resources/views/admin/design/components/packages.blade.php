@@ -14,6 +14,7 @@
                     <th scope="col">Posts</th>
                 @endif
                 <th scope="col">Image</th>
+                <th scope="col">Image (Arabic)</th>
                 <th scope="col">Old Price</th> 
                 <th scope="col">New Price</th>
                 <th scope="col"></th> 
@@ -30,7 +31,8 @@
                     @if($data['packages'][0]->posts > 0)
                         <td>{{ $item->posts }}</td>
                     @endif
-                    <td>{{ $item->image }}</td>
+                    <td><img src="{{ $item->image }}" alt="{{$item->image}}" class="small-img" /></td>
+                    <td><img src="{{ $item->image_ar}}" alt="{{$item->image_ar}}" class="small-img" /></td>
                     <td>{{ $item->old_price }}</td> 
                     <td>{{ $item->new_price }}</td>
                     <td>{{ link_to_action('PagesController@editPackage', 'Edit', ['id' => $item->id], ['class' => 'btn btn-secondary'])}}</td> 

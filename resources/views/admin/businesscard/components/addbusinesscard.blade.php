@@ -1,59 +1,59 @@
 {!! Form::open(['action' => 'AdminController@addBusinesscard', 'method' => 'POST', 'files' => true]) !!}
     @csrf 
 
-    
+    <h3> Create Business Card</h3>
 
     <div class="form-group mt-2 row">
-        <label for="shape" class="col-md-4 col-form-label text-md-right">Shape</label> 
-        <div class="col-md-6">
-            <select name="shape">
-                <option value="square">Square</option> 
-                <option value="vertical">Vertical</option> 
-                <option value="horizontal" default>Horizontal</option>
-            </select> 
-        </div> 
+        <label for="shape" class="col-md-2 offset-md-2">Shape</label> 
+        
+        <select name="shape" class="col-md-2">
+            <option value="square">Square</option> 
+            <option value="vertical">Vertical</option> 
+            <option value="horizontal" default>Horizontal</option>
+        </select> 
+       
     </div> 
 
     <div class="form-group mt-2 row">
-        <label for="price1" class="col-md-4 col-form-label text-md-right">Price with Cover</label> 
-        <div class="col-md-6">
-            <input type="number" id="price1" name="price_with_cover" required /> 
-        </div> 
+        <label for="price1" class="col-md-2 offset-md-2">Price with Cover</label> 
+        
+        <input type="number" id="price1" name="price_with_cover" class="col-md-2" required /> 
+        
     </div> 
 
     <div class="form-group mt-2 row">
-        <label for="price2" class="col-md-4 col-form-label text-md-right">Price without Cover</label> 
-        <div class="col-md-6">
-            <input type="number" name="price_without_cover" id="price2" required /> 
-        </div> 
+        <label for="price2" class="col-md-2 offset-md-2">Price without Cover</label> 
+        
+        <input type="number" class="col-md-2" name="price_without_cover" id="price2" required /> 
+        
     </div> 
 
     <div class="form-group mt-2 row">     
-        <label for="frontbasephoto" class="col-md-4 col-form-label text-md-right">Front Base Photo</label>
-        <input type="file" name="frontbasephoto" id="frontbasephoto" /> 
+        <label for="frontbasephoto" class="col-md-2 offset-md-2">Front Base Photo</label>
+        <input type="file" name="frontbasephoto" id="frontbasephoto" class="col-md-3" /> 
         {{-- <button class="btn btn-secondary" type="button" onclick="document.location.reload()">Remove Photos</button>    --}}
-        <div class="frontbasephoto"></div>
+        <div class="frontbasephoto col-md-3"></div>
     </div> 
 
     <div class="form-group mt-2 row">
-        <label for="fronttextphoto" class="col-md-4 col-form-label text-md-right">Front Text Photo</label>      
-        <input type="file" name="fronttextphoto" id="fronttextphoto" /> 
+        <label for="fronttextphoto" class="col-md-2 offset-md-2">Front Text Photo</label>      
+        <input type="file" name="fronttextphoto" id="fronttextphoto" class="col-md-3" /> 
         {{-- <button class="btn btn-secondary" type="button" onclick="document.location.reload()">Remove Photos</button>    --}}
-        <div class="fronttextphoto"></div>
+        <div class="fronttextphoto col-md-3"></div>
     </div> 
     
     <div class="form-group mt-2 row">   
-        <label for="backbasephoto" class="col-md-4 col-form-label text-md-right">Back Base Photo</label>  
-        <input type="file" name="backbasephoto" id="backbasephoto" /> 
+        <label for="backbasephoto" class="col-md-2 offset-md-2">Back Base Photo</label>  
+        <input type="file" name="backbasephoto" id="backbasephoto" class="col-md-3" /> 
         {{-- <button class="btn btn-secondary" type="button" onclick="document.location.reload()">Remove Photos</button>    --}}
-        <div class="backbasephoto"></div>
+        <div class="backbasephoto col-md-3"></div>
     </div>
 
     <div class="form-group mt-2 row">   
-        <label for="backtextphoto" class="col-md-4 col-form-label text-md-right">Back Text Photo</label>  
-        <input type="file" name="backtextphoto" id="backtextphoto" /> 
+        <label for="backtextphoto" class="col-md-2 offset-md-2">Back Text Photo</label>  
+        <input type="file" name="backtextphoto" id="backtextphoto" class="col-md-3" /> 
         {{-- <button class="btn btn-secondary" type="button" onclick="document.location.reload()">Remove Photos</button>    --}}
-        <div class="backtextphoto"></div>
+        <div class="backtextphoto col-md-3"></div>
     </div>
 
     {!! Form::submit('Create', ['class' => 'btn btn-primary']) !!}
@@ -190,7 +190,7 @@
                         var reader = new FileReader();
 
                         reader.onload = function(event) {
-                            $($.parseHTML('<img style="width: 100px; height: 100px">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
+                            $($.parseHTML('<img class="small-img">')).attr('src', event.target.result).appendTo(placeToInsertImagePreview);
                         }
 
                         reader.readAsDataURL(input.files[i]);

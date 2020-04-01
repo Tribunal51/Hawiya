@@ -40,6 +40,7 @@
     },
     "dependencies": {
         "localforage": "^1.7.3",
+        "react-router-dom": "^5.1.2",
         "vue-i18n": "^8.14.0",
         "vue-router": "^3.0.6",
         "vue-scrollto": "^2.15.0",

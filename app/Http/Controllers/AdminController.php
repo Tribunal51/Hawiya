@@ -318,7 +318,7 @@ class AdminController extends Controller
         $product->image = isset($image) ? $image : null;
         $product->price = $request->price;
         if($product->save()) {
-            return redirect('/dashboard/admin/databoard/addData/'.$category->id)->back()->with('success', 'Product added.');
+            return redirect('/dashboard/admin/databoard/addData/'.$category->id)->with('success', 'Product added.');
         }
         else {
             return redirect()->back()->with('error', 'Product could not be added.');
@@ -326,30 +326,27 @@ class AdminController extends Controller
     }
 
     public function editProduct(Request $request, $id) {
+
+        $this->validate($request, [
+            'title' => 'required|string',
+            'title_ar' => 'required|string',
+            'price' => 'required|numeric',
+            'changeImage' => 'nullable|string',
+            'image' => 'nullable|image',
+        ]);
         $product = Product::find($id);
         if(!$product) {
             return redirect()->back()->with('error', 'Invalid Product ID.');
         }
-        if(!isset($request->title) || !isset($request->price) || !isset($request->title_ar)) {
-            return redirect()->back()->with('error', 'Required fields missing.');
-        }
-        if(isset($request->image)) {
-            if($request->image === null) {
-                Helper::delete_data_image($product->image);
-                $image = null;
-            }
-            if(is_file($request->image)) {
-                if($product->image) {
-                    Helper::delete_data_image($product->image);
-                }
-                $image = Helper::store_data_image($request->file('image'), $product->category_id);
-            }
+
+        if($request->changeImage) {
+            $product->image = $request->image ? Helper::replace_data_image($request->image, $product->image) : Helper::delete_data_image($product->image);
         }
         
         $product->title = $request->title;
         $product->title_ar = $request->title_ar;
         $product->price = $request->price;
-        $product->image = isset($image) ? $image : $product->image;
+
         if(!$product->save()) {
             return redirect()->back()->with('error', 'Product could not be modified.');
         }
@@ -381,12 +378,16 @@ class AdminController extends Controller
     }
 
     public function addPackage(Request $request) {
+        
+        // return $request;
         $this->validate($request, [
             'title' => 'required',
             'title_ar' => 'required',
             'category_id' => 'required',
             'old_price' => 'required',
-            'new_price' => 'required'
+            'new_price' => 'required',
+            'image' => 'required|image',
+            'image_ar' => 'required|image'
         ]);
         $category = Category::find($request->category_id);
         if(!$category) {
@@ -396,16 +397,21 @@ class AdminController extends Controller
             $file = $request->file('image');
            $image = Helper::store_data_image($file, $request->category_id);
         }
+        if(is_file($request->image_ar)) {
+            $file = $request->file('image_ar');
+            $image_ar = Helper::store_data_image($file, $request->category_id);
+        }
         $package = new Package;
         $package->title = $request->title;
         $package->title_ar = $request->title_ar;
         $package->category_id = $category->id;
         $package->category_name = $category->name;
         $package->image = isset($image) ? $image : null;
+        $package->image_ar = isset($image_ar) ? $image_ar : null;
         $package->old_price = $request->old_price;
         $package->new_price = $request->new_price;
         if($package->save()) {
-            return redirect('/dashboard/admin/databoard/addData/'.$category->id)->back()->with('success', 'Package created.');
+            return redirect('/dashboard/admin/databoard/addData/'.$category->id)->with('success', 'Package created.');
         }
         else {
             return redirect()->back()->with('error', 'Package could not be created.');
@@ -414,31 +420,32 @@ class AdminController extends Controller
 
     public function editPackage(Request $request, $id) {
         // return $request;
+        $this->validate($request, [
+            'title' => 'required|string',
+            'title_ar' => 'required|string',
+            'new_price' => 'required|numeric',
+            'old_price' => 'required|numeric',
+            'changeImage' => 'nullable|string',
+            'image' => 'nullable|image',
+            'changeImageAr' => 'nullable|string',
+            'image_ar' => 'nullable|image'
+        ]);
         $package = Package::find($id);
         if(!$package) {
             return redirect()->back()->with('error', 'Invalid Package ID.');
         }
-        if(!isset($request->title) || !isset($request->title_ar) || !isset($request->new_price) || !isset($request->old_price)) {
-            return redirect()->back()->with('error', 'Required fields missing.');
+
+        if($request->changeImage) {
+            $package->image = $request->image ? Helper::replace_data_image($request->image, $package->image) : Helper::delete_data_image($package->image);
         }
-        if(isset($request->image)) {
-            if($request->image === null) {
-                Helper::delete_data_image($package->image);
-                $image = null;
-            }
-            if(is_file($request->image)) {
-                if($package->image) {
-                    Helper::delete_data_image($package->image);
-                }
-                $image = Helper::store_data_image($request->file('image'), $package->category_id);
-            }
+        if($request->changeImageAr) {
+            $package->image_ar = $request->image_ar ? Helper::replace_data_image($request->image_ar, $package->image_ar) : Helper::delete_data_image($package->image_ar);
         }
         
         $package->title = $request->title;
         $package->title_ar = $request->title_ar;
         $package->old_price = $request->old_price;
         $package->new_price = $request->new_price;
-        $package->image = isset($image) ? $image : $package->image;
         if(!$package->save()) {
             return redirect()->back()->with('error', 'Package could not be modified.');
         }
@@ -541,17 +548,17 @@ class AdminController extends Controller
             'shape' => 'required|string',
             'price_with_cover' => 'required|numeric',
             'price_without_cover' => 'required|numeric',
-            'fronttextphoto' => 'required|image',
+            'fronttextphoto' => 'nullable|image',
             'frontbasephoto' => 'required|image',
-            'backtextphoto' => 'required|image',
-            'backbasephoto' => 'required|image'
+            'backtextphoto' => 'nulable|image',
+            'backbasephoto' => 'nullable|image'
         ]);
         $card = BusinessCard::create([
             'shape' => $request->shape,
-            'fronttextphoto' => Helper::store_data_image($request->fronttextphoto),
-            'frontbasephoto' => Helper::store_data_image($request->backbasephoto),
-            'backtextphoto' => Helper::store_data_image($request->backtextphoto),
-            'backbasephoto' => Helper::store_data_image($request->backbasephoto)
+            'fronttextphoto' => isset($request->fronttextphoto) ? Helper::store_data_image($request->fronttextphoto) : null,
+            'frontbasephoto' => Helper::store_data_image($request->frontbasephoto),
+            'backtextphoto' => isset($request->backtextphoto) ? Helper::store_data_image($request->backtextphoto) : null,
+            'backbasephoto' => isset($request->backbasephoto) ? Helper::store_data_image($request->backbasephoto) : null
         ]);
         if($card) {
             $price = BusinessCardPrice::create([
@@ -700,129 +707,6 @@ class AdminController extends Controller
         }
         return redirect()->back()->with('success', 'Color deleted successfully.');
     }
-
-
-    public function addCommercialItem(Request $request) {
-        $this->validate($request, [
-            'name' => 'required|string',
-            'image' => 'required|image',
-            'price' => 'required|numeric'
-        ]);
-        $item = new CommercialItem;
-        $item->name = $request->name;
-        $item->image = Helper::store_data_image($request->image);
-        $item->price = $request->price;
-        if(!$item->save()) {
-            return redirect()->back()->with('error', 'Item could not be created.');
-        }
-        return redirect()->back()->with('success', 'Item created successfully.');
-    }
-
-    public function deleteCommercialItems(Request $request) {
-        $this->validate($request, [
-            'items' => 'required|array'
-        ]);
-        $items = $request->items;
-        foreach($items as $item_id) {
-            $item = CommercialItem::find($item_id);
-            if(!$item) {
-                return redirect()->back()->with('error', 'Item '.$item_id.' does not exist.');
-            }
-            if(!$item->delete()) {
-                return redirect()->back()->with('error', 'Item '.$item_id.' could not be deleted.');
-            }
-            
-        }
-        return redirect()->back()->with('success', 'Items deleted.');
-    }
-
-    public function editCommercialOrder(Request $request, $id) {
-        $order = CommercialOrder::find($id);
-        if(!$order) {
-            return redirect()->back()->with('error', 'Invalid Commercial Order.');
-        }
-        if(isset($request->printing_admin)) {
-            $order->printing_admin_id = $request->printing_admin;
-        }
-        if(!$order->save()) {
-            return redirect()->back()->with('error', 'Order could not be updated.');
-        }
-        return redirect()->back()->with('success', 'Order updated.');
-    }
-
-    public function addPersonalItem(Request $request) {
-        $this->validate($request, [
-            'name' => 'required|string',
-            'image' => 'required|image'
-        ]);
-
-        $item = PersonalItem::create([
-            'name' => $request->name, 
-            'image' => Helper::store_data_image($request->image)
-        ]);
-
-        if($item) {
-            return redirect()->back()->with('success', 'Personal Item created.');
-        }
-        else {
-            return redirect()->back()->with('error', 'Personal Item could not be created.');
-        }
-    }
-
-    public function deletePersonalItems(Request $request) {
-        $this->validate($request, [
-            'items' => 'required|array'
-        ]);
-        foreach($request->items as $item_id) {
-
-            $item = PersonalItem::find($item_id);
-            if(!$item) {
-                return redirect()->back()->with('error', 'Item ID '.$item->id.' not valid. Item not found.');
-            }
-            if(!$item->delete()) {
-                return redirect()->back()->with('error', 'Item ID '.$item->id.' could not be deleted.');
-            }
-        }
-        return redirect()->back()->with('success', 'Personal Item(s) deleted.');
-    }
-
-    public function addPersonalSubitem(Request $request, $id) {
-        $this->validate($request, [
-            'name' => 'required|string',
-            'image' => 'required|image'
-        ]);
-        $item = PersonalItem::find($id);
-        $subitem = new PersonalSubitem;
-        $subitem->name = $request->name;
-        $subitem->image = Helper::store_data_image($request->image);
-        $subitem->item()->associate($item);
-        if(!$subitem->save()) {
-            return redirect()->back()->with('error', 'SubItem could not be created.');
-        }
-        else {
-            return redirect()->back()->with('success', 'SubItem created successfully.');
-        }
-    }
-
-    public function deletePersonalSubitems(Request $request) {
-        $this->validate($request, [
-            'subitems' => 'required|array'
-        ]);
-        foreach($request->subitems as $subitem_id) {
-            $subitem = PersonalSubitem::find($subitem_id);
-            if(!$subitem) {
-                return redirect()->back()->with('error', 'Personal Subitem '.$subitem_id.' not found.');
-            }
-            if(!$subitem->delete()) {
-                return redirect()-> back()->with('error', 'Personal Subitem '.$subitem->id.' could not be deleted.');
-            }
-
-        }
-        return redirect()->back()->with('success', 'Personal Subitems deleted.');
-    }
-
-
-
 }
 
 

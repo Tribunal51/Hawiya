@@ -265,10 +265,6 @@
         </main>
     </div>
 
-    <div id="test">
-
-    </div>
-
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
 
     <script type="text/javascript">
@@ -426,8 +422,9 @@
         }
 
         .small-img {
-            width: 100px;
-            height: auto;
+            max-height: 200px;
+            max-width: 200px;
+            width: auto;
         }
 
         html[dir="ltr"] .alignLang {
@@ -455,6 +452,18 @@
             html[dir="rtl"] .alignLangOpposite {
                 text-align: right;
             }
+        }
+
+
+        table {
+            /* table-layout: fixed; */
+        }
+
+        th, td {
+            /* border-style: solid; */
+            /* border-width: 5px; */
+            /* border-color: #BCBCBC */
+            /* word-wrap: break-word; */
         }
     </style>
 </body>

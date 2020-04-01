@@ -31,6 +31,8 @@
                     <a class="dropdown-item" href="/dashboard/admin/data/commercial/items">Commercial Items</a> 
                     <a class="dropdown-item" href="/dashboard/admin/data/businesscards">Business Card</a> 
                     <a class="dropdown-item" href="/dashboard/admin/data/personal/items">Personal Items</a>
+                    <a class="dropdown-item" href="/dashboard/admin/data/flyers">Flyer</a>
+                    <a class="dropdown-item" href="/dashboard/admin/data/store/products">Store Products</a>
                     <a class="dropdown-item" href="#">Option 2</a>
                 </div> 
             </li> 

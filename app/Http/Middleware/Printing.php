@@ -21,7 +21,7 @@ class Printing
         if(!$user) {
             return redirect('/login');
         }
-        if(!$user->admin || !$user->printing_admin) {
+        if(!$user->admin && !$user->printing_admin) {
             throw new AuthorizationException('You are not permitted to view this page.');
         }
         return $next($request);

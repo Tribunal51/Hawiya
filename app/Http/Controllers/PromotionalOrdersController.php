@@ -61,7 +61,12 @@ class PromotionalOrdersController extends Controller
         $order = new PromotionalOrder;
         $order->user_id = $request->user_id;
         $order->products = implode(",", $request->items);
-        $order->category_id = Category::where('name', '=', 'Promotional')->first()->id;
+
+        $category = Category::where('name', '=', 'Promotional')->first();
+        $order->category_id = $category->id;
+        $order->order_token = $category->token_prefix.$order->getNextId();
+
+
         if($order->save()) {
             return $order->id;  // echo "Order registered successfully.";
         }

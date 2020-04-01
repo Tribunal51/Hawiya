@@ -115,7 +115,11 @@ class SocialMediaOrdersController extends Controller
         $order = new SocialMediaOrder;
         $order->user_id = $request->user_id;
         $order->package = $request->package;
-        $order->category_id = Category::where('name', '=', 'Social Media')->first()->id;
+
+        $category = Category::where('name', '=', 'Social Media')->first();
+        $order->category_id = $category->id;
+        $order->order_token = $category->token_prefix.$order->getNextId();
+
         $order->logo_photo = Helper::save_file($request->logo_photo);
         
        

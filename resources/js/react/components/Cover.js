@@ -10,7 +10,7 @@ class Cover extends Component {
     render() {
         return (
             <div className="container">
-                Test component
+                Test components
                 <BlackBox />
             </div>
         )

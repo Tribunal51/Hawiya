@@ -209,6 +209,7 @@ class AppHelper {
                 $folder = 'uploads';
             }
             $relative_filepath = $file->store('public/'.$folder);
+
             $image = 'http://hawiya.net/storage/'.substr($relative_filepath, strlen('public/'));
             return $image;
 
@@ -218,8 +219,22 @@ class AppHelper {
         } 
     }
 
+    public static function replace_data_image($new_file, $old_file) {
+        self::delete_data_image($old_file);
+        if($new_file) {
+            return self::store_data_image($new_file);
+        }
+        else {
+            return null;
+        }
+        
+    }
+
     public static function delete_data_image($url) {
         $folder = ltrim($url, 'http://hawiya.net/');
         @unlink($folder);
     }
+
+    
+
 }

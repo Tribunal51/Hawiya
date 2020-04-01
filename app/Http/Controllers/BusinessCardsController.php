@@ -111,23 +111,35 @@ class BusinessCardsController extends Controller
         if(!isset($request->id) || !isset($request->color)) {
             return -2;  // echo "Required fields missing.";
         }
-        $card = BusinessCard::where('id', '=', $request->id)  
-        ->get()->first();
-        $colors = BusinessCardColor::where('business_card_id', '=', $card->id)->with('labels')->get();
+        $card = BusinessCard::find($request->id);
+        if(!$card) {
+            return -3;  // echo "Card not found.";
+        }
+        $colors = BusinessCardColor::where('business_card_id', '=', $card->id)->get();
         $selected_color = null;
+        
         foreach($colors as $color) {
+            // echo $color->name." ".$request->color;
             if($color->name === $request->color) {
+                
                 $selected_color = $color;
             }
         }
+        
         if(isset($selected_color)) {
             foreach($selected_color->labels as $label) {
                 $label->color = $label->pivot->color;
             }
             $card->labels = $selected_color->labels;
+            return $card; 
         }
-        // return $card->colors;
-        return $card;
+        else {
+            return -4;  // echo "Color not found.";
+        }
+        
+        
+        
+        // return $card;
         // $card_color = BusinessCard::find($id)->with(['colors.labels' => function($query) use ($color, $id) {
         //     $query->where('colors.name','=',$color);
         // }])->get();

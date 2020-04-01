@@ -47,6 +47,7 @@ class LogoDesignOrdersController extends Controller
         if(!isset($request->user_id) 
         || !isset($request->package) 
         || !isset($request->logotype) 
+        || !isset($request->style)
         || !isset($request->color) 
         || !isset($request->brand_name) 
         || !isset($request->business_field) 
@@ -84,8 +85,10 @@ class LogoDesignOrdersController extends Controller
         $new_order->font = $request->font;
         $new_order->branding = $request->branding;
         $new_order->subject = $request->subject;
-        $new_order->category_id = Category::where('name', '=', 'Logo Design')->first()->id;
 
+        $category = Category::where('name', '=', 'Logo Design')->first();
+        $new_order->category_id = $category->id;
+        $new_order->order_token = $category->token_prefix.$new_order->getNextId();
         if($new_order -> save()) {
             return $new_order->id;
             //return $new_order->id; //echo order_number 

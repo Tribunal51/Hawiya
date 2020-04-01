@@ -1,3 +1,6 @@
+{{-- {{ $item }} --}}
+
+
 <table class="table">
     <thead class="thead-dark"> 
         <tr>
@@ -8,19 +11,25 @@
     <tbody> 
         @foreach((array)json_decode($item) as $key => $value)
             <tr> 
-                <td>{{ $key }}</td> 
-                <td>
-                    @switch($key)
-                        @case('image')
-                            <img src={{$value}} alt={{$value}} />
-                        @break 
+                @switch($key) 
+                    @case('image')
+                        <td>{{ $key }}</td>
+                        <td> <img class="small-img" src={{$value}} alt={{$value}} /></td>  
+                    @break 
 
-                        @default 
-                            {{ $value }}
-                        @break 
-                    @endswitch 
-                </td> 
+                    @case('options_info')
+                    @break 
+
+                    @default
+                        <td>{{ $key }}</td> 
+                        <td>{{ $value }}</td>
+                    @break 
+                @endswitch 
             </tr>   
         @endforeach 
     </tbody> 
 </table> 
+
+
+    
+

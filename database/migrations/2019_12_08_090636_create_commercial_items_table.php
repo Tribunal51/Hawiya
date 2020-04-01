@@ -16,10 +16,12 @@ class CreateCommercialItemsTable extends Migration
         Schema::create('commercial_items', function (Blueprint $table) {
             $table->increments('id');
             $table->string('name');
-            $table->string('image');
+            $table->string('image')->nullable();
             $table->integer('price')->nullable();
             $table->timestamps();
         });
+        $seeder = new CommercialItemSeeder();
+        $seeder->run();
     }
 
     /**

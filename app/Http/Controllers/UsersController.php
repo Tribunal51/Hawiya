@@ -10,8 +10,20 @@ use App\Issue;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\Hash;
 
+use App\Models\User\Address;
+
+use App\Traits\GetOrders;
+
+use App\Models\PendingReorder;
+
+use Validator;
+
+use App\Notifications\UserRegistered;
+
 class UsersController extends Controller
 {
+    use GetOrders;
+
     /**
      * Display a listing of the resource.
      *
@@ -22,7 +34,7 @@ class UsersController extends Controller
         //$user = User::find(2);
         //return $user;
 
-        $users = User::all();
+        $users = User::with('addresses')->get();
         foreach($users as $user) {
             $user->issues = Issue::where('user_id', '=', $user->id)->get(['id', 'title', 'issue']);
         }
@@ -69,6 +81,8 @@ class UsersController extends Controller
                 return -3; //echo "Required fields missing"
             } else if($new_user -> save()) {
                 //echo "User registered";
+
+                $new_user->notify(new UserRegistered($new_user));
                 return $new_user->id;
                 //return User::where('email','=',$new_user->email)->id;
                 //return new UserResource($new_user);
@@ -90,7 +104,7 @@ class UsersController extends Controller
         if(!isset($request->user_id)) {
             return -2;  // echo "Required fields missing";
         }
-        $user = User::find($request->user_id);
+        $user = User::with('addresses')->find($request->user_id);
         if(!$user) {
             return -3;  // echo "User not found";
         }
@@ -322,6 +336,79 @@ class UsersController extends Controller
             }
         }
     }
+
+
+    public function addAddress(Request $request, $id) {
+        $user = User::find($id);
+        if(!$user) {
+            return -3;  // echo "User not found.";
+        }
+        $validator = Validator::make($request->all(), [
+            'title' => 'nullable|string',
+            'zipcode' => 'nullable|string',
+            'block' => 'nullable|string',
+            'street' => 'nullable|string',
+            'avenue' => 'nullable|string',
+            'house' => 'nullable|string',
+            'building' => 'nullable|string',
+            'floor' => 'nullable|string',
+            'apartment' => 'nullable|string',
+            'phone' => 'nullable|string',
+            'notes' => 'nullable|string',
+            'city' => 'nullable|string',
+            'country' => 'nullable|string'
+        ], [
+            'required' => -2
+        ]);
+        if($validator->fails()) {
+            return $validator->errors()->first();
+        }
+
+        $address = $user->addresses()->create([
+            'title' => $request->title,
+            'zipcode' => $request->zipcode,
+            'block' => $request->block,
+            'street' => $request->street,
+            'avenue' => $request->avenue,
+            'house' => $request->house,
+            'building' => $request->building,
+            'floor' => $request->floor,
+            'apartment' => $request->apartment,
+            'phone' => $request->phone, 
+            'notes' => $request->notes,
+            'city' => $request->city,
+            'country' => $request->country
+        ]);
+        if(!$address) {
+            return -1;  // echo "Address could not be created.";
+        }
+        return $address->id;
+        
+
+    }
+
+    public function getUserAddresses(Request $request, $id) {
+        $user = User::find($id);
+        if(!$user) {
+            return -3;  // echo "User not found.";
+        }
+        return $user->addresses;
+    }
+
+    public function deleteAddress(Request $request, $id) {
+        $address = Address::find($id);
+        if(!$address) {
+            return -3;  // echo "Address not found.";
+        }
+        if(!$address->delete()) {
+            return -1;  // echo "Address could not be deleted.";
+        }
+        return 1;
+    }
+
+    
+
+   
 
 
 

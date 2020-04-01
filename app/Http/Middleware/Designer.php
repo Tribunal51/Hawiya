@@ -22,7 +22,7 @@ class Designer
         if(!$user) {
             return redirect('/login');
         }
-        if(!$user->admin || !$user->designer) {
+        if(!$user->admin && !$user->designer) {
             throw new AuthorizationException('You do not have permission to access this page.');
         }
         return $next($request);

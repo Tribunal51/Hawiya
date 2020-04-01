@@ -48,15 +48,32 @@ Route::group([
     Route::get('/data/businesscards', 'PagesController@businesscards');
     Route::get('/data/businesscard/{id}', 'PagesController@businesscard');
     Route::get('/data/businesscard/label/{id}', 'PagesController@businesscardLabel');
-    Route::get('/data/commercial/items', 'PagesController@commercialItems');
-    Route::get('/data/commercial/item/{id}', 'PagesController@commercialItem');
+
+    Route::get('/data/commercial/items', 'CommercialItemsController@itemsPage');
+    Route::get('/data/commercial/item/{id}', 'CommercialItemsController@itemPage');
 
     Route::get('/data/personal/items', 'PagesController@adminDisplayPersonalItems');
     Route::get('/data/personal/item/{id}', 'PagesController@adminDisplayPersonalItem');
+    Route::get('/data/personal/subitem/{id}', 'PersonalItemsController@subitemPage');
+    Route::get('/data/personal/item/{id}/edit', 'PersonalItemsController@editItemPage');
+    Route::get('/data/personal/subitem/{id}/edit', 'PersonalItemsController@editSubitemPage');
 
-    Route::get('/orderboard/commercial', 'PagesController@commercialOrderboard');
-    Route::get('/orderboard/commercial/{id}', 'PagesController@commercialOrder');
-    Route::put('/orderboard/commercial/{id}', 'AdminController@editCommercialOrder');
+    Route::get('/orderboard/commercial', 'CommercialOrdersController@orderboardPage');
+    Route::get('/orderboard/commercial/{id}', 'CommercialOrdersController@orderPage');
+    Route::put('/orderboard/commercial/{id}', 'CommercialOrdersController@editOrder');
+
+    Route::get('/data/flyers', 'FlyersController@flyersPage');
+    Route::get('/data/flyer/{id}', 'FlyersController@flyerPage');
+
+    Route::get('/data/commercial/designs/{category_id}', 'CommercialItemsController@designsPage');
+    Route::get('/data/commercial/design/{id}', 'CommercialItemsController@designPage');
+    Route::get('/data/commercial/label/{id}', 'CommercialItemsController@labelPage');
+    Route::get('/data/commercial/color/{id}', 'CommercialItemsController@colorPage');
+    Route::get('/data/commercial/design/{id}/edit', 'CommercialItemsController@editDesignPage');
+    Route::get('/data/commercial/item/{id}/edit', 'CommercialItemsController@editItemPage');
+    Route::get('/data/commercial/design/{id}/label/create', 'CommercialItemsController@createLabelPage');
+    
+    Route::get('/test', 'PagesController@adminTestPage');
 
     Route::post('/databoard/addPackage', 'AdminController@addPackage');
     Route::put('/databoard/editPackage/{id}', 'AdminController@editPackage');
@@ -84,15 +101,48 @@ Route::group([
     Route::get('/businesscard/deleteColor/{id}', 'AdminController@deleteBusinesscardColor');
     Route::delete('/businesscard/colors', 'AdminController@deleteBusinesscardColors');
 
-    Route::post('/data/commercial/item', 'AdminController@addCommercialItem');
-    Route::delete('/data/commercial/items', 'AdminController@deleteCommercialItems');
+    Route::post('/data/commercial/item', 'CommercialItemsController@addItem');
+    Route::put('/data/commercial/item/{id}', 'CommercialItemsController@editItem');
+    Route::delete('/data/commercial/items', 'CommercialItemsController@deleteItems');
 
-    Route::post('/data/personal/item', 'AdminController@addPersonalItem');
-    Route::delete('/data/personal/items', 'AdminController@deletePersonalItems');
-    Route::post('/data/personal/item/{id}/subitem', 'AdminController@addPersonalSubitem');
-    Route::delete('/data/personal/subitems', 'AdminController@deletePersonalSubitems');
+    Route::post('/data/personal/item', 'PersonalItemsController@addPersonalItem');
+    Route::put('/data/personal/item/{id}', 'PersonalItemsController@editItem');
+    Route::delete('/data/personal/items', 'PersonalItemsController@deletePersonalItems');
+    Route::post('/data/personal/item/{id}/subitem', 'PersonalItemsController@addPersonalSubitem');
+    Route::put('/data/personal/subitem/{id}', 'PersonalItemsController@editSubitem');
+    Route::delete('/data/personal/subitems', 'PersonalItemsController@deletePersonalSubitems');
+
+    Route::post('/data/flyer', 'FlyersController@addFlyer');
+    Route::delete('/data/flyers', 'FlyersController@deleteFlyers');
+    Route::post('/flyer/{id}/label', 'FlyersController@addLabel');
+    Route::delete('/flyer/labels', 'FlyersController@deleteLabels');
+    Route::post('/flyer/{id}/color', 'FlyersController@addColor');
+    Route::get('/flyer/deleteColor/{id}', 'FlyersController@deleteColor');
+
+    Route::post('/data/commercial/design/{category_id}', 'CommercialItemsController@addDesign');
+    Route::delete('/data/commercial/designs', 'CommercialItemsController@deleteDesigns');
+    Route::post('/data/commercial/design/{id}/label', 'CommercialItemsController@addLabel');
+    Route::delete('/data/commercial/labels', 'CommercialItemsController@deleteLabels');
+    Route::post('/data/commercial/design/{id}/color', 'CommercialItemsController@addColor');
+    Route::get('/data/commercial/deleteColor/{id}', 'CommercialItemsController@deleteColor');
+    Route::put('/data/commercial/label/{id}', 'CommercialItemsController@editLabel');
+    Route::put('/data/commercial/color/{id}', 'CommercialItemsController@editColor');
+    Route::put('/data/commercial/design/{id}', 'CommercialItemsController@editDesign');
+    
+    Route::get('/data/store/products', 'StoreController@productsPage');
+    Route::get('/data/store/product/create', 'StoreController@createProductPage');
+    Route::get('/data/store/product/{id}', 'StoreController@productPage');
+    Route::get('/data/store/product/{id}/edit', 'StoreController@editProductPage');
 
     
+    Route::post('/data/store/product', 'StoreController@createProduct');
+    Route::put('/data/store/product/{id}/edit', 'StoreController@editProduct');
+    Route::delete('/data/store/products', 'StoreController@deleteProducts');
+    
+    Route::get('/orderboard/store', 'StoreController@superAdminStoreOrdersPage');
+    Route::get('/orderboard/store/{id}', 'StoreController@superAdminStoreOrderPage');
+    Route::get('/orderboard/store/{id}/edit', 'StoreController@superAdminModifyStoreOrderPage');
+    Route::put('/orderboard/store/{id}', 'StoreController@updateOrder');
 });
 
 Route::group([
@@ -136,7 +186,30 @@ Route::group([
     Route::get('/user/create', 'PagesController@salesCreateUser');
     Route::get('/user/{id}', 'PagesController@salesDisplayUser');
 
+    Route::get('/user/{id}/createpreorder/{category}', 'SalesAdminController@createPreorderPage');
+    
     Route::post('/user/create', 'SalesAdminController@createUser');
+    Route::post('/user/{id}/createpreorder/{category}', 'SalesAdminController@createPreorder');
+
+    Route::get('/reorders', 'SalesAdminController@reordersPage');
+    Route::get('/reorder/{id}', 'SalesAdminController@reorderPage');
+    Route::get('/reorder/{id}/edit', 'SalesAdminController@updateReorderPage');
+    Route::put('/reorder/{id}', 'SalesAdminController@updateReorder');
+    Route::get('/masterorders', 'SalesAdminController@masterordersPage');
+    Route::get('/masterorder/{id}', 'SalesAdminController@masterorderPage');
+    Route::post('/masterorder/{id}', 'SalesAdminController@updateMasterOrder');
+    Route::get('/order/{token}', 'SalesAdminController@orderPage');
+});
+
+Route::group([
+    'middleware' => 'store', 
+    'prefix' => 'dashboard/store'
+], function() {
+    Route::get('', 'StoreController@storeDashboard');
+    Route::get('/orders', 'StoreController@storeAdminStoreOrdersPage');
+    Route::get('/order/{id}', 'StoreController@storeAdminStoreOrderPage');
+    Route::put('/order/{id}', 'StoreController@updateOrder');
+
 });
 
 

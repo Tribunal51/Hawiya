@@ -7,6 +7,11 @@ use Illuminate\Database\Eloquent\Model;
 class BusinessCardLabel extends Model
 {
     //
+
+    protected $casts = [
+        
+    ];
+
     public function business_card() {
         return $this->belongsTo('App\Models\BusinessCard\BusinessCard');
     }

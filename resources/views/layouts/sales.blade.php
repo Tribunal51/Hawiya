@@ -3,6 +3,7 @@
 <div class="container">
     <main> 
         @include('components.messages')
-        @yield('sales')
+        {{-- <a href={{URL::previous()}} class="btn btn-secondary">Back</a> --}}
+        @yield('admin')
     </main>
 </div> 

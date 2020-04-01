@@ -17,8 +17,8 @@ class CreatePackagesTable extends Migration
             $table->increments('id');
             $table->string('title');
             $table->integer('posts')->nullable();
-            $table->integer('old_price');
-            $table->integer('new_price');
+            $table->decimal('old_price', 8,2);
+            $table->decimal('new_price', 8,2);
             $table->integer('category_id')->unsigned();
             $table->foreign('category_id')->references('id')->on('categories');
             $table->string('category_name')->nullable();

@@ -28,7 +28,7 @@
                     <td>{{ $profile->category_name }}</td>
                     <td>
                         @foreach($profile->uploads as $upload)
-                            <img style="width: 200px; height: 200px; border: 1px solid gray;" class="img-fluid" src="{{ $upload->filename }}" />
+                            <img class="small-img" src="{{ $upload->filename }}" />
                         @endforeach
                     </td>
                     <td>{{ $profile->details }}</td>

@@ -5,7 +5,7 @@
         
         <page-footer />
 
-        <Cover />
+        <!-- <Cover /> -->
         
     </v-app>
 </template>
@@ -63,7 +63,7 @@ export default {
 
 <style scoped>
     .Cover {
-        background-color: white;
+        background-color: white !important;
         overflow-x: hidden;
     }
 

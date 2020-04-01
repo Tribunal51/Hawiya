@@ -1,7 +1,7 @@
 @extends('layouts.sales')
 
-@section('sales')   
+@section('admin')   
     @include('components.user')
     <hr>
-    @include('sales.components.create_orders_section')
+    @include('sales.components.selectpreordercategory')
 @endsection 

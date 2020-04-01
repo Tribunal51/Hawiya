@@ -27,8 +27,7 @@
             <tr>
                 <td><a href={{"/dashboard/admin/order?id=".$order->id."&category_id=".$order->category_id }}>{{ $order->id }}</a></th>
                 <td><input type="checkbox" name="orders[]" /></td> 
-                <td><a href={{ '/dashboard/admin/user/'.$ord
-                er->user_id}}>{{ $order->user_id }}</a></td>
+                <td><a href={{ '/dashboard/admin/user/'.$order->user_id}}>{{ $order->user_id }}</a></td>
                 <td>{{ $order->products }}</td> 
                 <td>{{ $order->comment }}</td>
                 <td>{{ $order->created_at }}</td> 

@@ -18,13 +18,12 @@
     <div class="form-group mt-2 row">
         <label for="price" class="col-md-4 col-form-label text-md-right">Price</label> 
         <div class="col-md-6">
-            <input type="number" id="price" name="price" class="form-control" required />
+            <input type="number" step="0.01" id="price" name="price" class="form-control" required />
         </div> 
     </div>
 
     <div class="form-group">
-        <input type="file" name="image" id="my_files"  />
-        <button class="btn btn-secondary" type="button" onclick="document.location.reload()">Remove Photos</button>
+        <input type="file" name="image" id="my_file" required  />
             @include('admin.components.temp')       
     </div>
     <div class="gallery"></div>
@@ -36,6 +35,8 @@
             {!! Form::submit('Create', ['class' => 'btn btn-primary']) !!}
         </div>
     </div>
+
+    
 
 
 {!! Form::close() !!}

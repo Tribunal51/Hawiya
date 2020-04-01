@@ -358,5 +358,6 @@ export const app = new Vue({
     i18n
 });
 
-require('./react/components/Cover');
+// require('./react/components/Cover');
+// require('./react/components/Test/Test');
 

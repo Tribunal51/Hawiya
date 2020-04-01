@@ -24,7 +24,7 @@
                     <td><input name="products[]" value={{$item->id}} type="checkbox" /></td> 
                     <td>{{ $item->title }}</td> 
                     <td>{{ $item->title_ar}}</td>
-                    <td><img style="width: 200px; height: 200px; border: 1px solid gray;" class="img-fluid" src="{{ $item->image }}" alt="{{$item->image}}" /></td> 
+                    <td><img  class="small-img" src="{{ $item->image }}" alt="{{$item->image}}" /></td> 
                     <td>{{ $item->price }}</td> 
                     <td>{{ link_to_action('PagesController@editProduct', 'Edit', ['id' => $item->id], ['class' => 'btn btn-secondary'])}} </td> 
                 </th>

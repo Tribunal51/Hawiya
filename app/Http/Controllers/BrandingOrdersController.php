@@ -51,8 +51,11 @@ class BrandingOrdersController extends Controller
         $order->package = $request->package;
         $order->comment = $request->comment;
         $order->logo_photo = $request->logo_photo;
-        $order->category_id = Category::where('name', '=', 'Branding')->first()->id;
+        $category = Category::where('name', '=', 'Branding')->first();
+        $order->category_id = $category->id;
+        $order->order_token = $order->category->token_prefix.$order->getNextId();
        //return $request;
+       
         
         if(!isset($order->user_id) || !isset($order->package) || !isset($order->comment) || !isset($request->logo_photo)) {
             return -2;  //echo "Required fields missing";

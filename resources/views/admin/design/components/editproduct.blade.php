@@ -1,4 +1,4 @@
-{{ $data }}
+{{-- {{ $data }}
 
 {!! Form::open(['action' => ['AdminController@editProduct', $data->id], 'method' => 'POST', 'files' => true]) !!}
     @csrf 
@@ -23,13 +23,6 @@
         </div> 
 
     </div>
-    
-    {{-- <div class="form-group row">
-        <label for="details" class="col-md-4 col-form-label text-md-right">Project Details</label>
-        <div class="col-md-6">
-            <textarea type="text" id="details" name="details" class="form-control" value="{{$profile->details}}" required></textarea>
-        </div>
-    </div> --}}
 
     <div class="form-group">
         
@@ -52,4 +45,70 @@
         </div>
     </div>    
 
+{!! Form::close() !!} --}}
+
+{!! Form::open(['action' => ['AdminController@editProduct', 'id' => $data->id], 'method' => 'POST', 'files' => true]) !!}
+    {!! Form::hidden('_method', 'PUT') !!}
+
+    @csrf 
+
+    <h3> Edit Product</h3>
+
+    <table class="table">
+        <thead class="thead-dark">
+            <tr> 
+                <th scope="col">Attribute</th> 
+                <th scope="col">Value</th> 
+            </tr> 
+        </thead> 
+        <tbody>
+            <tr>
+                <td>Title</td>
+                <td> 
+                    <input type="text" name="title" value="{{$data->title}}" />
+                </td> 
+            </tr> 
+            <tr>
+                <td>Title (Arabic)</td>
+                <td>
+                    <input type="text" id="title_ar" name="title_ar" value="{{$data->title_ar }}" class="text-md-right"  required />
+                </td> 
+            </tr> 
+
+            <tr>
+                <td>Price</td> 
+                <td>
+                    <input type="number" step="0.01" class="col-md-2" value="{{$data->price}}" name="price" id="price" required /> 
+                </td>
+            </tr>
+
+            <tr>
+                <td>Image</td> 
+                <td>
+                    <div class="row"> 
+                        <div class="col">
+                            <img src={{$data->image}} alt={{$data->image}} class="small-img" />
+                        </div> 
+                    </div> 
+                    <hr>
+                    <div class="row mt-2">
+                        <div class="col">
+                            <input type="checkbox" name="changeImage" id="my_file"  />
+                            <label for="changeImage">Change Image</label>
+                            <br>
+                            <input type="file" id="image" name="image" />
+                            
+                            
+                        </div>  
+                        <div class="col gallery"></div>
+                    </div> 
+                </td>
+            </tr>
+        </tbody> 
+    </table> 
+
+    {!! Form::submit('Save', ['class' => 'btn btn-primary m-1']) !!}
+    
 {!! Form::close() !!}
+
+<a href={{"/dashboard/admin/databoard/addData/".$data->category_id}} class="m-1 btn btn-secondary">Back</a>

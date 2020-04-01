@@ -36,7 +36,8 @@ class Kernel extends ConsoleKernel
             $user->save();
         })->everyMinute();
 
-        $schedule->command('decrement:ordertime')->everyMinute();
+        // $schedule->command('decrement:ordertime')->everyMinute();
+        $schedule->command('check:orderdate')->daily();
 
         
     }

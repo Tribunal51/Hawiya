@@ -24,6 +24,7 @@ use App\Models\Commercial\CommercialOrder;
 use App\Models\Personal\PersonalItem;
 use App\Models\Personal\PersonalSubitem;
 
+use App\Models\PendingReorder;
 use Illuminate\Support\Facades\URL;
 
 use App\Helpers\AppHelper as Helper;
@@ -71,17 +72,18 @@ class PagesController extends Controller
     public function addProfile() {
         $profiles = Profile::all();
         //return redirect('AddProfilePage')->with('profiles', $profiles);
-         return view('admin.addprofile')->with('profiles', $profiles);
+         return view('admin.design.addprofile')->with('profiles', $profiles);
     }
 
     public function editProfile(Request $request, $id) {
         $profile = Profile::find($id);
-        return view('admin.editprofile')->with('profile', $profile);
+        return view('admin.design.editprofile')->with('profile', $profile);
     }
 
     public function databoard(Request $request) {
-        $categories = Category::all();
+        $categories = Category::all()->take(6);
         $category_links = [];
+
         foreach($categories as $category) {
             array_push($category_links, json_encode(array('name' => $category->name, 'link' => '/dashboard/admin/databoard/addData/'.$category->id)));
         }
@@ -91,7 +93,7 @@ class PagesController extends Controller
     }
 
     public function addData(Request $request, $id) {
-        $categories = Category::all();
+        $categories = Category::all()->take(6);
         $category_links = [];
         foreach($categories as $category) {
             array_push($category_links, json_encode(array('name' => $category->name, 'link' => '/dashboard/admin/databoard/addData/'.$category->id)));
@@ -149,10 +151,16 @@ class PagesController extends Controller
 
     public function orderboard() {
         $orders = $this->getAllDesignOrdersSortedByDate();
+        // return $orders;
         $categories = Category::all();
         $category_links = [];
+        $number = 0;
         foreach($categories as $category) {
+            if($number >= 6) {
+                break;
+            }
             array_push($category_links, json_encode(array('name' => $category->name, 'link' => '/dashboard/admin/orderboard/category/'.$category->id)));
+            $number++;
         }
         return view('admin.design.orderboard')->with(compact('orders', 'category_links'));
     }
@@ -185,7 +193,7 @@ class PagesController extends Controller
         $designers = User::where('designer','=', true)->get();
         
         //return is_numeric($request->id).' '.is_numeric($request->category_id);
-        $order = $this->getAllDesignOrdersSortedByDate($request->category_id, $request->id);
+        $order = $this->getAllOrdersSortedByDate($request->category_id, $request->id);
         return view('admin.design.order', compact('order', 'designers'));
         
     }
@@ -195,9 +203,11 @@ class PagesController extends Controller
         if(!$user) {
             return redirect()->back()->with('error', 'User not found.');
         }
-        $design_orders = $this->getUserOrdersforDesignSortedBydate($user->id);
+        $design_orders = $this->getUserOrdersSortedBydate($user->id);
         return view('admin.user', compact('user', 'design_orders'));
     }
+
+        
 
     public function designerDashboard() {
         $user = Auth::guard()->user();
@@ -240,18 +250,6 @@ class PagesController extends Controller
         
     }
 
-    public function commercialItems() {
-        $items = CommercialItem::all();
-        return view('admin.commercial.items', compact('items'));
-    }
-
-    public function commercialItem($id) {
-        $item = CommercialItem::find($id);
-        if(!$item) {
-            return redirect()->back()->with('error', 'Commercial Item not found.');
-        }
-        return view('admin.commercial.item', compact('item'));
-    }
 
     public function printingDashboard() {
         $user = Auth::guard()->user();
@@ -267,22 +265,9 @@ class PagesController extends Controller
         return view('pages.orderconfirm');
     }
 
-    public function commercialOrderboard() {
-        $orders = CommercialOrder::all();
-        return view('admin.commercial.orderboard', compact('orders'));
-    }
-
-    public function commercialOrder($id) {
-        $order = CommercialOrder::find($id);
-        if(!$order) {
-            return redirect()->back()->with('error', 'Commercial Order not found.');
-        }
-        $printing_admins = User::where('printing_admin', true)->get();
-        return view('admin.commercial.order', compact('order', 'printing_admins'));
-    }
-
     public function salesDashboard(Request $request) {
         $user = Auth::guard()->user();
+        //$reorders_pending = PendingReorder::where('sales_admin_id', null)->get();
         return view('sales.dashboard');
     }
 
@@ -326,6 +311,13 @@ class PagesController extends Controller
 
     public function adminDisplayPersonalItems(Request $request) {
         $items = PersonalItem::with('subitems')->get();
+        foreach($items as $item) {
+            $subitem_names = array();
+            foreach($item->subitems as $subitem) {
+                array_push($subitem_names, $subitem->name);
+            }
+            $item->subitem_names = $subitem_names;
+        }
         return view('admin.personal.items', compact('items'));
     }
 
@@ -336,6 +328,10 @@ class PagesController extends Controller
             return redirect()->back()->with('error', 'Item not found.');
         }
         return view('admin.personal.item', compact('item', 'subitems'));
+    }
+
+    public function adminTestPage(Request $request) {
+        return view('admin.test.test');
     }
 
     

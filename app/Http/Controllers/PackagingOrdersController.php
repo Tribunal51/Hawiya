@@ -119,11 +119,15 @@ class PackagingOrdersController extends Controller
                 return -6;  // echo "Product value is not a string";
             }
         }
-
+        
+        
         $order = new PackagingOrder;
         $order->user_id = $request->user_id;
         $order->products = implode($request->products, ',');
-        $order->category_id = Category::where('name', '=', 'Packaging')->first()->id;
+        $category = Category::where('name', 'Packaging')->get()->first();
+        $order->category_id = $category->id;
+        $order->order_token = $category->token_prefix.$order->getNextId();
+
         if(isset($request->comment)) {
             $order->comment = $request->comment;
         }

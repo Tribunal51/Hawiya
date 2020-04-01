@@ -7,19 +7,24 @@ use App\Category;
 use App\Package;
 use App\Product;
 use App\Helpers\AppHelper as Helper;
+use App\Models\Data\Data;
 
 class DataController extends Controller
 {
     //
 
     public function addCategories(Request $request) {
+
         if(!is_array($request->categories)) {
             return -2;  // echo "Required fields missing.";
         }
         foreach($request->categories as $category) {
             $model = new Category;
-            $model->name = $category;
-            $model->save();
+            $model->name = $category->name;
+            $model->token_prefix = $category->token_prefix;
+            if(!$model->save()) {
+                return " ".'-2'." ".$category->name;  // echo "Could not save Category ";
+            }   
         }
         return 1;
     }
@@ -140,4 +145,6 @@ class DataController extends Controller
             return $product->id;
         }
     }
+
+    
 }

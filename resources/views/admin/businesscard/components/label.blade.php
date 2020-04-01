@@ -1,5 +1,3 @@
-Label: {{ $label }}
-
 <table class="table">
     <thead class="thead-dark">
         <tr>

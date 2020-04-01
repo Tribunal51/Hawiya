@@ -29,9 +29,7 @@
                 <td>{{ $order->finishing }}</td>
                 <td><a href={{$order->frontside_file}}><img src={{$order->frontside_file}} alt={{$order->frontside_file}} class="small-img" /></a></td> 
                 <td><a href={{$order->backside_file}}><img src={{$order->backside_file}} alt={{$order->backside_file}} class="small-img" /></a></td> 
-                <td>
-
-                </td>
+                <td>{{ $order->printing_admin_name }}</td>
                 <td> {{ $order->created_at }}</td> 
             </tr> 
         @endforeach
