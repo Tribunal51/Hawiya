@@ -24,7 +24,6 @@ class CreateLogodesignOrdersTable extends Migration
             $table->string('tagline')->nullable();
             $table->string('business_field');
             $table->text('description');
-            $table->string('subject');
             $table->timestamps();
         });
 

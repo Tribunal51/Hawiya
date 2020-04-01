@@ -2,7 +2,11 @@
     <div id="cover">
         <section id="section1"><Welcome /></section>
         <section id="section2"><WhatWeDo /></section>
+<<<<<<< HEAD
         <!-- <section id="section3"><MeetTheTeam /></section> -->
+=======
+        <section id="section3"><MeetTheTeam /></section>
+>>>>>>> 00448664fa03f1c57e05b464882457956a1ff51c
         <section id="section4"><Profile /></section>
         <section id="section5"><CaseStudy /></section>
         <section id="section6"><ContactUs /></section>   
