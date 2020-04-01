@@ -1,10 +1,7 @@
 <template>    
     <v-app class="Cover alignLang" >
-        
         <router-view />
-        
         <page-footer />
-
         <!-- <Cover /> -->
         
     </v-app>

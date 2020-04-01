@@ -3,7 +3,9 @@
         "en": {
             "line1": "Design your identity with a professional team",
             "line2": "Our design team gives you the professional edge you need to stand out your identity.",
-            "line3": "Let us build an outstanding brand for you"
+            "line3": "Let us build an outstanding brand for you",
+            "splashLine1": "Design | Signage | Print",
+            "splashLine2": "Small-scale to industrial, we can cover all your jobs!"
 
         },
         "ar": {
@@ -19,21 +21,38 @@
     <div class="Cover">
         <div class="navbarHeight"></div>
         <div class="filler">
-            
+           <div class="splash-image-container">
+                <div class="splash-section">
+                    <h1 class="splashHeader1">{{ $t('splashLine1') }}</h1> 
+                    <h2 class="splashHeader2">{{ $t('splashLine2') }}</h2>
+                </div>
+            </div>
             <div class="flex-container-align-bottom">
-                <IntroSection :homePage="true">        
-                    <BlackBox>
-                        <h3 class="bold alignLang">{{ $t('line1') }}</h3>
-                    </BlackBox>
+                <IntroSection>    
                     <div class="row">
-                        <div class="col gray alignLang">
-                            {{ $t('line2') }}
+                        <div class="col-md-10">
+                            <BlackBox>
+                                <h3 class="bold alignLang">{{ $t('line1') }}</h3>
+                            </BlackBox>
+                            <div class="row">
+                                <div class="col gray alignLang">
+                                    {{ $t('line2') }}
+                                </div>
+                            </div>
+                        </div> 
+                        <div class="col-md-2">
+                            <BlackBox>
+                                <h3>{{ $t('line3') }}</h3>
+                            </BlackBox> 
                         </div>
-                    </div>
+                    </div> 
+                    
+                        
+                    
                     
                 </IntroSection>
                 
-                    <div class="yellowContainerCurved">
+                    <!-- <div class="yellowContainerCurved">
                         <IntroSection :homePage="true">  
                             <BlackBox>
                                 <div class="secondHeader alignLang">{{ $t('line3') }}</div>
@@ -44,7 +63,7 @@
                                 </div>
                             </div>
                         </IntroSection>
-                    </div>
+                    </div> -->
                     
             </div>
                 <!-- <div class="col-md"></div> -->
@@ -99,7 +118,7 @@
             </StickyLeftPanel> -->
 
         
-            <StickySidebar />
+            <!-- <StickySidebar /> -->
             
             
 
@@ -162,23 +181,46 @@ export default {
         position: relative;
         /* background-color: red; */
         display: flex;
-        align-items: flex-end;
+        flex-direction: column;
+        /* align-items: flex-end; */
     }
 
 
     .flex-container-align-bottom {
         /* height: 100%; */
-        min-height: 60vh;
-        width: 50%;
+        min-height: 30vh;
+        width: auto;
         display: flex;
         flex-direction: column;
         /* width: 50% !important; */
 
         /* align-items: flex-end; */
-        justify-content: flex-end;
+        /* justify-content: flex-end; */
         /* background-color: red; */
         /* background-color: green; */
     
+    }
+
+    .splash-image-container {
+        min-height: 40vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: url('/storage/SplashImage.png') no-repeat center center;
+    }
+
+    .splashHeader1 {
+        font-size: 2.5rem; 
+        font-weight: 200;
+        color: white;
+    }
+
+    .splashHeader2 {
+        font-size: 1.5rem;
+        font-weight: 100;
+        color: white;
+        font-style: italic;
     }
 
     @media (max-width: 768px) {
@@ -247,6 +289,7 @@ export default {
         /* background-color: red; */
     }
 
+    
 
 
     /* 

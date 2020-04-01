@@ -57,7 +57,7 @@ export default {
     data() {
         return {
             sections: [1,2,3,4,5],
-            homePageUrl: '/storage/hawiyaHomePage.PNG',
+            homePageUrl: '/storage/ImpressHomePage.PNG',
             scrollPos: 0
         }
     }
@@ -99,7 +99,7 @@ export default {
     #section1 {
         font-family: 'LatoBold', sans-serif;
         min-height: 100vh;       
-        background: url('/storage/HomePage.png') no-repeat center center;
+        background: url('/storage/ImpressHomePage.png') no-repeat center center;
         -webkit-background-size: cover;
         -moz-background-size: cover;
         -o-background-size: cover;

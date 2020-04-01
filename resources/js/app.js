@@ -94,6 +94,8 @@ Vue.component('google-login', require('./components/UI/GoogleLogin').default);
     import UserSupport from './components/OtherPages/Dashboard/Settings/Support';
     import GoogleLogin from './components/UI/GoogleLogin';
     import LogodesignReport from './components/OtherPages/Report/LogoDesign';
+
+    // import ImpressHomePage from './Impress/HomePage/HomePage';
     
     // import 'vuetify/src/stylus/app.styl';
 
@@ -359,6 +361,5 @@ export const app = new Vue({
 });
 
 // require('./react/components/Cover');
-// require('./react/components/Test/Test');
+require('./react/components/Test/Test');
 
-// We are now in the Official Impress website
