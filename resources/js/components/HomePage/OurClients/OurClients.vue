@@ -70,14 +70,40 @@ export default {
     mounted() {
 
     },
+    created() {
+        window.addEventListener('resize', this.handleResize);
+        this.handleResize();
+    },
+    destroyed() {
+        window.removeEventListener('resize', this.handleResize);
+    },
     data() {
         return {
-            imageLink: "/storage/clients.png",
+            imageLink: "",
             appleStoreLink: "/storage/appStore.png",
-            playStoreLink: "/storage/googlePlay.png"
+            playStoreLink: "/storage/googlePlay.png",
+            width: 0,
+            height: 0
         }
 
     },
+    methods: {
+        handleResize() {
+            this.width = window.innerWidth;
+        }
+        
+    },
+    watch: {
+        width: function(val) {
+            if(val <= 768) {
+                this.imageLink = "/storage/clientsVertical.png";
+            }
+            else {
+                this.imageLink = "/storage/clients.png";
+            }
+            console.log(val);
+        }
+    }
 }
 </script>
 
@@ -103,11 +129,14 @@ export default {
         display: flex;
         flex-direction: row;
         justify-content: center;
+        
     }
 
     .clientsImage {
         width: 100%;
         height: auto;
+        /* max-height: 70vh; */
+        /* background: url('/storage/clients.png') no-repeat center center; */
     }
 
     @media (max-width: 768px) {
