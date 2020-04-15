@@ -24,5 +24,10 @@ class BrandingOrder extends Model
     public function address() {
         return $this->belongsTo('App\Models\User\Address');
     }
+
+
+
+
+    // test
 }
  
