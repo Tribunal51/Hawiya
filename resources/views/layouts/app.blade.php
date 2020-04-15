@@ -152,9 +152,9 @@
 
                         <div id="userStatusSection" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                            <a class="dropdown-item alignLang" href="{{ route('home') }}">
+                            {{-- <a class="dropdown-item alignLang" href="{{ route('home') }}">
                                     {{ __('Dashboard') }}
-                            </a>
+                            </a> --}}
                             @if(Auth::user()->admin)
                                 <a class="dropdown-item alignLang" href="/dashboard/admin">
                                         {{ __('Admin Dashboard') }}
@@ -219,9 +219,9 @@
 
                                 <div id="userStatusSection" class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
 
-                                    <a class="dropdown-item" href="{{ route('home') }}">
+                                    {{-- <a class="dropdown-item" href="{{ route('home') }}">
                                             {{ __('Dashboard') }}
-                                    </a>
+                                    </a> --}}
                                     @if(Auth::user()->admin)
                                         <a class="dropdown-item alignLang" href="/dashboard/admin">
                                                  {{ __('Admin Dashboard') }}

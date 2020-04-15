@@ -6,6 +6,11 @@
             "PROFILE": "PROFILE",
             "CASE STUDY": "CASE STUDY",
             "CONTACT US": "CONTACT US",
+
+            "OUR STORY": "OUR STORY",
+            "OUR SERVICES": "OUR SERVICES",
+            "OUR CLIENTS": "OUR CLIENTS",
+
             "EN": "EN",
             "AR": "عربى" 
         },
@@ -15,6 +20,11 @@
             "PROFILE": "الملف الشخصي",
             "CASE STUDY": "دراسة الحالة",
             "CONTACT US": "اتصل بنا",
+
+            "OUR STORY": "قصتنا",
+            "OUR SERVICES": "خدماتنا",
+            "OUR CLIENTS": "زبوننا",
+
             "EN": "EN",
             "AR": "عربى"
         }
@@ -78,7 +88,7 @@
                 </button>
                 <div class="collapse navbar-collapse" :class="{ 'show': show }" id="navbarNav">
                     <div class="newNavbarMainSection collapse navbar-collapse" :class="{ 'show': show }" id="navbarNav">
-                        <a href="/"><img class="newLogo" src="/storage/HawiyaBrandLogo.PNG" /></a>
+                        <a href="/"><img class="newLogo" src="/storage/ImpressLogo.png" /></a>
                         <router-link 
                             v-show="displayOrNot(scrollPos)" 
                             v-on:click.native="toggleNavbar()" 
@@ -87,9 +97,9 @@
                             v-scroll-to="{el: '#section1', offset: offset}">
                                 {{ $t('HOME') }}
                         </router-link>
-                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section2', offset: offset}">{{ $t('WHAT WE DO') }}</router-link>
-                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section4', offset: offset}">{{ $t('PROFILE') }}</router-link>
-                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section5', offset: offset}">{{ $t('CASE STUDY') }}</router-link>
+                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section2', offset: offset}">{{ $t('OUR STORY') }}</router-link>
+                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section3', offset: offset}">{{ $t('OUR SERVICES') }}</router-link>
+                        <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section4', offset: offset}">{{ $t('OUR CLIENTS') }}</router-link>
                         <router-link v-show="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" class="newItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">{{ $t('CONTACT US') }}</router-link>
                         <div :style="alignAuthSlot()" class="authSlot">
                             <slot name="navbar"></slot>
@@ -124,7 +134,7 @@
                 
                 <ul class="navbar-nav navItems">
                     <li class="nav-item mr-auto">
-                        <a href="/"><img class="logo" src="/storage/HawiyaBrandLogo.PNG" /></a>
+                        <a href="/"><img class="logo" src="/storage/ImpressLogo.png" /></a>
                     </li>
                     
                     <span :style="displaySectionOrNot()">
@@ -137,10 +147,10 @@
                             v-scroll-to="{el: '#section1', offset: offset}">
                                 HOME
                         </router-link>
-                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section2', offset: offset}">WHAT WE DO</router-link>
-                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section4', offset: offset}">PROFILE</router-link>
-                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section5', offset: offset}">CASESTUDY</router-link>
-                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">CONTACTUS</router-link>
+                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section2', offset: offset}">OUR STORY</router-link>
+                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section3', offset: offset}">OUR SERVICES</router-link>
+                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section4', offset: offset}">OUR CLIENTS</router-link>
+                        <router-link :style="displayOrNot(scrollPos)" v-on:click.native="toggleNavbar()" tag="li" class="nav-item navItem" to="/" v-scroll-to="{el: '#section6', offset: offset}">CONTACT US</router-link>
                     </span>
                     <slot></slot>
                     
@@ -196,7 +206,7 @@
         <v-navigation-drawer app v-model="drawer" temporary :right="lang === 'ar'">
             <v-list nav>
                 <ul class="navigationDrawerSection">
-                    <a class="drawerItem" href="/"><img src="/storage/HawiyaBrandLogo.PNG" class="newLogo" /></a>
+                    <a class="drawerItem" href="/"><img src="/storage/ImpressLogo.png" class="newLogo" /></a>
                     <span :style="displaySectionOrNot()">
                         <v-list-tile>
                             <v-list-tile-action>
@@ -205,15 +215,15 @@
                         </v-list-tile>
 
                         <v-list-tile>
-                            <router-link class="drawerItem" to="/" v-scroll-to="{el: '#section2', offset: 0}" v-on:click.native="toggleDrawer()">{{ $t('WHAT WE DO') }}</router-link>
+                            <router-link class="drawerItem" to="/" v-scroll-to="{el: '#section2', offset: 0}" v-on:click.native="toggleDrawer()">{{ $t('OUR STORY') }}</router-link>
                         </v-list-tile>
 
                         <v-list-tile>
-                            <router-link class="drawerItem" to="/" v-scroll-to="{ el: '#section4', offset: 0}" v-on:click.native="toggleDrawer()">{{ $t('PROFILE') }}</router-link>
+                            <router-link class="drawerItem" to="/" v-scroll-to="{ el: '#section3', offset: 0}" v-on:click.native="toggleDrawer()">{{ $t('OUR SERVICES') }}</router-link>
                         </v-list-tile>
                         
                         <v-list-tile>
-                            <router-link class="drawerItem" to="/" v-scroll-to="{ el: '#section5', offset: 0}" v-on:click.native="toggleDrawer()">{{ $t('CASE STUDY') }}</router-link>
+                            <router-link class="drawerItem" to="/" v-scroll-to="{ el: '#section4', offset: 0}" v-on:click.native="toggleDrawer()">{{ $t('OUR CLIENTS') }}</router-link>
                         </v-list-tile>
                         
                         <v-list-tile>
@@ -647,7 +657,8 @@ export default {
     }
 
     .languageButton:hover {
-        background-color: #FFDB00;
+        /* background-color: #FFDB00; */
+        background-color: #00AEEF;
     }
 
     .toggleButton {
@@ -759,7 +770,8 @@ export default {
     }
 
     .newLanguageButton:hover {
-        background-color: #FFDB00;
+        /* background-color: #FFDB00; */
+        background-color: #00AEEF;
     }
 
     .newToggleButton {

@@ -480,7 +480,7 @@ trait GetOrders {
                     'logo_photo' => 'required',
                     'posts' => 'required|array',
                     'posts.*.comment' => 'required',
-                    'posts.*.image' => 'required'
+                    'posts.*.image' => 'nullable'
                 ];
                 $messages = [
                     'required' => -2,
@@ -507,8 +507,8 @@ trait GetOrders {
             case 'Promotional': 
                 $rules = [
                     'user_id' => 'required',
-                    'items' => 'required|array',
-                    'items.*' => 'string'
+                    'products' => 'required|array',
+                    'products.*' => 'string'
                 ];
                 $messages = [
                     'required' => -2,
@@ -519,7 +519,7 @@ trait GetOrders {
                 if($validator->fails()) {
                     return $validator->errors()->first();
                 }
-                if(sizeof($order->items) < 1) {
+                if(sizeof($order->products) < 1) {
                     return -6;  // echo "Empty Items array.";
                 }
             break; 
@@ -548,8 +548,8 @@ trait GetOrders {
             case 'Stationery': 
                 $rules = [
                     'user_id' => 'required',
-                    'items' => 'required|array',
-                    'items.*' => 'required|string',
+                    'products' => 'required|array',
+                    'products.*' => 'required|string',
                     'comment' => 'nullable|string'
                 ];
                 $messages = [
@@ -561,7 +561,7 @@ trait GetOrders {
                 if($validator->fails()) {
                     return $validator->errors()->first();
                 }
-                if(sizeof($order->items) < 1) {
+                if(sizeof($order->products) < 1) {
                     return -5;  // echo "Empty Items array.";
                 }
             break; 
@@ -598,5 +598,14 @@ trait GetOrders {
 
         }
         return 1;
+    }
+
+    public function getAllOrdersFromMasterOrder(object $master_order) {
+        $orders = array();
+        foreach($master_order->orders as $order) {
+            $full_order = $this->getOrderByToken($order->order_token);
+            array_push($orders, $full_order);
+        }
+        return $orders;
     }
 }

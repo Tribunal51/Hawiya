@@ -1,7 +1,7 @@
 <template>    
     <v-app class="Cover alignLang" >
         <router-view />
-        <page-footer />
+        <!-- <page-footer /> -->
         <!-- <Cover /> -->
         
     </v-app>
@@ -304,5 +304,11 @@ export default {
             margin-left: 10px;
         }   
 
+    .gray {
+        font-family: 'LatoRegular', sans-serif;
+        color: gray;
+        font-weight: 500;
+        font-size: 1rem;
+    }
     
 </style>

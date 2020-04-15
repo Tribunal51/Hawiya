@@ -13,4 +13,8 @@ class MasterOrderMapping extends Model
         'order_id',
         'order_token'
     ];
+
+    public function master_order() {
+        return $this->belongsTo('App\Models\Order\MasterOrder', 'order_id');
+    }
 }

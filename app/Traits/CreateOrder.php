@@ -190,7 +190,7 @@ trait CreateOrder {
             'package' => 'required',
             'logo_photo' => 'required',
             'posts' => 'required|array',
-            'posts.*.image' => 'required',
+            'posts.*.image' => 'nullable',
             'posts.*.comment' => 'required'
         ], [
             'required' => -2,
@@ -235,7 +235,7 @@ trait CreateOrder {
                 return -7;  // echo "Required fields missing for the Post";
             }
             else {
-                if(!Helper::check_file($post->image)) {
+                if(isset($post->image) && !Helper::check_file($post->image)) {
                     return -8;  // echo "File format wrong for one or more posts";
                 }
             }
@@ -260,7 +260,7 @@ trait CreateOrder {
             $new_post = new SocialMediaPost;
             $new_post->comment = $post->comment;
             $new_post->order_id = $order->id;
-            $new_post->image = Helper::save_file($post->image);
+            $new_post->image = isset($post->image) ? Helper::save_file($post->image) : null;
             if(!$new_post->save()) {    
                 $order->delete();          
                 return -9;  // echo Could not save a Post. Order deleted.
@@ -278,8 +278,8 @@ trait CreateOrder {
     public function createStationeryOrder(Request $request) {
         $validator = Validator::make($request->all(), [
             'user_id' => 'required',
-            'items' => 'required|array',
-            'items.*' => 'required|string',
+            'products' => 'required|array',
+            'products.*' => 'required|string',
             'comment' => 'nullable|string',
             'logo_photo' => 'nullable|string',
             'comment' => 'nullable|string'
@@ -295,7 +295,7 @@ trait CreateOrder {
         if(!User::find($request->user_id)) {
             return -3;  // echo "User not found.";
         }
-        if(sizeof($request->items) < 1) {
+        if(sizeof($request->products) < 1) {
             return -5;  // echo "Items cannot be an empty array.";
         }
         // foreach($request->items as $item) {
@@ -305,7 +305,7 @@ trait CreateOrder {
         // }
         $order = new StationeryOrder;
         $order->user_id = $request->user_id;
-        $order->products = implode($request->items, ',');
+        $order->products = implode($request->products, ',');
         if($request->logo_photo) {
             $order->logo_photo = Helper::save_file($request->logo_photo);
         }
@@ -329,8 +329,8 @@ trait CreateOrder {
     public function createPromotionalOrder(Request $request) {
         $validator = Validator::make($request->all(), [
             'user_id' => 'required',
-            'items' => 'required|array',
-            'items.*' => 'string',
+            'products' => 'required|array',
+            'products.*' => 'string',
             'comment' => 'nullable|string'
         ], [
             'required' => -2,
@@ -346,13 +346,13 @@ trait CreateOrder {
             return -3;  // echo "User does not exist.";
         }
         
-        if(sizeof($request->items) <= 0) {
+        if(sizeof($request->products) <= 0) {
             return -6;  // echo "Empty Array of Items.";
         }
 
         $order = new PromotionalOrder;
         $order->user_id = $request->user_id;
-        $order->products = implode(",", $request->items);
+        $order->products = implode(",", $request->products);
         if($request->logo_photo) {
             $order->logo_photo = Helper::save_file($request->logo_photo);
         }

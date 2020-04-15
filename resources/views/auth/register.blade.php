@@ -87,7 +87,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-                                <button type="submit" class="btn btn-warning">
+                                <button type="submit" class="btn btn-priamry">
                                     {{ __('Register') }}
                                 </button>
                                 @if(request()->input('redirect'))

@@ -2,7 +2,7 @@
     {
         "en": {
             "Connect": "Connect",
-            "With The Hawiya Brand": "With The Hawiya Brand...",
+            "With The Hawiya Brand": "With The Impress Brand...",
             "Get in Touch": "Get in Touch",
             "Telephone": "Telephone: +965 12345678",
             "Fax": "Fax: +965 12345678",
@@ -55,8 +55,8 @@
         <IntroSection>            
             <div class="row">
                 <div class="col-md">
-                    <BlackBox :customStyles="fontRegular">
-                        <h2> {{ $t('Connect') }} <br /> {{ $t('With The Hawiya Brand') }} </h2>               
+                    <BlackBox :customStyles="fontRegular" :blue="true">
+                        <h2> {{ $t('Connect') }} <br /> <b>{{ $t('With The Hawiya Brand') }}</b> </h2>               
                     </BlackBox>
                 </div>
                 <div class="col-md">
@@ -65,7 +65,7 @@
             </div>
             <div class="row">
                 <div class="col-md">
-                    <BlackBox :customStyles="fontRegular">
+                    <BlackBox :customStyles="fontRegular" :blue="true">
                         <h4>{{ $t('Connect') }}</h4>
                     </BlackBox>
                     <div class="row">
@@ -77,7 +77,7 @@
                 <div class="col-md">
                     <div class="row">
                         <div class="col-sm">
-                            <BlackBox :customStyles="fontRegular">
+                            <BlackBox :customStyles="fontRegular" :blue="true">
                                 <h4>{{ $t('Get in Touch') }}</h4>                                
                             </BlackBox>
                             
@@ -101,7 +101,7 @@
                         </div>
                         <div class="col-sm">
                             
-                            <BlackBox :customStyles="fontRegular">
+                            <BlackBox :customStyles="fontRegular" :blue="true">
                                 <h4>{{ $t('Opening Hours')}}</h4>
                             </BlackBox>
                             
@@ -113,7 +113,7 @@
                                 </div>                              
                             </div>
                             
-                            <BlackBox :customStyles="fontRegular">
+                            <BlackBox :customStyles="fontRegular" :blue="true">
                                 <h4>{{ $t('Interested') }}</h4>
                             </BlackBox>
 

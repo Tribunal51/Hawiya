@@ -21,4 +21,8 @@ class MasterOrder extends Model
     public function orders() {
         return $this->hasMany('App\Models\Order\MasterOrderMapping', 'order_id');
     }
+
+    public function user() {
+        return $this->belongsTo('App\User', 'user_id');
+    }
 }

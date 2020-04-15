@@ -170,6 +170,8 @@ use App\Http\Resources\User as UserResource;
     Route::get('/data/store/products', 'StoreController@getProducts');
     Route::get('/orders/store', 'StoreController@getOrders');
     Route::post('/orders/store', 'StoreController@createOrder');
+
+    Route::get('/master-order/{id}/orders', 'OrdersController@getOrdersFromMasterOrder');
 // });
 
 Route::group([   

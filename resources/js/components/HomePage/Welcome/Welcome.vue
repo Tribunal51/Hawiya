@@ -11,7 +11,9 @@
         "ar": {
             "line1": "صمم هويتك مع فريق محترف",
             "line2": "يمنحك فريق التصميم لدينا الميزة الاحترافية التي تحتاجها لتبرز هويتك.",
-            "line3": "دعونا نبني علامة تجارية متميزة لك"
+            "line3": "دعونا نبني علامة تجارية متميزة لك",
+            "splashLine1": "التصميم | لافتات | طباعة",
+            "splashLine2": "على نطاق صغير للصناعية ، يمكننا تغطية جميع وظائفك!"
         }
     }
 </i18n>
@@ -24,28 +26,31 @@
            <div class="splash-image-container">
                 <div class="splash-section">
                     <h1 class="splashHeader1">{{ $t('splashLine1') }}</h1> 
-                    <h2 class="splashHeader2">{{ $t('splashLine2') }}</h2>
+                    <span class="splashHeader2">{{ $t('splashLine2') }}</span>
                 </div>
             </div>
             <div class="flex-container-align-bottom">
                 <IntroSection>    
                     <div class="row">
-                        <div class="col-md-10">
-                            <BlackBox>
+                        <div class="col-md-8 line1Section">
+                            <BlackBox :blue="true">
                                 <h3 class="bold alignLang">{{ $t('line1') }}</h3>
                             </BlackBox>
-                            <div class="row">
-                                <div class="col gray alignLang">
-                                    {{ $t('line2') }}
-                                </div>
-                            </div>
                         </div> 
-                        <div class="col-md-2">
-                            <BlackBox>
-                                <h3>{{ $t('line3') }}</h3>
-                            </BlackBox> 
+                        <div class="col-md-4">
                         </div>
                     </div> 
+                    <div class="row">
+                        <div class="col-md-8 gray alignLang line2Section">
+                            {{ $t('line2') }}
+                
+                        </div> 
+                        <div class="col-md-4 line3Section">
+                            <BlackBox :blue="true">
+                                <h3>{{ $t('line3') }}</h3>
+                            </BlackBox> 
+                        </div> 
+                    </div>
                     
                         
                     
@@ -123,9 +128,9 @@
             
 
         </div> 
-        <div class="footerSection">
+        <!-- <div class="footerSection">
             <Footer />              
-        </div>
+        </div> -->
         
     </div>
 </template>
@@ -169,13 +174,15 @@ export default {
 
 <style scoped>
 
+    .Cover {}
+
     .navbarHeight {
         height: 15vh;
         /* background-color: black; */
     }
 
     .filler {
-        min-height: 75vh;
+        min-height: 85vh;
         width: 100%;
         height: 100%;
         position: relative;
@@ -185,10 +192,30 @@ export default {
         /* align-items: flex-end; */
     }
 
+    .splash-image-container {
+        min-height: 35vh;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        background: url('/storage/SplashImage.png') no-repeat;
+        /* padding-left: 1000px; */
+        /* padding-left: 100px; */
+        background-size: 100% 80%;
+        /* background-size: contain; */
+        /* background-origin: content-box; */
+        /* margin: 100px; */
+        margin-left:8%;
+        
+
+    }
+
+
+
 
     .flex-container-align-bottom {
         /* height: 100%; */
-        min-height: 30vh;
+        min-height: 55vh;
         width: auto;
         display: flex;
         flex-direction: column;
@@ -201,31 +228,64 @@ export default {
     
     }
 
-    .splash-image-container {
-        min-height: 40vh;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        background: url('/storage/SplashImage.png') no-repeat center center;
-    }
+    
+
+    
 
     .splashHeader1 {
         font-size: 2.5rem; 
-        font-weight: 200;
+        /* font-size: 5vw; */
+        font-weight: 300;
         color: white;
     }
 
     .splashHeader2 {
-        font-size: 1.5rem;
-        font-weight: 100;
+        font-size: 1.3rem;
+        /* font-size: 3vw; */
         color: white;
         font-style: italic;
+        font-family: 'LatoRegular', sans-serif;
+    }
+
+    .splash-section {
+        /* background-color: red; */
+        margin-right: 25%
     }
 
     @media (max-width: 768px) {
+        
         .flex-container-align-bottom {
             width: 100%;
+        }
+
+        .splash-section {
+            margin-right: 0%;
+        }
+
+        .splash-image-container {
+            margin-left: 0%;
+            /* background: #00AEEF;
+            border-radius: 10%; */
+            
+        }
+
+        .splashHeader1 {
+            font-size: 5.5vw !important;
+        }
+
+        .splashHeader2 {
+            width: 80%;
+            /* background-color: red; */
+            display: flex;
+            flex-flow: row wrap;
+            justify-content: center;
+            font-size: 3.5vw !important;
+        }
+    }
+
+    @media(min-width:769px) and (max-width: 1044px) {
+        .splash-image-container {
+            margin-left: 0% !important;
         }
     }
 

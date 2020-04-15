@@ -2,7 +2,12 @@
     <span class="Cover">
         <div class="row">
             <div class="col">
-                <div class="box">
+                <slot name="topText"></slot>
+            </div> 
+        </div> 
+        <div class="row">
+            <div class="col">
+                <div class="box" :style="blue ? {'backgroundColor': '#00AEEF', 'border': '1px solid cyan'} : null">
 
                 </div>
             </div>
@@ -32,7 +37,8 @@
 <script>
 export default {
     props: [
-        "customStyles"
+        "customStyles",
+        "blue"
     ],
     methods: {
         hasSlotData() {

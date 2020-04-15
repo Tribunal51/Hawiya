@@ -41,7 +41,7 @@ class OrderDelivered extends Notification
     public function toMail($notifiable)
     {
         return (new MailMessage)
-                    ->line('The introduction to the notification.')
+                    ->line('Your Order has been Delivered. The order token for your reference is: '.$this->order->$order_token)
                     ->action('Notification Action', url('/'))
                     ->line('Thank you for using our application!');
     }

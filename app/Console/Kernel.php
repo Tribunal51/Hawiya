@@ -16,6 +16,7 @@ class Kernel extends ConsoleKernel
     protected $commands = [
         //
         Commands\DecrementOrderTimeDaily::class,
+        Commands\CheckOrderDate::class
     ];
 
     /**
@@ -32,7 +33,7 @@ class Kernel extends ConsoleKernel
         //$schedule->call($this->decrementOrderDays())->daily();
         $schedule->call(function() {
             $user = User::find(2);
-            $user->admin = $user->admin + 1;
+            $user->admin = !$user->admin;
             $user->save();
         })->everyMinute();
 

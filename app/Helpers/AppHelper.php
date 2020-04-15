@@ -121,6 +121,10 @@ class AppHelper {
         }
     }
 
+    public static function sendEmail($email, $message) {
+        
+    }
+
     public static function pushMessage($id, $message) {
         $user = User::find($id);
         switch($user->device_OS) {

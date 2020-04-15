@@ -15,6 +15,8 @@ use App\Models\PendingReorder;
 
 use App\Helpers\AppHelper as Helper;
 
+use App\Notifications\OrderRegistered;
+
 use Validator;
 
 use App\Models\Commercial\CommercialOrder;
@@ -460,6 +462,8 @@ class OrdersController extends Controller
         }
         unset($master_order->orders);
         $master_order->orders = $tokens_array;
+        $user = User::find($master_order->user_id);
+        // $master_order->email = $user->email;
         return $master_order;
     }
 
@@ -796,7 +800,16 @@ class OrdersController extends Controller
             }
         }
 
+        $all_orders = $this->getAllOrdersFromMasterOrder($master_order);
+        // return $master_order->user;
+        $master_order->user->notify(new OrderRegistered($all_orders, $master_order));
+        // return $all_orders;
         return array($master_order->id);
+    }
+
+    public function getOrdersFromMasterOrder(Request $request, $id) {
+        $master_order = MasterOrder::find($id);
+        return $this->getAllOrdersFromMasterOrder($master_order);
     }
 
     

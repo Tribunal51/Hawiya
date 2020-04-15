@@ -11,11 +11,19 @@
 |
 */
 
+use App\User;
+
 Route::get('/', 'PagesController@index');
 // Auth::routes();
 Auth::routes(['verify' => true]);
 
 Route::get('/home', 'HomeController@index')->name('home')->middleware('verified');
+
+Route::get('order-registered', function() {
+    Notification::route('mail', 'zohair@impresskw.com')->notify(new App\Notifications\OrderRegistered);
+    return 'Sent';
+    // return (new App\Notifications\OrderRegistered)->toMail(User::find(1));
+});
 //Route::get('/home', 'PagesController@userDashboard')->name('home')->middleware('auth');
 Route::get('/home/{any}', function() {
     return view('home');    

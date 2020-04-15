@@ -14,6 +14,7 @@
         "edujugon/push-notification": "^4.1",
         "ejarnutowski/laravel-api-key": "^1.0",
         "fideloper/proxy": "^4.0",
+        "guzzlehttp/guzzle": "^6.5",
         "laravel/framework": "5.8.*",
         "laravel/socialite": "^3.2.0",
         "laravel/tinker": "^1.0",

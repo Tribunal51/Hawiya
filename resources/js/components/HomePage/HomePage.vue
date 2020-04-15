@@ -1,10 +1,15 @@
 <template>
     <div id="cover">
         <section id="section1"><Welcome /></section>
-        <section id="section2"><WhatWeDo /></section>
-        <!-- <section id="section3"><MeetTheTeam /></section> -->
-        <section id="section4"><Profile /></section>
-        <section id="section5"><CaseStudy /></section>
+
+        <!-- <section id="section2"><WhatWeDo /></section>     -->
+        <!-- <section id="section3"><MeetTheTeam /></section> -->   
+        <!-- <section id="section4"><Profile /></section> -->
+        <!-- <section id="section5"><CaseStudy /></section> -->
+
+        <section id="section2"><OurStory /></section>
+        <!-- <section id="section3"><OurServices /></section> -->
+        <section id="section4"><OurClients /></section>
         <section id="section6"><ContactUs /></section>   
     </div>
 </template>
@@ -15,14 +20,15 @@ import VueRouter from 'vue-router';
 import VueScrollTo from 'vue-scrollto';
 import axios from 'axios';
 
-
+import OurStory from './OurStory/OurStory.vue';
+import OurServices from './OurServices/OurServices.vue';
 import WhatWeDo from './WhatWeDo/WhatWeDo.vue';
 import Profile from './Profile/Profile.vue';
 import CaseStudy from './CaseStudy/CaseStudy.vue';
 import ContactUs from './ContactUs/ContactUs.vue';
 import MeetTheTeam from './WhatWeDo/MeetTheTeam';
 import Welcome from './Welcome/Welcome';
-
+import OurClients from './OurClients/OurClients';
 
 export default {
     mounted() {
@@ -52,7 +58,10 @@ export default {
         CaseStudy,
         ContactUs,
         MeetTheTeam,
-        Welcome
+        Welcome,
+        OurStory,
+        OurServices,
+        OurClients
     },
     data() {
         return {
@@ -88,7 +97,7 @@ export default {
         display: flex;
         flex-direction: column;
         justify-content: center;
-        font-family: 'Lato', sans-serif;
+        font-family: 'LatoRegular', sans-serif;
         /* min-height: 80vh; */
     }
 
